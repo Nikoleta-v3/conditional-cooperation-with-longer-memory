@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage{minitoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{graphics}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{amsmath}
+
+\usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
+
+\newcommand{\nikoleta}[1]{\textcolor{orange}{{\bf NG:} #1}}
+
+\title{Two bits (and more) reactive strategies in repeated games}
+
+\author{Nikoleta E. Glynatsi, Christian Hilbe, Martin Nowak}
+\date{}
+
+\begin{document}
+
+We explore infinetly () symmetric games repeated games where players use
+the family reactive strategies to make decision at each turn. In the donation
+game at each turn each player can, simulanetlous and idependanlty, choose
+to cooperate or defect. The payoffs are given by:
+
+
+Strategies of the reactive family only take into account the actions of the co-player.
+Famously one bit reactive strategies are given by p. Here we exlore the case.
+Here we explore the cases where. 
+
+The players can be in 
+
+
+The transition matrix given by: 
+
+Computing the stationary distribution of this matrix (analytically) is not
+trivia.
+
+\subsection{Analytical analysis}
+
+
+\begin{align}
+  y &= \begin{bmatrix}
+         x_{1} \\
+         x_{2} \\
+         \vdots \\
+         x_{m}
+       \end{bmatrix}
+\end{align}
+
+
+\begin{align}
+[   &  p_{1}^{2} q_{1}^{2} \\
+    &  p_{1}^{2} q_{1} \left(1 -q_{1}\right) \\
+    &  p_{1} q_{1}^{2} \left(1 - p_{1}\right) \\ 
+    &  p_{1} q_{1} \left(p_{1} -1\right) \left(q_{1} - 1\right) \\
+    &  p_{1}^{2} q_{1} \left(1 -q_{1}\right) \\
+    &  p_{1}^{2} \left(q_{1} - 1\right)^{2}\\
+    &  p_{1} q_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)\\
+    &  - p_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)^{2}\\
+    & p_{1} q_{1}^{2} \left(1 - p_{1}\right)\\
+    & p_{1} q_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)\\
+    & q_{1}^{2} \left(p_{1} - 1\right)^{2} \\
+    & - q_{1}\left(p_{1} - 1\right)^{2} \left(q_{1} - 1\right)\\
+    & p_{1} q_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)\\
+    & - p_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)^{2}\\
+    & - q_{1} \left(p_{1} - 1\right)^{2} \left(q_{1} - 1\right)\\
+    & \left(p_{1} - 1\right)^{2} \left(q_{1} - 1\right)^{2}]
+\end{align}
+
+
+\subsection{Numerical analysis}
+
+For proof that our formulation is correct to the jupyter notebppk `Numerical
+simulanetlous'.
+
+An evolutionary approach based on Nowak and Imphof gives the following
+results when we vary the benefit \(c\).
+
+
+\end{document}
