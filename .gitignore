@@ -1,0 +1,12 @@
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+c_1.sh
+main.aux
+main.log
+main.maf
+main.mtc
+main.mtc0
+main.out
+reactive.nb
+stationary.asv
