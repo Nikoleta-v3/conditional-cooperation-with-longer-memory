@@ -306,7 +306,7 @@ def simulate_process(N, c, b, beta, max_steps):
     beta = beta
     max_steps = max_steps
 
-    residents = [[1, 1, 0, 1]]
+    residents = [[1, 1, 1, 1, 0, 1]]
 
     for t in tqdm.tqdm(range(1, max_steps)):
         current_resident = np.array(residents[-1][:4])
@@ -369,7 +369,7 @@ def simulate_process(N, c, b, beta, max_steps):
         if np.random.random() < 1 / (1 + np.sum(np.cumprod(gammas))):
             cooperation_rate = steady_states[0][0] + steady_states[0][1]
             residents.append(
-                list(np.random.random(4)) + [t] + [cooperation_rate]
+                list(mutant) + [t] + [cooperation_rate]
             )
 
     return np.array(residents)
