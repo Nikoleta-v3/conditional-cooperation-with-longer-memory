@@ -1,9 +1,9 @@
-function [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident);
-rng('default')
+function [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed);
+rng(seed)
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
 AvCoop=0; AvPay=0; Res=starting_resident;
-filename = "data/matlab_two_bits_beta_" + beta + "_c_" + c;
+filename = "data/matlab_two_bits_beta_" + beta + "seed" + seed + "_c_" + c;
 
 %% Initialization
 sdim=4;
