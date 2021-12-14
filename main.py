@@ -306,12 +306,13 @@ def simulate_process(N, c, b, beta, max_steps):
     beta = beta
     max_steps = max_steps
 
-    residents = [[1, 1, 1, 1, 0, 1]]
+    residents = [[0, 0, 0, 0, 0, 0]]
 
     for t in tqdm.tqdm(range(1, max_steps)):
         current_resident = np.array(residents[-1][:4])
 
-        mutant = np.random.random(4)
+        p, q = np.random.random(2)
+        mutant = [p, q, p, q]
 
         steady_states = []
 
@@ -384,4 +385,4 @@ if __name__ == "__main__":
 
     residents = simulate_process(N, c, b, beta, max_steps)
 
-    np.savetxt(f"data/population_two_bits_c_{c}.csv", residents, delimiter=",")
+    np.savetxt(f"data/population_one_bit_c_{c}.csv", residents, delimiter=",")

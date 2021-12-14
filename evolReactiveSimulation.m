@@ -1,12 +1,12 @@
-function [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident);
+function [xDat]=evolReactiveSimulation(N, c, b, beta, numberIterations, starting_resident);
 rng('default')
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
 AvCoop=0; AvPay=0; Res=starting_resident;
-filename = "data/matlab_two_bits_beta_" + beta + "_c_" + c;
+filename = "data/matlab_one_bit_beta_" + beta + "_c_" + c;
 
 %% Initialization
-sdim=4;
+sdim=2;
 xDat=zeros(numberIterations/100, 6);
 xDat(1,:)=[Res, 0, 0];
 
@@ -16,7 +16,8 @@ u = [b - c, -c, b, 0, b - c, -c, b, 0, b - c, -c, b, 0, b - c, -c, b, 0];
 %% Running the evolutionary process
 j = 2;
 for t = progress(1:numberIterations)
-    Mut=rand(1, sdim);
+    ps=rand(1, sdim);
+    Mut = [ps, ps];
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta);
     if rand(1) < phi
         Res=Mut; xDat(j,:)=[Res, t, coopM]; j=j+1;

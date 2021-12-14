@@ -8,32 +8,61 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{amsmath}
+\usepackage{blkarray}
 
 \usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
+\pagestyle{plain}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1}
 
 \newcommand{\nikoleta}[1]{\textcolor{orange}{{\bf NG:} #1}}
 
-\title{Two bits (and more) reactive strategies in repeated games}
+\title{Two-bits (and more) reactive strategies in repeated games}
 
 \author{Nikoleta E. Glynatsi, Christian Hilbe, Martin Nowak}
 \date{}
 
 \begin{document}
 
-We explore infinetly () symmetric games repeated games where players use
-the family reactive strategies to make decision at each turn. In the donation
-game at each turn each player can, simulanetlous and idependanlty, choose
-to cooperate or defect. The payoffs are given by:
+\maketitle
+
+We explore infinitely repeated (\(2 \times 2\)) symmetric games. Players use the
+set reactive strategies to make decision at each turn. We consider the repeated
+game where at each turn players, simultaneously and independently, decide to
+cooperate or to defect. In the case of two players, the payoffs are the
+following,
+
+\begin{equation}\label{eq:payoffs}
+    \begin{blockarray}{ccc}
+        & \text{cooperate} & \text{defect} \\
+        \begin{block}{c(cc)}
+            \text{cooperate} & b - c & -c \\
+            \text{defect} & b & 0 \\
+        \end{block}
+    \end{blockarray}
+  \end{equation}
 
 
-Strategies of the reactive family only take into account the actions of the co-player.
-Famously one bit reactive strategies are given by p. Here we exlore the case.
-Here we explore the cases where. 
+Strategies of the reactive set only take into account the actions of the
+co-player. The most well studied reactive strategies are those that take into
+account only the last turn of the opponent. Here will reefer to these as
+\textit{one-bit reactive strategies}. A one-bit reactive strategy is written as
+\(p = (p_{C}, p_{D})\) where \(p_{C}\) is the probability of cooperating after
+the co-player has cooperated and \(p_{D}\) after they defected.
 
-The players can be in 
+The play of reactive strategies can be modelled as a Markov chain. In the case
+of the one-bit reactive strategies, there are only 4 possibles states \(CC, CD,
+DC, DD\) and the transition matrix is given by,
+
+\begin{equation}
+\displaystyle \left[\begin{matrix}p_{1} q_{1} & p_{1} \left(1 - q_{1}\right) & q_{1} \left(1 - p_{1}\right) & \left(1 - p_{1}\right) \left(1 - q_{1}\right)\\p_{2} q_{1} & p_{2} \left(1 - q_{1}\right) & q_{1} \left(1 - p_{2}\right) & \left(1 - p_{2}\right) \left(1 - q_{1}\right)\\p_{1} q_{2} & p_{1} \left(1 - q_{2}\right) & q_{2} \left(1 - p_{1}\right) & \left(1 - p_{1}\right) \left(1 - q_{2}\right)\\p_{2} q_{2} & p_{2} \left(1 - q_{2}\right) & q_{2} \left(1 - p_{2}\right) & \left(1 - p_{2}\right) \left(1 - q_{2}\right)\end{matrix}\right]
+\end{equation}
 
 
-The transition matrix given by: 
+Here we explore of \textit{two-bit reactive strategies}. The transition matrix
+is now given by,
+
 
 Computing the stationary distribution of this matrix (analytically) is not
 trivia.
@@ -73,8 +102,9 @@ trivia.
 
 \subsection{Numerical analysis}
 
-For proof that our formulation is correct to the jupyter notebppk `Numerical
-simulanetlous'.
+For proof that our formulation is correct to the Jupyter Notebook ``Numerical simulations''.
+
+\subsection{Evolutionary simulations}
 
 An evolutionary approach based on Nowak and Imphof gives the following
 results when we vary the benefit \(c\).
