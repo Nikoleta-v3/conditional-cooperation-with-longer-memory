@@ -3,7 +3,7 @@ rng(seed)
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
 AvCoop=0; AvPay=0; Res=starting_resident;
-filename = "data/matlab_two_bits_beta_" + beta + "_seed_" + seed + "_c_" + c;
+filename = "data/matlab_three_bits_beta_" + beta + "_seed_" + seed + "_c_" + c;
 
 %% Initialization
 sdim=8;

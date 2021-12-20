@@ -1,6 +1,6 @@
 function evolRunThreeBits();
 
-starting_resident = [0, 0, 0, 0];
+starting_resident = [0, 0, 0, 0, 0, 0, 0, 0];
 N = 100;
 beta = 1;
 b=1;
