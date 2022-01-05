@@ -3,7 +3,7 @@ rng(seed)
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
 AvCoop=0; AvPay=0; Res=starting_resident;
-filename = "data/matlab_bits_" + sdim + "_beta_" + beta + "_seed_" + seed + "_c_" + c;
+filename = "matlab_data/bits_" + sdim + "_beta_" + beta + "_seed_" + seed + "_c_" + c;
 
 %% Initialization
 xDat=zeros(numberIterations/100, sdim + 2);

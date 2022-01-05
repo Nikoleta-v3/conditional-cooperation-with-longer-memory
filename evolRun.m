@@ -1,15 +1,17 @@
-function evolRunReactive();
+function evolRun();
 
-starting_resident = [0, 0, 0, 0];
+sdim = 2;
+starting_resident = zeros(1, sdim);
 N = 100;
-beta = 1;
 b=1;
-numberIterations = 10 ^ 3;
+numberIterations = 10 ^ 7;
+seed = 1;
 
-seeds = linspace(1, 10, 10);
-c = 0.3;
-parfor (i = 1:10)
-    seed = seeds(i)
-    [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed);
+beta = 1;
+cs = linspace(0, 1, 11);
+
+parfor (i = 1:11)
+    c = cs(i);
+    [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed, sdim);
 end
 end
