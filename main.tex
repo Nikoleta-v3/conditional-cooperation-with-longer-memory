@@ -18,7 +18,7 @@
 
 \newcommand{\nikoleta}[1]{\textcolor{orange}{{\bf NG:} #1}}
 
-\title{Two-bits (and more) reactive strategies in repeated games}
+\title{$N-$bits reactive strategies in repeated games}
 
 \author{Nikoleta E. Glynatsi, Christian Hilbe, Martin Nowak}
 \date{}
@@ -27,11 +27,17 @@
 
 \maketitle
 
-We explore infinitely repeated (\(2 \times 2\)) symmetric games. Players use the
-set reactive strategies to make decision at each turn. We consider the repeated
-game where at each turn players, simultaneously and independently, decide to
-cooperate or to defect. In the case of two players, the payoffs are the
-following,
+\section{Introduction}
+
+In this work we explore \textit{reactive strategies} in the infinitely repeated
+donation game. The donation is a (\(2 \times 2\)) symmetric game where at each
+turn players \(p\) and \(q\), simultaneously and independently, decide to
+cooperate (C) or to defect (D). Thus, there are four outcomes in each single
+round, \(xy \in \{CC, CD, DC, DD\}\), where \(x\) and \(y\) represent \(p\)'s
+and \(q\)'s choices respectively.
+
+Each then receives a payoff. The following (\(2 \times 2\)) payoff matrix describes
+the payoffs of both players in each round,
 
 \begin{equation}\label{eq:payoffs}
     \begin{blockarray}{ccc}
@@ -43,71 +49,170 @@ following,
     \end{blockarray}
   \end{equation}
 
+where \(b > c\). Alternatively, we can define the payoff vectors for each player by
 
-Strategies of the reactive set only take into account the actions of the
-co-player. The most well studied reactive strategies are those that take into
-account only the last turn of the opponent. Here will reefer to these as
-\textit{one-bit reactive strategies}. A one-bit reactive strategy is written as
-\(p = (p_{C}, p_{D})\) where \(p_{C}\) is the probability of cooperating after
-the co-player has cooperated and \(p_{D}\) after they defected.
-
-The play of reactive strategies can be modelled as a Markov chain. In the case
-of the one-bit reactive strategies, there are only 4 possibles states \(CC, CD,
-DC, DD\) and the transition matrix is given by,
-
-\begin{equation}
-\displaystyle \left[\begin{matrix}p_{1} q_{1} & p_{1} \left(1 - q_{1}\right) & q_{1} \left(1 - p_{1}\right) & \left(1 - p_{1}\right) \left(1 - q_{1}\right)\\p_{2} q_{1} & p_{2} \left(1 - q_{1}\right) & q_{1} \left(1 - p_{2}\right) & \left(1 - p_{2}\right) \left(1 - q_{1}\right)\\p_{1} q_{2} & p_{1} \left(1 - q_{2}\right) & q_{2} \left(1 - p_{1}\right) & \left(1 - p_{1}\right) \left(1 - q_{2}\right)\\p_{2} q_{2} & p_{2} \left(1 - q_{2}\right) & q_{2} \left(1 - p_{2}\right) & \left(1 - p_{2}\right) \left(1 - q_{2}\right)\end{matrix}\right]
+\begin{equation}\label{eq:vector_payoffs}
+  S_{p} = (b-c, -c, b, 0) \quad \textrm{and} \quad  S_{q} = (b-c, b, -c, 0).
 \end{equation}
 
+\textit{Reactive} strategies are strategies that take into account the actions
+of the co-player to make a decision in each turn of the repeated game. Reactive
+strategies are studied in the literature due to their mathematical tractability.
+A play between two reactive strategies can be described as a Markov process with
+a transition matrix \(M\). The expected payoffs to \(p\) and \(q\), can then be
+explicitly calculated using the the stationary distribution \(\mathbf{v}\) of
+\(M\) and the respective round payoffs \(S_{p} \textrm{ and } S_{q}\).
 
-Here we explore of \textit{two-bit reactive strategies}. The transition matrix
-is now given by,
+\section{Results}
+
+\subsection{1-bit reactive}
+
+The literature has extensively studied reactive strategies that take into
+account only the last turn of the opponent. Here will reefer to these as
+\textit{one-bit reactive strategies}. One-bit reactive strategies can be written
+as a 2-tuple \(p = (p_{C}, p_{D})\) where \(p_{C}\) is the probability of
+cooperating after the co-player has cooperated and \(p_{D}\) after they
+defected.
+
+The play of reactive strategies can be modelled as a Markov chain. In the case
+of the one-bit reactive strategies, there are only 4 possibles states \(\{CC,
+CD, DC, DD\}\) and the transition matrix is given by,
+
+\begin{equation}
+\displaystyle M_1 = \left[\begin{matrix}p_{1} q_{1} & p_{1} \left(1 - q_{1}\right) & q_{1} \left(1 - p_{1}\right) & \left(1 - p_{1}\right) \left(1 - q_{1}\right)\\p_{2} q_{1} & p_{2} \left(1 - q_{1}\right) & q_{1} \left(1 - p_{2}\right) & \left(1 - p_{2}\right) \left(1 - q_{1}\right)\\p_{1} q_{2} & p_{1} \left(1 - q_{2}\right) & q_{2} \left(1 - p_{1}\right) & \left(1 - p_{1}\right) \left(1 - q_{2}\right)\\p_{2} q_{2} & p_{2} \left(1 - q_{2}\right) & q_{2} \left(1 - p_{2}\right) & \left(1 - p_{2}\right) \left(1 - q_{2}\right)\end{matrix}\right].
+\end{equation}
+
+A probability distribution \(\mathbf{v}^1\) on the set of outcomes is a
+non-negative vector with unit sum, indexed by the four states for which,
+
+\begin{equation*}
+  \mathbf{v}^{1} M^{1} = \mathbf{v}^{1}.
+\end{equation*}
+
+With respect to \( \mathbf{v}^{1}\) the expected payoffs to \(p\) and \(q\),
+denoted \(\pi_{(p, q)}\) and \(\pi_{(q, p)}\), are the dot products with the
+corresponding payoff vectors:
+
+\begin{equation}
+  \pi_{(p, q)} = \mathbf{v}^{1} \cdot S_{p} \quad \textrm{and} \quad \pi_{(q, p)} = \mathbf{v}^{1} \cdot S_{q}.
+\end{equation}
+
+In the case of the one-bit reactive strategies the payoffs' analytical
+expressions are tractable. For example,
+
+\begin{equation}
+  \pi_{(p, q)} = \frac{c (\text{p1} \text{q2}+\text{p2} (-\text{q2})+\text{p2})-b (\text{p2} (\text{q1}-\text{q2})+\text{q2})}{(\text{p1}-\text{p2}) (\text{q1}-\text{q2})-1}
+\end{equation}
+
+\subsection{2-bits reactive}
+
+In the case of \textit{two-bit reactive strategies}, strategies are based on the
+actions of the co-player in the previous two rounds. Since for a single round
+there are 4 possible outcomes, for two rounds there will be \(4 \times 4 = 16\)
+possible situations.
+
+We denote the states as \(E_x E_y | F_x F_y\) where the outcome of the previous
+round is \(E_x E_y\) and the outcome of the current round is \(F_x F_y\) and
+\(E_x, E_y, F_x, F_y \in \{C, D\}\) then the state space is \(\{CC|CC, CC|CD,
+CC|DC, CC|DD, \allowbreak CD|CC, CD|CD, CD|DC, CD|DD, DC|CC, DC|CD, DC|DC,
+DC|DD, DD|CC, DD|CD,DD|DC,DD|DD\}\). Thus, \(p = (p_1, p_2, \dots, p_{16})\)
+corresponding to the previous state \(E_x E_y | F_x F_y \in
+\{CC|CC,CC|CD,CC|DC,\dots, \allowbreak DD|CD,DD|DC,DD|DD\}\). Similarly, \(q =
+(q_1, q_2, \dots, q_{16})\). Following the same approach as the one-bit case, a
+play between two two-bits reactive strategies can be described by a Markov
+process where now the states are given by \(E_x, E_y, F_x, F_y \in \{C, D\}\),
+and the stationary distribution \(\mathbf{v}^{2} \in R^{16}_{[0, 1]}\) is the
+solution to \( \mathbf{v}^{2} M^{2} = \mathbf{v}^{2}\). The transition matrix
+\(M^2\) is a \((16 \times 16)\) matrix where \(M(v^{2}_{n + 1} = G_x G_y | H_x
+H_y | v^{2}_{n}= E_x E_y | F_x F_y = 0)\) if \(G_x G_y \neq F_x F_y\), so in
+each row of the matrix there will be at most four nonzero elements.
+Thus,
+
+\resizebox{\linewidth}{!}{%
+$
+M^{2} = \left(\begin{array}{cccccccccccccccc}
+ \text{p1} \text{q1} & \text{p1} (1-\text{q1}) & (1-\text{p1}) \text{q1} & (1-\text{p1}) (1-\text{q1}) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & \text{p2} \text{q1} & \text{p2} (1-\text{q1}) & (1-\text{p2}) \text{q1} & (1-\text{p2}) (1-\text{q1}) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \text{p1} \text{q2} & \text{p1} (1-\text{q2}) & (1-\text{p1}) \text{q2} & (1-\text{p1}) (1-\text{q2}) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \text{p2} \text{q2} & \text{p2} (1-\text{q2}) & (1-\text{p2}) \text{q2} & (1-\text{p2}) (1-\text{q2}) \\
+ \text{p3} \text{q1} & \text{p3} (1-\text{q1}) & (1-\text{p3}) \text{q1} & (1-\text{p3}) (1-\text{q1}) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & \text{p4} \text{q1} & \text{p4} (1-\text{q1}) & (1-\text{p4}) \text{q1} & (1-\text{p4}) (1-\text{q1}) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \text{p3} \text{q2} & \text{p3} (1-\text{q2}) & (1-\text{p3}) \text{q2} & (1-\text{p3}) (1-\text{q2}) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \text{p4} \text{q2} & \text{p4} (1-\text{q2}) & (1-\text{p4}) \text{q2} & (1-\text{p4}) (1-\text{q2}) \\
+ \text{p1} \text{q3} & \text{p1} (1-\text{q3}) & (1-\text{p1}) \text{q3} & (1-\text{p1}) (1-\text{q3}) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & \text{p2} \text{q3} & \text{p2} (1-\text{q3}) & (1-\text{p2}) \text{q3} & (1-\text{p2}) (1-\text{q3}) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \text{p1} \text{q4} & \text{p1} (1-\text{q4}) & (1-\text{p1}) \text{q4} & (1-\text{p1}) (1-\text{q4}) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \text{p2} \text{q4} & \text{p2} (1-\text{q4}) & (1-\text{p2}) \text{q4} & (1-\text{p2}) (1-\text{q4}) \\
+ \text{p3} \text{q3} & \text{p3} (1-\text{q3}) & (1-\text{p3}) \text{q3} & (1-\text{p3}) (1-\text{q3}) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & \text{p4} \text{q3} & \text{p4} (1-\text{q3}) & (1-\text{p4}) \text{q3} & (1-\text{p4}) (1-\text{q3}) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \text{p3} \text{q4} & \text{p3} (1-\text{q4}) & (1-\text{p3}) \text{q4} & (1-\text{p3}) (1-\text{q4}) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \text{p4} \text{q4} & \text{p4} (1-\text{q4}) & (1-\text{p4}) \text{q4} & (1-\text{p4}) (1-\text{q4}) \\
+\end{array}\right).$}
+
+Computing the stationary distribution of \(M^{2}\) analytically is not possible.
+Thus, computing the payoffs \(\pi\) for two generic two-bits reactive strategies
+is not possible either.
+
+However, some expressions are still obtainable.
+
+\subsubsection{2-bits reactive strategies against ALLC and ALLD}
+
+For \(p = (p_1, p_2, \dots, p_{16})\) and \(q=(0, 0, \dots, 0)\) (ALLD),
+
+\[\pi_{(p, \text{ALLD})} = - c p_4.\]
+
+For \(p = (p_1, p_2, \dots, p_{16})\) and \(q=(1, 1, \dots, 1)\) (ALLC),
+
+\[\pi_{(p, \text{ALLC})} = b - cp_1.\]
+ 
+
+\subsubsection{2-bits deterministic reactive strategies.}
+
+There are a total of (\(4 ^ 2\)) \(16\) two-bit deterministic reactive
+strategies, Table~\ref{table:two_bits_strategies}.
+
+\begin{table}[h!]
+  \centering
+   \begin{tabular}{c c c c c}
+  \toprule
+   $p_1$ & $p_2$ & $p_3$ & $p_4$ & name \\ [0.5ex] 
+   \toprule
+   0 & 0 & 0 & 0 & ALLD \\
+   0 & 0 & 0 & 1 & S1 \\
+   0 & 0 & 1 & 0 & S2 \\
+   0 & 0 & 1 & 1 & S3 \\
+   0 & 1 & 0 & 0 & S4 \\
+   0 & 1 & 0 & 1 & S5 \\
+   0 & 1 & 1 & 0 & S6 \\
+   0 & 1 & 1 & 1 & S7 \\
+   1 & 0 & 0 & 0 & S8 \\
+   1 & 0 & 0 & 1 & S9 \\
+   1 & 0 & 1 & 0 & S10 \\
+   1 & 0 & 1 & 1 & S11 \\
+   1 & 1 & 0 & 0 & S12 \\
+   1 & 1 & 0 & 1 & S13 \\
+   1 & 1 & 1 & 0 & S14 \\
+   1 & 1 & 1 & 1 & ALLC \\
+   \hline
+   \end{tabular}
+   \caption{\textbf{Deterministic two-bits reactive strategies}}\label{table:two_bits_strategies}.
+\end{table}
+
+\input{deterministic_payoffs.txt}
+
+\input{deterministic_payoffs_co_player.txt}
+
+Using the formulation of (\ref{}) we can numerically compute the payoffs without
+simulations.
 
 
-Computing the stationary distribution of this matrix (analytically) is not
-trivia.
+\section{Numerical Results}
 
-\subsection{Analytical analysis}
+We use an evolutionary process based on on Nowak and Imphof.
 
-
-\begin{align}
-  y &= \begin{bmatrix}
-         x_{1} \\
-         x_{2} \\
-         \vdots \\
-         x_{m}
-       \end{bmatrix}
-\end{align}
-
-
-\begin{align}
-[   &  p_{1}^{2} q_{1}^{2} \\
-    &  p_{1}^{2} q_{1} \left(1 -q_{1}\right) \\
-    &  p_{1} q_{1}^{2} \left(1 - p_{1}\right) \\ 
-    &  p_{1} q_{1} \left(p_{1} -1\right) \left(q_{1} - 1\right) \\
-    &  p_{1}^{2} q_{1} \left(1 -q_{1}\right) \\
-    &  p_{1}^{2} \left(q_{1} - 1\right)^{2}\\
-    &  p_{1} q_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)\\
-    &  - p_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)^{2}\\
-    & p_{1} q_{1}^{2} \left(1 - p_{1}\right)\\
-    & p_{1} q_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)\\
-    & q_{1}^{2} \left(p_{1} - 1\right)^{2} \\
-    & - q_{1}\left(p_{1} - 1\right)^{2} \left(q_{1} - 1\right)\\
-    & p_{1} q_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)\\
-    & - p_{1} \left(p_{1} - 1\right) \left(q_{1} - 1\right)^{2}\\
-    & - q_{1} \left(p_{1} - 1\right)^{2} \left(q_{1} - 1\right)\\
-    & \left(p_{1} - 1\right)^{2} \left(q_{1} - 1\right)^{2}]
-\end{align}
-
-
-\subsection{Numerical analysis}
-
-For proof that our formulation is correct to the Jupyter Notebook ``Numerical simulations''.
-
-\subsection{Evolutionary simulations}
-
-An evolutionary approach based on Nowak and Imphof gives the following
-results when we vary the benefit \(c\).
+\begin{figure}
+  \includegraphics{}
+\end{figure}
 
 
 \end{document}

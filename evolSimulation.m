@@ -21,8 +21,8 @@ for t = progress(1:numberIterations)
     end
 end
 
-dlmwrite(filename + ".csv", xDat, 'precision', 9);
-writematrix(Data, filename + ".txt");
+% dlmwrite(filename + ".csv", xDat, 'precision', 9);
+% writematrix(Data, filename + ".txt");
 end
 
 function [phi, coopMM, piMM]=calcPhi(Mut, Res, N, u, beta, sdim);

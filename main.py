@@ -9,181 +9,6 @@ import sys
 import itertools
 
 
-def transition_matrix_three_bits(p, q):
-
-    p_1, p_2, p_3, p_4, p_5, p_6, p_7, p_8 = p
-    q_1, q_2, q_3, q_4, q_5, q_6, q_7, q_8 = q
-
-    M = np.zeros((64, 64))
-
-    coop_combos = (
-        list(itertools.product([q_1, q_2], [p_1, p_2]))
-        + list(itertools.product([q_1, q_2], [p_3, p_4]))
-        + list(itertools.product([q_3, q_4], [p_1, p_2]))
-        + list(itertools.product([q_3, q_4], [p_3, p_4]))
-    )
-    entries = []
-    for i, pair in enumerate(coop_combos):
-        actions = [
-            (pair[1] * pair[0]),
-            (pair[1] * (1 - pair[0])),
-            ((1 - pair[1]) * pair[0]),
-            ((1 - pair[1]) * (1 - pair[0])),
-        ]
-        for _, action in enumerate(actions):
-            entries.append(action)
-    for i, entry in enumerate(entries):
-        M[int(i / 4), i] = entry
-
-    cd_combos = (
-        list(itertools.product([q_1, q_2], [p_5, p_6]))
-        + list(itertools.product([q_1, q_2], [p_7, p_8]))
-        + list(itertools.product([q_3, q_4], [p_5, p_6]))
-        + list(itertools.product([q_3, q_4], [p_7, p_8]))
-    )
-    entries = []
-    for i, pair in enumerate(cd_combos):
-        actions = [
-            (pair[1] * pair[0]),
-            (pair[1] * (1 - pair[0])),
-            ((1 - pair[1]) * pair[0]),
-            ((1 - pair[1]) * (1 - pair[0])),
-        ]
-        for _, action in enumerate(actions):
-            entries.append(action)
-    for i, entry in enumerate(entries):
-        M[int(i / 4) + 16, i] = entry
-
-    dc_combos = (
-        list(itertools.product([q_5, q_6], [p_1, p_2]))
-        + list(itertools.product([q_5, q_6], [p_3, p_4]))
-        + list(itertools.product([q_7, q_8], [p_1, p_2]))
-        + list(itertools.product([q_7, q_8], [p_3, p_4]))
-    )
-    entries = []
-    for i, pair in enumerate(dc_combos):
-        actions = [
-            (pair[1] * pair[0]),
-            (pair[1] * (1 - pair[0])),
-            ((1 - pair[1]) * pair[0]),
-            ((1 - pair[1]) * (1 - pair[0])),
-        ]
-        for _, action in enumerate(actions):
-            entries.append(action)
-    for i, entry in enumerate(entries):
-        M[int(i / 4) + 32, i] = entry
-
-    def_combos = (
-        list(itertools.product([q_5, q_6], [p_5, p_6]))
-        + list(itertools.product([q_5, q_6], [p_7, p_8]))
-        + list(itertools.product([q_7, q_8], [p_5, p_6]))
-        + list(itertools.product([q_7, q_8], [p_7, p_8]))
-    )
-    entries = []
-    for i, pair in enumerate(def_combos):
-        actions = [
-            (pair[1] * pair[0]),
-            (pair[1] * (1 - pair[0])),
-            ((1 - pair[1]) * pair[0]),
-            ((1 - pair[1]) * (1 - pair[0])),
-        ]
-        for _, action in enumerate(actions):
-            entries.append(action)
-    for i, entry in enumerate(entries):
-        M[int(i / 4) + 48, i] = entry
-
-    return M
-
-
-def transition_matrix_two_bit(p, q):
-    p_1, p_2, p_3, p_4 = p
-    q_1, q_2, q_3, q_4 = q
-
-    M = np.zeros((16, 16))
-
-    for i, expr in enumerate(
-        [p_1 * q_1, p_1 * (1 - q_1), (1 - p_1) * q_1, (1 - p_1) * (1 - q_1)]
-    ):
-        M[0, i] = expr
-
-    for i, expr in enumerate(
-        [p_2 * q_1, p_2 * (1 - q_1), (1 - p_2) * q_1, (1 - p_2) * (1 - q_1)]
-    ):
-        M[1, 4 + i] = expr
-
-    for i, expr in enumerate(
-        [p_1 * q_2, p_1 * (1 - q_2), (1 - p_1) * q_2, (1 - p_1) * (1 - q_2)]
-    ):
-        M[2, 8 + i] = expr
-
-    for i, expr in enumerate(
-        [p_2 * q_2, p_2 * (1 - q_2), (1 - p_2) * q_2, (1 - p_2) * (1 - q_2)]
-    ):
-        M[3, 12 + i] = expr
-
-    for i, expr in enumerate(
-        [p_3 * q_1, p_3 * (1 - q_1), (1 - p_3) * q_1, (1 - p_3) * (1 - q_1)]
-    ):
-        M[4, i] = expr
-
-    for i, expr in enumerate(
-        [p_4 * q_1, p_4 * (1 - q_1), (1 - p_4) * q_1, (1 - p_4) * (1 - q_1)]
-    ):
-        M[5, 4 + i] = expr
-
-    for i, expr in enumerate(
-        [p_3 * q_2, p_3 * (1 - q_2), (1 - p_3) * q_2, (1 - p_3) * (1 - q_2)]
-    ):
-        M[6, 8 + i] = expr
-
-    for i, expr in enumerate(
-        [p_4 * q_2, p_4 * (1 - q_2), (1 - p_4) * q_2, (1 - p_4) * (1 - q_2)]
-    ):
-        M[7, 12 + i] = expr
-
-    for i, expr in enumerate(
-        [p_1 * q_3, p_1 * (1 - q_3), (1 - p_1) * q_3, (1 - p_1) * (1 - q_3)]
-    ):
-        M[8, i] = expr
-
-    for i, expr in enumerate(
-        [p_2 * q_3, p_2 * (1 - q_3), (1 - p_2) * q_3, (1 - p_2) * (1 - q_3)]
-    ):
-        M[9, 4 + i] = expr
-
-    for i, expr in enumerate(
-        [p_1 * q_4, p_1 * (1 - q_4), (1 - p_1) * q_4, (1 - p_1) * (1 - q_4)]
-    ):
-        M[10, 8 + i] = expr
-
-    for i, expr in enumerate(
-        [p_2 * q_4, p_2 * (1 - q_4), (1 - p_2) * q_4, (1 - p_2) * (1 - q_4)]
-    ):
-        M[11, 12 + i] = expr
-
-    for i, expr in enumerate(
-        [p_3 * q_3, p_3 * (1 - q_3), (1 - p_3) * q_3, (1 - p_3) * (1 - q_3)]
-    ):
-        M[12, i] = expr
-
-    for i, expr in enumerate(
-        [p_4 * q_3, p_4 * (1 - q_3), (1 - p_4) * q_3, (1 - p_4) * (1 - q_3)]
-    ):
-        M[13, 4 + i] = expr
-
-    for i, expr in enumerate(
-        [p_3 * q_4, p_3 * (1 - q_4), (1 - p_3) * q_4, (1 - p_3) * (1 - q_4)]
-    ):
-        M[14, 8 + i] = expr
-
-    for i, expr in enumerate(
-        [p_4 * q_4, p_4 * (1 - q_4), (1 - p_4) * q_4, (1 - p_4) * (1 - q_4)]
-    ):
-        M[15, 12 + i] = expr
-
-    return M
-
-
 def transition_matrix_one_bit(p, q):
     """
     Returns a Markov transition matrix for a game of reactive strategies.
@@ -217,6 +42,96 @@ def transition_matrix_one_bit(p, q):
                 (1 - p_2) * (1 - q_2),
             ],
         ],
+    )
+
+
+def transition_matrix_one_bit_analytical(p, q):
+    """
+    Returns a Markov transition matrix for a game of reactive strategies.
+    """
+    p_1, p_2 = p
+    q_1, q_2 = q
+    return sym.Matrix(
+        [
+            [
+                p_1 * q_1,
+                p_1 * (1 - q_1),
+                q_1 * (1 - p_1),
+                (1 - p_1) * (1 - q_1),
+            ],
+            [
+                q_1 * p_2,
+                p_2 * (1 - q_1),
+                q_1 * (1 - p_2),
+                (1 - q_1) * (1 - p_2),
+            ],
+            [
+                p_1 * q_2,
+                p_1 * (1 - q_2),
+                q_2 * (1 - p_1),
+                (1 - p_1) * (1 - q_2),
+            ],
+            [
+                p_2 * q_2,
+                p_2 * (1 - q_2),
+                q_2 * (1 - p_2),
+                (1 - p_2) * (1 - q_2),
+            ],
+        ],
+    )
+
+
+def transition_matrix(p, q, bits, analytical=False):
+
+    shape = bits ** 2
+
+    ones = [
+        p[j - int(bits / 2) : j]
+        for _, j in itertools.product([int(bits / 2), bits], repeat=2)
+    ]
+
+    twos = [
+        q[i - int(bits / 2) : i]
+        for i, _ in itertools.product([int(bits / 2), bits], repeat=2)
+    ]
+
+    twos = [[two[i : i + 2] for i in np.arange(0, len(two), 2)] for two in twos]
+
+    ones = [[one[i : i + 2] for i in np.arange(0, len(one), 2)] for one in ones]
+
+    twos = [[two[i : i + 2] for i in np.arange(0, len(two), 2)] for two in twos]
+
+    ones = [[one[i : i + 2] for i in np.arange(0, len(one), 2)] for one in ones]
+
+    if analytical == True:
+        M = sym.zeros(shape, shape)
+    else:
+        M = np.zeros((shape, shape))
+
+    row = 0
+    for two, one in zip(twos, ones):
+        for pi, qj in itertools.product(two, one, repeat=1):
+            for pj, qi in itertools.product(pi, qj, repeat=1):
+                for i, combo in enumerate(itertools.product(pj, qi, repeat=1)):
+                    for j, expr in enumerate(
+                        [
+                            combo[0] * combo[1],
+                            (1 - combo[0]) * combo[1],
+                            (1 - combo[1]) * combo[0],
+                            (1 - combo[1]) * (1 - combo[0]),
+                        ]
+                    ):
+
+                        M[row, ((row * 4) % shape) + j] = expr
+
+                    row += 1
+    return M
+
+
+def cooperation_rate(ss, size):
+    return sum(
+        [s for i, s in enumerate(ss) if i in np.arange(0, size, 4)]
+        + [s for i, s in enumerate(ss) if i in np.arange(1, size, 4)]
     )
 
 
@@ -258,217 +173,6 @@ def strategies_set(vector_size):
     set_of_strategies = list(itertools.product(actions, repeat=vector_size))
 
     return np.array(set_of_strategies)
-
-
-def transition_matrix_two_bit_analytical(p, q):
-    p_1, p_2, p_3, p_4 = p
-    q_1, q_2, q_3, q_4 = q
-
-    M = sym.zeros(16, 16)
-
-    for i, expr in enumerate(
-        [p_1 * q_1, p_1 * (1 - q_1), (1 - p_1) * q_1, (1 - p_1) * (1 - q_1)]
-    ):
-        M[0, i] = expr
-
-    for i, expr in enumerate(
-        [p_2 * q_1, p_2 * (1 - q_1), (1 - p_2) * q_1, (1 - p_2) * (1 - q_1)]
-    ):
-        M[1, 4 + i] = expr
-
-    for i, expr in enumerate(
-        [p_1 * q_2, p_1 * (1 - q_2), (1 - p_1) * q_2, (1 - p_1) * (1 - q_2)]
-    ):
-        M[2, 8 + i] = expr
-
-    for i, expr in enumerate(
-        [p_2 * q_2, p_2 * (1 - q_2), (1 - p_2) * q_2, (1 - p_2) * (1 - q_2)]
-    ):
-        M[3, 12 + i] = expr
-
-    for i, expr in enumerate(
-        [p_3 * q_1, p_3 * (1 - q_1), (1 - p_3) * q_1, (1 - p_3) * (1 - q_1)]
-    ):
-        M[4, i] = expr
-
-    for i, expr in enumerate(
-        [p_4 * q_1, p_4 * (1 - q_1), (1 - p_4) * q_1, (1 - p_4) * (1 - q_1)]
-    ):
-        M[5, 4 + i] = expr
-
-    for i, expr in enumerate(
-        [p_3 * q_2, p_3 * (1 - q_2), (1 - p_3) * q_2, (1 - p_3) * (1 - q_2)]
-    ):
-        M[6, 8 + i] = expr
-
-    for i, expr in enumerate(
-        [p_4 * q_2, p_4 * (1 - q_2), (1 - p_4) * q_2, (1 - p_4) * (1 - q_2)]
-    ):
-        M[7, 12 + i] = expr
-
-    for i, expr in enumerate(
-        [p_1 * q_3, p_1 * (1 - q_3), (1 - p_1) * q_3, (1 - p_1) * (1 - q_3)]
-    ):
-        M[8, i] = expr
-
-    for i, expr in enumerate(
-        [p_2 * q_3, p_2 * (1 - q_3), (1 - p_2) * q_3, (1 - p_2) * (1 - q_3)]
-    ):
-        M[9, 4 + i] = expr
-
-    for i, expr in enumerate(
-        [p_1 * q_4, p_1 * (1 - q_4), (1 - p_1) * q_4, (1 - p_1) * (1 - q_4)]
-    ):
-        M[10, 8 + i] = expr
-
-    for i, expr in enumerate(
-        [p_2 * q_4, p_2 * (1 - q_4), (1 - p_2) * q_4, (1 - p_2) * (1 - q_4)]
-    ):
-        M[11, 12 + i] = expr
-
-    for i, expr in enumerate(
-        [p_3 * q_3, p_3 * (1 - q_3), (1 - p_3) * q_3, (1 - p_3) * (1 - q_3)]
-    ):
-        M[12, i] = expr
-
-    for i, expr in enumerate(
-        [p_4 * q_3, p_4 * (1 - q_3), (1 - p_4) * q_3, (1 - p_4) * (1 - q_3)]
-    ):
-        M[13, 4 + i] = expr
-
-    for i, expr in enumerate(
-        [p_3 * q_4, p_3 * (1 - q_4), (1 - p_3) * q_4, (1 - p_3) * (1 - q_4)]
-    ):
-        M[14, 8 + i] = expr
-
-    for i, expr in enumerate(
-        [p_4 * q_4, p_4 * (1 - q_4), (1 - p_4) * q_4, (1 - p_4) * (1 - q_4)]
-    ):
-        M[15, 12 + i] = expr
-
-    return M
-
-
-def transition_matrix_one_bit_analytical(p, q):
-    """
-    Returns a Markov transition matrix for a game of reactive strategies.
-    """
-    p_1, p_2 = p
-    q_1, q_2 = q
-    return sym.Matrix(
-        [
-            [
-                p_1 * q_1,
-                p_1 * (1 - q_1),
-                q_1 * (1 - p_1),
-                (1 - p_1) * (1 - q_1),
-            ],
-            [
-                q_1 * p_2,
-                p_2 * (1 - q_1),
-                q_1 * (1 - p_2),
-                (1 - q_1) * (1 - p_2),
-            ],
-            [
-                p_1 * q_2,
-                p_1 * (1 - q_2),
-                q_2 * (1 - p_1),
-                (1 - p_1) * (1 - q_2),
-            ],
-            [
-                p_2 * q_2,
-                p_2 * (1 - q_2),
-                q_2 * (1 - p_2),
-                (1 - p_2) * (1 - q_2),
-            ],
-        ],
-    )
-
-
-def transition_matrix_three_bits_analytical(p, q):
-
-    p_1, p_2, p_3, p_4, p_5, p_6, p_7, p_8 = p
-    q_1, q_2, q_3, q_4, q_5, q_6, q_7, q_8 = q
-
-    M = sym.zeros(64, 64)
-
-    coop_combos = (
-        list(itertools.product([q_1, q_2], [p_1, p_2]))
-        + list(itertools.product([q_1, q_2], [p_3, p_4]))
-        + list(itertools.product([q_3, q_4], [p_1, p_2]))
-        + list(itertools.product([q_3, q_4], [p_3, p_4]))
-    )
-    entries = []
-    for i, pair in enumerate(coop_combos):
-        actions = [
-            (pair[1] * pair[0]),
-            (pair[1] * (1 - pair[0])),
-            ((1 - pair[1]) * pair[0]),
-            ((1 - pair[1]) * (1 - pair[0])),
-        ]
-        for _, action in enumerate(actions):
-            entries.append(action)
-    for i, entry in enumerate(entries):
-        M[int(i / 4), i] = entry
-
-    cd_combos = (
-        list(itertools.product([q_1, q_2], [p_5, p_6]))
-        + list(itertools.product([q_1, q_2], [p_7, p_8]))
-        + list(itertools.product([q_3, q_4], [p_5, p_6]))
-        + list(itertools.product([q_3, q_4], [p_7, p_8]))
-    )
-    entries = []
-    for i, pair in enumerate(cd_combos):
-        actions = [
-            (pair[1] * pair[0]),
-            (pair[1] * (1 - pair[0])),
-            ((1 - pair[1]) * pair[0]),
-            ((1 - pair[1]) * (1 - pair[0])),
-        ]
-        for _, action in enumerate(actions):
-            entries.append(action)
-    for i, entry in enumerate(entries):
-        M[int(i / 4) + 16, i] = entry
-
-    dc_combos = (
-        list(itertools.product([q_5, q_6], [p_1, p_2]))
-        + list(itertools.product([q_5, q_6], [p_3, p_4]))
-        + list(itertools.product([q_7, q_8], [p_1, p_2]))
-        + list(itertools.product([q_7, q_8], [p_3, p_4]))
-    )
-    entries = []
-    for i, pair in enumerate(dc_combos):
-        actions = [
-            (pair[1] * pair[0]),
-            (pair[1] * (1 - pair[0])),
-            ((1 - pair[1]) * pair[0]),
-            ((1 - pair[1]) * (1 - pair[0])),
-        ]
-        for _, action in enumerate(actions):
-            entries.append(action)
-    for i, entry in enumerate(entries):
-        M[int(i / 4) + 32, i] = entry
-
-    def_combos = (
-        list(itertools.product([q_5, q_6], [p_5, p_6]))
-        + list(itertools.product([q_5, q_6], [p_7, p_8]))
-        + list(itertools.product([q_7, q_8], [p_5, p_6]))
-        + list(itertools.product([q_7, q_8], [p_7, p_8]))
-    )
-    entries = []
-    for i, pair in enumerate(def_combos):
-        actions = [
-            (pair[1] * pair[0]),
-            (pair[1] * (1 - pair[0])),
-            ((1 - pair[1]) * pair[0]),
-            ((1 - pair[1]) * (1 - pair[0])),
-        ]
-        for _, action in enumerate(actions):
-            entries.append(action)
-    for i, entry in enumerate(entries):
-        M[int(i / 4) + 48, i] = entry
-
-    return M
 
 
 def simulate_process(N, c, b, beta, max_steps):
