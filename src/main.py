@@ -9,6 +9,40 @@ import sys
 import itertools
 
 
+def calculate_M(player, opponent):
+    """
+    Returns a Markov transition matrix for a game of memory one strategies.
+    """
+    return np.array(
+        [
+            [
+                player[0] * opponent[0],
+                player[0] * (1 - opponent[0]),
+                (1 - player[0]) * opponent[0],
+                (1 - player[0]) * (1 - opponent[0]),
+            ],
+            [
+                player[1] * opponent[2],
+                player[1] * (1 - opponent[2]),
+                (1 - player[1]) * opponent[2],
+                (1 - player[1]) * (1 - opponent[2]),
+            ],
+            [
+                player[2] * opponent[1],
+                player[2] * (1 - opponent[1]),
+                (1 - player[2]) * opponent[1],
+                (1 - player[2]) * (1 - opponent[1]),
+            ],
+            [
+                player[3] * opponent[3],
+                player[3] * (1 - opponent[3]),
+                (1 - player[3]) * opponent[3],
+                (1 - player[3]) * (1 - opponent[3]),
+            ],
+        ]
+    )
+
+
 def transition_matrix_one_bit(p, q):
     """
     Returns a Markov transition matrix for a game of reactive strategies.

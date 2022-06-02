@@ -1,18 +1,19 @@
+from email import header
 import sys
 
 import itertools
 
 import numpy as np
 
-import pandas as pd
-
 import tqdm
 
-import time
+import dask
+
+import pandas as pd
 
 from importlib.machinery import SourceFileLoader
 
-main = SourceFileLoader("main", "main.py").load_module()
+main = SourceFileLoader("main", "src/main.py").load_module()
 
 from main import invariant_distribution
 
@@ -23,6 +24,14 @@ def payoffs(R, P, dim=4):
 
 def coplayer_payoffs(R, P, dim=4):
     return np.array([R, 1, 0, P] * dim)
+
+
+def payoffs_donation(b, c, dim=4):
+    return np.array([b - c, -c, b, 0] * dim)
+
+
+def coplayer_payoffs_donation(b, c, dim=4):
+    return np.array([b - c, b, -c, 0] * dim)
 
 
 def calculate_M_memory_two(player, coplayer):
@@ -148,58 +157,92 @@ def calculate_M(player, opponent):
     )
 
 
-if __name__ == "__main__":
-    max_simulation_number = 10
-    dimensions = int(sys.argv[1])
-    R = 0.6
-    P = 0.1
-    seed = 0
+def match_payoff(player, coplayer, Sx):
+    M = calculate_M_memory_two(player, coplayer)
+    ss = invariant_distribution(M)
 
-    deterministic_strategies = list(
-        itertools.product([0, 1], repeat=dimensions)
-    )
+    return ss @ Sx
 
-    labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
 
-    filename = f"../checks/dimensions_{dimensions}_number_of_trials_{max_simulation_number}.csv"
+def task(i, strategy, coplayers, labels, filename, Sx, R, P):
 
-    Sx = payoffs(R, P, dim=4)
-
-    Sy = coplayer_payoffs(R, P, dim=4)
-
+    sx = match_payoff(strategy, strategy, Sx)
     data = []
-    np.random.seed(seed)
-    for i in tqdm.tqdm(range(max_simulation_number)):
+    for label, coplayer in zip(labels, coplayers):
 
-        strategy = np.random.random((1, dimensions)).round(2)[0]
-        strategy[0] = 1
+        sy = match_payoff(coplayer, strategy,  Sx)
+        A = np.isclose(sx, sy, atol=10 ** -4) or sx > sy
+        B = np.isclose(sy, R, atol=10 ** -4) or  sy < R
 
-        for label, coplayer in zip(labels, deterministic_strategies):
-            M = calculate_M_memory_two(strategy, coplayer)
-
-            ss = invariant_distribution(M)
-
-            sx = np.round(ss @ Sx, 2)
-            sy = np.round(ss @ Sy, 2)
-
-            A = np.isclose(sx, sy, atol=10 ** -4)
-            B = sx > sy
-
-            data_point = [
-                i,
-                *strategy,
-                *coplayer,
-                label,
-                sx,
-                sy,
-                A,
-                B,
-                A or B,
-                R,
-                P,
-            ]
-            data.append(data_point)
+        data_point = [
+            i,
+            *strategy,
+            *coplayer,
+            label,
+            sx,
+            sy,
+            A,
+            B,
+            R,
+            P,
+        ]
+        data.append(data_point)
 
     df = pd.DataFrame(data)
-
     df.to_csv(filename, header=False)
+
+
+if __name__ == "__main__":
+    max_simulation_number = 10 ** 5
+    dimensions = int(sys.argv[1])
+    # R = 0.6
+    # P = 0.1
+    b = 2
+    c = 1
+    seed = 0
+
+    # deterministic_strategies = list( 
+    #     itertools.product([0, 1], repeat=dimensions)
+    # )
+    combos = list(itertools.product([0, 1], repeat=3))
+    deterministic_strategies = []
+    for (q1, q2, q3) in combos:
+        deterministic_strategies.append(
+            [q1, q2, q1, q2, q2, q3, q2, q3, q1, q2, q1, q2, q2, q3, q2, q3]
+        )
+
+    labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
+    Sx = payoffs_donation(b, c, dim=4) #payoffs(R, P, dim=4)
+
+    np.random.seed(seed)
+    jobs = []
+    for i in tqdm.tqdm(range(max_simulation_number)):
+        filename = f"special_case_donation/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
+        # strategy = np.random.random((1, dimensions)).round(5)[0]
+        # strategy[0] = 1
+        p1, p2, p3 = np.random.random((1, 3)).round(5)[0]
+        p1 = 1
+        strategy = [
+            p1,
+            p2,
+            p1,
+            p2,
+            p2,
+            p3,
+            p2,
+            p3,
+            p1,
+            p2,
+            p1,
+            p2,
+            p2,
+            p3,
+            p2,
+            p3,
+        ]
+        jobs.append(
+            dask.delayed(task)(
+                i, strategy, deterministic_strategies, labels, filename, Sx, b, c
+            )
+        )
+    dask.compute(*jobs, nworkers=2)
