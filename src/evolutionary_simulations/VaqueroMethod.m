@@ -1,4 +1,4 @@
-function data=cooperationRates(sdim, epsilon);
+function data=VaqueroMethod(sdim, epsilon);
 
 strategies = dec2bin(0:2 ^ sdim - 1, sdim) - '0'; 
 
@@ -12,6 +12,6 @@ for i=progress(1:2 ^ sdim)
         xDC=sum(v(3:4:end)); xDD=sum(v(4:4:end));
         data(j,:) = [i, j, strategies(i, :), strategies(j, :), epsilon, xCC, xCD, xDC, xDD];
     end
-    filename = "cooperation_data/error_" + epsilon + "_sdim_" + sdim + "_s" + i + ".csv";
+    filename = "../cooperation_data/error_" + epsilon + "_sdim_" + sdim + "_s" + i + ".csv";
     dlmwrite(filename, data, 'precision', 9);
 end
