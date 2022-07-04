@@ -1,0 +1,379 @@
+\documentclass{article}
+
+\usepackage{minitoc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{graphics}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{blkarray}
+\usepackage{amsthm, amssymb, amsmath}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
+\pagestyle{plain}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\renewcommand{\baselinestretch}{1}
+
+\newcommand{\nikoleta}[1]{\textcolor{orange}{{\bf NG:} #1}}
+
+\newtheorem{proposition}{Proposition}
+
+\title{$n-$bits reactive strategies in repeated games}
+
+\author{Nikoleta E. Glynatsi, Christian Hilbe, Martin Nowak}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+In this work we explore \textit{reactive strategies} in the infinitely repeated
+Prisoner's Dilemma. The Prisoner's Dilemma is a two person symmetric game that
+provides a simple model of cooperation. Each of the two players, \(p\)
+and \(q\), simultaneously and independently decide to cooperate (\(C\)) or to defect
+(\(D\)). In the one shot game there are four possible outcomes, \(xy \in \{CC, CD, DC, DD\}\), where
+\(x\) and \(y\) represent \(p\)'s and \(q\)'s choices respectively. After making
+a decision each player receives a payoff. The following (\(2 \times 2\)) payoff
+matrix describes the payoffs of \(p\),
+
+\begin{equation}\label{eq:payoffs}
+    \begin{blockarray}{ccc}
+        & \text{cooperate} & \text{defect} \\
+        \begin{block}{c(cc)}
+            \text{cooperate} & R & S \\
+            \text{defect} & T & P \\
+        \end{block}
+    \end{blockarray}
+\end{equation}
+
+where \(R\) is the reward payoff for mutual cooperation, \(T\) is the temptation
+payoff, \(S\) is the sucker's payoff and \(P\) is the punishment for mutual
+defection. It is assumed that \(T > R > P > S\) and \(2R > T + S\). The
+transpose of the payoff matrix (\ref{eq:payoffs}) is the payoff of \(q\).
+Alternatively, we can define the payoff vectors for each player by,
+
+\begin{equation}\label{eq:vector_payoffs}
+  \mathbf{S_{p}} = (R, S, T, P) \quad \textrm{and} \quad \mathbf{S_{q}} = (R, T, S, P).
+\end{equation}
+
+A special case of the Prisoner's Dilemma is the donation game. In the donation
+game each player can chose to cooperate and pay a cost \(c\) such that their
+co-player gets a benefit \(b\). Given this, the payoff matrix (\ref{eq:payoffs})
+is re-written as,
+
+\begin{equation}\label{eq:donation_payoffs}
+  \begin{blockarray}{ccc}
+      & \text{cooperate} & \text{defect} \\
+      \begin{block}{c(cc)}
+          \text{cooperate} & b - c & -c \\
+          \text{defect} & c & 0 \\
+      \end{block}
+  \end{blockarray}
+\end{equation}
+
+where \(b, c > 0\) and \(b > c\), and equivalently,
+
+\begin{equation}\label{eq:vector_donation_payoffs}
+  \mathbf{ S_{p}} = (b-c, -c, b, 0) \quad \textrm{and} \quad  \mathbf{S_{q}} = (b - c, b, -c, 0).
+\end{equation}
+
+We study the infinitely repeated Prisoner's Dilemma where players
+are infinitely interacting, choosing between \(C\) and \(D\) at each round. The
+long term payoffs of the players are denoted as \(s_{p}\) and \(s_{q}\).
+
+\subsection{Strategies}
+
+There are infinitely many strategies for the repeated Prisoner's Dilemma. A
+strategy is a mapping from the entire history of play to an action of the stage
+game. We focus on \textit{reactive} strategies, a set of strategies that map the
+previous actions of the co-player to an action. Reactive strategies are a
+special case of memory-one strategy, which are a set of strategies well studied
+in the literature. Though reactive strategies have gained some attention, the
+majority of work focuses on the case of memory size of one. Thus, they focus on
+reactive strategies that only consider the last action of the co-player. These
+will be reefer to as \textit{one-bit reactive strategies}, and so, \(n\)-bit
+reactive strategies, are strategies that consider the last \(n\) rounds of the
+co-player.
+
+The aim of this work is to extensively study reactive strategies of higher memory. In
+section~\ref{section:good_strategies} we analytically characterize reactive
+strategies that are good and of Nash type. In section we explore reactive
+strategies that can sustain pure Nash equilibria in an environment with noise.
+In section we perform an evolutionary analysis, and investigate which
+strategies evolve.
+
+\section{Results}
+
+\subsection{Good two-bit reactive strategies}\label{section:good_strategies}
+
+In~\cite{akin:EGADS:2016}, Akin defined what it means for s strategy to be
+\textit{good} and of \textit{Nash type}. His original work focused on memory-one
+strategies. With the outcomes listed in order as \(CC, CD, DC, DD\) a memory-one
+strategy for \(p\) is a vector \(p = (p_1, p_2, p_3, p_4)\) where \(p_i\) is the
+probability of playing \(C\) when the \(i^{\text{th}}\) outcome occurred in the
+previous round. Initially, Akin introduces the notion of \textit{agreeable}
+strategies. A strategy is agreeable if it always cooperates following a
+mutual cooperation, in the case of memory-one strategies \(p_1=1\). Give this
+the definition of good and Nash type strategies is as follows.
+
+\begin{definition}
+  A strategy for \(p\) is called good if it is agreeable and if for any general
+  strategy chosen by \(q\) against it, the expected payoffs satisfy:
+  
+  \begin{equation}
+    s_{q} \geq (b - c) \Rightarrow s_{q} = s_{p} =  (b - c).
+  \end{equation}
+
+  The strategy is called of Nash type if it is agreeable and if the expected
+  payoffs against any \(q\) general strategy satisfy:
+
+  \begin{equation}
+    s_{q} \geq R \Rightarrow s_{q} =  (b - c).
+  \end{equation}
+
+  where \(s_{p}\) and \(s_{q}\) are the long term payoffs of \(p\) and \(q\)
+  respectively.
+\end{definition}
+
+Hence, a good strategy is a strategy for which the co-player can achieve the
+reward payoff in the long run if and only if the player receives the reward
+payoff as well. A strategy that is of Nash type, is a strategy which reassures
+that the co-player can never receive a payoff higher than \(b - c\). As we can
+see, the definitions make no assumptions regarding the type of strategies the
+players need to play, and thus, these definitions are extendable to \(n-\) bit
+reactive strategies. The definition of agreeable strategies needs to be properly
+defined in the case of higher memory, but we discuss this in the section that
+follows.
+
+Akin proceeds to proof an interesting result regarding the long term expected
+states of the game. A play between two memory-one strategies, \(p = (p_1, p_2,
+p_3, p_4)\) and \(q = (q_1, q_2, q_3, q_4)\), follows a Markov chain with four
+states corresponding to the possible outcomes, and the transition matrix
+\(M^{1}\). The stationary distribution of the Markov process, denoted as
+\(\mathbf{v}^{1}\), is the solution to \(\mathbf{v}^{1} M^{1} =
+\mathbf{v}^{1}\). Note that \(\sum_{i=1}^{4} u_{i} = 1\). \(\mathbf{v}^{1}\) gives the probability of the strategies
+being in each of the four possible outcomes at the end of the game.
+
+\begin{equation}
+\displaystyle M_1 = \left[\begin{matrix}p_{1} q_{1} & p_{1} \left(1 - q_{1}\right) & q_{1} \left(1 - p_{1}\right) & \left(1 - p_{1}\right) \left(1 - q_{1}\right)\\
+  p_{2} q_{3} & p_{2} \left(1 - q_{3}\right) & q_{3} \left(1 - p_{2}\right) & \left(1 - p_{2}\right) \left(1 - q_{3}\right)\\
+  p_{3} q_{2} & p_{3} \left(1 - q_{2}\right) & q_{2} \left(1 - p_{3}\right) & \left(1 - p_{3}\right) \left(1 - q_{2}\right)\\
+  p_{4} q_{4} & p_{4} \left(1 - q_{4}\right) & q_{4} \left(1 - p_{4}\right) & \left(1 - p_{4}\right) \left(1 - q_{4}\right)\end{matrix}\right].
+\end{equation}
+
+The, given the stationary distribution vector \(\mathbf{v}^{1}\), Akin proved
+Theorem~\ref{theorem:akin}.
+
+\begin{theorem}{Akin's Theorem.}
+  Assume that \(\tilde{p}\) uses the strategy \(\tilde{p} = (\tilde{p}_1, \tilde{p}_2,
+  \tilde{p}_3, \tilde{p}_4)\) where \(\tilde{p}_1 = p_1 - 1\) and \(\tilde{p}_2 = p_2 - 1\), and
+  \(\mathbf{v}^{1}\) is the stationary distribution for a given co-player \(q\) then,
+
+  \begin{align}
+    <\mathbf{v} \tilde{p}> = v_1 \tilde{p_1} + v_2 \tilde{p_2} + v_3 \tilde{p_3} + v_4 \tilde{p_4} & = 0 \Leftrightarrow \\
+    v_1 (p_1 - 1) + v_2 (p_2 - 1) + v_3 p_3 + v_4 p_4 & = 0.
+  \end{align}
+\end{theorem}\label{theorem:akin}
+
+All of the above results are extendable to higher memory strategies. Here we
+demonstrate the special of two-bit reactive strategies.
+
+\subsection{Two-bit reactive strategies}
+
+In the case of \textit{two-bit reactive strategies}, players base their
+decisions on the actions of the co-player in the previous two rounds. Since for
+a single round there are 4 possible outcomes, for two rounds there will be 16
+\((4 \times 4)\). We denote the states as \(E_x E_y | F_x F_y\) (\(E_x, E_y,
+F_x, F_y \in \{C, D\}\)) where the outcome of the previous round is \(E_x E_y\)
+and the outcome of the current round is \(F_x F_y\).
+
+With the two previous actions of the co-player listed in order as \(CC, CD, DC,
+DD\) a two-bit reactive strategy \(p\) is a vector \(p = (p_1, p_2, p_3, p_4,
+p_3, p_4 p_1, p_2, p_3, p_4, p_3, p_4)\) where \(p_i\) is the probability of
+playing \(C\) when the \(i^{\text{th}}\) ordered actions were played by the
+co-player in the previous two rounds. The play between two two-bits reactive
+strategies can be described by a Markov process with the transition matrix
+\(M^2\).
+
+\resizebox{\linewidth}{!}{%
+$
+M^{2} = \left(\begin{array}{cccccccccccccccc}
+ p_1 q_1 & p_1 (1-q_1) & (1-p_1) q_1 & (1-p_1) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & p_2 q_1 & p_2 (1-q_1) & (1-p_2) q_1 & (1-p_2) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_1 q_2 & p_1 (1-q_2) & (1-p_1) q_2 & (1-p_1) (1-q_2) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_2 q_2 & p_2 (1-q_2) & (1-p_2) q_2 & (1-p_2) (1-q_2) \\
+ p_3 q_1 & p_3 (1-q_1) & (1-p_3) q_1 & (1-p_3) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & p_4 q_1 & p_4 (1-q_1) & (1-p_4) q_1 & (1-p_4) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_3 q_2 & p_3 (1-q_2) & (1-p_3) q_2 & (1-p_3) (1-q_2) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_4 q_2 & p_4 (1-q_2) & (1-p_4) q_2 & (1-p_4) (1-q_2) \\
+ p_1 q_3 & p_1 (1-q_3) & (1-p_1) q_3 & (1-p_1) (1-q_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & p_2 q_3 & p_2 (1-q_3) & (1-p_2) q_3 & (1-p_2) (1-q_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_1 q_4 & p_1 (1-q_4) & (1-p_1) q_4 & (1-p_1) (1-q_4) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_2 q_4 & p_2 (1-q_4) & (1-p_2) q_4 & (1-p_2) (1-q_4) \\
+ p_3 q_3 & p_3 (1-q_3) & (1-p_3) q_3 & (1-p_3) (1-q_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & p_4 q_3 & p_4 (1-q_3) & (1-p_4) q_3 & (1-p_4) (1-q_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_3 q_4 & p_3 (1-q_4) & (1-p_3) q_4 & (1-p_3) (1-q_4) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_4 q_4 & p_4 (1-q_4) & (1-p_4) q_4 & (1-p_4) (1-q_4) \\
+\end{array}\right).$}
+
+The transition matrix \(M^2\) is a \((16 \times 16)\) matrix where 
+
+\begin{equation}\label{eq:transition_matrix_condition}
+M(v^{2}_{n + 1} = G_x G_y | H_x H_y | v^{2}_{n}= E_x E_y | F_x F_y = 0) \text{ if } G_x G_y \neq F_x F_y,
+\end{equation}
+
+so in each row of the matrix there will be at most four nonzero
+elements. The stationary distribution, denoted as \(\mathbf{v}^{2}\), is the
+solution to \(\mathbf{v}^{2} M^{2} = \mathbf{v}^{2}\) where \(\sum_{i=1}^{16} u_{i} = 1\).
+
+Because of the nature of the transition matrix \(M^2\), and more specifically,
+the condition (\ref{eq:transition_matrix_condition}), the following holds
+for the stationary distribution,
+
+\begin{align}
+  \sum_{i, j \in \{C, D\}} v_{i, j | CD} & = \sum_{i, j \in \{C, D\}} v_{CD | ij} \Leftrightarrow \\ \label{eq:two_bit_ss_relationship}
+  v_1 + v_5 + v_9 + v_{13} & = v_1 + v_2 + v_3 + v_4    , \\
+  v_2 + v_4 + v_6 + v_{14} & = v_5 + v_6 + v_7 + v_8    , \\
+  v_3 + v_7 + v_{11} + v_{15} & = v_9 + v_{10} + v_{11} + v_{12} \text{ and } \\
+  v_4 + v_8 + v_{12} + v_{16} & = v_{13} + v_{14} + v_{15} + v_{16}.
+\end{align}
+
+The extension to Akin's Theorem (Theorem~\ref{theorem:akin}) is give by
+Lemma~\ref{lemma:akin_extended}.
+
+\begin{lemma}\label{lemma:akin_extended}
+  Assume that \(\tilde{p}\) uses the strategy \(\tilde{p} = (\tilde{p}_1, \tilde{p}_2,
+  \tilde{p}_1, \tilde{p}_2, \dots, \tilde{p}_3, \tilde{p}_4)\) where \(\tilde{p}_1 = p_1 - 1\) and \(\tilde{p}_2 = p_1 - 1\), and
+  \(\mathbf{v}^{2}\) is the stationary distribution for a given co-player \(q = (q_1, q_2, q_1, q_2, \dots, q_3, q_4)\) then,
+
+  \begin{align} \label{eq:akin_condition_two_bits}
+    <\mathbf{v} \tilde{p}> = v_1 \tilde{p_1} + v_2 \tilde{p_2} + v_3 \tilde{p_1} + v_4 \tilde{p_2}, \dots  
+                           + v_{13} \tilde{p_3} + v_{14} \tilde{p_4} + v_{15} \tilde{p_3} + v_{16} \tilde{p_4} & = 0 \Leftrightarrow \nonumber \\
+                           (v_{1} + v_{9}) (p_1 - 1) + (v_{2} + v_{10}) (p_2 - 1)  + (v_{5} + v_{13}) (p_3 - 1 ) + (v_{6} + v_{14}) (1 - p_4) \\
+                           + (v_{3} + v_{11})p_1  + (v_{4} + v_{12})p_2 + (v_{7} + v_{15}) p_3 + (v_{8} + v_{16}) p_4 & = 0.
+  \end{align}
+\end{lemma}
+
+The long run steady state probability vector \(\mathbf{v}^{2}\) can be combined
+with the payoff vectors to give the expected payoffs for each player, \(s_{p}\)
+and \(s_{q}\). In the case of the two-bit reactive strategies, there can be two
+set of payoff vectors which depends if payoffs are defined based on the outcome
+of the last round, or of the second to last. Thus payoff vectors can be
+one of the following,
+
+\begin{align}\label{eq:last_round_two_bits}
+  S_{p} & =  (b - c, -c, b, 0, b - c, -c, b, 0, b - c, -c, b, 0, b - c, -c, b, 0)  \textrm{ and } \nonumber \\
+  S_{q} & = (b - c, b, -c, 0, b - c, b, -c, 0, b - c, b, -c, 0, b - c, b, -c, 0)
+\end{align}
+
+or
+
+\begin{align}\label{eq:second_to_last_round_two_bits}
+  S'_{p} & = (b - c, b - c, b - c, b - c, -c, -c, -c, -c, b, b, b, b, 0, 0, 0, 0) \textrm{ and } \nonumber \\
+  S'_{q} & = (b - c, b - c, b - c, b - c, b, b, b, b, -c, -c, -c, -c, 0, 0, 0, 0).
+\end{align}
+
+Note that \(s_{p} = \mathbf{v}^{2} \times S_{p} = \mathbf{v}^{2} \times S'_{p}\)
+and \(s_{q} = \mathbf{v}^{2} \times S_{q} = \mathbf{v}^{2} \times S'_{q}\).
+
+\subsection{Good Nash}
+
+We are interested in which two-bit reactive strategies can sustain a Nash
+equilibrium, and more specifically, a cooperative one. An agreeable strategy in
+the case of two-bit reactive strategies is a play that always cooperates after
+two consecutive cooperations of the co-player, thus \(p_1 = 0\). We know that
+\(p\) is of Nash type if against a co-player \(q\) the long term payoff of the
+co-player \(s_{q} \leq (b - c)\).
+
+\begin{align}\label{eq:nash_condition_last_round}
+  s_{q} - (b - c) & = \mathbf{v}^{2} \times S_{q} - (b - c) \sum_{i=1}^{16} u_{i}\\ \nonumber
+  & = (v_{2} + v_{6} + v_{10} + v_{14}) c + (c - b) (v_{4} + v_{8} + v_{12} + v_{16}) - b (v_{3} + v_{7} + v_{11} + v_{15}) .
+\end{align}
+
+This is derived given that payoff vectors are of Eq. (\ref{eq:last_round_two_bits}),
+if the payoff vectors of Eq. (\ref{eq:second_to_last_round_two_bits}) are used instead,
+
+
+\begin{align}\label{eq:nash_condition_second_to_last_round}
+  s_{q} - \leq (b - c) & = \\ \nonumber
+  &= (v_{5} + v_{6} + v_{7} + v_{8}) c + (c - b) (v_{13} + v_{14} + v_{15} + v_{16}) - b (v_{9} + v_{10} + v_{11} + v_{12}).
+\end{align}
+
+Note that Eq. (\ref{eq:nash_condition_last_round}) and Eq.
+(\ref{eq:nash_condition_last_round}) are equivalent if we substitute Eq.
+(\ref{eq:two_bit_ss_relationship}).
+
+\subsubsection{Special case \(p_3 = p_2\)}
+
+In the special case of \(p_3 = p_2\) a player does not care about when a
+defection occurred, but that a defection happened.
+
+\begin{theorem}
+Let \(p = (p_{1}, p_{2}, p_{1}, p_{2}, p_{3}, p_{4}, p_{3}, p_{4}, p_{1}, p_{2}, p_{1}, p_{2}, p_{3}, p_{4}, p_{3}, p_{4})\)
+be an agreeable plan, that is, \(p_1 = 1\). Strategy \(p\) is of Nash type iff
+the following inequalities hold.
+
+\begin{equation*}
+  p_2 \geq p_4 \text{ and } p_2 \leq 1 - \frac{c}{b} \text{ and } p_4 \leq 1 - \frac{c}{b}.
+\end{equation*}
+
+Strategy \(p\) is good iff, in addition, both inequalities are strict.
+\end{theorem}
+
+\begin{proof}
+
+substituting \(p_3 = p_2\) in Eq. (\ref{eq:nash_condition_last_round}) and multiplying
+by \((1 - p_2)\),
+
+
+  
+\end{proof}
+
+% \section{Numerical Results}
+
+% We use an evolutionary process based on on Nowak and Imphof.
+
+\appendix
+
+\section{Two-bit reactive strategies cheat sheet.}
+
+\begin{table}[h!]
+  \centering
+   \begin{tabular}{c c c c c c c }
+  \toprule
+   History/State & State number & Coop/Def & Coop. probability M. & Coop. probability & Reaction to & \\
+   \toprule
+  $CC|CC$  & 1 & Coop  & $p_1$ & $p_1$ & $CC$\\
+  $CC|CD$  & 2 & Coop  & $p_2$ & $p_2$ & $CD$ \\
+  $CC|DC$  & 3 & Def   & $p_3$ & $p_1$ & $CC$ \\
+  $CC|DD$  & 4 & Def   & $p_4$ & $p_2$ & $CD$ \\
+  $CD|CC$  & 5 & Coop  & $p_5$ & $p_3$ & $DC$ \\
+  $CD|CD$  & 6 & Coop  & $p_6$ & $p_4$ & $DD$ \\
+  $CD|DC$  & 7 & Def   & $p_7$ & $p_3$ & $DC$ \\
+  $CD|DD$  & 8 & Def   & $p_8$ & $p_4$ & $DD$ \\
+  $DC|CC$  & 9 & Coop  & $p_9$ & $p_1$ & $CC$ \\
+  $DC|CD$  & 10 & Coop & $p_{10}$ & $p_2$ & $CD$ \\
+  $DC|DC$  & 11 & Def  & $p_{11}$ & $p_1$ & $CC$ \\
+  $DC|DD$  & 12 & Def  & $p_{12}$ & $p_2$ & $CD$ \\
+  $DD|CC$  & 13 & Coop & $p_{13}$ & $p_3$ & $DC$ \\
+  $DD|CD$  & 14 & Coop & $p_{14}$ & $p_4$ & $DD$ \\
+  $DD|DC$  & 15 & Def  & $p_{15}$ & $p_3$ & $DC$ \\
+  $DD|DD$  & 16 & Def  & $p_{16}$ & $p_4$ & $DD$ \\
+  \hline
+\end{tabular}
+\caption{\textbf{Cheat Sheet} for two-bit reactive strategies.}
+\end{table}
+
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
+
+\end{document}
