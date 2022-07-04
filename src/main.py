@@ -205,6 +205,10 @@ def payoffs_vector_coplayer(c, b, dim=4):
     return np.array([b - c, b, -c, 0] * dim)
 
 
+def payoffs_vector_coplayer_prime(c, b, dim=4):
+    return np.array([b - c] * dim + [b] * dim +  [-c] * dim + [0] * dim)
+
+
 def strategies_set(vector_size):
     """Set of determinist strategies for a given vector size."""
     actions = [0, 1]
