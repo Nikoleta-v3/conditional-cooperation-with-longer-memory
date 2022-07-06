@@ -195,15 +195,15 @@ def task(i, strategy, coplayers, labels, filename, Sx, R, P):
 if __name__ == "__main__":
     max_simulation_number = 10 ** 5
     dimensions = int(sys.argv[1])
-    # b = 2
-    # c = 1
-    R = 0.6
-    P = 0.1
+    b = 2
+    c = 1
+    # R = 0.6
+    # P = 0.1
     seed = 0
 
-    # deterministic_strategies = list(
-    #     itertools.product([0, 1], repeat=dimensions)
-    # )
+    deterministic_strategies = list(
+        itertools.product([0, 1], repeat=dimensions)
+    )
     combos = list(itertools.product([0, 1], repeat=4))
     deterministic_strategies = []
     for (q1, q2, q3, q4) in combos:
@@ -248,8 +248,8 @@ if __name__ == "__main__":
                 labels,
                 filename,
                 Sx,
-                R,
-                P,
+                b,
+                c,
             )
         )
     dask.compute(*jobs, nworkers=2)
