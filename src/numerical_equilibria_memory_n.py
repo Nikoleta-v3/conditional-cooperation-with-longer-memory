@@ -67,23 +67,23 @@ if __name__ == "__main__":
     dimensions = int(sys.argv[1])
     b = 2
     c = 1
+    n = 10
     # R = 0.6
     # P = 0.1
     seed = 0
     folder = "two_bit_in_memory_two"
 
     deterministic_strategies = list(
-        itertools.product([0, 1], repeat=2 ** 2)
+        itertools.product([0, 1], repeat=2 ** (2 * dimensions))
     )
 
     labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
-    Sx = eq.payoffs_donation(b, c, dim=1)  # payoffs(R, P, dim=4)
+    Sx = eq.payoffs_donation(b, c, dim=(2 * dimensions))  # payoffs(R, P, dim=4)
 
     np.random.seed(seed)
     jobs = []
     for i in tqdm.tqdm(range(max_simulation_number)):
         filename = f"{folder}/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
-        p1, p2 = np.random.random((1, 2)).round(5)[0]
         p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
         p1 = 1
         strategy = [
@@ -116,7 +116,7 @@ if __name__ == "__main__":
                 c,
             )
         )
-    dask.compute(*jobs, nworkers=2)
+    dask.compute(*jobs, nworkers=n)
     
     # columns = (["", "ID"] + [f'p{i+1}' for i in range(16)] + [f'q{i+1}' for i in range(16)] + 
     #        ['label', 'Sp', 'Sq', "condition A", "condition B",'c', 'b'])
