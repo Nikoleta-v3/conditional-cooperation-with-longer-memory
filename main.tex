@@ -194,6 +194,8 @@ A \(n-\)bit reactive strategy is agreeable if it cooperates with a probability o
 given that the co-player has consecutively cooperated in that last \(n\) rounds.
 \end{definition}
 
+\nikoleta{CH comment: do we need to specify what happens in the first \(n\) turns?}
+
 Following the introduction of these concepts, Akin proves
 Theorem~\ref{theorem:akin} which he uses to characterize all memory-one
 strategies that are of \textit{Nash type} and \textit{good}.
@@ -445,7 +447,7 @@ the Algorithm~\ref{algorithm:numerical_nash}.
    $\leftarrow$ random: $\{\emptyset \}\ \rightarrow R_{[0, 1]}^4$\;
    \(p_1\)
    $\leftarrow$ 1\;
-   $L(\mathbf{\hat{p}}) = \{\mathbf{\hat{q}} \,|\, \pi(\mathbf{\hat{p}}, \mathbf{\hat{p}}) \geq \pi(\mathbf{\hat{q}}, \mathbf{\hat{p}}) \text{ for } \mathbf{\hat{q}} \in \{\mathbf{\hat{q}_i} \in P([0, 1]) \,|\, |\mathbf{\hat{q}_i}| = 16 \}\}$\;
+   $L(\mathbf{\hat{p}}) = \{\mathbf{\hat{q}} \,|\, \pi(\mathbf{\hat{p}}, \mathbf{\hat{p}}) \geq \pi(\mathbf{\hat{q}}, \mathbf{\hat{p}}) \text{ for } \mathbf{\hat{q}} \in \{\mathbf{\hat{q}_i} \in P([0, 1]) \,|\, |\mathbf{\hat{q}_i}| = 4 \}\}$\;
   \uIf{$ L(\mathbf{\hat{p}}) = \emptyset $}{
     isNash $\leftarrow$ True \;
   }
@@ -456,8 +458,10 @@ the Algorithm~\ref{algorithm:numerical_nash}.
   \caption{Numerical evaluation for Nash.}\label{algorithm:numerical_nash}
 \end{algorithm}
 
-\(\{\mathbf{\hat{q}_i} \in P([0, 1]) \,|\, |\mathbf{\hat{q}_i}| = 16 \}\) is
+\(\{\mathbf{\hat{q}_i} \in P([0, 1]) \,|\, |\mathbf{\hat{q}_i}| = 4 \}\) is
 the set of all pure two-bit reactive strategies.
+
+\nikoleta{maybe we need a better way to represent the set of pure strategies.}
 
 For a given set of parameter values (\(b=2 \text{ and } c=1\)) we can illustrate
 the space of provably Nash, Figure~\ref{fig:two_bit_reactive_nash_results}A. The
@@ -533,13 +537,13 @@ is Nash is smaller and smaller in the feasible space of these strategies.
 In this section we perform a numerical analysis to identify all strict Nash
 equilibria if players are restricted to pure strategies. To this end, we use a
 method defined by the work~\citep{hilbe:PNAS:2017} which we will refer to as the
-Vaquero method. The method numerically identifies all (strict) Nash equilibria
+Martinez-Vaquero method. The method numerically identifies all (strict) Nash equilibria
 among a finite set of strategies, and moreover it returns for which parameter
 values the respective strategy is Nash. In our case we use the donation game
 thus the method returns which benefit-to-cost ratio \(\frac{b}{c}\) is required
 for a strategy to be Nash.
 
-\subsubsection{The Vaquero Method}
+\subsubsection{The Martinez-Vaquero Method}
 
 Let \(p\) and \(q\) play as \(\mathbf{p}_{\epsilon}\) and
 \(\mathbf{q}_{\epsilon}\) from a given set of strategies in a noisy environment
@@ -607,7 +611,7 @@ and
 
 \subsubsection{Pure one, two and three bit(s) Reactive Strategies with Errors}
 
-The Vaquero method can be used with any set of strategies. The only
+The Martinez-Vaquero method can be used with any set of strategies. The only
 constraint is that for two given strategies one should be able to calculate
 \(\rho, \tilde{\rho}_p \text{ and } \tilde{\rho}_q\).
 For \(n-\)bit reactive strategies this is possible. For example consider the
@@ -617,7 +621,7 @@ case of two-bit reactive cases where \(p\) plays as \(\mathbf{\hat{p}}\). \(\rho
 \(\mathbf{\tilde{v}}\) is the invariant distribution of the matrix
 \(\tilde{M}_{|\mathbf{\hat{q}}=\mathbf{\hat{p}}}\).
 
-We apply the Vaquero method and identify all the pure Nash equilibria in the case where
+We apply the Martinez-Vaquero method and identify all the pure Nash equilibria in the case where
 players are allowed to choose from the sets of (i) one-bit (ii) two-bits and
 (ii) three-bits reactive strategies for a small error rate of \(\epsilon=0.01\).
 The results are given in Table~\ref{table:pure_nash_results}.
@@ -641,7 +645,7 @@ The results are given in Table~\ref{table:pure_nash_results}.
    \bottomrule
 \end{tabular}}
 \caption{\textbf{Pure one, two and three bit(s) reactive strategies.} The
-Vaquero method allows us to numerically evaluate if pure strategies are Nash given that
+Martinez-Vaquero method allows us to numerically evaluate if pure strategies are Nash given that
 errors can occur. We performed the algorithm for a small percentage of error
 \(\epsilon=0.01\). The table shows all pure reactive strategies that are Nash,
 the \(\frac{b}{c}\) ratio for which they are Nash and for each strategy the cooperating rate
