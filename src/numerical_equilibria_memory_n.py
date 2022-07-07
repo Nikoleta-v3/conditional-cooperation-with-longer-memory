@@ -80,43 +80,45 @@ if __name__ == "__main__":
     labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
     Sx = eq.payoffs_donation(b, c, dim=(2 * dimensions))  # payoffs(R, P, dim=4)
 
-    np.random.seed(seed)
-    jobs = []
-    for i in tqdm.tqdm(range(max_simulation_number)):
-        filename = f"{folder}/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
-        p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
-        p1 = 1
-        strategy = [
-            p1,
-            p2,
-            p1,
-            p2,
-            p3,
-            p4,
-            p3,
-            p4,
-            p1,
-            p2,
-            p1,
-            p2,
-            p3,
-            p4,
-            p3,
-            p4,
-        ]
-        jobs.append(
-            dask.delayed(task)(
-                i,
-                strategy,
-                deterministic_strategies,
-                labels,
-                filename,
-                Sx,
-                b,
-                c,
+    steps = np.arange(200, max_simulation_number, 100)
+    for lbound, ubound in zip(steps[:-1], steps[1:]):
+        np.random.seed(seed)
+        jobs = []
+        for i in tqdm.tqdm(range(lbound, ubound)):
+            filename = f"{folder}/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
+            p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
+            p1 = 1
+            strategy = [
+                p1,
+                p2,
+                p1,
+                p2,
+                p3,
+                p4,
+                p3,
+                p4,
+                p1,
+                p2,
+                p1,
+                p2,
+                p3,
+                p4,
+                p3,
+                p4,
+            ]
+            jobs.append(
+                dask.delayed(task)(
+                    i,
+                    strategy,
+                    deterministic_strategies,
+                    labels,
+                    filename,
+                    Sx,
+                    b,
+                    c,
+                )
             )
-        )
-    dask.compute(*jobs, nworkers=n)
+        dask.compute(*jobs, nworkers=n)
     
     # columns = (["", "ID"] + [f'p{i+1}' for i in range(16)] + [f'q{i+1}' for i in range(16)] + 
     #        ['label', 'Sp', 'Sq', "condition A", "condition B",'c', 'b'])
