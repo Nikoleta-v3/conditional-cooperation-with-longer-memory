@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # R = 0.6
     # P = 0.1
     seed = 0
-    folder = "memory_two_against_memory_two"
+    folder = "two_bit_against_memory_two"
 
     deterministic_strategies = list(
         itertools.product([0, 1], repeat=2 ** (2 * dimensions))
@@ -79,32 +79,29 @@ if __name__ == "__main__":
     steps = np.arange(0, max_simulation_number, 100)
     
     for lbound, ubound in zip(steps[:-1], steps[1:]):
-
         jobs = []
         for i in tqdm.tqdm(range(lbound, ubound)):
             filename = f"{folder}/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
-            strategy = np.random.random((1, 16)).round(5)[0]
-            strategy[0] = 1
-            # p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
-            # p1 = 1
-            # strategy = [
-            #     p1,
-            #     p2,
-            #     p1,
-            #     p2,
-            #     p3,
-            #     p4,
-            #     p3,
-            #     p4,
-            #     p1,
-            #     p2,
-            #     p1,
-            #     p2,
-            #     p3,
-            #     p4,
-            #     p3,
-            #     p4,
-            # ]
+            p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
+            p1 = 1
+            strategy = [
+                p1,
+                p2,
+                p1,
+                p2,
+                p3,
+                p4,
+                p3,
+                p4,
+                p1,
+                p2,
+                p1,
+                p2,
+                p3,
+                p4,
+                p3,
+                p4,
+            ]
             jobs.append(
                     dask.delayed(task)(
                         i,

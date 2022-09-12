@@ -11,6 +11,8 @@ import dask
 
 import pandas as pd
 
+import sympy as sym
+
 from importlib.machinery import SourceFileLoader
 
 main = SourceFileLoader("main", "src/main.py").load_module()
@@ -253,9 +255,13 @@ if __name__ == "__main__":
             )
         )
     dask.compute(*jobs, nworkers=2)
-    
-    columns = (["", "ID"] + [f'p{i+1}' for i in range(16)] + [f'q{i+1}' for i in range(16)] + 
-           ['label', 'Sp', 'Sq', "condition A", "condition B",'c', 'b'])
+
+    columns = (
+        ["", "ID"]
+        + [f"p{i+1}" for i in range(16)]
+        + [f"q{i+1}" for i in range(16)]
+        + ["label", "Sp", "Sq", "condition A", "condition B", "c", "b"]
+    )
 
     files = glob.glob("../two_bit_reactive_pd/*csv")
 

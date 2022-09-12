@@ -170,13 +170,20 @@ def cooperation_rate(ss, size):
 
 
 def invariant_distribution(M):
+    stationaries = []
 
     eigenvalues, eigenvectors = np.linalg.eig(M.T)
-    eigenvectors_one = eigenvectors[:, np.argmax(eigenvalues)]
 
-    stationary = eigenvectors_one / eigenvectors_one.sum()
+    for index in np.where(np.isclose(eigenvalues, 1))[0]:
 
-    return stationary.real
+        eigenvectors_one = eigenvectors[:, index]
+
+        stationary = eigenvectors_one / eigenvectors_one.sum()
+
+
+        stationaries.append(stationary.real)
+
+    return stationaries[np.argmax([min(s) for s in stationaries])]
 
 
 def invariant_distribution_analytically(M):
@@ -206,7 +213,7 @@ def payoffs_vector_coplayer(c, b, dim=4):
 
 
 def payoffs_vector_coplayer_prime(c, b, dim=4):
-    return np.array([b - c] * dim + [b] * dim +  [-c] * dim + [0] * dim)
+    return np.array([b - c] * dim + [b] * dim + [-c] * dim + [0] * dim)
 
 
 def strategies_set(vector_size):
