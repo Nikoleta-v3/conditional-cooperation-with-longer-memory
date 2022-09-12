@@ -1,12 +1,9 @@
 """This script contains the code to check if a given strategy of n memory
 is Nash in the space of all memory-n strategies."""
 
-from email import header
 import sys
 
 import itertools
-import glob
-from turtle import st
 import numpy as np
 
 import tqdm
