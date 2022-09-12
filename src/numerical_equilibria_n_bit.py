@@ -63,7 +63,7 @@ if __name__ == "__main__":
     dimensions = int(sys.argv[1])
     b = 2
     c = 1
-    n = 1
+    n = 5
     # R = 0.6
     # P = 0.1
     seed = 0
