@@ -27,7 +27,7 @@ def match_payoff(player, coplayer, Sx):
     return ss @ Sx
 
 
-def task(i, strategy, coplayers, labels, filename, Sx, b, c):
+def task(i, strategy, coplayers, labels, filename, Sx, R, P):
 
     sx = match_payoff(strategy, strategy, Sx)
     data = []
@@ -36,7 +36,7 @@ def task(i, strategy, coplayers, labels, filename, Sx, b, c):
 
         sy = match_payoff(coplayer, strategy, Sx)
         A = np.isclose(sx, sy, atol=10 ** -4) or sx > sy
-        B = np.isclose(sy, b - c, atol=10 ** -4) or sy < b - c
+        B = np.isclose(sy, R, atol=10 ** -4) or sy < R
 
         data_point = [
             i,
@@ -46,8 +46,8 @@ def task(i, strategy, coplayers, labels, filename, Sx, b, c):
             sy,
             A,
             B,
-            b,
-            c,
+            R,
+            P,
         ]
         data.append(data_point)
 
@@ -58,30 +58,33 @@ def task(i, strategy, coplayers, labels, filename, Sx, b, c):
 if __name__ == "__main__":
     max_simulation_number = 1000
     dimensions = int(sys.argv[1])
-    b = 2
-    c = 1
+    # b = 2
+    # c = 1
     n = 5
-    # R = 0.6
-    # P = 0.1
+    R = 0.6
+    P = 0.1
     seed = 0
-    folder = "two_bit_against_memory_two"
+    folder = "prisoners_dilemma_two_bit_reactive" # "two_bit_against_memory_two"
+    lbound = 100
+    ubound = 200
 
     deterministic_strategies = list(
         itertools.product([0, 1], repeat=2 ** (2 * dimensions))
     )
 
     labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
-    Sx = eq.payoffs_donation(b, c, dim=(2 * dimensions))  # payoffs(R, P, dim=4)
-    np.random.seed(seed)
-    steps = np.arange(0, max_simulation_number, 100)
+    Sx = eq.payoffs(R, P, dim=4)
+    #np.random.seed(seed)
+    # steps = np.arange(100, max_simulation_number, 100)
     
-    for lbound, ubound in zip(steps[:-1], steps[1:]):
-        jobs = []
-        for i in tqdm.tqdm(range(lbound, ubound)):
-            filename = f"{folder}/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
-            p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
-            p1 = 1
-            strategy = [
+    # for lbound, ubound in zip(steps[:-1], steps[1:]):
+    jobs = []
+    for i in tqdm.tqdm(range(lbound, ubound)):
+        np.random.seed(i)
+        filename = f"{folder}/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
+        p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
+        p1 = 1
+        strategy = [
                 p1,
                 p2,
                 p1,
@@ -99,7 +102,7 @@ if __name__ == "__main__":
                 p3,
                 p4,
             ]
-            jobs.append(
+        jobs.append(
                     dask.delayed(task)(
                         i,
                         strategy,
@@ -107,8 +110,8 @@ if __name__ == "__main__":
                         labels,
                         filename,
                         Sx,
-                        b,
-                        c,
+                        R,
+                        P,
                     )
                 )
-            dask.compute(*jobs, nworkers=n)
+    dask.compute(*jobs, nworkers=n)

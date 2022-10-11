@@ -36,7 +36,7 @@ def coplayer_payoffs_donation(b, c, dim=4):
     return np.array([b - c, b, -c, 0] * dim)
 
 
-def calculate_M_memory_two(player, coplayer):
+def calculate_M_memory_two(player, coplayer, analytical=False):
 
     (
         p1,
@@ -75,7 +75,10 @@ def calculate_M_memory_two(player, coplayer):
         q16,
     ) = coplayer
 
-    M = np.zeros((16, 16))
+    if analytical == True:
+        M = sym.zeros(16, 16)
+    else:
+        M = np.zeros((16, 16))
 
     col, row = 0, 0
 
@@ -125,40 +128,6 @@ def calculate_M_memory_two(player, coplayer):
     return M
 
 
-def calculate_M(player, opponent):
-    """
-    Returns a Markov transition matrix for a game of memory one strategies.
-    """
-    return np.array(
-        [
-            [
-                player[0] * opponent[0],
-                player[0] * (1 - opponent[0]),
-                (1 - player[0]) * opponent[0],
-                (1 - player[0]) * (1 - opponent[0]),
-            ],
-            [
-                player[1] * opponent[2],
-                player[1] * (1 - opponent[2]),
-                (1 - player[1]) * opponent[2],
-                (1 - player[1]) * (1 - opponent[2]),
-            ],
-            [
-                player[2] * opponent[1],
-                player[2] * (1 - opponent[1]),
-                (1 - player[2]) * opponent[1],
-                (1 - player[2]) * (1 - opponent[1]),
-            ],
-            [
-                player[3] * opponent[3],
-                player[3] * (1 - opponent[3]),
-                (1 - player[3]) * opponent[3],
-                (1 - player[3]) * (1 - opponent[3]),
-            ],
-        ]
-    )
-
-
 def match_payoff(player, coplayer, Sx):
     M = calculate_M_memory_two(player, coplayer)
     ss = invariant_distribution(M)
@@ -195,7 +164,7 @@ def task(i, strategy, coplayers, labels, filename, Sx, R, P):
 
 
 if __name__ == "__main__":
-    max_simulation_number = 10 ** 5
+    max_simulation_number = 1000
     dimensions = int(sys.argv[1])
     b = 2
     c = 1
@@ -214,12 +183,12 @@ if __name__ == "__main__":
         )
 
     labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
-    Sx = payoffs(R, P, dim=4)  # payoffs(R, P, dim=4)
+    Sx = payoffs_donation(b, c, dim=4)  # payoffs(R, P, dim=4)
 
     np.random.seed(seed)
     jobs = []
     for i in tqdm.tqdm(range(max_simulation_number)):
-        filename = f"two_bit_reactive_pd/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
+        filename = f"data/two_bit_reactive/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
         # strategy = np.random.random((1, dimensions)).round(5)[0]
         # strategy[0] = 1
         p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
@@ -256,17 +225,17 @@ if __name__ == "__main__":
         )
     dask.compute(*jobs, nworkers=2)
 
-    columns = (
-        ["", "ID"]
-        + [f"p{i+1}" for i in range(16)]
-        + [f"q{i+1}" for i in range(16)]
-        + ["label", "Sp", "Sq", "condition A", "condition B", "c", "b"]
-    )
+    # columns = ( 
+    #     ["", "ID"]
+    #     + [f"p{i+1}" for i in range(16)]
+    #     + [f"q{i+1}" for i in range(16)]
+    #     + ["label", "Sp", "Sq", "condition A", "condition B", "c", "b"]
+    # )
 
-    files = glob.glob("../two_bit_reactive_pd/*csv")
+    # files = glob.glob("../two_bit_reactive_pd/*csv")
 
-    dfs = [pd.read_csv(file, index_col=0, names=columns) for file in files]
+    # dfs = [pd.read_csv(file, index_col=0, names=columns) for file in files]
 
-    df = pd.concat(dfs)
+    # df = pd.concat(dfs)
 
-    df.to_csv("../two_bit_reactive_nash_pd.csv")
+    # df.to_csv("../two_bit_reactive_nash_pd.csv")

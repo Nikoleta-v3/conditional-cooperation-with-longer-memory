@@ -3,14 +3,14 @@
 .ipynb_checkpoints/
 __pycache__/
 c_1.sh
-main.aux
-main.log
-main.maf
-main.mtc
-main.mtc0
-main.out
-main.bbl
-main.blg
+*.aux
+*.log
+*.maf
+*.mtc
+*.mtc0
+*.out
+*.bbl
+*.blg
 reactive.nb
 stationary.asv
 
