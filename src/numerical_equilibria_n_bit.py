@@ -16,7 +16,7 @@ from importlib.machinery import SourceFileLoader
 
 main = SourceFileLoader("main", "src/main.py").load_module()
 
-eq = SourceFileLoader("eq", "src/equilibria.py").load_module()
+eq = SourceFileLoader("eq", "src/numerical_equilibria_n_bit_vs_n_bit.py").load_module()
 
 from main import invariant_distribution
 
