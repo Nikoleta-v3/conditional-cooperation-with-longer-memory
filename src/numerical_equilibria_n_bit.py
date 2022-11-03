@@ -27,7 +27,7 @@ def match_payoff(player, coplayer, Sx):
     return ss @ Sx
 
 
-def task(i, strategy, coplayers, labels, filename, Sx, R, P):
+def task(i, strategy, coplayers, labels, filename, Sx, b, c):
 
     sx = match_payoff(strategy, strategy, Sx)
     data = []
@@ -36,7 +36,7 @@ def task(i, strategy, coplayers, labels, filename, Sx, R, P):
 
         sy = match_payoff(coplayer, strategy, Sx)
         A = np.isclose(sx, sy, atol=10 ** -4) or sx > sy
-        B = np.isclose(sy, R, atol=10 ** -4) or sy < R
+        B = np.isclose(sy, R, atol=10 ** -4) or sy < (b - c)
 
         data_point = [
             i,
@@ -46,8 +46,8 @@ def task(i, strategy, coplayers, labels, filename, Sx, R, P):
             sy,
             A,
             B,
-            R,
-            P,
+            b,
+            c,
         ]
         data.append(data_point)
 
@@ -58,13 +58,13 @@ def task(i, strategy, coplayers, labels, filename, Sx, R, P):
 if __name__ == "__main__":
     max_simulation_number = 1000
     dimensions = int(sys.argv[1])
-    # b = 2
-    # c = 1
+    b = 2
+    c = 1
     n = 5
-    R = 0.6
-    P = 0.1
+    # R = 0.6
+    # P = 0.1
     seed = 0
-    folder = "prisoners_dilemma_two_bit_reactive" # "two_bit_against_memory_two"
+    folder = "two_bit_against_memory_two"
     lbound = 100
     ubound = 200
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     )
 
     labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
-    Sx = eq.payoffs(R, P, dim=4)
+    Sx = eq.payoffs_donation(b, c, dim=4)
     #np.random.seed(seed)
     # steps = np.arange(100, max_simulation_number, 100)
     
@@ -110,8 +110,8 @@ if __name__ == "__main__":
                         labels,
                         filename,
                         Sx,
-                        R,
-                        P,
+                        b,
+                        c,
                     )
                 )
     dask.compute(*jobs, nworkers=n)
