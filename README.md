@@ -20,8 +20,7 @@ files were used to obtain some of the expression presented in the notes.
 
 MatLab was used to carry out the evolutionary simulations presented in the last
 section, and the Vaquero method. These files can be found in
-`src/evolutionary_simulations`. The `VaqueroMethod.m` file was used for the
-method, the rest of the files were used for the evolutionary simulations.
+`src/matlab_code`.
 
 Python was used to numerically explore the Nash in the case of two-bit
 strategies, for the plotting and presentation of the results. Note that
