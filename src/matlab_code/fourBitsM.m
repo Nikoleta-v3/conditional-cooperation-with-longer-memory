@@ -1,3 +1,5 @@
+% Transiition matrix for four-bit reactive strategies
+
 function M=fourBitsM(p, q);
 
 M = [

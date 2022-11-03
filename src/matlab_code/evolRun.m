@@ -1,3 +1,4 @@
+% Script to run the evilutionary process for a given set of parameters
 function evolRun();
 
 sdim = 2;

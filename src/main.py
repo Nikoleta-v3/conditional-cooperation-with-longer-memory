@@ -9,39 +9,68 @@ import sys
 import itertools
 
 
-def calculate_M(player, opponent):
+def calculate_M(player, opponent, analytical):
     """
     Returns a Markov transition matrix for a game of memory one strategies.
     """
-    return np.array(
-        [
+    if analytical == True:
+        return np.array(
             [
-                player[0] * opponent[0],
-                player[0] * (1 - opponent[0]),
-                (1 - player[0]) * opponent[0],
-                (1 - player[0]) * (1 - opponent[0]),
-            ],
+                [
+                    player[0] * opponent[0],
+                    player[0] * (1 - opponent[0]),
+                    (1 - player[0]) * opponent[0],
+                    (1 - player[0]) * (1 - opponent[0]),
+                ],
+                [
+                    player[1] * opponent[2],
+                    player[1] * (1 - opponent[2]),
+                    (1 - player[1]) * opponent[2],
+                    (1 - player[1]) * (1 - opponent[2]),
+                ],
+                [
+                    player[2] * opponent[1],
+                    player[2] * (1 - opponent[1]),
+                    (1 - player[2]) * opponent[1],
+                    (1 - player[2]) * (1 - opponent[1]),
+                ],
+                [
+                    player[3] * opponent[3],
+                    player[3] * (1 - opponent[3]),
+                    (1 - player[3]) * opponent[3],
+                    (1 - player[3]) * (1 - opponent[3]),
+                ],
+            ]
+        )
+    else:
+        return sym.Matrix(
             [
-                player[1] * opponent[2],
-                player[1] * (1 - opponent[2]),
-                (1 - player[1]) * opponent[2],
-                (1 - player[1]) * (1 - opponent[2]),
-            ],
-            [
-                player[2] * opponent[1],
-                player[2] * (1 - opponent[1]),
-                (1 - player[2]) * opponent[1],
-                (1 - player[2]) * (1 - opponent[1]),
-            ],
-            [
-                player[3] * opponent[3],
-                player[3] * (1 - opponent[3]),
-                (1 - player[3]) * opponent[3],
-                (1 - player[3]) * (1 - opponent[3]),
-            ],
-        ]
-    )
-
+                [
+                    player[0] * opponent[0],
+                    player[0] * (1 - opponent[0]),
+                    (1 - player[0]) * opponent[0],
+                    (1 - player[0]) * (1 - opponent[0]),
+                ],
+                [
+                    player[1] * opponent[2],
+                    player[1] * (1 - opponent[2]),
+                    (1 - player[1]) * opponent[2],
+                    (1 - player[1]) * (1 - opponent[2]),
+                ],
+                [
+                    player[2] * opponent[1],
+                    player[2] * (1 - opponent[1]),
+                    (1 - player[2]) * opponent[1],
+                    (1 - player[2]) * (1 - opponent[1]),
+                ],
+                [
+                    player[3] * opponent[3],
+                    player[3] * (1 - opponent[3]),
+                    (1 - player[3]) * opponent[3],
+                    (1 - player[3]) * (1 - opponent[3]),
+                ],
+            ]
+        )
 
 def transition_matrix_one_bit(p, q):
     """
@@ -170,13 +199,20 @@ def cooperation_rate(ss, size):
 
 
 def invariant_distribution(M):
+    stationaries = []
 
     eigenvalues, eigenvectors = np.linalg.eig(M.T)
-    eigenvectors_one = eigenvectors[:, np.argmax(eigenvalues)]
 
-    stationary = eigenvectors_one / eigenvectors_one.sum()
+    for index in np.where(np.isclose(eigenvalues, 1))[0]:
 
-    return stationary.real
+        eigenvectors_one = eigenvectors[:, index]
+
+        stationary = eigenvectors_one / eigenvectors_one.sum()
+
+
+        stationaries.append(stationary.real)
+
+    return stationaries[np.argmax([min(s) for s in stationaries])]
 
 
 def invariant_distribution_analytically(M):
@@ -206,7 +242,7 @@ def payoffs_vector_coplayer(c, b, dim=4):
 
 
 def payoffs_vector_coplayer_prime(c, b, dim=4):
-    return np.array([b - c] * dim + [b] * dim +  [-c] * dim + [0] * dim)
+    return np.array([b - c] * dim + [b] * dim + [-c] * dim + [0] * dim)
 
 
 def strategies_set(vector_size):

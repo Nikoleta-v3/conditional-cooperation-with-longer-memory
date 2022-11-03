@@ -1,3 +1,5 @@
+% Transiition matrix for three-bit reactive strategies
+
 function M=threeBitsM(p, q);
 
 M = [

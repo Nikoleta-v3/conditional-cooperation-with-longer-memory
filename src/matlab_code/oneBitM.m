@@ -1,3 +1,5 @@
+% Transiition matrix for one-bit reactive strategies
+
 function M=oneBitM(p1, p2);
 
 M = [[p1(1) * p2(1), p1(1) * (1 - p2(1)), p2(1) * (1 - p1(1)), (1 - p1(1)) * (1 - p2(1))];

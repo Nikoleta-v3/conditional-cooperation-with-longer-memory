@@ -1,3 +1,5 @@
+% Transiition matrix for two-bit reactive strategies
+
 function M=twoBitsM(p1, p2);
 
 M = [

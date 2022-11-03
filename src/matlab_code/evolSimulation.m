@@ -1,3 +1,4 @@
+% Script that contains the actual simulation code
 function [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed, sdim);
 rng(seed)
 %% Preparations for the output
