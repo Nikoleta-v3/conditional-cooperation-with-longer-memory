@@ -916,28 +916,46 @@ two defections.
 `src/matlab\_code', and the analysis of the results was done in the
 notebook `nbs/3.6. Evolutionary Simulations'.}
 
+\newpage
+
 \section{Conclusion}
 
-In this work we have studied the space of \(n-\)bit reactive strategies. This
-space was originally explored by the work of~\citep{nowak:AAM:1990}. The
-reactive space contains many well known strategies from the literature, such as
-Alternator, Grudger, Tif For Tat and Generous Tit For Tat. However, note that
-these are reactive strategies of memory size one. We referred to these as
-one-bit reactive strategies. Here we aimed to explore higher memory reactive
-strategies, and even though this has been done previously for memory-\(n\)
-strategies, many questions still remain open in the case of reactive ones.
+In this work we have studied the space of \(n-\)bit reactive strategies. This space
+was originally explored by the work of~\citep{nowak:AAM:1990}. The reactive
+space contains many well known strategies from the literature, such as Grudger,
+Tif For Tat and Generous Tit For Tat. However, note that these are reactive
+strategies of memory size one. We referred to these as one-bit reactive
+strategies. Here we aimed to explore higher memory reactive strategies, and even
+though this has been done previously for memory\(-n\) strategies, many questions
+still remain open in the case of reactive ones.
 
 In section~\ref{section:good_nash_strategies} we analytically explored two-bit
 reactive strategies. We built on the work of~\citep{akin:EGADS:2016} and proved
 that there is a set of stochastic two-bit strategies that can sustain
-cooperative Nash equilibria. We verified our results with numerical simulations,
-and showed that in the space of two-bit strategies (for the donation game) one
-is Nash if it's Nash against AllD and (0, 1, 1, 0).
+cooperative Nash equilibria. More specifically, we derived four conditions that
+must be true for a strategy in order to be a good Nash. In
+section~\ref{section:good_strategies_numerically}, we aimed to verify our
+results using numerical simulations. Though the conditions derived in
+section~\ref{section:good_nash_strategies} are sufficient, they are not
+necessary.
 
-However, in the case of pure reactive strategies we showed that when there is a
-vanishingly small probability of error, no cooperative Nash is possible. We
+We also applied our methodology to the case of memory-two strategies, and showed
+very similar results. Though there is a subset of memory-two strategies that we
+can prove are Nash, the numerical simulations suggest that the conditions are
+only sufficient~\ref{section:good_strategies_numerically_mem_two}.
+
+In~\citep{akin:EGADS:2016} it is also proven that for a strategy to be nash it
+is enough to check that the strategy is nash against two pure memory-one
+co-players. From the numerical simulations we have obtained a similar result for
+the case of two-bit reactive
+strategies~\ref{section:good_strategies_numerically}
+and~\ref{section:good_strategies_numerically_pd}.
+
+In the case of pure reactive strategies we showed that when there is a
+vanishingly small probability of error, no cooperative Nash is evolutionary
+stable~\ref{section:pure_strategies}. We
 built on the work of~\citep{hilbe:PNAS:2017} where they numerically showed that
-memory-\(n\) cooperative Nash are feasible. Thus, we can see that constraining
+memory-\(n\) cooperative Nash are stable. Thus, we can see that constraining
 the information a strategy receives to only the co-players moves makes it harder
 for cooperation.
 
@@ -947,36 +965,6 @@ Nash can be obtained, here we asked the question: can they also evolve? In all
 the cases we have presented, high levels of cooperation can be achieved but
 larger memory allows for cooperation to emerge faster.
 
-\appendix
-
-% \section{Two-bit reactive strategies cheat sheet.}
-
-% \begin{table}[!htbp]
-%   \centering
-%    \begin{tabular}{c c c c c c c }
-%   \toprule
-%    History/State & State number & Coop/Def & Coop. probability M. & Coop. probability & Reaction to & \\
-%    \toprule
-%   $CC|CC$  & 1 & Coop  & $p_1$ & $p_1$ & $CC$\\
-%   $CC|CD$  & 2 & Coop  & $p_2$ & $p_2$ & $CD$ \\
-%   $CC|DC$  & 3 & Def   & $p_3$ & $p_1$ & $CC$ \\
-%   $CC|DD$  & 4 & Def   & $p_4$ & $p_2$ & $CD$ \\
-%   $CD|CC$  & 5 & Coop  & $p_5$ & $p_3$ & $DC$ \\
-%   $CD|CD$  & 6 & Coop  & $p_6$ & $p_4$ & $DD$ \\
-%   $CD|DC$  & 7 & Def   & $p_7$ & $p_3$ & $DC$ \\
-%   $CD|DD$  & 8 & Def   & $p_8$ & $p_4$ & $DD$ \\
-%   $DC|CC$  & 9 & Coop  & $p_9$ & $p_1$ & $CC$ \\
-%   $DC|CD$  & 10 & Coop & $p_{10}$ & $p_2$ & $CD$ \\
-%   $DC|DC$  & 11 & Def  & $p_{11}$ & $p_1$ & $CC$ \\
-%   $DC|DD$  & 12 & Def  & $p_{12}$ & $p_2$ & $CD$ \\
-%   $DD|CC$  & 13 & Coop & $p_{13}$ & $p_3$ & $DC$ \\
-%   $DD|CD$  & 14 & Coop & $p_{14}$ & $p_4$ & $DD$ \\
-%   $DD|DC$  & 15 & Def  & $p_{15}$ & $p_3$ & $DC$ \\
-%   $DD|DD$  & 16 & Def  & $p_{16}$ & $p_4$ & $DD$ \\
-%   \hline
-% \end{tabular}
-% \caption{\textbf{Cheat Sheet} for two-bit reactive strategies.}
-% \end{table}
 
 \appendix
 
@@ -1071,6 +1059,22 @@ suffice to check only pure two-bit reactive strategies.
 That is because a \(n-\)bit reactive strategy can not guarantee that it will
 find a reactive representation for a memory-\(n\) strategy. We refer to this
 as the Anti Press and Dyson result.
+
+\nikoleta{I think that this is what we are trying to say.}
+
+For example, consider the case of \(n=1\). Let the reactive strategy
+\(\mathbf{p} = (0, 0, 0, 0)\) and the memory-one co-player \(\mathbf{q} = (0, 0,
+0, 1)\). \(p\) is a strategy that it always defects, and \(q\) cooperates
+following a mutual defection, otherwise it defects. It is straightforward that
+the pair gets stuck in a cycle of \(DD\) followed by \(DC\). Thus the stationary
+distribution is \(\mathbf{v} = (0, 0, \frac{1}{2}, \frac{1}{2})\).
+
+When the forgetful player \(p\) tries to estimate a strategy for its co-player
+it will see that the co-player always cooperates given that it has defected in
+the previous turn. Thus it estimates that the co-player must follow a strategy
+\(\mathbf{q'} = (0, 1, 0, 1)\). However, between this new pair, \(\{CD\}\) is a
+terminal set which is very different from the actual outcome. It's the
+forgetfulness of \(p\) which forces \(q_2\) to be equal to 1.
 
 \bibliography{bibliography.bib}
 
