@@ -611,8 +611,11 @@ equal to \(U\). One of such pairs is AllD and Alternator.
      not plot \(p_1\) for any of the above plots, since \(p_1=1\).}\label{fig:two_bit_reactive_nash_results}
 \end{figure}
 
-\nikoleta{The code for checking Lemma can be found in the notebook. The code
-for plotting Figure 1 in.}
+\nikoleta{The Python script to run the numerical evalution is
+`src/numerical\_equilibria\_n\_bit.py'. The analysis of the results and the code
+for the plot are in the notebooks `3.2. A numerical evaluation of good
+strategies for n = 2 [Plots]' and `3.2. A numerical evaluation of good
+strategies for n = 2'.}
 
 \subsection{A numerical evaluation of good (\(n=2\)) reactive strategies for the prisoner's dilemma}\label{section:good_strategies_numerically_pd}
 
@@ -677,7 +680,12 @@ the results is shown in Figure~\ref{fig:numerical_results_prisoners_dilemma}.
   \label{fig:numerical_results_prisoners_dilemma}
 \end{figure}
 
-\nikoleta{This is demonstrated in `nbs/Two bit reactive Nash`.}
+\nikoleta{The Python script to run the numerical evalution is
+`src/numerical\_equilibria\_n\_bit.py'. The analysis of the results and the code
+for the plot are in the notebook `3.3 A numerical evaluation of good strategies
+(n = 2) for the prisoner's dilemma'. There is mathematica file
+`src/mathematica/prisoners\_dilemma', to get the conditions for nash based on
+the Akin approach.}
 
 \subsection{A numerical evaluation of good memory-two strategies}\label{section:good_strategies_numerically_mem_two}
 
@@ -730,6 +738,12 @@ constrain the space of nash in the case of memory-two strategies. Based on the
 approximate solution, the smallest subset is of size
 11.}\label{table:greedy_algorithm}
 \end{table}
+
+\nikoleta{The python script to run the greedy algorithm is `src/set\_cover.py',
+and the analysis of the results is in the
+notebook `nbs/3.4 A numerical evaluation of good memory-two strategies'.
+The notebook also contains the analysis of the numerical results for this case.
+The script for the numerical nash is `src/numerical\_equilibria\_memory\_n.py'.}
 
 \subsection{Pure \(n-\)bit Reactive Strategies with Errors}\label{section:pure_strategies}
 
@@ -798,7 +812,9 @@ strategies that are evolutionary stable in the presence of noise. This could
 indicate that in the case of reactive strategies, where memory is even more
 limited compared to memory-\(n\) strategies, stochasticity can be important.
 
-\nikoleta{Code.}
+\nikoleta{The Matlab code for running the simulations is in the folder
+`src/matlab\_code', and the analysis of the results was done in the
+notebook `nbs/3.5. Pure Nash with Noise'.}
 
 \subsection{Evolutionary Dynamics}\label{section:evolutionary_simulations}
 
@@ -896,8 +912,9 @@ two defections.
   run for \(2 \cdot 10 ^ {5}\).}\label{fig:three_graphs}
 \end{figure}
 
-\nikoleta{We ran these without error. Do we want to incooperate error in the
-evolutionary simulations?}
+\nikoleta{The Matlab code for running the simulations is in the folder
+`src/matlab\_code', and the analysis of the results was done in the
+notebook `nbs/3.6. Evolutionary Simulations'.}
 
 \section{Conclusion}
 
