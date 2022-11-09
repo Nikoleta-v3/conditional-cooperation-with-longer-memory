@@ -72,11 +72,14 @@ co-player \(q\). We can also define each player's payoffs as vectors,
 
 In the one shot game the players' dominant choice is to defect (since $b > b -
 c$ and $0 > -c$), and once they reach mutual defection neither have a reason to
-deviate. Though the prisoner's dilemma has one nash equilibrium which is that of mutual
-defection, cooperative nash can subsist if we consider the iterated prisoner's
-dilemma~\citep{axelrod:AAAS:1981, hilbe:PNAS:2017}. We study cooperative nash in the infinitely
+deviate. Though the prisoner's dilemma has one Nash equilibrium which is that of
+mutual defection, mutual cooperation can be Nash equilibrium if we consider the
+iterated prisoner's dilemma~\citep{axelrod:AAAS:1981, hilbe:PNAS:2017}. In this
+work we are interested in strategies that can achieve cooperative Nash. Namely,
+strategies allow for the expected outcome to be that of mutual cooperation 
+We study cooperative Nash in the infinitely
 repeated prisoner's dilemma when players can choose how to behave from specific
-sets of strategies. More specifically, we study if cooperative nash can exist
+sets of strategies. More specifically, we study if cooperative Nash can exist
 when players use \textit{\(n-\)bit reactive strategies} for $n > 1$.
 
 \subsection{Strategies}
@@ -95,13 +98,13 @@ focus on the case of memory-one strategies.
 
 Memory-one strategies are attractive because they are mathematically tractable.
 For memory-one strategies it is possible to characterize all the cooperative
-nash equilibria~\citep{akin:EGADS:2016}, and furthermore, all nash equilibria
+Nash equilibria~\citep{akin:EGADS:2016}, and furthermore, all Nash equilibria
 that are achieved when players consider such
 strategies~\citep{stewart:scientific:2016}. In the case of memory-two strategies
-the work of~\citep{hilbe:PNAS:2017} characterizes a set of cooperative nash equilibria.
+the work of~\citep{hilbe:PNAS:2017} characterizes a set of cooperative Nash equilibria.
 They show that pure strategies with three specific properties are
 subgame perfect equilibria. Moreover, they showed that in a setting with discounting
-these strategies are strict nash, and thus, evolutionary stable.
+and errors these strategies are strict Nash, and thus, evolutionary stable.
 
 We build upon the previous work we have discussed here and aim to further extend
 the results to strategies with higher memory. However, as players are allowed to
@@ -117,12 +120,12 @@ tractable.
 In section~\ref{section:methodology} we introduce the methodology we will be
 using in this paper, and in section~\ref{section:results} we present the
 results. More specifically, in section~\ref{section:good_nash_strategies} we
-analytically characterize strategies that can sustain cooperative nash in the
+analytically characterize strategies that can sustain cooperative Nash in the
 case of two-bit reactive strategies, and memory-two. In
 section~\ref{section:good_strategies_numerically} we numerically characterize
-the full space on cooperative nash equilibria for two-bit reactive strategies.
+the full space on cooperative Nash equilibria for two-bit reactive strategies.
 In section~\ref{section:pure_strategies} we show that pure \(n-\)bit reactive
-strategies can not sustain a cooperative nash equilibrium. Finally, in section
+strategies cooperative Nash equilibria are not evolutionary stable. Finally, in section
 \ref{section:evolutionary_simulations} we perform an evolutionary analysis for
 \(n \in \{1, 2, 3\}\), and investigate which strategies evolve.
 
