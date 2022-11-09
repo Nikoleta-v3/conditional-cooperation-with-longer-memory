@@ -152,8 +152,8 @@ the players are in any of the states in the long run of the game.
   p_{4} q_{4} & p_{4} \left(1 - q_{4}\right) & q_{4} \left(1 - p_{4}\right) & \left(1 - p_{4}\right) \left(1 - q_{4}\right)\end{matrix}\right].
 \end{equation}
 
-It is a known result that given the invariant distribution we can calculate the expected payoffs for
-each player, \(s_{\mathbf{p}}\) and \(s_{\mathbf{q}}\), as follows
+Given the invariant distribution we can calculate the expected payoffs for
+each player, \(s_{\mathbf{p}}\) and \(s_{\mathbf{q}}\), as follows~\citep{Nowak:AMC:1989}
 
 \begin{equation*}
   s_{\mathbf{p}} = \pi(\mathbf{p}, \mathbf{q}) = \mathbf{v} \cdot \mathbf{S}_{p} \text{ and } s_{\mathbf{q}} = \pi(\mathbf{q}, \mathbf{p}) = \mathbf{v} \cdot \mathbf{S}_{q}.
@@ -164,8 +164,8 @@ strategies, and consequently, one-bit reactive strategies are a subset of
 memory-one strategies. One-bit reactive strategies consider only the co-player's
 last action, and so, for a one-bit strategy the probabilities of cooperating
 following a \(CC\) and \(DC\) are the same since the co-player cooperated in the
-last turn. Similarly, for the probabilities of cooperating given that the
-co-player defected in the last turn. Thus, a one-bit reactive strategy for \(p\)
+last turn. Similarly, the probabilities of cooperating given that the previous
+outcome was \(DC\) or \(DD\) are the same. Thus, a one-bit reactive strategy for \(p\)
 is of the form \(\mathbf{p} = (p_1, p_2, p_1, p_2)\).
 
 In~\citep{akin:EGADS:2016}, Akin gives the following definitions for memory-one
@@ -182,14 +182,14 @@ thus \(p_1=1\).
   payoffs satisfy:
   
   \begin{equation}
-    s_{\mathbf{q}} \geq (b - c) \Rightarrow s_{\mathbf{q}} = s_{\mathbf{p}} =  (b - c).
+    s_{\mathbf{q}} \geq b - c \qquad \Rightarrow \qquad s_{\mathbf{q}} = s_{\mathbf{p}} =  b - c.
   \end{equation}
 
   The strategy is of \textbf{Nash type} if (i) it is agreeable and (ii) if the
   expected payoffs against any general strategy used by \(q\) satisfy:
 
   \begin{equation}
-    s_{\mathbf{q}} \geq R \Rightarrow s_{\mathbf{q}} =  (b - c).
+    s_{\mathbf{q}} \geq b - c \qquad \Rightarrow \qquad s_{\mathbf{q}} =  b - c.
   \end{equation}
 \end{definition}
 
@@ -206,31 +206,33 @@ Definition~\ref{definition:memn_agreeable} and for a \(n-\)bit reactive
 strategy by Definition~\ref{definition:nbit_agreeable}.
 
 \begin{definition}\label{definition:memn_agreeable}
-  A memory-\(n\) strategy is \textbf{agreeable} if it always cooperates in the
-  \(n\) opening rounds, and following \(n\) mutual cooperation(s) thus
+  A memory-\(n\) strategy is \textbf{agreeable} if it is never the first to defect,
+  and if it always cooperates with a probability 1 following \(n\) mutual cooperation(s) thus
   \(p_1=1\).
 \end{definition}
 
 \begin{definition}\label{definition:nbit_agreeable} A \(n-\)bit reactive strategy is
-agreeable if it cooperates with a probability one in the \(n\) opening rounds
-and if the co-player has consecutively cooperated in that last \(n\) rounds.
+agreeable if it is never the first to defect,
+and if it always cooperates with a probability 1 if the co-player has consecutively cooperated in that last \(n\) rounds.
 \end{definition}
 
-Following the introduction of these concepts, Akin proves
-Theorem~\ref{theorem:akin} which he uses to characterize all memory-one
+Following the introduction of these concepts, Akin proves Theorem 1.3
+of~\citep{akin:EGADS:2016} which we refer to as Akin's Lemma and here is given
+by Theorem~\ref{theorem:akin}. Akin's uses the theorem to characterize all memory-one
 strategies that are of \textit{Nash type} and \textit{good}.
 
-\begin{theorem}{Akin's Theorem.}
-  Assume that player \(p\) uses the memory-one strategy \(\mathbf{\tilde{p}} = \mathbf{p} - \mathbf{e}_{12}\) where
-  \(\mathbf{e}_{12} = (1, 1, 0, 0)\), and \(q\) uses a strategy that leads to a sequence
+\begin{theorem}[Akin's Lemma]\label{theorem:akin}
+  Assume that player \(p\) uses the memory-one strategy \(\mathbf{p}=(p_1, p_2, p_3, p_4)\),
+  and \(q\) uses a strategy that leads to a sequence
   of distributions \(\{\mathbf{v}^{(n)}, n = 1, 2, ...\}\) with \(\mathbf{v}^{(k)}\) representing the
-  distribution over the states in the \(k^{\text{th}}\) round of the game. Let
+  distribution over the states in the \(k^{\text{th}}\) round of the game. Let  \(\mathbf{\tilde{p}} = \mathbf{p} - \mathbf{e}_{12}\) where
+  \(\mathbf{e}_{12} = (1, 1, 0, 0)\), and
   \(\mathbf{v}\) be an associated stationary distribution. Then,
 
   \begin{align}
     \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{(n)} \cdot \mathbf{\tilde{p}} = 0, \text{ and therefore } \mathbf{v} \cdot \mathbf{\tilde{p}} = 0.
   \end{align}
-\end{theorem}\label{theorem:akin}
+\end{theorem}
 
 Akin's theorem is extendable to higher memory strategies; we demonstrate this in section~\ref{section:good_nash_strategies}
 for the special cases of two-bit reactive strategies.
@@ -249,14 +251,14 @@ p_4, p_3, p_4, p_1, p_2, p_1, p_2, p_3, p_4, \allowbreak p_3, p_4)\) where
 co-player were \(C\) and \(C\), \(p_2\) is the probability cooperating when the
 last two actions of the co-player were \(C\) and \(D\), and so on. For
 simplicity, we denote a two-bit reactive strategy for \(p\) as
-\(\mathbf{\hat{p}} = (p_1, p_2, p_3, p_4)\).
+\(\mathbf{\hat{p}} = (\hat{p_1}, \hat{p_2}, \hat{p_3}, \hat{p_4})\).
 
 The play between a pair of two-bit reactive strategies can be described by a Markov
-process with the transition matrix \(\tilde{M}\).
+process with the transition matrix \(\hat{M}\).
 
 \resizebox{\linewidth}{!}{%
 $
-\tilde{M} = \left(\begin{array}{cccccccccccccccc}
+\hat{M} = \left(\begin{array}{cccccccccccccccc}
  p_1 q_1 & p_1 (1-q_1) & (1-p_1) q_1 & (1-p_1) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
  0 & 0 & 0 & 0 & p_2 q_1 & p_2 (1-q_1) & (1-p_2) q_1 & (1-p_2) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_1 q_2 & p_1 (1-q_2) & (1-p_1) q_2 & (1-p_1) (1-q_2) & 0 & 0 & 0 & 0 \\
@@ -280,15 +282,15 @@ are reachable. That is because the current outcome \(F_p F_q\) in this state has
 to match the previous outcome \(E_p E_q\) in the ``next'' state. Thus, in each
 row of the matrix there will be at most four non-zero elements.
 
-The invariant distribution \(\mathbf{\tilde{v}}\) is the solution to
-\(\mathbf{\tilde{v}} \tilde{M} = \mathbf{\tilde{v}}\). In the infinitely
+The invariant distribution \(\mathbf{\hat{v}}\) is the solution to
+\(\mathbf{\hat{v}} \hat{M} = \mathbf{\hat{v}}\). In the infinitely
 repeated prisoner's dilemma, the probability that two players are in a \(CC\)
 state in the last round is the same as the probability of them being in a \(CC\)
 in the second to last round, thus, the following holds for
-\(\mathbf{\tilde{v}}\),
+\(\mathbf{\hat{v}}\),
 
 \begin{align}\label{eq:last_rounds_equality}
-  \sum_{i, j \in \{C, D\}} \tilde{v}_{i, j | l, k} & = \sum_{i, j \in \{C, D\}} \tilde{v}_{l, k | ij} \quad \forall \quad l, k \in \{C, D\}.
+  \sum_{i, j \in \{C, D\}} \hat{v}_{i j | l k} & = \sum_{i j \in \{C, D\}} \hat{v}_{l k | ij} \quad \forall \quad l, k \in \{C, D\}.
 \end{align}
 
 We know that the invariant distribution combined with the payoff vectors give
@@ -312,11 +314,17 @@ defined based on the outcome of the last round,
   \end{array}
 \end{equation}
 
-Note that \(\mathbf{s_{p}} = \mathbf{\tilde{v}} \times \mathbf{S}_{p} =
-\mathbf{\tilde{v}} \times \mathbf{S}'_{p}\) and \(\mathbf{s_{q}} =\mathbf{\tilde{v}}
-\times \mathbf{S}_{q} = \mathbf{\tilde{v}} \times \mathbf{S}'_{q}\). From
+Note that \(\mathbf{s_{p}} = \mathbf{\hat{v}} \times \mathbf{S}_{p} =
+\mathbf{\hat{v}} \times \mathbf{S}'_{p}\) and \(\mathbf{s_{q}} =\mathbf{\hat{v}}
+\times \mathbf{S}_{q} = \mathbf{\hat{v}} \times \mathbf{S}'_{q}\). From
 hereupon we consider the payoff vectors \(\mathbf{S}_{p}\) and
 \(\mathbf{S}_{q}\) unless stated otherwise.
+
+Note that we use the hat operator to help us differentiate between
+the memory-\(n\) and the \(n-\)bits reactive cases. For example \(\mathbf{p}\) is used
+to denote a memory-\(n\) strategy where \(\mathbf{\hat{p}}\) a \(n-\)bit reactive.
+Moreover the stationary distribution when \(p\) uses a \(n-\)bit reactive
+strategy is given by \(\mathbf{\hat{v}}\).
 
 \section{Results}\label{section:results}
 
