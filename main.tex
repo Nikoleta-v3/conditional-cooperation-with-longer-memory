@@ -73,11 +73,10 @@ co-player \(q\). We can also define each player's payoffs as vectors,
 
 In the one shot game the players' dominant choice is to defect (since $b > b -
 c$ and $0 > -c$), and once they reach mutual defection neither have a reason to
-deviate. Though the prisoner's dilemma has one Nash equilibrium which is that of
-mutual defection, mutual cooperation can be Nash equilibrium if we consider the
-iterated prisoner's dilemma~\citep{axelrod:AAAS:1981, hilbe:PNAS:2017}. In this
-work we are interested in strategies that can achieve cooperative Nash. Namely,
-strategies that allow for the expected outcome to be that of mutual cooperation.
+deviate. Though the prisoner's dilemma's unique Nash equilibrium is that of
+mutual defection, the iterated prisoner's dilemma allows for equilibria in which both 
+players cooperate~\citep{axelrod:AAAS:1981, hilbe:PNAS:2017}. In this
+work we are interested in the strategies that form such cooperative Nash equilibria. 
 We study cooperative Nash in the infinitely
 repeated prisoner's dilemma when players can choose how to behave from specific
 sets of strategies. More specifically, we study if cooperative Nash can exist
@@ -105,7 +104,7 @@ strategies~\citep{stewart:scientific:2016}. In the case of memory-two strategies
 the work of~\citep{hilbe:PNAS:2017} characterizes a set of cooperative Nash equilibria.
 They show that pure strategies with three specific properties are
 subgame perfect equilibria. Moreover, they showed that in a setting with discounting
-and errors these strategies are strict Nash, and thus, evolutionary stable.
+and errors these strategies are strict Nash equilibria, and thus, evolutionary stable.
 
 We build upon the previous work we have discussed here and aim to further extend
 the results to strategies with higher memory. However, as players are allowed to
@@ -125,8 +124,8 @@ analytically characterize strategies that can sustain cooperative Nash in the
 case of two-bit reactive strategies, and memory-two. In
 section~\ref{section:good_strategies_numerically} we numerically characterize
 the full space on cooperative Nash equilibria for two-bit reactive strategies.
-In section~\ref{section:pure_strategies} we show that pure \(n-\)bit reactive
-strategies, that can achieve cooperative Nash equilibria, are not evolutionary stable. Finally, in section
+In section~\ref{section:pure_strategies} we show that no \(n-\)bit reactive
+strategy is evolutionarily stable. Finally, in section
 \ref{section:evolutionary_simulations} we perform an evolutionary analysis for
 \(n \in \{1, 2, 3\}\), and investigate which strategies evolve.
 
@@ -217,21 +216,21 @@ agreeable if it is never the first to defect,
 and if it always cooperates with a probability 1 if the co-player has consecutively cooperated in that last \(n\) rounds.
 \end{definition}
 
-Following the introduction of these concepts, Akin proves Theorem 1.3
-in~\citep{akin:EGADS:2016} which we refer to as Akin's Lemma and here is given
-by Theorem~\ref{theorem:akin}. Akin's uses the theorem to characterize all memory-one
-strategies that are of \textit{Nash type} and \textit{good}.
+Following the introduction of these concepts, Akin derives an interesting relationship between 
+a player's memory-one strategy and the resulting invariant distribution of the repeated game. 
+This relationship allows him to characterize all memory-one strategies that are of \textit{Nash type} and \textit{good}. 
+We refer to this result as Akin's Lemma in the following (see Theorem 1.3 in \citep{akin:EGADS:2016}).
 
 \begin{theorem}[Akin's Lemma]\label{theorem:akin}
   Assume that player \(p\) uses the memory-one strategy \(\mathbf{p}=(p_1, p_2, p_3, p_4)\),
   and \(q\) uses a strategy that leads to a sequence
   of distributions \(\{\mathbf{v}^{(n)}, n = 1, 2, ...\}\) with \(\mathbf{v}^{(k)}\) representing the
-  distribution over the states in the \(k^{\text{th}}\) round of the game. Let  \(\mathbf{\tilde{p}} = \mathbf{p} - \mathbf{e}_{12}\) where
-  \(\mathbf{e}_{12} = (1, 1, 0, 0)\), and
-  \(\mathbf{v}\) be an associated stationary distribution. Then,
+  distribution over the states in the \(k^{\text{th}}\) round of the game. 
+  Let   \(\mathbf{v}\) be the associated stationary distribution, and let \(\mathbf{\tilde{p}} = \mathbf{p} - \mathbf{e}_{12}\) where
+  \(\mathbf{e}_{12} = (1, 1, 0, 0)\). Then,
 
   \begin{align}
-    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{(n)} \cdot \mathbf{\tilde{p}} = 0, \text{ and therefore } \mathbf{v} \cdot \mathbf{\tilde{p}} = 0.
+    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{(k)} \cdot \mathbf{\tilde{p}} = 0, \text{ and therefore } \mathbf{v} \cdot \mathbf{\tilde{p}} = 0.
   \end{align}
 \end{theorem}
 
@@ -254,12 +253,10 @@ last two actions of the co-player were \(C\) and \(D\), and so on. For
 simplicity, we denote a two-bit reactive strategy for \(p\) as
 \(\mathbf{\hat{p}} = (\hat{p_1}, \hat{p_2}, \hat{p_3}, \hat{p_4})\).
 
-Note that from here on we use the hat operator to help us differentiate between
-the memory-\(n\) and the \(n-\)bits reactive cases. For example \(\mathbf{p}\)
-is used to denote a memory-\(n\) strategy where \(\mathbf{\hat{p}}\) a \(n-\)bit
-reactive. Also for the transition matrix when \(p\) plays a memory-\(n\)
-strategy is given by \(\mathbf{v}\) whereas for a reactive strategy it will be
-denoted as \(\mathbf{\hat{v}}\) etc.
+Note that from here on we use the hat symbol to differentiate between
+memory-\(n\) strategies and  \(n-\)bits reactive strategies. That is, \(\mathbf{p}\)
+is used to denote a memory-\(n\) strategy, whereas \(\mathbf{\hat{p}}\) refers to an \(n-\)bit
+reactive strategy. We use a similar convention to refer to the resulting invariant distribution (\(\mathbf{v}\) and \(\mathbf{\hat{v}}\), respectively). 
 
 The play between a pair of two-bit reactive strategies can be described by a Markov
 process with the transition matrix \(\hat{M}\).
@@ -352,7 +349,7 @@ Lemma (Theorem~\ref{theorem:akin}) is given by Lemma~\ref{lemma:akin_extended}.
   stationary distribution. Then
 
   \begin{align*}
-    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{\hat{v}}^{(n)} \cdot\mathbf{\tilde{p}} & = 0, \text{ and therefore } \mathbf{\hat{v}} \cdot \mathbf{\tilde{p}} = 0.
+    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{\hat{v}}^{(k)} \cdot\mathbf{\tilde{p}} & = 0, \text{ and therefore } \mathbf{\hat{v}} \cdot \mathbf{\tilde{p}} = 0.
   \end{align*}
 
   \begin{align}\label{eq:akin_extended}
@@ -529,7 +526,7 @@ satisfied. The process is described by Algorithm~\ref{algorithm:numerical_nash}.
 \begin{algorithm}[H]
   \SetKwInOut{Input}{input}
   \Input{$\mathbf{p}, n$}
-   $L(\mathbf{p}) = \{\mathbf{q} \,|\, \pi({\mathbf{q}}, \mathbf{p}) > (b - c) \text{ for } \mathbf{q}  \in \{0, 1\}^{4 ^ n}\}$\;
+   $L(\mathbf{p}) = \left\{\mathbf{q} \in \{0, 1\}^{4 ^ n} ~\big|~ \pi({\mathbf{q}}, \mathbf{p}) > b\!-\!c \right\}$\;
   \uIf{$ L(\mathbf{p}) = \emptyset $}{
     isNash $\leftarrow$ True \;
   }
@@ -556,38 +553,39 @@ inequalities~(\ref{eq:nash_conditions}) are sufficient for a point to be Nash
 but not necessary.
 
 Since a two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1},
-\hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) is Nash only if it is Nash against all
-pure memory-two strategies,
-Conjecture~\ref{conjecture:nash_from_numerical_results} follows.
+\hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only be a Nash equilibrium if {\it no} other strategy yields a larger payoff,  in particular neither \text{AllD} nor the \text{Alternator} strategy must yield a larger payoff, where
+AllD\(=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\) and
+Alternator\(=(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)\). 
+We conclude that an agreeable two-bit reactive strategy  \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only form a Nash equilibrium if 
+\begin{align*}
+\pi(\text{AllD}, \mathbf{\hat{p}}) \leq b\!-\!c & \quad \text{ and } \quad \pi(\text{Alternator}, \mathbf{\hat{p}}) \leq b\!-\!c,
+\end{align*}
+or equivalently, if
+\begin{align}\label{Eq:NashConditionDonationGame}
+  \hat{p}_4 \leq 1 - \frac{c}{b} & \quad \text{ and } \quad  \hat{p}_2 + \hat{p}_3 \leq 1 + \frac{b - c}{c}
+\end{align}
+In fact, a further numerical analysis suggests the following stronger result. 
 
 \begin{conjecture}\label{conjecture:nash_from_numerical_results}
-Let the two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) be an \textbf{agreeable
-strategy}; that is \(\hat{p}_1 = 1\). For \(\mathbf{\hat{p}}\) to be Nash the
-following inequalities must hold:
-
-\begin{align*}
-  \pi(\text{AllD}, \mathbf{\hat{p}}) \leq (b - c) & \quad \text{ and } \quad \pi(\text{Alternator}, \mathbf{\hat{p}}) \leq (b - c) \text{ or equivalently,} \\
-  \hat{p}_4 \leq 1 - \frac{c}{b} & \quad \text{ and } \quad  \hat{p}_2 + \hat{p}_3 \leq 1 + \frac{b - c}{c}
-\end{align*}
-
-where AllD\(=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\) and
-Alternator\(=(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)\).
+An agreeable two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) is of Nash type if and only if conditions \eqref{Eq:NashConditionDonationGame} hold. 
 \end{conjecture}
 
-\citep{akin:EGADS:2016} showed that for a strategy to be a good Nash one does
-not have to check against all pure 16 memory-one strategies, but it is efficient
-to check against only two. These strategies are AllD and (0, 1, 1, 1). We want
+In the following we explain the underlying numerical analysis in more detail. 
+\citet{akin:EGADS:2016} showed that for a strategy to be good one does
+not have to check against all pure 16 memory-one strategies. 
+Instead it is sufficient to check only two, AllD and (0, 1, 1, 1). We want
 to derive a similar result for the case of two-bit strategies. We do this as
 follows: let all the non Nash points be a
 set of elements \(U = \{ \mathbf{\hat{p}}^{(1)}, \mathbf{\hat{p}}^{(2)}, \dots,
-\mathbf{\hat{p}}^{(m)}\}\) which we refer to as the universe. For each of the
-pure strategies we create a set that contains all the points for which the Nash
-condition failed against the specific strategy. Let \(S\) be the collection of
-these sets such that,
-
+\mathbf{\hat{p}}^{(m)}\}\) which we refer to as the universe. For each element $\mathbf{\hat{p}}\in U$
+we create a set that contains all the points for which the Nash
+condition failed,
+ \begin{align*}
+ S(\mathbf{\hat{p}}) = \{\mathbf{q}\in\{0,1\}^{16} \ | \ \pi( \mathbf{q},  \mathbf{\hat{p}}) > b\!-\!c\}.
+ \end{align*}
+Let \(S\) be the collection of these sets,
 \begin{align*}
-  S = \{S(\mathbf{q}) \ | \ q \in {0, 1} ^ {16} \} \text{ where,}\\
-  S(q) = \{\mathbf{l} \in U \ | \ \pi( \mathbf{q},  \mathbf{l}) > (b - c)\}.
+  S = \big\{S(\mathbf{\hat{p}}) \ | \ \mathbf{\hat{p}}\in U \big\}, \text{~~~where~~~}
 \end{align*}
 
 We want to identify the smallest sub-collection of \(S\) whose union equals the
