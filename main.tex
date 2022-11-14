@@ -340,13 +340,14 @@ We start by discussing the case of two-bit strategies. The extension to Akin's
 Lemma (Theorem~\ref{theorem:akin}) is given by Lemma~\ref{lemma:akin_extended}.
 
 \begin{lemma}\label{lemma:akin_extended}
-  Assume that player \(p\) uses a two-bit reactive strategy \(\mathbf{\tilde{p}} = \mathbf{\hat{p}} - \mathbf{\hat{e}}_{1 2}\)
-  (where \(\mathbf{\hat{e}}_{1 2} = (1, 1, 1, 1, \allowbreak 0,
-  0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)\)), and \(q\) uses a strategy that leads to a sequence
+  Assume that player \(p\) uses a two-bit reactive strategy \(\mathbf{\hat{p}}\),
+  and \(q\) uses a strategy that leads to a sequence
   of distributions \(\{\mathbf{\hat{v}}^{(n)}, n = 1, 2, ...\}\) with
   \(\mathbf{\hat{v}}^{(k)}\) representing the distribution over the states in the
-  \(k^{\text{th}}\) round of the game. Let \(\mathbf{\hat{v}}\) be an associated
-  stationary distribution. Then
+  \(k^{\text{th}}\) round of the game. Let \(\mathbf{\hat{v}}\) be the associated
+  stationary distribution, and let \(\mathbf{\tilde{p}} = \mathbf{\hat{p}} - \mathbf{\hat{e}}_{1 2}\)
+  where \(\mathbf{\hat{e}}_{1 2} = (1, 1, 1, 1, \allowbreak 0,
+  0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)\). Then,
 
   \begin{align*}
     \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{\hat{v}}^{(k)} \cdot\mathbf{\tilde{p}} & = 0, \text{ and therefore } \mathbf{\hat{v}} \cdot \mathbf{\tilde{p}} = 0.
