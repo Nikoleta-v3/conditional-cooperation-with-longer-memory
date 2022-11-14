@@ -275,32 +275,12 @@ Figure~\ref{fig:two_bit_reactive_nash_results}\textbf{B)} we can conclude that
 the inequalities~(\ref{eq:nash_conditions}) are sufficient for a point to be
 Nash but not necessary.
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=.35\textwidth]{static/for_akin.pdf}
-    \caption{\textbf{Nash results for two-bit strategies.}
-    \textbf{A) Proved Nash.} We have shown that if a two-bit reactive
-    strategy is within this space, thus satisfies conditions
-    (\ref{eq:nash_conditions}), then it is good Nash. \textbf{B) Numerical nash
-    results.} The results from the numerical evaluation. We evaluated \(10 ^ 4\) points in
-    the space. The numerical results have shown that there are two pure
-    strategies that constrain the Nash space; these are AllD and Alternator.
-    The equations for the planes are obtained by solving
-    \(\pi(\mathbf{q}, \mathbf{\hat{p}}) = (b\!-\!c)\). The equations are
-    \(\hat{p}_4 = 1 - \frac{c}{b} \text{ and }  \hat{p}_3 = 1 + \frac{b\!-\!c}{c} - \hat{p}_2\).
-    Parameters: \(c=1, b=2\). \textbf{C) Numerical Nash for high benefit.} We repeat
-    the numerical analysis for a higher value of benefit
-    (\(b=7\)) for \(10 ^ 3\) random points. We can see that the strategies AllD
-    and Alternator still constrain the space of possible Nash. Note that we do
-    not plot \(\hat{p}_1\) for any of the above plots, since \(\hat{p}_1=1\).
-    }\label{fig:two_bit_reactive_nash_results}
-\end{figure}
-
 Since a two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1},
 \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only be a Nash equilibrium if {\it no} other strategy yields a larger payoff,  in particular neither \text{AllD} nor the \text{Alternator} strategy must yield a larger payoff, where
 AllD\(=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\) and
 Alternator\(=(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)\). 
 We conclude that an agreeable two-bit reactive strategy  \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only form a Nash equilibrium if 
+
 \begin{align*}
 \pi(\text{AllD}, \mathbf{\hat{p}}) \leq b\!-\!c & \quad \text{ and } \quad \pi(\text{Alternator}, \mathbf{\hat{p}}) \leq b\!-\!c,
 \end{align*}
@@ -308,11 +288,33 @@ or equivalently, if
 \begin{align}\label{Eq:NashConditionDonationGame}
   \hat{p}_4 \leq 1 - \frac{c}{b} & \quad \text{ and } \quad  \hat{p}_2 + \hat{p}_3 \leq 1 + \frac{b\!-\!c}{c}
 \end{align}
+
 In fact, a further numerical analysis suggests the following stronger result. 
 
 \begin{conjecture}\label{conjecture:nash_from_numerical_results}
 An agreeable two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) is of Nash type if and only if conditions \eqref{Eq:NashConditionDonationGame} hold. 
 \end{conjecture}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.35\textwidth]{static/for_akin.pdf}
+  \caption{\textbf{Nash results for two-bit strategies.}
+  \textbf{A) Proved Nash.} We have shown that if a two-bit reactive
+  strategy is within this space, thus satisfies conditions
+  (\ref{eq:nash_conditions}), then it is good Nash. \textbf{B) Numerical Nash
+  results.} The results from the numerical evaluation. We evaluated \(10 ^ 4\) points in
+  the space. The numerical results have shown that there are two pure
+  strategies that constrain the Nash space; these are AllD and Alternator.
+  The equations for the planes are obtained by solving
+  \(\pi(\mathbf{q}, \mathbf{\hat{p}}) = (b\!-\!c)\). The equations are
+  \(\hat{p}_4 = 1 - \frac{c}{b} \text{ and }  \hat{p}_3 = 1 + \frac{b\!-\!c}{c} - \hat{p}_2\).
+  Parameters: \(c=1, b=2\). \textbf{C) Numerical Nash for high benefit.} We repeat
+  the numerical analysis for a higher value of benefit
+  (\(b=7\)) for \(10 ^ 3\) random points. We can see that the strategies AllD
+  and Alternator still constrain the space of possible Nash. Note that we do
+  not plot \(\hat{p}_1\) for any of the above plots, since \(\hat{p}_1=1\).
+  }\label{fig:two_bit_reactive_nash_results}
+\end{figure}
 
 \bibliography{bibliography.bib}
 
