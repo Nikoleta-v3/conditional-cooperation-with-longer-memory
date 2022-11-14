@@ -49,7 +49,7 @@ prisoner's dilemma. The prisoner's dilemma is a two person symmetric game that
 provides a simple model of cooperation. Each of the two players, \(p\) and
 \(q\), simultaneously and independently decide to cooperate (\(C\)) or to defect
 (\(D\)). A player who cooperates pays a cost \(c > 0\) to provide a benefit
-\(b > c\) for the co-player. A cooperator either gets \(b - c\) (if the
+\(b > c\) for the co-player. A cooperator either gets \(b\!-\!c\) (if the
 co-player also cooperates) or \(-c\) (if the co-player defects). Respectively, a defector either gets
 \(b\) (if the co-player cooperates) or 0 (if the co-player defects), and so,
 the payoffs of player \(p\) take the form,
@@ -58,7 +58,7 @@ the payoffs of player \(p\) take the form,
   \begin{blockarray}{ccc}
       & \text{cooperate} & \text{defect} \\
       \begin{block}{c(cc)}
-          \text{cooperate} & b - c & -c \\
+          \text{cooperate} & b\!-\!c & -c \\
           \text{defect} & b & 0 \\
       \end{block}
   \end{blockarray}
@@ -68,7 +68,7 @@ The transpose of (\ref{eq:donation_payoffs}) gives the payoffs of
 co-player \(q\). We can also define each player's payoffs as vectors,
 
 \begin{equation}\label{eq:vector_payoffs}
-  \mathbf{S}_{p} = (b-c, -c, b, 0) \quad \textrm{and} \quad  \mathbf{S}_{q} = (b - c, b, -c, 0).
+  \mathbf{S}_{p} = (b\!-\!c, -c, b, 0) \quad \textrm{and} \quad  \mathbf{S}_{q} = (b\!-\!c, b, -c, 0).
 \end{equation}
 
 In the one shot game the players' dominant choice is to defect (since $b > b -
@@ -182,26 +182,26 @@ thus \(p_1=1\).
   payoffs satisfy:
   
   \begin{equation}
-    s_{\mathbf{q}} \geq b - c \qquad \Rightarrow \qquad s_{\mathbf{q}} = s_{\mathbf{p}} =  b - c.
+    s_{\mathbf{q}} \geq b\!-\!c \qquad \Rightarrow \qquad s_{\mathbf{q}} = s_{\mathbf{p}} =  b\!-\!c.
   \end{equation}
 
   The strategy is of \textbf{Nash type} if (i) it is agreeable and (ii) if the
   expected payoffs against any general strategy used by \(q\) satisfy:
 
   \begin{equation}
-    s_{\mathbf{q}} \geq b - c \qquad \Rightarrow \qquad s_{\mathbf{q}} =  b - c.
+    s_{\mathbf{q}} \geq b\!-\!c \qquad \Rightarrow \qquad s_{\mathbf{q}} =  b\!-\!c.
   \end{equation}
 \end{definition}
 
 Hence, a strategy is good if the co-player achieves the reward payoff if and
 only if the focal player does as well, and a Nash type strategy reassures that the
-co-player can never receive a payoff higher than \(b - c\) (the payoff for mutual
+co-player can never receive a payoff higher than \(b\!-\!c\) (the payoff for mutual
 cooperation).
 
 Notice that the definitions of good and Nash make no assumptions regarding the
 type of strategies the players need to play, and thus, these are extendable to
 memory\(-n\) and \(n-\)bit reactive strategies. The definition of agreeable
-strategies for a memory\(-n\)  strategy is given by
+strategies for a memory\(-n\) strategy is given by
 Definition~\ref{definition:memn_agreeable} and for a \(n-\)bit reactive
 strategy by Definition~\ref{definition:nbit_agreeable}.
 
@@ -305,8 +305,8 @@ defined based on the outcome of the last round,
 
 \begin{equation}\label{eq:last_round_two_bits}
   \begin{array}{*{16}{c}}
-    \mathbf{S}_{p} = ( b - c , & -c , & b , & 0 , & b - c , & -c , & b , & 0 , & b - c , & -c , & b , & 0 , & b - c , & -c , & b , & 0)  \;, \\
-    \mathbf{S}_{q} = ( b - c, & b, & -c, & 0, & b - c, & b, & -c, & 0, & b - c, & b, & -c, & 0, & b - c, & b, & -c, & 0).
+    \mathbf{S}_{p} = ( b\!-\!c , & -c , & b , & 0 , & b\!-\!c , & -c , & b , & 0 , & b\!-\!c , & -c , & b , & 0 , & b\!-\!c , & -c , & b , & 0)  \;, \\
+    \mathbf{S}_{q} = ( b\!-\!c, & b, & -c, & 0, & b\!-\!c, & b, & -c, & 0, & b\!-\!c, & b, & -c, & 0, & b\!-\!c, & b, & -c, & 0).
   \end{array}
 \end{equation}
 
@@ -314,8 +314,8 @@ defined based on the outcome of the last round,
 
 \begin{equation}\label{eq:second_to_last_round_two_bits}
   \begin{array}{*{16}{c}}
-    \mathbf{S}'_{p} = (b - c, & b - c, & b - c, & b - c, & -c, & -c, & -c, & -c, & b, & b, & b, & b, & 0, & 0, & 0, & 0)  \;, \\
-    \mathbf{S}'_{q} = (b - c, & b - c, & b - c, & b - c, & b, & b, & b, & b, & -c, & -c, & -c, & -c, & 0, & 0, & 0, & 0).
+    \mathbf{S}'_{p} = (b\!-\!c, & b\!-\!c, & b\!-\!c, & b\!-\!c, & -c, & -c, & -c, & -c, & b, & b, & b, & b, & 0, & 0, & 0, & 0)  \;, \\
+    \mathbf{S}'_{q} = (b\!-\!c, & b\!-\!c, & b\!-\!c, & b\!-\!c, & b, & b, & b, & b, & -c, & -c, & -c, & -c, & 0, & 0, & 0, & 0).
   \end{array}
 \end{equation}
 
@@ -411,7 +411,7 @@ equilibrium, and more specifically, a good/cooperative one. We show that:
   strategy}; that is \(\hat{p}_1 = 1\). Strategy \(\mathbf{\hat{p}}\) is \textbf{Nash} if the
   following inequalities hold:
   \begin{equation*}
-      \hat{p}_4 \leq 1 - \frac{c}{b} \qquad  \hat{p}_2  \leq \hat{p}_4 \qquad \hat{p}_3 \leq 1 \qquad 1 + \hat{p}_2 \leq \frac{b}{c} - \hat{p}_4 \frac{b - c}{c}
+      \hat{p}_4 \leq 1 - \frac{c}{b} \qquad  \hat{p}_2  \leq \hat{p}_4 \qquad \hat{p}_3 \leq 1 \qquad 1 + \hat{p}_2 \leq \frac{b}{c} - \hat{p}_4 \frac{b\!-\!c}{c}
   \end{equation*}
   
   The agreeable strategy \(\mathbf{\hat{p}}\) is good if the inequalities above are strict.
@@ -427,14 +427,14 @@ equilibrium, and more specifically, a good/cooperative one. We show that:
   We now assume \(1 - \hat{p}_4 > 0\). Observe that
   
   \begin{align}\label{eq:nash_condition_last_round}
-    s_\mathbf{q} - (b - c) & = \mathbf{\hat{v}} \times \mathbf{S}_{q} - (b - c) \sum_{i=1}^{16} \hat{v}_{i}\\ \nonumber
+    s_\mathbf{q} - (b\!-\!c) & = \mathbf{\hat{v}} \times \mathbf{S}_{q} - (b\!-\!c) \sum_{i=1}^{16} \hat{v}_{i}\\ \nonumber
     & = (\hat{v}_{2} + \hat{v}_{6} + \hat{v}_{10} + \hat{v}_{14}) c + (c - b) (\hat{v}_{4} + \hat{v}_{8} + \hat{v}_{12} + \hat{v}_{16}) - b (\hat{v}_{3} + \hat{v}_{7} + \hat{v}_{11} + \hat{v}_{15}) .
   \end{align}
   
   Multiplying by the positive quantity \((1 - \hat{p}_4)\) and collecting terms, we have
   
   \begin{align}
-    s_\mathbf{q} - (b - c)\geq 0 & \Rightarrow \\ \nonumber
+    s_\mathbf{q} - (b\!-\!c)\geq 0 & \Rightarrow \\ \nonumber
     (1 - \hat{p}_4)(\hat{v}_{6} + \hat{v}_{14}) c & \geq  - c(1 - \hat{p}_4)(\hat{v}_{2} + \hat{v}_{10}) + (1 - \hat{p}_4)(-c + b) (\hat{v}_{4} + \hat{v}_{8} + \hat{v}_{12} + \hat{v}_{16}) + b (1 - \hat{p}_4) (\hat{v}_{3} + \hat{v}_{7} + \hat{v}_{11} + \hat{v}_{15}) .
   \end{align}
   
@@ -473,7 +473,7 @@ equilibrium, and more specifically, a good/cooperative one. We show that:
     \hat{p}_4       & \leq 1 - \frac{c}{b} \\
     \hat{p}_2       & \leq \hat{p}_4 \\
     \hat{p}_3       & \leq 1 \\
-    1 + \hat{p}_2 & \leq \frac{b}{c} - \hat{p}_4 \cdot \frac{b - c}{c}
+    1 + \hat{p}_2 & \leq \frac{b}{c} - \hat{p}_4 \cdot \frac{b\!-\!c}{c}
   \end{align}
   
   \end{proof}
@@ -500,7 +500,7 @@ are summarised by Theorem~\ref{theorem:memory_two_nash_and_good}.
   \frac{c}{b} \cdot p_{11} \leq 1 - p_{6} \qquad \frac{c}{b} \cdot p_{15} \leq 1 - p_{6}  \qquad \frac{c}{b} \cdot p_{3} \leq 1 - p_{6}
 \end{equation*}
   \begin{equation*}
-    1 + \frac{c}{b - c} \cdot p_{4}  \geq p_6 \qquad  1 + \frac{c}{b - c} \cdot p_{12}  \geq p_6  \qquad 1 + \frac{c}{b - c} \cdot p_{16} \geq p_6
+    1 + \frac{c}{b\!-\!c} \cdot p_{4}  \geq p_6 \qquad  1 + \frac{c}{b\!-\!c} \cdot p_{12}  \geq p_6  \qquad 1 + \frac{c}{b\!-\!c} \cdot p_{16} \geq p_6
   \end{equation*}
   \begin{equation*}
         \frac{c}{b} \cdot p_{7} \leq 1 - p_6  \qquad \frac{c}{b -c} \cdot p_{8} \leq 1 - p_6
@@ -515,7 +515,7 @@ are summarised by Theorem~\ref{theorem:memory_two_nash_and_good}.
 
 We can also explore which agreeable strategies are Nash numerically. We take a
 given agreeable strategy, for a given \(n\), and we check if condition
-\(\pi({\mathbf{q}}, \mathbf{p}) \leq (b - c)\) holds against all pure
+\(\pi({\mathbf{q}}, \mathbf{p}) \leq (b\!-\!c)\) holds against all pure
 memory-\(n\) strategies (\(\mathbf{q} \in \{0, 1\}^{4 ^ n}\)). It is
 sufficient to check only against the pure memory-\(n\) strategies based on the
 result of~\citep{mcavoy:PRSA:2019} (see Lemma 2.1). We repeat this step for a
@@ -562,7 +562,7 @@ We conclude that an agreeable two-bit reactive strategy  \(\mathbf{\hat{p}} = (\
 \end{align*}
 or equivalently, if
 \begin{align}\label{Eq:NashConditionDonationGame}
-  \hat{p}_4 \leq 1 - \frac{c}{b} & \quad \text{ and } \quad  \hat{p}_2 + \hat{p}_3 \leq 1 + \frac{b - c}{c}
+  \hat{p}_4 \leq 1 - \frac{c}{b} & \quad \text{ and } \quad  \hat{p}_2 + \hat{p}_3 \leq 1 + \frac{b\!-\!c}{c}
 \end{align}
 In fact, a further numerical analysis suggests the following stronger result. 
 
@@ -585,7 +585,7 @@ condition failed,
  \end{align*}
 Let \(S\) be the collection of these sets,
 \begin{align*}
-  S = \big\{S(\mathbf{\hat{p}}) \ | \ \mathbf{\hat{p}}\in U \big\}, \text{~~~where~~~}
+  S = \big\{S(\mathbf{\hat{p}}) \ | \ \mathbf{\hat{p}}\in U \big\}.
 \end{align*}
 
 We want to identify the smallest sub-collection of \(S\) whose union equals the
@@ -615,8 +615,8 @@ given in Figure~\ref{fig:two_bit_reactive_nash_results}\textbf{B)}.
      the space. The numerical results have shown that there are two pure
      strategies that constrain the Nash space; these are AllD and Alternator.
      The equations for the planes are obtained by solving
-     \(\pi(\mathbf{q}, \mathbf{\hat{p}}) = (b - c)\). The equations are
-     \(p_4 = 1 - \frac{c}{b} \text{ and }  p_3 = 1 + \frac{b - c}{c} - p_2\).
+     \(\pi(\mathbf{q}, \mathbf{\hat{p}}) = (b\!-\!c)\). The equations are
+     \(p_4 = 1 - \frac{c}{b} \text{ and }  p_3 = 1 + \frac{b\!-\!c}{c} - p_2\).
       Parameters: \(c=1, b=2\). \textbf{C) Numerical Nash for high benefit.} We repeat
      Algorithm~\ref{algorithm:numerical_nash} for a higher value of benefit
      (\(b=7\)) for \(10 ^ 3\) random points. We can see that the strategies AllD
@@ -650,35 +650,41 @@ payoff matrix,
 where \(R\) is the reward for mutual cooperation, \(T\) is the temptation to
 defect, \(S\) is the payoff of the sucker and \(P\) is the punishment for mutual
 defection. We have also carried out the numerical evaluation of Nash using the
-payoff matrix~(\ref{eq:pd_payoffs}). Though the results remain fairly similar,
-there is no pair of strategies that are efficient to check for Nash this time.
-More specifically for a given set of values, \(R=0.6, T=1, S=0\) and \(P=0.1\),
-only a triple of strategies can verify that a random point is Nash. These are
-AllD, Delayed Alternator ((0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)) and
-N8898 ((0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0)). N8898 is a strategy
-that cooperates if in the last round the outcome was \(CD\) except in the case
-where the second to last outcome was \(CD\). Then cooperate if cooperated in the
-last turn. The results are summarised in Conjecture~\ref{conjecture:nash_from_numerical_results_pd} and an illustrations of
-the results is shown in Figure~\ref{fig:numerical_results_prisoners_dilemma}.
+payoff matrix~(\ref{eq:pd_payoffs}) with values \(R=0.6, T=1, S=0\) and
+\(P=0.1\).
+
+Since a two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1},
+\hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only be a Nash equilibrium if {\it
+no} other strategy yields a larger payoff, in particular neither \text{AllD}
+nor the \text{Alternator} strategy must yield a larger payoff, where AllD\(=(0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\), Delayed Alternator\(=(0, 0, 0,
+0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)\) and N8898\(=(0, 0, 1, 0, 0, 0, 1, 0, 1,
+1, 0, 0, 0, 0, 1, 0)\).
+
+We conclude that an agreeable two-bit reactive strategy  \(\mathbf{\hat{p}} =
+(\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only form a Nash
+equilibrium if
+
+\begin{align*}
+\pi(\text{AllD}, \mathbf{\hat{p}}) \leq b\!-\!c & & \pi(\text{Delayed Alternator}, \mathbf{\hat{p}}) \leq b\!-\!c & & \pi(\text{N8898}, \mathbf{\hat{p}}) \leq b\!-\!c,
+\end{align*}
+
+or equivalently, if
+
+\begin{align}\label{Eq:NashConditionDonationGamePD}
+  \hat{p}_4 \leq \frac{P}{P - 1} & & \hat{p}_3 + \hat{p}_4 \geq \frac{P \cdot (\hat{p}_2 - 1) + 4 \cdot R - \hat{p}_2 - 1}{R} &  &  \hat{p}_2 + \hat{p}_3 \leq 3 - \frac{1}{R}.
+\end{align}
+
+In fact, a further numerical analysis (Figure~\ref{fig:numerical_results_prisoners_dilemma}) suggests the following stronger result. 
 
 \begin{conjecture}\label{conjecture:nash_from_numerical_results_pd}
-  Let the two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) be an \textbf{agreeable
-  strategy}; that is \(p_1 = 1\). For \(\mathbf{\hat{p}}\) to be Nash the
-  following inequalities must hold:
-  
-  \begin{align*}
-    \pi(\text{AllD}, \mathbf{\hat{p}}) \leq R & \text{ and } & \pi(\text{Delayed Alternator}, \mathbf{\hat{p}}) \leq R & \text{ and } & \pi(\text{N8898}, \mathbf{\hat{p}}) \leq R \Rightarrow \\
-    P \cdot (1 - \hat{p}_{4}) + \hat{p}_{4}  \leq R & \text{ and }  & - \frac{P \cdot (\hat{p}_{2} - 1) - R \cdot (\hat{p}_{3} - \hat{p}_{4}) - \hat{p}_{2} - 1}{4} \leq R  & \text{ and } & \frac{R \cdot (\hat{p}_{2} + \hat{p}_{3}) + 1}{3} \leq R \Rightarrow \\
-    \hat{p}_4 \leq \frac{P}{P - 1} & \text{ and } & \hat{p}_3 + \hat{p}_4 \geq \frac{P \cdot (\hat{p}_2 - 1) + 4 \cdot R - \hat{p}_2 - 1}{R} & \text{ and }  &  \hat{p}_2 + \hat{p}_3 \leq 3 - \frac{1}{R}
-  \end{align*}
-  
-  where AllD\(=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\),
-  Delayed Alternator = \((0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)\) and
-  N8898 = \((0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0)\).
-  \end{conjecture}
+An agreeable two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\)
+with the expected payoff \(\mathbf{s_{p}} = \mathbf{\hat{v}} \times \mathbf{S}_{p}\) where,
 
-  To derive to this triple we consider the set cover problem approach, similar
-  to Conjecture~\ref{conjecture:nash_from_numerical_results}.
+\[\mathbf{S}_{p} = (R, S, T, P, R, S, T, P, R, S, T, P, R, S, T, P),\]
+
+is of Nash type if and only if conditions \eqref{Eq:NashConditionDonationGamePD} hold.
+\end{conjecture}
 
 \begin{figure}[!htbp]
   \centering
@@ -1072,8 +1078,6 @@ suffice to check only pure two-bit reactive strategies.
 That is because a \(n-\)bit reactive strategy can not guarantee that it will
 find a reactive representation for a memory-\(n\) strategy. We refer to this
 as the Anti Press and Dyson result.
-
-\nikoleta{I think that this is what we are trying to say.}
 
 For example, consider the case of \(n=1\). Let the reactive strategy
 \(\mathbf{p} = (0, 0, 0, 0)\) and the memory-one co-player \(\mathbf{q} = (0, 0,
