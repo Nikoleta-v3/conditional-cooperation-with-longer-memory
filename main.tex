@@ -618,7 +618,7 @@ given in Figure~\ref{fig:two_bit_reactive_nash_results}\textbf{B)}.
      strategies that constrain the Nash space; these are AllD and Alternator.
      The equations for the planes are obtained by solving
      \(\pi(\mathbf{q}, \mathbf{\hat{p}}) = (b\!-\!c)\). The equations are
-     \(p_4 = 1 - \frac{c}{b} \text{ and }  p_3 = 1 + \frac{b\!-\!c}{c} - p_2\).
+     \(\hat{p}_4 = 1 - \frac{c}{b} \text{ and }  \hat{p}_3 = 1 + \frac{b\!-\!c}{c} - \hat{p}_2\).
       Parameters: \(c=1, b=2\). \textbf{C) Numerical Nash for high benefit.} We repeat
      Algorithm~\ref{algorithm:numerical_nash} for a higher value of benefit
      (\(b=7\)) for \(10 ^ 3\) random points. We can see that the strategies AllD
@@ -657,8 +657,8 @@ payoff matrix~(\ref{eq:pd_payoffs}) with values \(R=0.6, T=1, S=0\) and
 
 Since a two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1},
 \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only be a Nash equilibrium if {\it
-no} other strategy yields a larger payoff, in particular neither \text{AllD}
-nor the \text{Alternator} strategy must yield a larger payoff, where AllD\(=(0,
+no} other strategy yields a larger payoff, in particular neither \text{AllD},
+nor \text{Delayed Alternator}, nor N8898 strategy must yield a larger payoff, where AllD\(=(0,
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\), Delayed Alternator\(=(0, 0, 0,
 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)\) and N8898\(=(0, 0, 1, 0, 0, 0, 1, 0, 1,
 1, 0, 0, 0, 0, 1, 0)\).
@@ -668,7 +668,7 @@ We conclude that an agreeable two-bit reactive strategy  \(\mathbf{\hat{p}} =
 equilibrium if
 
 \begin{align*}
-\pi(\text{AllD}, \mathbf{\hat{p}}) \leq b\!-\!c & & \pi(\text{Delayed Alternator}, \mathbf{\hat{p}}) \leq b\!-\!c & & \pi(\text{N8898}, \mathbf{\hat{p}}) \leq b\!-\!c,
+\pi(\text{AllD}, \mathbf{\hat{p}}) \leq R & & \pi(\text{Delayed Alternator}, \mathbf{\hat{p}}) \leq R & & \pi(\text{N8898}, \mathbf{\hat{p}}) \leq R,
 \end{align*}
 
 or equivalently, if
