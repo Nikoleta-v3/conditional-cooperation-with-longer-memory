@@ -667,10 +667,10 @@ We conclude that an agreeable two-bit reactive strategy  \(\mathbf{\hat{p}} =
 equilibrium if
 
 \begin{align*}
-\pi(\text{AllD}, \mathbf{\hat{p}}) \leq R & & \pi(\text{Delayed Alternator}, \mathbf{\hat{p}}) \leq R & & \pi(\text{N8898}, \mathbf{\hat{p}}) \leq R,
+\pi(\text{AllD}, \mathbf{\hat{p}}) \leq R & & \pi(\text{Delayed Alternator}, \mathbf{\hat{p}}) \leq R & & \pi(\text{N8898}, \mathbf{\hat{p}}) \leq R.
 \end{align*}
 
-or equivalently, if
+Assuming without loss of generality that $T\!=\!1$ and $S\!=\!0$, these conditions are equivalent to
 
 \begin{align}\label{Eq:NashConditionDonationGamePD}
   \hat{p}_4 \leq \frac{P}{P - 1} & & \hat{p}_3 + \hat{p}_4 \geq \frac{P \cdot (\hat{p}_2 - 1) + 4 \cdot R - \hat{p}_2 - 1}{R} &  &  \hat{p}_2 + \hat{p}_3 \leq 3 - \frac{1}{R}.
@@ -679,12 +679,7 @@ or equivalently, if
 In fact, a further numerical analysis (Figure~\ref{fig:numerical_results_prisoners_dilemma}) suggests the following stronger result. 
 
 \begin{conjecture}\label{conjecture:nash_from_numerical_results_pd}
-An agreeable two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\)
-with the expected payoff \(\mathbf{s_{p}} = \mathbf{\hat{v}} \times \mathbf{S}_{p}\) where,
-
-\[\mathbf{S}_{p} = (R, S, T, P, R, S, T, P, R, S, T, P, R, S, T, P),\]
-
-is of Nash type if and only if conditions \eqref{Eq:NashConditionDonationGamePD} hold.
+For a general repeated prisoner's dilemma with payoffs $1=T>R>P>S=0$ and $2R>T\!+\!S=1$, an agreeable two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) is of Nash type if and only if conditions \eqref{Eq:NashConditionDonationGamePD} hold.
 \end{conjecture}
 
 \begin{figure}[!htbp]
