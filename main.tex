@@ -20,6 +20,7 @@
 \newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
 
 \usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
 \pagestyle{plain}
@@ -48,7 +49,7 @@ prisoner's dilemma. The prisoner's dilemma is a two person symmetric game that
 provides a simple model of cooperation. Each of the two players, \(p\) and
 \(q\), simultaneously and independently decide to cooperate (\(C\)) or to defect
 (\(D\)). A player who cooperates pays a cost \(c > 0\) to provide a benefit
-\(b > c\) for the co-player. A cooperator either gets \(b - c\) (if the
+\(b > c\) for the co-player. A cooperator either gets \(b\!-\!c\) (if the
 co-player also cooperates) or \(-c\) (if the co-player defects). Respectively, a defector either gets
 \(b\) (if the co-player cooperates) or 0 (if the co-player defects), and so,
 the payoffs of player \(p\) take the form,
@@ -57,7 +58,7 @@ the payoffs of player \(p\) take the form,
   \begin{blockarray}{ccc}
       & \text{cooperate} & \text{defect} \\
       \begin{block}{c(cc)}
-          \text{cooperate} & b - c & -c \\
+          \text{cooperate} & b\!-\!c & -c \\
           \text{defect} & b & 0 \\
       \end{block}
   \end{blockarray}
@@ -67,16 +68,18 @@ The transpose of (\ref{eq:donation_payoffs}) gives the payoffs of
 co-player \(q\). We can also define each player's payoffs as vectors,
 
 \begin{equation}\label{eq:vector_payoffs}
-  \mathbf{S}_{p} = (b-c, -c, b, 0) \quad \textrm{and} \quad  \mathbf{S}_{q} = (b - c, b, -c, 0).
+  \mathbf{S}_{p} = (b\!-\!c, -c, b, 0) \quad \textrm{and} \quad  \mathbf{S}_{q} = (b\!-\!c, b, -c, 0).
 \end{equation}
 
-In the one shot game the players' dominant choice is to defect (since $b > b -
-c$ and $0 > -c$), and once they reach mutual defection neither have a reason to
-deviate. Though the prisoner's dilemma has one nash equilibrium which is that of mutual
-defection, cooperative nash can subsist if we consider the iterated prisoner's
-dilemma~\citep{axelrod:AAAS:1981, hilbe:PNAS:2017}. We study cooperative nash in the infinitely
+In the one shot game the players' dominant choice is to defect (since $b > b\!-\!c$
+and $0 > -c$), and once they reach mutual defection neither have a reason to
+deviate. Though the prisoner's dilemma's unique Nash equilibrium is that of
+mutual defection, the iterated prisoner's dilemma allows for equilibria in which both 
+players cooperate~\citep{axelrod:AAAS:1981, hilbe:PNAS:2017}. In this
+work we are interested in the strategies that form such cooperative Nash equilibria. 
+We study cooperative Nash in the infinitely
 repeated prisoner's dilemma when players can choose how to behave from specific
-sets of strategies. More specifically, we study if cooperative nash can exist
+sets of strategies. More specifically, we study if cooperative Nash can exist
 when players use \textit{\(n-\)bit reactive strategies} for $n > 1$.
 
 \subsection{Strategies}
@@ -95,13 +98,13 @@ focus on the case of memory-one strategies.
 
 Memory-one strategies are attractive because they are mathematically tractable.
 For memory-one strategies it is possible to characterize all the cooperative
-nash equilibria~\citep{akin:EGADS:2016}, and furthermore, all nash equilibria
+Nash equilibria~\citep{akin:EGADS:2016}, and furthermore, all Nash equilibria
 that are achieved when players consider such
 strategies~\citep{stewart:scientific:2016}. In the case of memory-two strategies
-the work of~\citep{hilbe:PNAS:2017} characterizes a set of cooperative nash equilibria.
+the work of~\citep{hilbe:PNAS:2017} characterizes a set of cooperative Nash equilibria.
 They show that pure strategies with three specific properties are
 subgame perfect equilibria. Moreover, they showed that in a setting with discounting
-these strategies are strict nash, and thus, evolutionary stable.
+and errors these strategies are strict Nash equilibria, and thus, evolutionary stable.
 
 We build upon the previous work we have discussed here and aim to further extend
 the results to strategies with higher memory. However, as players are allowed to
@@ -117,12 +120,12 @@ tractable.
 In section~\ref{section:methodology} we introduce the methodology we will be
 using in this paper, and in section~\ref{section:results} we present the
 results. More specifically, in section~\ref{section:good_nash_strategies} we
-analytically characterize strategies that can sustain cooperative nash in the
+analytically characterize strategies that can sustain cooperative Nash in the
 case of two-bit reactive strategies, and memory-two. In
 section~\ref{section:good_strategies_numerically} we numerically characterize
-the full space on cooperative nash equilibria for two-bit reactive strategies.
-In section~\ref{section:pure_strategies} we show that pure \(n-\)bit reactive
-strategies can not sustain a cooperative nash equilibrium. Finally, in section
+the full space on cooperative Nash equilibria for two-bit reactive strategies.
+In section~\ref{section:pure_strategies} we show that no pure \(n-\)bit reactive
+strategy is evolutionarily stable. Finally, in section
 \ref{section:evolutionary_simulations} we perform an evolutionary analysis for
 \(n \in \{1, 2, 3\}\), and investigate which strategies evolve.
 
@@ -149,8 +152,8 @@ the players are in any of the states in the long run of the game.
   p_{4} q_{4} & p_{4} \left(1 - q_{4}\right) & q_{4} \left(1 - p_{4}\right) & \left(1 - p_{4}\right) \left(1 - q_{4}\right)\end{matrix}\right].
 \end{equation}
 
-It is a known result that given the invariant distribution we can calculate the expected payoffs for
-each player, \(s_{\mathbf{p}}\) and \(s_{\mathbf{q}}\), as follows
+Given the invariant distribution we can calculate the expected payoffs for
+each player, \(s_{\mathbf{p}}\) and \(s_{\mathbf{q}}\), as follows~\citep{Nowak:AMC:1989}
 
 \begin{equation*}
   s_{\mathbf{p}} = \pi(\mathbf{p}, \mathbf{q}) = \mathbf{v} \cdot \mathbf{S}_{p} \text{ and } s_{\mathbf{q}} = \pi(\mathbf{q}, \mathbf{p}) = \mathbf{v} \cdot \mathbf{S}_{q}.
@@ -161,8 +164,8 @@ strategies, and consequently, one-bit reactive strategies are a subset of
 memory-one strategies. One-bit reactive strategies consider only the co-player's
 last action, and so, for a one-bit strategy the probabilities of cooperating
 following a \(CC\) and \(DC\) are the same since the co-player cooperated in the
-last turn. Similarly, for the probabilities of cooperating given that the
-co-player defected in the last turn. Thus, a one-bit reactive strategy for \(p\)
+last turn. Similarly, the probabilities of cooperating given that the previous
+outcome was \(DC\) or \(DD\) are the same. Thus, a one-bit reactive strategy for \(p\)
 is of the form \(\mathbf{p} = (p_1, p_2, p_1, p_2)\).
 
 In~\citep{akin:EGADS:2016}, Akin gives the following definitions for memory-one
@@ -179,57 +182,59 @@ thus \(p_1=1\).
   payoffs satisfy:
   
   \begin{equation}
-    s_{\mathbf{q}} \geq (b - c) \Rightarrow s_{\mathbf{q}} = s_{\mathbf{p}} =  (b - c).
+    s_{\mathbf{q}} \geq b\!-\!c \qquad \Rightarrow \qquad s_{\mathbf{q}} = s_{\mathbf{p}} =  b\!-\!c.
   \end{equation}
 
   The strategy is of \textbf{Nash type} if (i) it is agreeable and (ii) if the
   expected payoffs against any general strategy used by \(q\) satisfy:
 
   \begin{equation}
-    s_{\mathbf{q}} \geq R \Rightarrow s_{\mathbf{q}} =  (b - c).
+    s_{\mathbf{q}} \geq b\!-\!c \qquad \Rightarrow \qquad s_{\mathbf{q}} =  b\!-\!c.
   \end{equation}
 \end{definition}
 
 Hence, a strategy is good if the co-player achieves the reward payoff if and
 only if the focal player does as well, and a Nash type strategy reassures that the
-co-player can never receive a payoff higher than \(b - c\) (the payoff for mutual
+co-player can never receive a payoff higher than \(b\!-\!c\) (the payoff for mutual
 cooperation).
 
 Notice that the definitions of good and Nash make no assumptions regarding the
 type of strategies the players need to play, and thus, these are extendable to
 memory\(-n\) and \(n-\)bit reactive strategies. The definition of agreeable
-strategies for a memory\(-n\)  strategy is given by
+strategies for a memory\(-n\) strategy is given by
 Definition~\ref{definition:memn_agreeable} and for a \(n-\)bit reactive
 strategy by Definition~\ref{definition:nbit_agreeable}.
 
 \begin{definition}\label{definition:memn_agreeable}
-  A memory-\(n\) strategy is \textbf{agreeable} if it always cooperates in the
-  \(n\) opening rounds, and following \(n\) mutual cooperation(s) thus
+  A memory-\(n\) strategy is \textbf{agreeable} if it is never the first to defect,
+  and if it always cooperates with a probability 1 following \(n\) mutual cooperation(s) thus
   \(p_1=1\).
 \end{definition}
 
 \begin{definition}\label{definition:nbit_agreeable} A \(n-\)bit reactive strategy is
-agreeable if it cooperates with a probability one in the \(n\) opening rounds
-and if the co-player has consecutively cooperated in that last \(n\) rounds.
+agreeable if it is never the first to defect,
+and if it always cooperates with a probability 1 if the co-player has consecutively cooperated in that last \(n\) rounds.
 \end{definition}
 
-Following the introduction of these concepts, Akin proves
-Theorem~\ref{theorem:akin} which he uses to characterize all memory-one
-strategies that are of \textit{Nash type} and \textit{good}.
+Following the introduction of these concepts, Akin derives an interesting relationship between 
+a player's memory-one strategy and the resulting invariant distribution of the repeated game. 
+This relationship allows him to characterize all memory-one strategies that are of \textit{Nash type} and \textit{good}. 
+We refer to this result as Akin's Lemma in the following (see Theorem 1.3 in \citep{akin:EGADS:2016}).
 
-\begin{theorem}{Akin's Theorem.}
-  Assume that player \(p\) uses the memory-one strategy \(\mathbf{\tilde{p}} = \mathbf{p} - \mathbf{e}_{12}\) where
-  \(\mathbf{e}_{12} = (1, 1, 0, 0)\), and \(q\) uses a strategy that leads to a sequence
+\begin{theorem}[Akin's Lemma]\label{theorem:akin}
+  Assume that player \(p\) uses the memory-one strategy \(\mathbf{p}=(p_1, p_2, p_3, p_4)\),
+  and \(q\) uses a strategy that leads to a sequence
   of distributions \(\{\mathbf{v}^{(n)}, n = 1, 2, ...\}\) with \(\mathbf{v}^{(k)}\) representing the
-  distribution over the states in the \(k^{\text{th}}\) round of the game. Let
-  \(\mathbf{v}\) be an associated stationary distribution. Then,
+  distribution over the states in the \(k^{\text{th}}\) round of the game. 
+  Let   \(\mathbf{v}\) be the associated stationary distribution, and let \(\mathbf{\tilde{p}} = \mathbf{p} - \mathbf{e}_{12}\) where
+  \(\mathbf{e}_{12} = (1, 1, 0, 0)\). Then,
 
   \begin{align}
-    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{(n)} \cdot \mathbf{\tilde{p}} = 0, \text{ and therefore } \mathbf{v} \cdot \mathbf{\tilde{p}} = 0.
+    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{(k)} \cdot \mathbf{\tilde{p}} = 0, \text{ and therefore } \mathbf{v} \cdot \mathbf{\tilde{p}} = 0.
   \end{align}
-\end{theorem}\label{theorem:akin}
+\end{theorem}
 
-Akin's theorem is extendable to higher memory strategies; we demonstrate this in section~\ref{section:good_nash_strategies}
+Akin's lemma is extendable to higher memory strategies; we demonstrate this in section~\ref{section:good_nash_strategies}
 for the special cases of two-bit reactive strategies.
 
 In the case of \(n=2\), players consider the last two rounds. Since for a single
@@ -246,30 +251,35 @@ p_4, p_3, p_4, p_1, p_2, p_1, p_2, p_3, p_4, \allowbreak p_3, p_4)\) where
 co-player were \(C\) and \(C\), \(p_2\) is the probability cooperating when the
 last two actions of the co-player were \(C\) and \(D\), and so on. For
 simplicity, we denote a two-bit reactive strategy for \(p\) as
-\(\mathbf{\hat{p}} = (p_1, p_2, p_3, p_4)\).
+\(\mathbf{\hat{p}} = (\hat{p}_1, \hat{p}_2, \hat{p}_3, \hat{p}_4)\).
+
+Note that from here on we use the hat symbol to differentiate between
+memory-\(n\) strategies and  \(n-\)bits reactive strategies. That is, \(\mathbf{p}\)
+is used to denote a memory-\(n\) strategy, whereas \(\mathbf{\hat{p}}\) refers to an \(n-\)bit
+reactive strategy. We use a similar convention to refer to the resulting invariant distribution (\(\mathbf{v}\) and \(\mathbf{\hat{v}}\), respectively). 
 
 The play between a pair of two-bit reactive strategies can be described by a Markov
-process with the transition matrix \(\tilde{M}\).
+process with the transition matrix \(\hat{M}\).
 
 \resizebox{\linewidth}{!}{%
 $
-\tilde{M} = \left(\begin{array}{cccccccccccccccc}
- p_1 q_1 & p_1 (1-q_1) & (1-p_1) q_1 & (1-p_1) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & p_2 q_1 & p_2 (1-q_1) & (1-p_2) q_1 & (1-p_2) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_1 q_2 & p_1 (1-q_2) & (1-p_1) q_2 & (1-p_1) (1-q_2) & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_2 q_2 & p_2 (1-q_2) & (1-p_2) q_2 & (1-p_2) (1-q_2) \\
- p_3 q_1 & p_3 (1-q_1) & (1-p_3) q_1 & (1-p_3) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & p_4 q_1 & p_4 (1-q_1) & (1-p_4) q_1 & (1-p_4) (1-q_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_3 q_2 & p_3 (1-q_2) & (1-p_3) q_2 & (1-p_3) (1-q_2) & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_4 q_2 & p_4 (1-q_2) & (1-p_4) q_2 & (1-p_4) (1-q_2) \\
- p_1 q_3 & p_1 (1-q_3) & (1-p_1) q_3 & (1-p_1) (1-q_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & p_2 q_3 & p_2 (1-q_3) & (1-p_2) q_3 & (1-p_2) (1-q_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_1 q_4 & p_1 (1-q_4) & (1-p_1) q_4 & (1-p_1) (1-q_4) & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_2 q_4 & p_2 (1-q_4) & (1-p_2) q_4 & (1-p_2) (1-q_4) \\
- p_3 q_3 & p_3 (1-q_3) & (1-p_3) q_3 & (1-p_3) (1-q_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & p_4 q_3 & p_4 (1-q_3) & (1-p_4) q_3 & (1-p_4) (1-q_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_3 q_4 & p_3 (1-q_4) & (1-p_3) q_4 & (1-p_3) (1-q_4) & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p_4 q_4 & p_4 (1-q_4) & (1-p_4) q_4 & (1-p_4) (1-q_4) \\
+\hat{M} = \left(\begin{array}{cccccccccccccccc}
+ \hat{p}_1 \hat{q}_1 & \hat{p}_1 (1-\hat{q}_1) & (1-\hat{p}_1) \hat{q}_1 & (1-\hat{p}_1) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_1 & \hat{p}_2 (1-\hat{q}_1) & (1-\hat{p}_2) \hat{q}_1 & (1-\hat{p}_2) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_1 \hat{q}_2 & \hat{p}_1 (1-\hat{q}_2) & (1-\hat{p}_1) \hat{q}_2 & (1-\hat{p}_1) (1-\hat{q}_2) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_2 & \hat{p}_2 (1-\hat{q}_2) & (1-\hat{p}_2) \hat{q}_2 & (1-\hat{p}_2) (1-\hat{q}_2) \\
+ \hat{p}_3 \hat{q}_1 & \hat{p}_3 (1-\hat{q}_1) & (1-\hat{p}_3) \hat{q}_1 & (1-\hat{p}_3) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_1 & \hat{p}_4 (1-\hat{q}_1) & (1-\hat{p}_4) \hat{q}_1 & (1-\hat{p}_4) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_3 \hat{q}_2 & \hat{p}_3 (1-\hat{q}_2) & (1-\hat{p}_3) \hat{q}_2 & (1-\hat{p}_3) (1-\hat{q}_2) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_2 & \hat{p}_4 (1-\hat{q}_2) & (1-\hat{p}_4) \hat{q}_2 & (1-\hat{p}_4) (1-\hat{q}_2) \\
+ \hat{p}_1 \hat{q}_3 & \hat{p}_1 (1-\hat{q}_3) & (1-\hat{p}_1) \hat{q}_3 & (1-\hat{p}_1) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_3 & \hat{p}_2 (1-\hat{q}_3) & (1-\hat{p}_2) \hat{q}_3 & (1-\hat{p}_2) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_1 \hat{q}_4 & \hat{p}_1 (1-\hat{q}_4) & (1-\hat{p}_1) \hat{q}_4 & (1-\hat{p}_1) (1-\hat{q}_4) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_4 & \hat{p}_2 (1-\hat{q}_4) & (1-\hat{p}_2) \hat{q}_4 & (1-\hat{p}_2) (1-\hat{q}_4) \\
+ \hat{p}_3 \hat{q}_3 & \hat{p}_3 (1-\hat{q}_3) & (1-\hat{p}_3) \hat{q}_3 & (1-\hat{p}_3) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_3 & \hat{p}_4 (1-\hat{q}_3) & (1-\hat{p}_4) \hat{q}_3 & (1-\hat{p}_4) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_3 \hat{q}_4 & \hat{p}_3 (1-\hat{q}_4) & (1-\hat{p}_3) \hat{q}_4 & (1-\hat{p}_3) (1-\hat{q}_4) & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_4 & \hat{p}_4 (1-\hat{q}_4) & (1-\hat{p}_4) \hat{q}_4 & (1-\hat{p}_4) (1-\hat{q}_4) \\
 \end{array}\right).$}
 
 Note that from state \(CC|CC\) only the states \(CC|CC, CC|CD, CC|DC, CC|DD\)
@@ -277,15 +287,15 @@ are reachable. That is because the current outcome \(F_p F_q\) in this state has
 to match the previous outcome \(E_p E_q\) in the ``next'' state. Thus, in each
 row of the matrix there will be at most four non-zero elements.
 
-The invariant distribution \(\mathbf{\tilde{v}}\) is the solution to
-\(\mathbf{\tilde{v}} \tilde{M} = \mathbf{\tilde{v}}\). In the infinitely
+The invariant distribution \(\mathbf{\hat{v}}\) is the solution to
+\(\mathbf{\hat{v}} \hat{M} = \mathbf{\hat{v}}\). In the infinitely
 repeated prisoner's dilemma, the probability that two players are in a \(CC\)
 state in the last round is the same as the probability of them being in a \(CC\)
 in the second to last round, thus, the following holds for
-\(\mathbf{\tilde{v}}\),
+\(\mathbf{\hat{v}}\),
 
 \begin{align}\label{eq:last_rounds_equality}
-  \sum_{i, j \in \{C, D\}} \tilde{v}_{i, j | l, k} & = \sum_{i, j \in \{C, D\}} \tilde{v}_{l, k | ij} \quad \forall \quad l, k \in \{C, D\}.
+  \sum_{i, j \in \{C, D\}} \hat{v}_{i j | l k} & = \sum_{i, j \in \{C, D\}} \hat{v}_{l k | ij} \quad \forall \quad l, k \in \{C, D\}.
 \end{align}
 
 We know that the invariant distribution combined with the payoff vectors give
@@ -295,8 +305,8 @@ defined based on the outcome of the last round,
 
 \begin{equation}\label{eq:last_round_two_bits}
   \begin{array}{*{16}{c}}
-    \mathbf{S}_{p} = ( b - c , & -c , & b , & 0 , & b - c , & -c , & b , & 0 , & b - c , & -c , & b , & 0 , & b - c , & -c , & b , & 0)  \;, \\
-    \mathbf{S}_{q} = ( b - c, & b, & -c, & 0, & b - c, & b, & -c, & 0, & b - c, & b, & -c, & 0, & b - c, & b, & -c, & 0).
+    \mathbf{S}_{p} = ( b\!-\!c , & -c , & b , & 0 , & b\!-\!c , & -c , & b , & 0 , & b\!-\!c , & -c , & b , & 0 , & b\!-\!c , & -c , & b , & 0)  \;, \\
+    \mathbf{S}_{q} = ( b\!-\!c, & b, & -c, & 0, & b\!-\!c, & b, & -c, & 0, & b\!-\!c, & b, & -c, & 0, & b\!-\!c, & b, & -c, & 0).
   \end{array}
 \end{equation}
 
@@ -304,14 +314,14 @@ defined based on the outcome of the last round,
 
 \begin{equation}\label{eq:second_to_last_round_two_bits}
   \begin{array}{*{16}{c}}
-    \mathbf{S}'_{p} = (b - c, & b - c, & b - c, & b - c, & -c, & -c, & -c, & -c, & b, & b, & b, & b, & 0, & 0, & 0, & 0)  \;, \\
-    \mathbf{S}'_{q} = (b - c, & b - c, & b - c, & b - c, & b, & b, & b, & b, & -c, & -c, & -c, & -c, & 0, & 0, & 0, & 0).
+    \mathbf{S}'_{p} = (b\!-\!c, & b\!-\!c, & b\!-\!c, & b\!-\!c, & -c, & -c, & -c, & -c, & b, & b, & b, & b, & 0, & 0, & 0, & 0)  \;, \\
+    \mathbf{S}'_{q} = (b\!-\!c, & b\!-\!c, & b\!-\!c, & b\!-\!c, & b, & b, & b, & b, & -c, & -c, & -c, & -c, & 0, & 0, & 0, & 0).
   \end{array}
 \end{equation}
 
-Note that \(\mathbf{s_{p}} = \mathbf{\tilde{v}} \times \mathbf{S}_{p} =
-\mathbf{\tilde{v}} \times \mathbf{S}'_{p}\) and \(\mathbf{s_{q}} =\mathbf{\tilde{v}}
-\times \mathbf{S}_{q} = \mathbf{\tilde{v}} \times \mathbf{S}'_{q}\). From
+Note that \(\mathbf{s_{p}} = \mathbf{\hat{v}} \times \mathbf{S}_{p} =
+\mathbf{\hat{v}} \times \mathbf{S}'_{p}\) and \(\mathbf{s_{q}} =\mathbf{\hat{v}}
+\times \mathbf{S}_{q} = \mathbf{\hat{v}} \times \mathbf{S}'_{q}\). From
 hereupon we consider the payoff vectors \(\mathbf{S}_{p}\) and
 \(\mathbf{S}_{q}\) unless stated otherwise.
 
@@ -327,67 +337,67 @@ are applied to the case of memory-two strategies.
 \(n=2\)}\label{section:good_nash_strategies}
 
 We start by discussing the case of two-bit strategies. The extension to Akin's
-Theorem (Theorem~\ref{theorem:akin}) is given by Lemma~\ref{lemma:akin_extended}.
+Lemma (Theorem~\ref{theorem:akin}) is given by Lemma~\ref{lemma:akin_extended}.
 
 \begin{lemma}\label{lemma:akin_extended}
-  Assume that player \(p\) uses a two-bit reactive strategy \(\mathbf{\tilde{p}} = \mathbf{p} - \mathbf{\hat{e}}_{1 2}\)
-  (where \(\mathbf{\hat{e}}_{1 2} = (1, 1, 1, 1, \allowbreak 0,
-  0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)\)), and \(q\) uses a strategy that leads to a sequence
-  of distributions \(\{\mathbf{\tilde{v}}^{(n)}, n = 1, 2, ...\}\) with
-  \(\mathbf{\tilde{v}}^{(k)}\) representing the distribution over the states in the
-  \(k^{\text{th}}\) round of the game. Let \(\mathbf{\tilde{v}}\) be an associated
-  stationary distribution. Then
+  Assume that player \(p\) uses a two-bit reactive strategy \(\mathbf{\hat{p}}\),
+  and \(q\) uses a strategy that leads to a sequence
+  of distributions \(\{\mathbf{\hat{v}}^{(n)}, n = 1, 2, ...\}\) with
+  \(\mathbf{\hat{v}}^{(k)}\) representing the distribution over the states in the
+  \(k^{\text{th}}\) round of the game. Let \(\mathbf{\hat{v}}\) be the associated
+  stationary distribution, and let \(\mathbf{\tilde{p}} = \mathbf{\hat{p}} - \mathbf{\hat{e}}_{1 2}\)
+  where \(\mathbf{\hat{e}}_{1 2} = (1, 1, 1, 1, \allowbreak 0,
+  0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)\). Then,
 
   \begin{align*}
-    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{\tilde{v}}^{(n)} \cdot\mathbf{\tilde{p}} & = 0, \text{ and therefore } \mathbf{\tilde{v}} \cdot \mathbf{\tilde{p}} = 0.
+    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{\hat{v}}^{(k)} \cdot\mathbf{\tilde{p}} & = 0, \text{ and therefore } \mathbf{\hat{v}} \cdot \mathbf{\tilde{p}} = 0.
   \end{align*}
 
   \begin{align}\label{eq:akin_extended}
-  \mathbf{\tilde{v}}^{(n)} \cdot \mathbf{\tilde{p}} = 0 \Rightarrow & \nonumber \\
-  & (\tilde{v}_{1} + \tilde{v}_{9}) (1 - p_1) + (\tilde{v}_{2} + \tilde{v}_{10}) (1 - p_2)  + (\tilde{v}_{5} + \tilde{v}_{13}) (1 - p_3) + (\tilde{v}_{6} + \tilde{v}_{14}) (1 - p_4) \nonumber \\
-  & + (\tilde{v}_{3} + \tilde{v}_{11})p_1  + (\tilde{v}_{4} + \tilde{v}_{12})p_2 + (\tilde{v}_{7} + \tilde{v}_{15}) p_3 + (\tilde{v}_{8} + \tilde{v}_{16}) p_4 = 0.
+  \mathbf{\hat{v}}^{(n)} \cdot \mathbf{\tilde{p}} = 0 \Rightarrow & \nonumber \\
+  & (\hat{v}_{1} + \hat{v}_{9}) (1 - \hat{p}_1) + (\hat{v}_{2} + \hat{v}_{10}) (1 - \hat{p}_2)  + (\hat{v}_{5} + \hat{v}_{13}) (1 - \hat{p}_3) + (\hat{v}_{6} + \hat{v}_{14}) (1 - \hat{p}_4) \nonumber \\
+  & + (\hat{v}_{3} + \hat{v}_{11})\hat{p}_1  + (\hat{v}_{4} + \hat{v}_{12})\hat{p}_2 + (\hat{v}_{7} + \hat{v}_{15}) \hat{p}_3 + (\hat{v}_{8} + \hat{v}_{16}) \hat{p}_4 = 0.
   \end{align}
 \end{lemma}
 
 \begin{proof}
   The probability that \(p\) cooperates in the \(n^{\text{th}}\) round, denoted
-  by \(\tilde{v}_{\text{C}}^{(n)}\), is \(\tilde{v}_{\text{C}}^{(n)} = \tilde{v}_{1}^{(n)} +
-  \tilde{v}_{2}^{(n)} + \tilde{v}_{5}^{(n)} + \tilde{v}_{6}^{(n)} + \tilde{v}_{9}^{(n)} +  \tilde{v}_{10}^{(n)} +
-  \tilde{v}_{13}^{(n)} + \tilde{v}_{14}^{(n)} = \mathbf{\tilde{v}} \cdot \mathbf{\hat{e}}_{1 2}\). The probability that \(p\) cooperates in the
-  \((n + 1)^{th}\) round, denoted by \(\tilde{v}_{\text{C}}^{(n + 1)}\) = \(\tilde{v}^{(n)} \cdot \mathbf{p}\).
-  Thus,
+  by \(\hat{v}_{\text{C}}^{(n)}\), is \(\hat{v}_{\text{C}}^{(n)} = \hat{v}_{1}^{(n)} +
+  \hat{v}_{2}^{(n)} + \hat{v}_{5}^{(n)} + \hat{v}_{6}^{(n)} + \hat{v}_{9}^{(n)} +  \hat{v}_{10}^{(n)} +
+  \hat{v}_{13}^{(n)} + \hat{v}_{14}^{(n)} = \mathbf{\hat{v}} \cdot \mathbf{\hat{e}}_{1 2}\)
+  where \(\mathbf{\hat{e}}_{1 2} = (1, 1, 1, 1, \allowbreak 0,
+  0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)\). The probability that \(p\) cooperates in the \((n + 1)^{th}\) round, denoted
+  by \(\hat{v}_{\text{C}}^{(n + 1)}\) = \(\mathbf{\hat{v}}^{(n)} \cdot \mathbf{\hat{p}}\).
+  Hence,
 
   \begin{equation*}
-   \tilde{v}_{\text{C}}^{(n + 1)} - \tilde{v}_{\text{C}}^{(n)} = \mathbf{\tilde{v}^{(n)}} \cdot \mathbf{p} - \mathbf{\tilde{v}} \cdot \mathbf{\hat{e}}_{1 2}
-    = \mathbf{\tilde{v}^{(n)}} \cdot (\mathbf{p} - \mathbf{\hat{e}}_{1 2}) = \mathbf{\tilde{v}}^{(n)} \cdot \mathbf{\tilde{p}}.
+   \hat{v}_{\text{C}}^{(n + 1)} - \hat{v}_{\text{C}}^{(n)} = \mathbf{\hat{v}^{(n)}} \cdot \mathbf{\hat{p}} - \mathbf{\hat{v}} \cdot \mathbf{\hat{e}}_{1 2}
+    = \mathbf{\hat{v}^{(n)}} \cdot (\mathbf{\hat{p}} - \mathbf{\hat{e}}_{1 2}) = \mathbf{\hat{v}}^{(n)} \cdot \mathbf{\tilde{p}}.
   \end{equation*}
 
-  This implies \(\tilde{v}_{\text{C}}^{(n + 1)} - \tilde{v}_{\text{C}}^{(n)}
-  = \sum_{k=1}^{n} (\tilde{v}_{\text{C}}^{(k + 1)} - \tilde{v}_{\text{C}}^{(k)})
-  = \sum_{k=1}^{n} (\mathbf{\tilde{v}}^{(k)} \cdot \mathbf{\tilde{p}})\). Since
-  \(0 \leq \tilde{v}_{\text{C}}^{(k)} \geq 1\) for any \(k\),
+  This implies,
 
-  \begin{equation}\label{eq:akins_relationship}
-    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{\tilde{v}}^{(k)} \cdot \mathbf{\tilde{p}} = 
-    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} (\tilde{v}_{\text{C}}^{(n + 1)} - \tilde{v}_{\text{C}}^{(1)}) = 0.
-  \end{equation}
+  \begin{equation}
+    \sum^{n}_{k=1} \mathbf{\hat{v}}^{(k)} \cdot \mathbf{\tilde{p}} = \sum^{n}_{k=1} \hat{v}_{\text{C}}^{(k + 1)} - \hat{v}_{\text{C}}^{(k)} \quad \Rightarrow \quad \sum^{n}_{k=1} \mathbf{\hat{v}}^{(k)} \cdot \mathbf{\tilde{p}} =  \hat{v}_{\text{C}}^{(n + 1)} - \hat{v}_{\text{C}}^{(1)}.
+   \end{equation}
 
-  For the stationary distribution \(\mathbf{\tilde{v}}\) that is the limit of
-  some subsequence of the Cesaro averages \(\{\frac{1}{n} \sum_{k=1}^{n} \mathbf{\tilde{v}}^{(k)}\}\),
-  the continuity of the dot product implies \(\mathbf{\tilde{v}} \cdot \mathbf{\tilde{p}} = 0 \)
+   As the right side has absolute value at most 1,
+
+   \begin{equation}
+    \lim_{n \rightarrow \infty} \frac{1}{n} \sum^{n}_{k=1} \mathbf{\hat{v}}^{(k)} \cdot \mathbf{\tilde{p}} = 0. 
+   \end{equation}
 
 \end{proof}
 
-We can derive a further relation from Akin's Theorem using the equations
-(\ref{eq:last_rounds_equality}). More specifically by substituting \(v_{1} +
-v_{5} + v_{9} + v_{13} = v_{1} +
-v_{2} + v_{3} + v_{4} \) and \(v_{2} + v_{6} + v_{10} + v_{14} =
-v_{5} + v_{6} + v_{7} + v_{8} \) in (\ref{eq:akins_relationship}) and some
+We can derive a further relation from Akin's Lemma using equations
+(\ref{eq:last_rounds_equality}). More specifically by substituting \(\hat{v}_{1} +
+\hat{v}_{5} + \hat{v}_{9} + \hat{v}_{13} = \hat{v}_{1} +
+\hat{v}_{2} + \hat{v}_{3} + \hat{v}_{4} \) and \(\hat{v}_{2} + \hat{v}_{6} + \hat{v}_{10} + \hat{v}_{14} =
+\hat{v}_{5} + \hat{v}_{6} + \hat{v}_{7} + \hat{v}_{8} \) in (\ref{eq:akin_extended}) and some
 algebraic manipulation one can show that,
 
 \begin{equation}\label{eq:new_akin_relationship}
-  p_1 (v_{1} + v_{3} + v_{9} + v_{11}) + p_2 (v_{2} + v_{4} + v_{10} + v_{12}) 
-  + p_3 (v_{5} + v_{7} + v_{13} + v_{15}) + p_4 (v_{6} + v_{8} + v_{14} + v_{16}) = (v_1 + v_2 + v_3 + v_4 + v_5 + v_6 + v_7 + v_8).
+  \mathbf{\hat{p}} \cdot \mathbf{\hat{v}} = (\hat{v}_1 + \hat{v}_2 + \hat{v}_3 + \hat{v}_4 + \hat{v}_5 + \hat{v}_6 + \hat{v}_7 + \hat{v}_8).
 \end{equation}
 
 Note that the right hand side of equation~(\ref{eq:new_akin_relationship}) is
@@ -398,72 +408,73 @@ equilibrium, and more specifically, a good/cooperative one. We show that:
 
 \begin{theorem}\label{theorem:two_bit_nash_and_good}
 
-  Let the two-bit reactive strategy \(\mathbf{\hat{p}} = (p_{1}, p_{2}, p_{3}, p_{4})\) be an \textbf{agreeable
-  strategy}; that is \(p_1 = 1\). Strategy \(\mathbf{\hat{p}}\) is \textbf{Nash} if the
+  Let the two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) be an \textbf{agreeable
+  strategy}; that is \(\hat{p}_1 = 1\). Strategy \(\mathbf{\hat{p}}\) is \textbf{Nash} if the
   following inequalities hold:
   \begin{equation*}
-      p_4 \leq 1 - \frac{c}{b} \qquad  p_2  \leq p_4 \qquad p_3 \leq 1 \qquad (1 + p_2) \leq \frac{b}{c} - \frac{p_4 (b - c)}{c}
+      \hat{p}_4 \leq 1 - \frac{c}{b} \qquad  \hat{p}_2  \leq \hat{p}_4 \qquad \hat{p}_3 \leq 1 \qquad 1 + \hat{p}_2 \leq \frac{b}{c} - \hat{p}_4 \frac{b\!-\!c}{c}
   \end{equation*}
   
-  The agreeable strategy \(\mathbf{\hat{p}}\) is good if and only if the inequalities above are strict.
+  The agreeable strategy \(\mathbf{\hat{p}}\) is good if the inequalities above are strict.
   \end{theorem}
   
   \begin{proof}
-  We first eliminate the possibility \(p_4 = 1\). If \(p_4 = 1\), then \(\mathbf{\hat{p}}
-  = (1, p_2, p_3, 1)\). If against this \(q\) plays AllD \(= (0, 0, 0, 0)\),
-  then \(\{CD\}\) is a terminal set and so
-  with \(s_\mathbf{q} = b\) and \(s_\mathbf{p} = -c\). Hence, \(\mathbf{\hat{p}}\) is not of Nash type.
-  
-  We now assume \(1 - p_4 > 0\). Observe that
+  We first eliminate the possibility \(\hat{p}_4 = 1\). If \(\hat{p}_4 = 1\),
+  then \(\mathbf{\hat{p}} = (1, \hat{p}_2, \hat{p}_3, 1)\). If against this
+  \(q\) plays AllD \(= (0, 0, 0, 0)\), then \(\hat{v}_6 = 1\). So the strategies
+  end up in the outcome \(CD|CD\) with  with \(s_\mathbf{q} = b\) and
+  \(s_\mathbf{p} = -c\). Hence, \(\mathbf{\hat{p}}\) is not of Nash type.
+
+  We now assume \(1 - \hat{p}_4 > 0\). Observe that
   
   \begin{align}\label{eq:nash_condition_last_round}
-    s_\mathbf{q} - (b - c) & = \mathbf{\tilde{v}} \times \mathbf{S}_{q} - (b - c) \sum_{i=1}^{16} \tilde{v}_{i}\\ \nonumber
-    & = (\tilde{v}_{2} + \tilde{v}_{6} + \tilde{v}_{10} + \tilde{v}_{14}) c + (c - b) (\tilde{v}_{4} + \tilde{v}_{8} + \tilde{v}_{12} + \tilde{v}_{16}) - b (\tilde{v}_{3} + \tilde{v}_{7} + \tilde{v}_{11} + \tilde{v}_{15}) .
+    s_\mathbf{q} - (b\!-\!c) & = \mathbf{\hat{v}} \times \mathbf{S}_{q} - (b\!-\!c) \sum_{i=1}^{16} \hat{v}_{i}\\ \nonumber
+    & = (\hat{v}_{2} + \hat{v}_{6} + \hat{v}_{10} + \hat{v}_{14}) c + (c - b) (\hat{v}_{4} + \hat{v}_{8} + \hat{v}_{12} + \hat{v}_{16}) - b (\hat{v}_{3} + \hat{v}_{7} + \hat{v}_{11} + \hat{v}_{15}) .
   \end{align}
   
-  Multiplying by the positive quantity \((1 - p_4)\) and collecting terms, we have
+  Multiplying by the positive quantity \((1 - \hat{p}_4)\) and collecting terms, we have
   
   \begin{align}
-    s_\mathbf{q} \geq (b - c) & \Rightarrow \\ \nonumber
-    (1 - p_4)(\tilde{v}_{6} + \tilde{v}_{14}) c & \geq  - c(1 - p_4)(\tilde{v}_{2} + \tilde{v}_{10}) + (1 - p_4)(-c + b) (\tilde{v}_{4} + \tilde{v}_{8} + \tilde{v}_{12} + \tilde{v}_{16}) + b (1 - p_4) (\tilde{v}_{3} + \tilde{v}_{7} + \tilde{v}_{11} + \tilde{v}_{15}) .
+    s_\mathbf{q} - (b\!-\!c)\geq 0 & \Rightarrow \\ \nonumber
+    (1 - \hat{p}_4)(\hat{v}_{6} + \hat{v}_{14}) c & \geq  - c(1 - \hat{p}_4)(\hat{v}_{2} + \hat{v}_{10}) + (1 - \hat{p}_4)(-c + b) (\hat{v}_{4} + \hat{v}_{8} + \hat{v}_{12} + \hat{v}_{16}) + b (1 - \hat{p}_4) (\hat{v}_{3} + \hat{v}_{7} + \hat{v}_{11} + \hat{v}_{15}) .
   \end{align}
   
   Since \(\tilde{p_1} = 0\), equation (\ref{eq:akin_extended}) implies
   
-  \[(1 - p_2)
-  (\tilde{v}_{10} + \tilde{v}_{2}) + (1 - p_3) (\tilde{v}_{13} + \tilde{v}_{5}) +  (1 - p_4) (\tilde{v}_{14} + \tilde{v}_6)
-  - p_2 (\tilde{v}_{12} + \tilde{v}_4) - p_3 (\tilde{v}_{15} + \tilde{v}_7) - p_4 (\tilde{v}_{16} + \tilde{v}_{8}) - \tilde{v}_{11} - \tilde{v}_{3} \geq 0,\]
+  \[(1 - \hat{p}_2)
+  (\hat{v}_{10} + \hat{v}_{2}) + (1 - \hat{p}_3) (\hat{v}_{13} + \hat{v}_{5}) +  (1 - \hat{p}_4) (\hat{v}_{14} + \hat{v}_6)
+  - \hat{p}_2 (\hat{v}_{12} + \hat{v}_4) - \hat{p}_3 (\hat{v}_{15} + \hat{v}_7) - \hat{p}_4 (\hat{v}_{16} + \hat{v}_{8}) - \hat{v}_{11} - \hat{v}_{3} = 0,\]
   and so,
-  \[(1 - p_4) (\tilde{v}_{14} + \tilde{v}_6) \geq - ((1 - p_2)
-  (\tilde{v}_{10} + \tilde{v}_{2}) + (1 - p_3) (\tilde{v}_{13} + \tilde{v}_{5}) 
-  - p_2 (\tilde{v}_{12} + \tilde{v}_4) - p_3 (\tilde{v}_{15} + \tilde{v}_7) - p_4 (\tilde{v}_{16} + \tilde{v}_{8}) - \tilde{v}_{11} - \tilde{v}_{3}).\]
+  \[(1 - \hat{p}_4) (\hat{v}_{14} + \hat{v}_6) = - ((1 - \hat{p}_2)
+  (\hat{v}_{10} + \hat{v}_{2}) + (1 - \hat{p}_3) (\hat{v}_{13} + \hat{v}_{5}) 
+  - \hat{p}_2 (\hat{v}_{12} + \hat{v}_4) - \hat{p}_3 (\hat{v}_{15} + \hat{v}_7) - \hat{p}_4 (\hat{v}_{16} + \hat{v}_{8}) - \hat{v}_{11} - \hat{v}_{3}).\]
   
-  Substituting (\ref{eq:akin_extended}) in the above inequality and collecting terms we get
+  Substituting this in the above inequality and collecting terms we get,
   
   \begin{align}
-    & A (\tilde{v}_{10} + \tilde{v}_{2}) + B (\tilde{v}_{12} + \tilde{v}_4) 
-    + C (\tilde{v}_{13} + \tilde{v}_5) + D (\tilde{v}_{15} + \tilde{v}_7) + E (\tilde{v}_{11} + \tilde{v}_{16} + \tilde{v}_3 + \tilde{v}_8) \geq  0 \label{eq:nash_condition_special_case} \\ \text{ with } \nonumber \\ 
-    & \qquad A = (c (p_2 - p_4)), \qquad B = (c (1 + p_2 - p_4) + b (-1 + p_4)), \qquad C = ( c (-1 + p_3)),  \nonumber \\
-    & \qquad  \qquad  \qquad \qquad \qquad D = (c p_3 + b (-1 + p_4)), \qquad E = c + 
-    b (-1 + p_4). \nonumber
+    & A (\hat{v}_{10} + \hat{v}_{2}) + B (\hat{v}_{12} + \hat{v}_4) 
+    + C (\hat{v}_{13} + \hat{v}_5) + D (\hat{v}_{15} + \hat{v}_7) + E (\hat{v}_{11} + \hat{v}_{16} + \hat{v}_3 + \hat{v}_8) \geq  0 \label{eq:nash_condition_special_case} \\ \text{ with } \nonumber \\ 
+    & \qquad A = c (\hat{p}_2 - \hat{p}_4), \qquad B = c (1 + \hat{p}_2 - \hat{p}_4) + b (-1 + \hat{p}_4), \qquad C = c (-1 + \hat{p}_3),  \nonumber \\
+    & \qquad  \qquad  \qquad \qquad \qquad D = c \hat{p}_3 + b (-1 + \hat{p}_4), \qquad E = c + 
+    b (-1 + \hat{p}_4). \nonumber
   \end{align}
   
   In the case where \(A, B, C, D\) and \(E\) are strictly smaller than 0, condition
-  (\ref{eq:nash_condition_special_case}) holds iff \(\tilde{v}_2, \tilde{v}_3,
-  \tilde{v}_4, \tilde{v}_5, \tilde{v}_7, \tilde{v}_8, \tilde{v}_{10},
-  \tilde{v}_{11}, \tilde{v}_{12}, \tilde{v}_{13}, \tilde{v}_{15}, \tilde{v}_{16} =
-  0\). This implies, that \((\tilde{v}_1 + \tilde{v}_9) (1 - p_1) + (\tilde{v}_6 +
-  \tilde{v}_{14}) (1 - p_4) = 0\). \(p_4\) can not be 1, thus \(\tilde{v}_6,
-  \tilde{v}_{14} = 0\). This means \((\tilde{v}_1 + \tilde{v}_9) = 1\), so both
+  (\ref{eq:nash_condition_special_case}) holds iff \(\hat{v}_2, \hat{v}_3,
+  \hat{v}_4, \hat{v}_5, \hat{v}_7, \hat{v}_8, \hat{v}_{10},
+  \hat{v}_{11}, \allowbreak \hat{v}_{12}, \hat{v}_{13}, \hat{v}_{15}, \hat{v}_{16} =
+  0\). This implies, that \((\hat{v}_1 + \hat{v}_9) (1 - \hat{p}_1) + (\hat{v}_6 +
+  \hat{v}_{14}) (1 - \hat{p}_4) = 0\). \(\hat{p}_4\) can not be 1, thus \(\hat{v}_6,
+  \hat{v}_{14} = 0\). This means \((\hat{v}_1 + \hat{v}_9) = 1\), so both
   players receive the reward payoff and \(\mathbf{\hat{p}}\) is good.
   
   For \(A, B, C, D, E \leq 0\) we derive the following conditions,
   
   \begin{align}\label{eq:nash_conditions}
-    p_4       & \leq 1 - \frac{c}{b} \\
-    p_2       & \leq p_4 \\
-    p_3       & \leq 1 \\
-    (1 + p_2) & \leq \frac{b}{c} - \frac{p_4 (b - c)}{c}
+    \hat{p}_4       & \leq 1 - \frac{c}{b} \\
+    \hat{p}_2       & \leq \hat{p}_4 \\
+    \hat{p}_3       & \leq 1 \\
+    1 + \hat{p}_2 & \leq \frac{b}{c} - \hat{p}_4 \cdot \frac{b\!-\!c}{c}
   \end{align}
   
   \end{proof}
@@ -474,8 +485,9 @@ explored but it's a bit of a mess.}
 
 We apply the same methodology for the case of memory-two strategies. This time
 we first eliminate the case of \(p_6 = 1\). If \(p_6 = 1\), then against AllD
-\(\{CD\}\) is a terminal set and thus a strategy with \(p_6 = 1\) can not be
-nash. The results
+\(v_6\) and so the long term outcome is that of \(CD|CD\).
+Hence a strategy with \(p_6 = 1\) can not be
+Nash. The results
 are summarised by Theorem~\ref{theorem:memory_two_nash_and_good}.
   
 \begin{theorem}\label{theorem:memory_two_nash_and_good}
@@ -483,50 +495,50 @@ are summarised by Theorem~\ref{theorem:memory_two_nash_and_good}.
   strategy}; that is \(p_1 = 1\). Strategy \(\mathbf{p}\) is \textbf{Nash} if the
   following inequalities hold:
   \begin{equation*}
-      p_2, p_{10}, p_{14}  \leq  p_{6}  \qquad  p_5, p_9, p_{13}  \leq 1 \qquad  \frac{c}{b} p_{11}, \frac{c}{b} p_{15}, \frac{c}{b} p_{3} \leq 1 - p_{6}
+      p_2 \leq  p_{6} \quad p_{10} \leq  p_{6} \quad p_{14} \leq  p_{6}  \quad  p_5 \leq 1 \quad p_9 \leq 1 \quad p_{13}  \leq 1
   \end{equation*}
   \begin{equation*}
-    1 + \frac{c}{b - c} p_{4}, 1 + \frac{c}{b - c} p_{12}, 1 + \frac{c}{b - c} p_{16} \geq p_6
+  \frac{c}{b} \cdot p_{11} \leq 1 - p_{6} \qquad \frac{c}{b} \cdot p_{15} \leq 1 - p_{6}  \qquad \frac{c}{b} \cdot p_{3} \leq 1 - p_{6}
+\end{equation*}
+  \begin{equation*}
+    1 + \frac{c}{b\!-\!c} \cdot p_{4}  \geq p_6 \qquad  1 + \frac{c}{b\!-\!c} \cdot p_{12}  \geq p_6  \qquad 1 + \frac{c}{b\!-\!c} \cdot p_{16} \geq p_6
   \end{equation*}
   \begin{equation*}
-        \frac{c}{b} p_{7} \leq 1 - p_6  \qquad \frac{c}{b -c} p_{8} \leq 1 - p_6
+        \frac{c}{b} \cdot p_{7} \leq 1 - p_6  \qquad \frac{c}{b -c} \cdot p_{8} \leq 1 - p_6
   \end{equation*}
 
-  The agreeable strategy \(\mathbf{p}\) is good if and only if the inequalities above are strict.
+  The agreeable strategy \(\mathbf{p}\) is good if the inequalities above are strict.
 \end{theorem}
 
 \nikoleta{The code for getting these conditions is in `src/mathemtica/Memory\_two.nb`.}
 
 \subsection{A numerical evaluation of good (\(n=2\)) reactive strategies}\label{section:good_strategies_numerically}
 
-We can also explore which agreeable strategies are nash numerically. We take a
-random point \(\hat{\mathbf{p}}\) in the space of two-bit reactive and we check
-if it's nash. Thus we check if condition \(\pi({\mathbf{q}}, \hat{\mathbf{p}})
-\leq (b - c)\) holds, against all pure memory-two strategies (\(\mathbf{q} \in
-\binom{\{0, 1\}}{16}\)). It is sufficient to check only against the pure
-memory-two strategies based on the result of~\citep{mcavoy:PRSA:2019} (see Lemma
-2.1). We repeat this step for a large number of randomly selected strategies,
-and we record if the strategy is nash or not, and against which the pure
-strategies the condition for Nash is not satisfied. The process is described by
-Algorithm~\ref{algorithm:numerical_nash}
+We can also explore which agreeable strategies are Nash numerically. We take a
+given agreeable strategy, for a given \(n\), and we check if condition
+\(\pi({\mathbf{q}}, \mathbf{p}) \leq (b\!-\!c)\) holds against all pure
+memory-\(n\) strategies (\(\mathbf{q} \in \{0, 1\}^{4 ^ n}\)). It is
+sufficient to check only against the pure memory-\(n\) strategies based on the
+result of~\citep{mcavoy:PRSA:2019} (see Lemma 2.1). We repeat this step for a
+large number of randomly selected strategies, and we record if the strategy is
+Nash or not, and against which the pure strategies the condition for Nash is not
+satisfied. The process is described by Algorithm~\ref{algorithm:numerical_nash}.
 
 \begin{algorithm}[H]
-  \SetAlgoLined \For{ $i <$ maximum number of points}{
-  \(\mathbf{\hat{p}}\) $\leftarrow$ random: $\{\emptyset \}\ \rightarrow R_{[0, 1]}^4$\;
-   \(p_1\)
-   $\leftarrow$ 1\;
-   $L(\mathbf{\hat{p}}) = \{\mathbf{q} \,|\, \pi({\mathbf{q}}, \hat{\mathbf{p}}) > (b - c) \text{ for } \mathbf{q}  \in \binom{\{0, 1\}}{16}\}$\;
-  \uIf{$ L(\mathbf{\hat{p}}) = \emptyset $}{
+  \SetKwInOut{Input}{input}
+  \Input{$\mathbf{p}, n$}
+   $L(\mathbf{p}) = \left\{\mathbf{q} \in \{0, 1\}^{4 ^ n} ~\big|~ \pi({\mathbf{q}}, \mathbf{p}) > b\!-\!c \right\}$\;
+  \uIf{$ L(\mathbf{p}) = \emptyset $}{
     isNash $\leftarrow$ True \;
   }
   \Else{
     isNash $\leftarrow$ False \;
   }
-  \Return (\(\mathbf{\hat{p}}\), isNash) \;}
+  \Return (\(\mathbf{p}\), isNash) \;
   \caption{Numerical evaluation for Nash.}\label{algorithm:numerical_nash}
 \end{algorithm}
 
-We run the above algorithm for 10,000 random strategies for
+We run the above algorithm for the case of \(n=2\) for 10,000 random two-bit strategies for
 parameter values (\(b=2 \text{ and } c=1\)). The results are shown in
 Figure~\ref{fig:two_bit_reactive_nash_results}.
 Figure~\ref{fig:two_bit_reactive_nash_results}\textbf{A)} is a visual
@@ -538,57 +550,59 @@ We can observe that there are several points that the algorithm classifies as
 Nash which are not explained by Theorem~\ref{theorem:two_bit_nash_and_good}.
 More specifically 70\% of the points that are Nash based on the numerical method
 are outside the proved area. This concludes that the
-inequalities~(\ref{eq:nash_conditions}) are sufficiency for a point to be Nash
+inequalities~(\ref{eq:nash_conditions}) are sufficient for a point to be Nash
 but not necessary.
 
-\citep{akin:EGADS:2016} showed that for a strategy to be a good Nash one does
-not have to check against all pure 16 memory-one strategies, but it is efficient
-to check against only two. These strategies are AllD and (0, 1, 1, 1). We can
-derive a similar result for the case of two-bit strategies, more specifically,
-we derive Lemma~\ref{lemma:nash_from_numerical_results}, and the illustration is
-given also in Figure~\ref{fig:two_bit_reactive_nash_results}\textbf{B)}.
-
-\begin{lemma}\label{lemma:nash_from_numerical_results}
-Let the two-bit reactive strategy \(\mathbf{\hat{p}} = (p_{1}, p_{2}, p_{3}, p_{4})\) be an \textbf{agreeable
-strategy}; that is \(p_1 = 1\). For \(\mathbf{\hat{p}}\) to be Nash the
-following inequalities must hold:
-
+Since a two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1},
+\hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only be a Nash equilibrium if {\it no} other strategy yields a larger payoff,  in particular neither \text{AllD} nor the \text{Alternator} strategy must yield a larger payoff, where
+AllD\(=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\) and
+Alternator\(=(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)\). 
+We conclude that an agreeable two-bit reactive strategy  \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only form a Nash equilibrium if 
 \begin{align*}
-  \pi(\text{AllD}, \mathbf{\hat{p}}) \leq (b - c) & \quad \text{ and } \quad \pi(\text{Alternator}, \mathbf{\hat{p}}) \leq (b - c) \Rightarrow \\
-  b p_4 \leq (b - c) & \quad \text{ and } \quad  \frac{b p_{2} + b p_{3} - c}{2} \leq (b - c) \Rightarrow \\
-  p_4 \leq 1 - \frac{c}{b} & \quad \text{ and } \quad  p_2 + p_3 \leq 1 + \frac{b - c}{c}
+\pi(\text{AllD}, \mathbf{\hat{p}}) \leq b\!-\!c & \quad \text{ and } \quad \pi(\text{Alternator}, \mathbf{\hat{p}}) \leq b\!-\!c,
+\end{align*}
+or equivalently, if
+\begin{align}\label{Eq:NashConditionDonationGame}
+  \hat{p}_4 \leq 1 - \frac{c}{b} & \quad \text{ and } \quad  \hat{p}_2 + \hat{p}_3 \leq 1 + \frac{b\!-\!c}{c}
+\end{align}
+In fact, a further numerical analysis suggests the following stronger result. 
+
+\begin{conjecture}\label{conjecture:nash_from_numerical_results}
+An agreeable two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) is of Nash type if and only if conditions \eqref{Eq:NashConditionDonationGame} hold. 
+\end{conjecture}
+
+In the following we explain the underlying numerical analysis in more detail. 
+\citet{akin:EGADS:2016} showed that for a strategy to be good one does
+not have to check against all pure 16 memory-one strategies. 
+Instead it is sufficient to check only two, AllD and (0, 1, 1, 1). We want
+to derive a similar result for the case of two-bit strategies. We do this as
+follows: let all the non Nash points be a
+set of elements \(U = \{ \mathbf{\hat{p}}^{(1)}, \mathbf{\hat{p}}^{(2)}, \dots,
+\mathbf{\hat{p}}^{(m)}\}\) which we refer to as the universe. For each element $\mathbf{\hat{p}}\in U$
+we create a set that contains all the points for which the Nash
+condition failed,
+ \begin{align*}
+ S(\mathbf{\hat{p}}) = \{\mathbf{q}\in\{0,1\}^{16} \ | \ \pi( \mathbf{q},  \mathbf{\hat{p}}) > b\!-\!c\}.
+ \end{align*}
+Let \(S\) be the collection of these sets,
+\begin{align*}
+  S = \big\{S(\mathbf{\hat{p}}) \ | \ \mathbf{\hat{p}}\in U \big\}.
 \end{align*}
 
-where AllD\(=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\) and
-Alternator\(=(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)\).
-\end{lemma}
-
-We derive the conclusion that these two strategies are efficient from the
-numerical results. Let all the non nash points be a set of elements \(U = \{
-\mathbf{\hat{p}}^{(1)}, \mathbf{\hat{p}}^{(2)}, \dots,
-\mathbf{\hat{p}}^{(m)}\}\) which we refer to as the universe. For each of the
-pure strategies we create a set that contains all the points for which the
-nash condition failed against the specific strategy. Let \(S\) be the
-collection of these sets such that,
-
-\begin{equation}
-  S = \{\{\mathbf{l} | \pi( \mathbf{q},  \mathbf{l}) > (b - c) \quad \forall \quad \mathbf{l} \in U\} \quad \forall \quad \mathbf{q} \in
-  \binom{\{0, 1\}}{16}\}.
-\end{equation}
-
 We want to identify the smallest sub-collection of \(S\) whose union equals the
-universe.
-
-For example, consider the universe \(Q = \{1, 2, 3, 4, 5\}\) and the
+universe. For example, consider the universe \(Q = \{1, 2, 3, 4, 5\}\) and the
 collection of sets \(S = \{ \{1, 2, 3\}, \{2, 4\}, \{3, 4\}, \{4, 5\} \}\).
-Clearly the union of \(S\) is \(Q\). However, we can cover all of the elements with
-the following, smaller number of sets is two: \(\{ \{1, 2, 3\}, \{4, 5\} \}\).
-This is a classical question in combinatorics, computer science,
+Clearly the union of \(S\) is \(Q\). However, we can cover all of the elements
+with the following, smaller number of sets is two: \(\{ \{1, 2, 3\}, \{4, 5\}
+\}\). This is a classical question in combinatorics, computer science,
 operations research, and complexity theory, and it is known as the set cover
 problem~\citep{beasley:EJOR:1987}.
 
 We identified that there are several pairs of strategies whose union is
-equal to \(U\). One of such pairs is AllD and Alternator.
+equal to \(U\). One of such pairs is AllD and Alternator. An
+illustration of this is
+given in Figure~\ref{fig:two_bit_reactive_nash_results}\textbf{B)}.
+
 
 \begin{figure}[!htbp]
      \centering
@@ -600,15 +614,15 @@ equal to \(U\). One of such pairs is AllD and Alternator.
      results.} The results from
      Algorithm~\ref{algorithm:numerical_nash}. We evaluated \(10 ^ 4\) points in
      the space. The numerical results have shown that there are two pure
-     strategies that constrain the nash space; these are AllD and Alternator.
+     strategies that constrain the Nash space; these are AllD and Alternator.
      The equations for the planes are obtained by solving
-     \(\pi(\mathbf{q}, \mathbf{\hat{p}}) = (b - c)\). The equations are
-     \(p_4 = 1 - \frac{c}{b} \text{ and }  p_3 = 1 + \frac{b - c}{c} - p_2\).
-      Parameters: \(c=1, b=2\). \textbf{C) Numerical nash for high benefit.} We repeat
+     \(\pi(\mathbf{q}, \mathbf{\hat{p}}) = (b\!-\!c)\). The equations are
+     \(\hat{p}_4 = 1 - \frac{c}{b} \text{ and }  \hat{p}_3 = 1 + \frac{b\!-\!c}{c} - \hat{p}_2\).
+      Parameters: \(c=1, b=2\). \textbf{C) Numerical Nash for high benefit.} We repeat
      Algorithm~\ref{algorithm:numerical_nash} for a higher value of benefit
      (\(b=7\)) for \(10 ^ 3\) random points. We can see that the strategies AllD
-     and Alternator still constrain the space of possible nash. Note that we do
-     not plot \(p_1\) for any of the above plots, since \(p_1=1\).}\label{fig:two_bit_reactive_nash_results}
+     and Alternator still constrain the space of possible Nash. Note that we do
+     not plot \(\hat{p}_1\) for any of the above plots, since \(\hat{p}_1=1\).}\label{fig:two_bit_reactive_nash_results}
 \end{figure}
 
 \nikoleta{The Python script to run the numerical evalution is
@@ -636,36 +650,37 @@ payoff matrix,
 
 where \(R\) is the reward for mutual cooperation, \(T\) is the temptation to
 defect, \(S\) is the payoff of the sucker and \(P\) is the punishment for mutual
-defection. We have also carried out the numerical evaluation of nash using the
-payoff matrix~(\ref{eq:pd_payoffs}). Though the results remain fairly similar,
-there is no pair of strategies that are efficient to check for nash this time.
-More specifically for a given set of values, \(R=0.6, T=1, S=0\) and \(P=0.1\),
-only a triple of strategies can verify that a random point is nash. These are
-AllD, Delayed Alternator ((0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)) and
-N8898 ((0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0)). N8898 is a strategy
-that cooperates if in the last round the outcome was \(CD\) except in the case
-where the second to last outcome was \(CD\). Then cooperate if cooperated in the
-last turn. The results are summarised in Lemma~\ref{lemma:nash_from_numerical_results_pd} and an illustrations of
-the results is shown in Figure~\ref{fig:numerical_results_prisoners_dilemma}.
+defection. We have also carried out the numerical evaluation of Nash using the
+payoff matrix~(\ref{eq:pd_payoffs}) with values \(R=0.6, T=1, S=0\) and
+\(P=0.1\).
 
-\begin{lemma}\label{lemma:nash_from_numerical_results_pd}
-  Let the two-bit reactive strategy \(\mathbf{\hat{p}} = (p_{1}, p_{2}, p_{3}, p_{4})\) be an \textbf{agreeable
-  strategy}; that is \(p_1 = 1\). For \(\mathbf{\hat{p}}\) to be Nash the
-  following inequalities must hold:
-  
-  \begin{align*}
-    \pi(\text{AllD}, \mathbf{\hat{p}}) \leq R & \text{ and } & \pi(\text{Delayed Alternator}, \mathbf{\hat{p}}) \leq R & \text{ and } & \pi(\text{N8898}, \mathbf{\hat{p}}) \leq R \Rightarrow \\
-    P (1 - p_{4}) + p_{4}  \leq R & \text{ and }  & - \frac{P (p_{2} - 1) - R (p_{3} - p_{4}) - p_{2} - 1}{4} \leq R  & \text{ and } & \frac{R (p_{2} + p_{3}) + 1}{3} \leq R \Rightarrow \\
-    p_4 \leq \frac{P}{(P - 1)} & \text{ and } & (p_3 + p_4) \geq \frac{P  (p_2 - 1) + 4  R - p_2 - 1}{R} & \text{ and }  &  p_2 + p_3 \leq 3 - \frac{1}{R}
-  \end{align*}
-  
-  where AllD\(=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\),
-  Delayed Alternator = \((0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)\) and
-  N8898 = \((0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0)\).
-  \end{lemma}
+Since a two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1},
+\hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only be a Nash equilibrium if {\it
+no} other strategy yields a larger payoff, in particular neither \text{AllD},
+nor \text{Delayed Alternator}, nor N8898 strategy must yield a larger payoff, where AllD\(=(0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\), Delayed Alternator\(=(0, 0, 0,
+0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1)\) and N8898\(=(0, 0, 1, 0, 0, 0, 1, 0, 1,
+1, 0, 0, 0, 0, 1, 0)\).
 
-  To derive to this triple we consider the set cover problem approach, similar
-  to Lemma~\ref{lemma:nash_from_numerical_results}.
+We conclude that an agreeable two-bit reactive strategy  \(\mathbf{\hat{p}} =
+(\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) can only form a Nash
+equilibrium if
+
+\begin{align*}
+\pi(\text{AllD}, \mathbf{\hat{p}}) \leq R & & \pi(\text{Delayed Alternator}, \mathbf{\hat{p}}) \leq R & & \pi(\text{N8898}, \mathbf{\hat{p}}) \leq R.
+\end{align*}
+
+Assuming without loss of generality that $T\!=\!1$ and $S\!=\!0$, these conditions are equivalent to
+
+\begin{align}\label{Eq:NashConditionDonationGamePD}
+  \hat{p}_4 \leq \frac{P}{P - 1} & & \hat{p}_3 + \hat{p}_4 \geq \frac{P \cdot (\hat{p}_2 - 1) + 4 \cdot R - \hat{p}_2 - 1}{R} &  &  \hat{p}_2 + \hat{p}_3 \leq 3 - \frac{1}{R}.
+\end{align}
+
+In fact, a further numerical analysis (Figure~\ref{fig:numerical_results_prisoners_dilemma}) suggests the following stronger result. 
+
+\begin{conjecture}\label{conjecture:nash_from_numerical_results_pd}
+For a general repeated prisoner's dilemma with payoffs $1=T>R>P>S=0$ and $2R>T\!+\!S=1$, an agreeable two-bit reactive strategy \(\mathbf{\hat{p}} = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}, \hat{p}_{4})\) is of Nash type if and only if conditions \eqref{Eq:NashConditionDonationGamePD} hold.
+\end{conjecture}
 
 \begin{figure}[!htbp]
   \centering
@@ -674,7 +689,7 @@ the results is shown in Figure~\ref{fig:numerical_results_prisoners_dilemma}.
   We performed Algorithm~\ref{algorithm:numerical_nash} for \(10 ^ 3\) random
   points. Now the payoffs are given by matrix~(\ref{eq:pd_payoffs})
   with \(R=0.6, T=1, S=0\) and \(P=0.1\). There are several triples of
-  strategies that can constrain the nash space, such a triple is AllD, Delayed
+  strategies that can constrain the Nash space, such a triple is AllD, Delayed
   Alternator and N8898. To derive this triple we followed the same approach as
   in section~\ref{section:good_strategies_numerically}.}
   \label{fig:numerical_results_prisoners_dilemma}
@@ -684,7 +699,7 @@ the results is shown in Figure~\ref{fig:numerical_results_prisoners_dilemma}.
 `src/numerical\_equilibria\_n\_bit.py'. The analysis of the results and the code
 for the plot are in the notebook `3.3 A numerical evaluation of good strategies
 (n = 2) for the prisoner's dilemma'. There is mathematica file
-`src/mathematica/prisoners\_dilemma', to get the conditions for nash based on
+`src/mathematica/prisoners\_dilemma', to get the conditions for Nash based on
 the Akin approach.}
 
 \subsection{A numerical evaluation of good memory-two strategies}\label{section:good_strategies_numerically_mem_two}
@@ -695,15 +710,15 @@ and \(c=1\). The numerical results show that in the case of memory-two strategie
 Theorem~\ref{theorem:memory_two_nash_and_good}, is also sufficient but not
 necessary. We hypothesise that even though our methodology can be applied to
 greater memory sizes, the space that the derived conditions will explain will
-reflect a smaller and smaller portion of the feasible nash space.
+reflect a smaller and smaller portion of the feasible Nash space.
 
 We have also tried to obtain the smallest possible subset of strategies that can
-constrain the space of nash, similar to the donation game (AllD and Alternator)
+constrain the space of Nash, similar to the donation game (AllD and Alternator)
 and the prisoner's dilemma (AllD, Delayed Alternator and N8898) for two-bit
 reactive strategies. We can show that a pair of such strategies does not exist.
 Excluding AllD, there are a total of 35,766 strategies that their sets'
 combination could potentially  be the smallest sub-collection necessary to
-explain nash. However, this is a problem that we can not solve explicitly.
+explain Nash. However, this is a problem that we can not solve explicitly.
 Instead we have to consider an approximate solution using a greedy algorithm.
 
 Initially, we remove all the elements in the elements from the universe that are
@@ -734,7 +749,7 @@ AllD that we initially excluded.
 \end{tabular}}
 \caption{\textbf{Results of greedy algorithm.} The greedy algorithm was used to
 find the smallest possible subset of pure memory-two strategies that can
-constrain the space of nash in the case of memory-two strategies. Based on the
+constrain the space of Nash in the case of memory-two strategies. Based on the
 approximate solution, the smallest subset is of size
 11.}\label{table:greedy_algorithm}
 \end{table}
@@ -743,7 +758,7 @@ approximate solution, the smallest subset is of size
 and the analysis of the results is in the
 notebook `nbs/3.4 A numerical evaluation of good memory-two strategies'.
 The notebook also contains the analysis of the numerical results for this case.
-The script for the numerical nash is `src/numerical\_equilibria\_memory\_n.py'.}
+The script for the numerical Nash is `src/numerical\_equilibria\_memory\_n.py'.}
 
 \subsection{Pure \(n-\)bit Reactive Strategies with Errors}\label{section:pure_strategies}
 
@@ -761,7 +776,7 @@ Martinez-Vaquero method, and a description of the method can be found in
 Appendix~\ref{section:matrinez_vaquero_method}. Note that one of the assumptions
 of the method is that \(\epsilon \neq 0\).
 
-We apply the Martinez-Vaquero method and identify all the pure strict nash
+We apply the Martinez-Vaquero method and identify all the pure strict Nash
 equilibria in the case where players are allowed to choose from the sets of (i)
 one-bit (ii) two-bits and (ii) three-bits reactive strategies for a small error
 rate of \(\epsilon=0.01\). The results are given in
@@ -789,12 +804,12 @@ Table~\ref{table:pure_nash_results}.
 \caption{\textbf{Pure one, two and three bit(s) reactive strategies.} The
 Martinez-Vaquero method allows us to numerically evaluate if pure strategies are evolutionary stable given that
 errors can occur. We performed the algorithm for a small percentage of error
-\(\epsilon=0.01\). The table shows all pure reactive strategies that are strict nash,
+\(\epsilon=0.01\). The table shows all pure reactive strategies that are strict Nash,
 the \(\frac{b}{c}\) ratio for which they are Nash and for each strategy the cooperating rate
 against itself. Overall, there are only a few reactive strategies that
-are nash. In the case of two-bit reactive strategies there are only three. In~\cite{hilbe:PNAS:2017}
+are Nash. In the case of two-bit reactive strategies there are only three. In~\cite{hilbe:PNAS:2017}
 The method is applied to memory-two strategies and they show that there are 27
-strategies that are nash. This includes cooperative strategies (\(\rho=1\)).
+strategies that are Nash. This includes cooperative strategies (\(\rho=1\)).
 In the case of reactive strategies, regardless of the memory size there are no
 cooperative strategies that sustain an equilibrium. For all strategies in this table
 \(\rho \leq 0.255\). 0.255 corresponds to a quarter of cooperation.
@@ -944,8 +959,8 @@ very similar results. Though there is a subset of memory-two strategies that we
 can prove are Nash, the numerical simulations suggest that the conditions are
 only sufficient~\ref{section:good_strategies_numerically_mem_two}.
 
-In~\citep{akin:EGADS:2016} it is also proven that for a strategy to be nash it
-is enough to check that the strategy is nash against two pure memory-one
+In~\citep{akin:EGADS:2016} it is also proven that for a strategy to be Nash it
+is enough to check that the strategy is Nash against two pure memory-one
 co-players. From the numerical simulations we have obtained a similar result for
 the case of two-bit reactive
 strategies~\ref{section:good_strategies_numerically}
@@ -1053,14 +1068,12 @@ for the memory-two co-player, such that its score remains the same.
 
 Note that in sections~\ref{section:good_strategies_numerically}-
 \ref{section:good_strategies_numerically_pd} when we explore whether a random
-two-bit reactive strategy is nash we check against all pure memory-two
+two-bit reactive strategy is Nash we check against all pure memory-two
 strategies, not pure two-bit reactive strategies. In fact, it does not
 suffice to check only pure two-bit reactive strategies.
 That is because a \(n-\)bit reactive strategy can not guarantee that it will
 find a reactive representation for a memory-\(n\) strategy. We refer to this
 as the Anti Press and Dyson result.
-
-\nikoleta{I think that this is what we are trying to say.}
 
 For example, consider the case of \(n=1\). Let the reactive strategy
 \(\mathbf{p} = (0, 0, 0, 0)\) and the memory-one co-player \(\mathbf{q} = (0, 0,
