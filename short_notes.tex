@@ -42,6 +42,27 @@
 
 \maketitle
 
+We consider the infinitely repeated prisoner's dilemmas with two players,
+denoted as \(p\) and \(q\). At each turn, players \(p\) and \(q\) can choose to
+cooperate (\(C\)) or to defect (\(D\)). A player who cooperates pays a cost \(c
+> 0\) to provide a benefit \(b > c\) for the co-player. A cooperator either gets
+\(b - c\) (if the co-player also cooperates) or \(-c\) (if the co-player
+defects). Respectively, a defector either gets \(b\) (if the co-player
+cooperates) or 0 (if the co-player defects). A strategy for player \(p\) is a
+mapping from the entire history of play to an action of the prisoner's dilemma.
+There are infinitely many strategies that \(p\) can choose from, however, it is
+commonly assumed that the players' strategies depend on the last \(n\) turns
+only. These strategies are called memory-\(n\) strategies.
+
+\citep{akin:EGADS:2016} explores memory-1 strategies, and more specifically,
+characterizes a subset of memory-one strategies called good.
+
+The aim of this work is extend the result of~\citep{akin:EGADS:2016} to the case
+
+
+For the iterated prisoner's dilemma
+there are infinitely many strategies,
+
 The aim of this work is to characterize all good Nash reactive strategies, with
 memory two (\(n=2\)), in the infinitely repeated prisoner's dilemma. We refer to
 these strategies as two-bit reactive strategies.
@@ -69,26 +90,26 @@ and \(D\), and so on. For simplicity, we denote a two-bit reactive strategy for
 The play between a pair of two-bit reactive strategies can be described by a
 Markov process with the transition matrix \(M\).
 
-\resizebox{\linewidth}{!}{%
-$
-M = \left(\begin{array}{cccccccccccccccc}
- \hat{p}_1 \hat{q}_1 & \hat{p}_1 (1-\hat{q}_1) & (1-\hat{p}_1) \hat{q}_1 & (1-\hat{p}_1) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_1 & \hat{p}_2 (1-\hat{q}_1) & (1-\hat{p}_2) \hat{q}_1 & (1-\hat{p}_2) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_1 \hat{q}_2 & \hat{p}_1 (1-\hat{q}_2) & (1-\hat{p}_1) \hat{q}_2 & (1-\hat{p}_1) (1-\hat{q}_2) & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_2 & \hat{p}_2 (1-\hat{q}_2) & (1-\hat{p}_2) \hat{q}_2 & (1-\hat{p}_2) (1-\hat{q}_2) \\
- \hat{p}_3 \hat{q}_1 & \hat{p}_3 (1-\hat{q}_1) & (1-\hat{p}_3) \hat{q}_1 & (1-\hat{p}_3) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_1 & \hat{p}_4 (1-\hat{q}_1) & (1-\hat{p}_4) \hat{q}_1 & (1-\hat{p}_4) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_3 \hat{q}_2 & \hat{p}_3 (1-\hat{q}_2) & (1-\hat{p}_3) \hat{q}_2 & (1-\hat{p}_3) (1-\hat{q}_2) & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_2 & \hat{p}_4 (1-\hat{q}_2) & (1-\hat{p}_4) \hat{q}_2 & (1-\hat{p}_4) (1-\hat{q}_2) \\
- \hat{p}_1 \hat{q}_3 & \hat{p}_1 (1-\hat{q}_3) & (1-\hat{p}_1) \hat{q}_3 & (1-\hat{p}_1) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_3 & \hat{p}_2 (1-\hat{q}_3) & (1-\hat{p}_2) \hat{q}_3 & (1-\hat{p}_2) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_1 \hat{q}_4 & \hat{p}_1 (1-\hat{q}_4) & (1-\hat{p}_1) \hat{q}_4 & (1-\hat{p}_1) (1-\hat{q}_4) & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_4 & \hat{p}_2 (1-\hat{q}_4) & (1-\hat{p}_2) \hat{q}_4 & (1-\hat{p}_2) (1-\hat{q}_4) \\
- \hat{p}_3 \hat{q}_3 & \hat{p}_3 (1-\hat{q}_3) & (1-\hat{p}_3) \hat{q}_3 & (1-\hat{p}_3) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_3 & \hat{p}_4 (1-\hat{q}_3) & (1-\hat{p}_4) \hat{q}_3 & (1-\hat{p}_4) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_3 \hat{q}_4 & \hat{p}_3 (1-\hat{q}_4) & (1-\hat{p}_3) \hat{q}_4 & (1-\hat{p}_3) (1-\hat{q}_4) & 0 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_4 & \hat{p}_4 (1-\hat{q}_4) & (1-\hat{p}_4) \hat{q}_4 & (1-\hat{p}_4) (1-\hat{q}_4) \\
-\end{array}\right).$}
+% \resizebox{\linewidth}{!}{%
+% $
+% M = \left(\begin{array}{cccccccccccccccc}
+%  \hat{p}_1 \hat{q}_1 & \hat{p}_1 (1-\hat{q}_1) & (1-\hat{p}_1) \hat{q}_1 & (1-\hat{p}_1) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_1 & \hat{p}_2 (1-\hat{q}_1) & (1-\hat{p}_2) \hat{q}_1 & (1-\hat{p}_2) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_1 \hat{q}_2 & \hat{p}_1 (1-\hat{q}_2) & (1-\hat{p}_1) \hat{q}_2 & (1-\hat{p}_1) (1-\hat{q}_2) & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_2 & \hat{p}_2 (1-\hat{q}_2) & (1-\hat{p}_2) \hat{q}_2 & (1-\hat{p}_2) (1-\hat{q}_2) \\
+%  \hat{p}_3 \hat{q}_1 & \hat{p}_3 (1-\hat{q}_1) & (1-\hat{p}_3) \hat{q}_1 & (1-\hat{p}_3) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_1 & \hat{p}_4 (1-\hat{q}_1) & (1-\hat{p}_4) \hat{q}_1 & (1-\hat{p}_4) (1-\hat{q}_1) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_3 \hat{q}_2 & \hat{p}_3 (1-\hat{q}_2) & (1-\hat{p}_3) \hat{q}_2 & (1-\hat{p}_3) (1-\hat{q}_2) & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_2 & \hat{p}_4 (1-\hat{q}_2) & (1-\hat{p}_4) \hat{q}_2 & (1-\hat{p}_4) (1-\hat{q}_2) \\
+%  \hat{p}_1 \hat{q}_3 & \hat{p}_1 (1-\hat{q}_3) & (1-\hat{p}_1) \hat{q}_3 & (1-\hat{p}_1) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_3 & \hat{p}_2 (1-\hat{q}_3) & (1-\hat{p}_2) \hat{q}_3 & (1-\hat{p}_2) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_1 \hat{q}_4 & \hat{p}_1 (1-\hat{q}_4) & (1-\hat{p}_1) \hat{q}_4 & (1-\hat{p}_1) (1-\hat{q}_4) & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_2 \hat{q}_4 & \hat{p}_2 (1-\hat{q}_4) & (1-\hat{p}_2) \hat{q}_4 & (1-\hat{p}_2) (1-\hat{q}_4) \\
+%  \hat{p}_3 \hat{q}_3 & \hat{p}_3 (1-\hat{q}_3) & (1-\hat{p}_3) \hat{q}_3 & (1-\hat{p}_3) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_3 & \hat{p}_4 (1-\hat{q}_3) & (1-\hat{p}_4) \hat{q}_3 & (1-\hat{p}_4) (1-\hat{q}_3) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_3 \hat{q}_4 & \hat{p}_3 (1-\hat{q}_4) & (1-\hat{p}_3) \hat{q}_4 & (1-\hat{p}_3) (1-\hat{q}_4) & 0 & 0 & 0 & 0 \\
+%  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \hat{p}_4 \hat{q}_4 & \hat{p}_4 (1-\hat{q}_4) & (1-\hat{p}_4) \hat{q}_4 & (1-\hat{p}_4) (1-\hat{q}_4) \\
+% \end{array}\right).$}
 
 The invariant distribution \(\mathbf{v}\) is the solution to
 \(\mathbf{v} M = \mathbf{v}\). We define expected payoffs,
