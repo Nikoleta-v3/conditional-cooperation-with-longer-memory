@@ -56,17 +56,17 @@ strategies that \(p\) can choose from, however, it is commonly assumed that the
 players' strategies depend on the last \(n\) turns only. These strategies are
 called memory-\(n\) strategies. A subset of memory-\(n\) strategies are
 \(n-\)bit reactive strategies. These are strategies that consider the last \(n\)
-action(s) of the co-player.
+action(s) of the co-player, opposed to considering their own actions as well.
 
 Here we focus on two-bit reactive strategies (\(n=2\)).
 There are 16 possible outcomes, which we denote as \(E_p
 E_q | F_p F_q\) (\(E_p, E_q, F_p, F_q \in \{C, D\}\)) where the outcome of the
 previous round is \(E_p E_q\) and the outcome of the current round is \(F_p
 F_q\). With the outcomes listed in order as \(CC|CC, CC|CD, \dots, DD|DC,
-DD|DD\)  a two-bit reactive strategy for \(p\) is a vector \(\mathbf{p} = (p_1,
+DD|DD\) a two-bit reactive strategy for \(p\) is a vector \(\mathbf{p} = (p_1,
 p_2, p_1, p_2, p_3, p_4, p_3, p_4, p_1, p_2, p_1, p_2, p_3, p_4, \allowbreak
-p_3, p_4)\) where \(p_1\) is the probability cooperating when the last two
-actions of the co-player were \(C\) and \(C\), \(p_2\) is the probability
+p_3, p_4)\) where \(p_1\) is the probability of cooperating when the last two
+actions of the co-player were \(C\) and \(C\), \(p_2\) is the probability of
 cooperating when the last two actions of the co-player were \(C\) and \(D\), and
 so on. For simplicity, we denote a two-bit reactive strategy for \(p\) as
 \(\mathbf{\hat{p}} = (\hat{p}_1, \hat{p}_2, \hat{p}_3, \hat{p}_4)\).
@@ -86,7 +86,7 @@ so on. For simplicity, we denote a two-bit reactive strategy for \(p\) as
 
 Let \(\mathbf{v}\) be a probability distribution on the set of outcomes.
 \(\mathbf{v}\) is a non-negative vector with unit sum indexed by the sixteen
-states and it gives the probabilities that the players are in any
+outcomes/states and it gives the probabilities that the players are in any
 of the states in the long run of the game. For example, \(v_3\) is the
 probability that \(p\) played \(CD\) in the last two turns and \(q\) played
 \(CC\). With respect to \(\mathbf{v}\) we can define the expected payoffs for
@@ -158,7 +158,7 @@ against it the expected payoffs satisfy:
 \end{equation}
 
 and the strategy is of \textbf{Nash type} if (i) it is agreeable and (ii)
-if the expected payoffs against any general strategy used by \(q\) satisfy:
+if for any general strategy chosen by \(q\) against it the expected payoffs satisfy:
 
 \vspace{-.5cm}
 
@@ -185,14 +185,14 @@ following:
     
     \begin{proof}
     We first eliminate the possibility \(\hat{p}_4 = 1\). If \(\hat{p}_4 = 1\),
-    then \(\mathbf{\hat{p}} = (1, \hat{p}_2, \hat{p}_3, 1)\). If against this
-    \(q\) plays AllD \(= (0, 0, 0, 0)\), then \(v_6 = 1\). For \(v_6 = v_{CD|CD} = 1\), \(s_\mathbf{q} = b\) and
+    then \(\mathbf{\hat{p}} = (1, \hat{p}_2, \hat{p}_3, 1)\). If \(q\) plays AllD  \(= (0, 0, 0, 0)\) against \(\mathbf{\hat{p}}\),
+    then \(v_6 = v_{CD|CD} = 1\). For \(v_6 = 1\), \(s_\mathbf{q} = b\) and
     \(s_\mathbf{p} = -c\), and hence, \(\mathbf{\hat{p}}\) is not of Nash type. We now assume \(1 - \hat{p}_4 > 0\). Observe that,
 
     \vspace{-1cm}
 
     \begin{align}\label{eq:nash_condition_last_round}
-    s_\mathbf{q} - (b\!-\!c) & = \mathbf{v} \times \mathbf{S}_{q} - (b\!-\!c) \sum_{i=1}^{16} v_{i}\\ \nonumber
+    s_\mathbf{q} - (b\!-\!c) & = \mathbf{v} \cdot \mathbf{S}_{q} - (b\!-\!c) \sum_{i=1}^{16} v_{i}\\ \nonumber
     & = (v_{2} + v_{6} + v_{10} + v_{14}) c + (c - b) (v_{4} + v_{8} + v_{12} + v_{16}) - b (v_{3} + v_{7} + v_{11} + v_{15}) .
     \end{align}
     
@@ -240,13 +240,13 @@ following:
     0\). This implies, that \((v_1 + v_9) (1 - \hat{p}_1) + (v_6 +
     v_{14}) (1 - \hat{p}_4) = 0\). \(\hat{p}_4\) can not be 1, thus \(v_6,
     v_{14} = 0\). This means \((v_1 + v_9) = 1\), so both
-    players receive the reward payoff and \(\mathbf{\hat{p}}\) is good.
+    players receive the reward payoff (\(b - c\)) and \(\mathbf{\hat{p}}\) is good.
 \end{proof}
 
 \subsection{Open Question}
 
 A numerical exploration of Nash strategies in the space of two-bit reactive
-strategies had us conclude that the inequalities~(\ref{eq:nash_conditions}) are
+strategies made us conclude that the inequalities~(\ref{eq:nash_conditions}) are
 sufficient for a point to be Nash but not necessary. The numerical process and
 the results are summarised in Figure~\ref{fig:two_bit_reactive_nash_results}.
 
