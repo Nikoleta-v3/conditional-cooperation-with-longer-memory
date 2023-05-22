@@ -72,9 +72,9 @@ Analogously, we define $H^q$ as the set of $n$-histories $h^q$ of player~$q$.
 A pair $h\!=\!(h^p,h^q)$ is called an {\it $n$-history of the game}. 
 We use $H=H^p\times H^q$ to denote the space of all such histories. 
 This set contains $|H|=2^{2n}$ elements. 
-A {\it memory-$n$} strategy is a vector $\mathbf{p}=(p_h)_{h\in H}\in[0,1]^{2n}$. 
+A {\it memory-$n$} strategy is a vector $\mathbf{p}=(p_h)_{h\in H}\in[0,1]^{2^{2n}}$. 
 Each entry $p_h$ corresponds to the player's cooperation probability in the next round, depending on the outcome of the previous $n$ rounds. 
-One special case of such a memory-$n$ strategy is the  {\it round-$k$-repeat strategy}. 
+One special case of such a memory-$n$ strategy is the  {\it round-$k$-repeat strategy} for some $1\!\le\!k\!\le\!n$. 
 Player $p$ uses a {\it round-$k$-repeat strategy} $\mathbf{p}^{k-\text{Rep}}$ if in any given round, the player chooses the same action as $k$ rounds ago. That is, if the game's $n$-history is such that $a^p_{-k}\!=\!C$, then $p^{k-\text{Rep}}_h\!=\!1$; otherwise $p^{k-\text{Rep}}_h\!=\!0$.
 
 
@@ -112,13 +112,13 @@ We say $h\!=\!(h^p,h^q)$ is the mutual cooperation history if $h^p\!=\!h^q\!=\!(
 A memory-$n$ strategy $\mathbf{p}$ is called agreeable if it prescribes to cooperate with probability 1 after the mutual cooperation history. 
 The strategy $\mathbf{p}$ is called good if it is agreeable and if expected payoffs satisfy
 \begin{equation} \label{Eq:good}
-    s_{\mathbf{q}} \geq b\!-\!c \qquad \Rightarrow \qquad s_{\mathbf{q}} = s_{\mathbf{p}} =  b\!-\!c,
+    s_{\mathbf{q}} \geq b\!-\!c \qquad \Rightarrow \qquad s_{\mathbf{q}} = s_{\mathbf{p}} =  b\!-\!c.
 \end{equation}
 We wish to characterise all good memory-$n$ strategies of the repeated donation game. To start with, in the following we begin with the simplest non-trivial case.\\
 
 \noindent
 {\bf The case of 2-bit reactive strategies.} 
-We say a memory-$n$ strategy $\mathbf{p}$ is {\it $n$-bit reactive} if it only depends on the co-player's $n$-history (independent of the focal player's own actions during the past $n$ rounds). Formally, $\mathbf{p}\!=\!(p_h)_{h \in H}$ is $n$-bit reactive if for any two histories $h=(h^p,h^q)$ and $\tilde{h}=(\tilde{h}^p,\tilde{h}^q)$ with $h^q=\tilde{h}^q$ it follows that $p_h = p_{\tilde{h}}$. In particular, for $n\!=\!2$ such a player uses at most 4 different cooperation probabilities, depending on the co-player's actions during the last 2 rounds ($CC, CD, DC, DD$, where the first letter refers to the second-to-last round, and the second letter refers to the last round). Slightly abusing notation, we write 2-bit reactive strategies as 
+We say a memory-$n$ strategy $\mathbf{p}$ is {\it $n$-bit reactive} if it only depends on the co-player's $n$-history (independent of the focal player's own actions during the past $n$ rounds). Formally, $\mathbf{p}\!=\!(p_h)_{h \in H}$ is $n$-bit reactive if for any two histories $h=(h^p,h^q)$ and $\tilde{h}=(\tilde{h}^p,\tilde{h}^q)$ with $h^q=\tilde{h}^q$ it follows that $p_h = p_{\tilde{h}}$. In particular, for $n\!=\!2$ such a player uses at most 4 different cooperation probabilities, depending on the co-player's actions during the last 2 rounds ($CC, CD, DC, DD$, where the first letter refers to the co-player's action in the second-to-last round, and the second letter refers to the last round). Slightly abusing notation, we write 2-bit reactive strategies as 
 \begin{equation}
 \mathbf{\hat{p}} = (\hat{p}_{CC}, \hat{p}_{CD}, \hat{p}_{DC}, \hat{p}_{DD}). 
 \end{equation}
@@ -140,16 +140,18 @@ The direction  ({\it ii}) $\Rightarrow$ ({\it i}) we could not prove yet. Howeve
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=.5\textwidth]{static/for_akin.pdf}
+  \includegraphics[width=.45\textwidth]{static/for_akin_no_proved_area.pdf}
+  \includegraphics[width=.5\textwidth]{static/for_akin_non_nash.pdf}
   \caption{We generated $10^4$ agreeable 2-bit strategies of the form $\mathbf{\hat{p}}=(1,\hat{p}_{CD},\hat{p}_{DC},\hat{p}_{DD})$ uniformly at random. 
   For each such $\mathbf{\hat{p}}$ we numerically checked whether or not the strategy is a Nash equilibrium. 
   To this end, by an argument similar to the one in \citep{press:PNAS:2012} and  \citep{mcavoy:PRSA:2019}, it is sufficient to check all deviations towards pure memory-2 strategies $\mathbf{q}$.
-  If a strategy $\mathbf{\hat{p}}$ was numerically found to be a Nash equilibrium, we depict it as a blue dot; otherwise we do not depict it. 
+  If a strategy $\mathbf{\hat{p}}$ was numerically found to be a Nash equilibrium, we depict it as a blue dot in the left panel.
+  Otherwise, if it was found not to be a Nash equilibrium, we depict it as a blue dot in the right panel.  
   Points below the green plane satisfy $\hat{p}_{DD} \leq 1\!-\! \frac{c}{b}$. 
   Points left to the orange plane satisfy $\hat{p}_{CD} + \hat{p}_{DC} < 2-\frac{c}{b}$.
-  We find that all Nash equilibria satisfy these two conditions. 
-  Conversely, our numerical results suggest that all $\mathbf{\hat{p}}$ that satisfy these two conditions are Nash equilibria.
-  [The black dashed lines correspond to some analytical result that we would be happy to discuss in person.] Parameters: $b\!=\!2$, $c\!=\!1$.
+  We find that all Nash equilibria satisfy these two conditions (left panel). 
+  Conversely, our numerical results suggest that all $\mathbf{\hat{p}}$ that are not Nash equilibria fail at least one of these conditions (right panel).
+  Parameters: $b\!=\!2$, $c\!=\!1$.
   }
 \end{figure}
 
