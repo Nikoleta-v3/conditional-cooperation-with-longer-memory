@@ -43,7 +43,7 @@ def calculate_M(player, opponent, analytical):
             ]
         )
     else:
-        return sym.Matrix(
+        return np.array(
             [
                 [
                     player[0] * opponent[0],
