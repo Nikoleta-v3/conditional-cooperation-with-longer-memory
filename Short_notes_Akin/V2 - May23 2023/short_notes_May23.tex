@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\usepackage{minitoc}
+\usepackage{tabularx,setspace}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{blkarray}
+\usepackage{amsthm, amssymb, amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage[ruled,vlined]{algorithm2e}
+
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\usepackage[margin=2.5cm, includefoot, footskip=0pt]{geometry}
+%\pagestyle{plain}
+%\setlength{\parindent}{0em}
+%\setlength{\parskip}{1em}
+
+\renewcommand{\baselinestretch}{1}
+
+\newcommand{\nikoleta}[1]{\textcolor{teal}{{\bf NG:} #1}}
+
+\newtheorem{proposition}{Proposition}
+
+\title{\vspace{-2cm} Some further observations on good strategies with $n$-bit memory\\[-1.2cm]}
+%\author{\empty}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\onehalfspacing
+
+\noindent
+
+\noindent
+{\bf Reminder of the notation.} We assume the players' decisions only depend on the outcome of the previous $n$~rounds. 
+An {\it $n$-history for player $p$} is a string $h^p=(a^p_{-1},\ldots,a^p_{-n})\!\in\!\{C,D\}^n$. 
+An entry $a^p_{-k}$ corresponds to player $p$'s action $k$ rounds ago. 
+Let $H^p$ denote the space of all $n$-histories of player~$p$. 
+Analogously, we define $H^q$ as the set of $n$-histories $h^q$ of player~$q$. 
+A pair $h\!=\!(h^p,h^q)$ is called an {\it $n$-history of the game}. 
+The space of all such histories is $H=H^p\times H^q$. 
+A {\it memory-$n$} strategy is a vector $\mathbf{p}=(p_h)_{h\in H}$. 
+One special case of such a memory-$n$ strategy is the  {\it round-$k$-repeat strategy} for some $1\!\le\!k\!\le\!n$. 
+Player $p$ uses a {\it round-$k$-repeat strategy} $\mathbf{p}^{k-\text{Rep}}$ if in any given round, the player chooses the same action as $k$ rounds ago. That is, if the game's $n$-history is such that $a^p_{-k}\!=\!C$, then $p^{k-\text{Rep}}_h\!=\!1$; otherwise $p^{k-\text{Rep}}_h\!=\!0$.
+
+If the two players use memory-$n$ strategies $\mathbf{p}$ and $\mathbf{q}$, one can represent the interaction as a Markov chain with transition matrix $M$. 
+Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant distribution of this Markov chain. 
+Akin's lemma says that for each $k$ with $1\!\le\!k\!\le\!n$, the invariant distribution $\mathbf{v}$ satisfies the following relationship,
+\begin{equation} \label{Eq:AkinsLemma}
+\mathbf{v} \cdot (\mathbf{p}-\mathbf{p}^{k-\text{Rep}}) \!=\! \sum_{h\in H} v_h (p_h-p_h^{k-\text{Rep}}) = 0.
+\end{equation}
+Based on the invariant distribution $\mathbf{v}$, we can also compute the players' payoffs. To this end, let $\mathbf{S}^k = (S_h^k)_{h\in H}$ denote the vector that returns for each $h$ the one-shot payoff that player $p$ obtained $k$ rounds ago, 
+\begin{equation}
+S_h^k = \left\{
+\begin{array}{cl}
+b-c	&\text{if}~ a_{-k}^p=C~\text{and}~ a_{-k}^q=C\\
+-c	&\text{if}~ a_{-k}^p=C~\text{and}~ a_{-k}^q=D\\
+b	&\text{if}~ a_{-k}^p=D~\text{and}~ a_{-k}^q=C\\
+0	&\text{if}~ a_{-k}^p=D~\text{and}~ a_{-k}^q=D
+\end{array}
+\right.
+\end{equation}
+Then we can define player $p$'s repeated-game payoff $s_\mathbf{p}$ as 
+\begin{equation} \label{Eq:Payoff}
+s_\mathbf{p} = \mathbf{v}\cdot \mathbf{S}^1 = \mathbf{v}\cdot \mathbf{S}^2 = \ldots = \mathbf{v} \cdot \mathbf{S}^n.
+\end{equation}
+Let $\mathbf{\tilde{S}}^k=(\tilde{S}_h^k)_{h\in H}$ denote the analogous vector that returns for each $h$ the one-shot payoff that player $q$ obtained $k$ rounds ago. 
+Then player $q$'s payoff is defined analogously, $s_\mathbf{q} = \mathbf{v} \cdot \mathbf{\tilde{S}^1} = \ldots = \mathbf{v} \cdot \mathbf{\tilde{S}^n}$.\\
+
+\noindent
+{\bf Zero-determinant strategies.}
+Based on Akin's Lemma, we can derive a theory of zero-determinant strategies analogous to the case of memory-one strategies. 
+In the following, we say a memory-$n$ strategy $\mathbf{p}$ is a zero-determinant strategy if there are $k_1$, $k_2$, $k_3$ and $\alpha$, $\beta$, $\gamma$ such that $\mathbf{p}$ can be written as
+\begin{equation} \label{Eq:DefZD}
+\mathbf{p} = \alpha \mathbf{S}^{k_1} + \beta \mathbf{\tilde{S}}^{k_2} + \gamma \mathbf{1} + \mathbf{p}^{k-\text{Rep}},  
+\end{equation} 
+where $\mathbf{1}$ is the vector for which every entry is 1. By Akin's Lemma and the definition of payoffs,
+\begin{equation} \label{Eq:PayoffZD}
+0 = \mathbf{v} \cdot  (\mathbf{p} - \mathbf{p}^{k-\text{Rep}}) = \mathbf{v} \cdot (\alpha \mathbf{S}^{k_1} + \beta \mathbf{\tilde{S}}^{k_2} + \gamma \mathbf{1} ) = \alpha s_\mathbf{p} + \beta s_\mathbf{q} + \gamma. 
+\end{equation}
+That is, payoffs satisfy a linear relationship. 
+
+One interesting special case arises if $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and $\alpha = -\beta =1/(b\!+\!c)$ and $\gamma=0$.
+In that case, the formula \eqref{Eq:DefZD} yields the strategy
+\begin{equation}
+p_h = \left\{
+\begin{array}{ll}
+1	&\text{if}~~a^q_{-k}=C\\
+0	&\text{if}~~a^q_{-k}=D
+\end{array}
+\right.
+\end{equation}
+That is, this strategy implements Tit-for-Tat (for $k\!=\!1$) or delayed versions thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced payoff relationship is $s_\mathbf{p}\!=\! s_\mathbf{q}$ (in particular, these strategies are {\it good}). 
+
+Another interesting special case arises if  $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and $\alpha\!=\!0$, $\beta\!=\!-1/b$, $\gamma\!=\!1\!-\!c/b$. In that case Eq.~\eqref{Eq:DefZD} yields the strategy
+\begin{equation}
+p_h = \left\{
+\begin{array}{ll}
+1	&\text{if}~~a^q_{-k}=C\\
+1-c/b	&\text{if}~~a^q_{-k}=D
+\end{array}
+\right.
+\end{equation}
+That is, the generated strategy is GTFT (if $k\!=\!1$), or delayed versions thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced payoff relationship is $s_\mathbf{q}\!=\!b\!-\!c$. In particular, these strategies are not {\it good}, but they satisfy the notion of being {\it Nash-type} \citep{akin:EGADS:2016}.\\
+
+\noindent
+{\bf Proving the conjecture by considering the corner cases.} Consider the following subset of 2-bit reactive strategies,
+\begin{equation}
+\mathcal{N} = \Big\{ \, \mathbf{\hat{p}}\!=\!(\hat{p}_{CC}, \hat{p}_{CD}, \hat{p}_{DC}, \hat{p}_{DD}) \, \Big| \, \hat{p}_{CC}\!=\!1, ~\hat{p}_{CD}\!+\!\hat{p}_{DC} \le 2-c/b, ~ \hat{p}_{DD} \le 1\!-\!c/b \, \Big\}. 
+\end{equation}
+Then one may phrase our conjecture as saying: an agreeable $\mathbf{\hat{p}}$ is of Nash type if and only if $\mathbf{\hat{p}}\!\in\!\mathcal{N}$. The set $\mathcal{N}$ is the convex hull of 10 corner points (in the following we use $p^*:=1-c/b$), 
+\begin{equation}
+\begin{array}{ll}
+(1,0,0,0)~[\emph{GRIM}\,]	&(1,0,0,p^*)\\
+(1,0,1,0)~[\emph{TFT}\,]		&(1,0,1,p^*)\\
+(1,1,0,0)~[\emph{Delayed~TFT}\,]	&(1,1,0,p^*)\\
+(1,p^*,1,0)			&(1,p^*,1,p^*) [\emph{GTFT}\,]\\
+(1,1,p^*,0)		&(1,1,p^*,p^*) [\emph{Delayed~GTFT}]
+\end{array}
+\end{equation}
+
+\noindent
+One way how to prove our conjecture is thus to prove ({\it i}) All 10 corner points are of Nash type, and ({\it ii})~the set of strategies that are of Nash-type is convex. Again, numerical computations suggest that the 10 corner points are indeed of Nash type. We have a rigorous proof (above) for the 4 corner points \emph{TFT}, \emph{Delayed TFT}, \emph{GTFT}, and \emph{Delayed GTFT}.  Moreover, a proof that \emph{GRIM} is of Nash type seems doable. We do not know yet how to do a proof for the other 5 strategies (for example, we checked that they are not zero-determinant strategies). One approach that might work is to show that the following auxiliary conjecture is true: If $(1,\hat{p}_{CD}, \hat{p}_{DC}, \hat{p}_{DD})$ is of Nash-type and $\hat{p}_{CD}' \!\le\! \hat{p}_{DC}$, $\hat{p}_{DC}' \! \le \! \hat{p}_{DC}$, $\hat{p}_{DD}' \!\le\! \hat{p}_{DD}$, then the strategy $(1,\hat{p}_{CD}', \hat{p}_{DC}', \hat{p}_{DD}')$ is of Nash-type. If that auxiliary conjecture is true, the 10 corner strategies are of Nash type because they can all be derived from \emph{GTFT} or \emph{Delayed GTFT} by decreasing some of the entries. 
+
+~\\
+\bibliography{bibliography.bib}
+
+\end{document}
