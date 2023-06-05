@@ -13,7 +13,7 @@ def calculate_M(player, opponent, analytical):
     """
     Returns a Markov transition matrix for a game of memory one strategies.
     """
-    if analytical == True:
+    if analytical == False:
         return np.array(
             [
                 [
