@@ -4,7 +4,7 @@ rng(seed)
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
 AvCoop=0; AvPay=0; Res=starting_resident;
-filename = "matlab_data/bits_" + sdim + "_beta_" + beta + "_seed_" + seed + "_c_" + c;
+filename = "../../data/counting_two_bit/_beta_" + beta + "_seed_" + seed + "_c_" + c;
 
 %% Initialization
 xDat=zeros(numberIterations/100, sdim + 2);
@@ -16,14 +16,16 @@ u = repmat([b - c, -c, b, 0], 1, (sdim ^ 2) / 4);
 j = 2;
 for t = progress(1:numberIterations)
     Mut=rand(1, sdim);
+    % additional line for counting strategies
+    Mut(3) = Mut(2);
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, sdim);
     if rand(1) < phi
         Res=Mut; xDat(j,:)=[Res, t, coopM]; j=j+1;
     end
 end
 
-% dlmwrite(filename + ".csv", xDat, 'precision', 9);
-% writematrix(Data, filename + ".txt");
+dlmwrite(filename + ".csv", xDat, 'precision', 9);
+writematrix(Data, filename + ".txt");
 end
 
 function [phi, coopMM, piMM]=calcPhi(Mut, Res, N, u, beta, sdim);
