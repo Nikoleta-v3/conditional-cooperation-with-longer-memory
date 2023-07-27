@@ -80,7 +80,7 @@ and \(\mathbf{s}_{q}\).
 At each round \(t\) of the repeated game, players \(p\) and \(q\) decide on an
 action \(a^{p}_{t},\) and \(a^{q}_{t} \in \{C, D\}\) respectively (\textbf{Fig.
 1a}). We assume that the players' decisions only depend on the outcome of the
-previous \(n\) rounds. Am {\it $n$-history for player $p$} is a string
+previous \(n\) rounds. An {\it $n$-history for player $p$} is a string
 $h^p=(a^p_{-1},\ldots,a^p_{-n})\!\in\!\{C,D\}^n$. Here, an entry $a^p_{-k}$
 corresponds to player $p$'s action $k$ rounds ago. Let $H^p$ denote the space of
 all $n$-histories of player~$p$. Analogously, we define $H^q$ as the set of
@@ -103,25 +103,25 @@ depending on the co-player's action(s) of the previous \(n\) rounds. Thus,
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{figures/conceptual_figure_model.pdf}
-    \caption{\textbf{Model.} \textbf{a)} At each turn $t$ of the repeated game,
+    \includegraphics[width=.75\textwidth]{figures/conceptual_figure_model.pdf}
+    \caption{\textbf{Model.} \textbf{A.} At each turn $t$ of the repeated game,
     players \(p\) and \(q\) decide on an action \(a^{p}_{t}, a^{q}_{t} \in \{C,
-    D\}\), respectively. \textbf{b)} Memory$-1$ strategies are a set of very well
+    D\}\), respectively. \textbf{B.} Memory$-1$ strategies are a set of very well
     studied strategies that use the actions of both player at round $t-1$ to
     decide on round $t$. In the graphical representation of memory-$1$ strategy
-    we demonstrate this by using a single full shaded square. \textbf{c)} In this work we
+    we demonstrate this by using a single full shaded square. \textbf{C.} In this work we
     focus on reactive strategies, strategies that consider only the
     co-players actions $h^q$. This is demonstrated in the graphical representation
-    by the shaded bottom half of the square. \textbf{e)} Let the case of $n=1$, a $1-$bit
+    by the shaded bottom half of the squares. \textbf{E.} Let the case of $n=1$, a $1-$bit
     reactive strategy is a vector $\mathbf{\hat{p}}=(\hat{p}_{C}, \hat{p}_{D})$. $\hat{p}_C$
     is the probability of cooperating given that the co-player cooperated and $\hat{p}_D$
     given that they defected. Consider a 
-    match between two $1-$bit reactive strategies as shown in panel \textbf{(e)}. The top
+    match between two $1-$bit reactive strategies as shown in panel \textbf{E}. The top
     player (player $\hat{p}$) cooperates with a probability $\hat{p}_C$ in the
     second round since the co-player cooperated in the first round, player
     $\hat{p}$ cooperates with a probability $\hat{p}_D$ in the second round
     since the co-player cooperated. The player defects in round 3 with a probability $1 -
-    \hat{p}_C$ given that the co-player cooperated. \textbf{d)} Another strategies set that
+    \hat{p}_C$ given that the co-player cooperated. \textbf{D.} Another strategies set that
     we consider is that of $n-$bit self reactive strategies. These are strategies that
     consider only their own previous $n$ action.}
 \end{figure}
@@ -151,20 +151,20 @@ donation game.
 To characterize all partner $n$-bit reactive strategies, one would usually
 need to check against all pure $n$-memory one strategies~\cite{mcavoy:PRSA:2019}.
 However, we demonstrate that when player $p$ employs an $n$-bit reactive strategy,
-it is sufficient to check only against n-bit self-reactive strategies. This
+it is sufficient to check only against $n-$bit self-reactive strategies. This
 finding aligns with the previous result by Press and Dyson~\cite{press:PNAS:2012}.
 
 More specifically, the result states that for any memory-n strategy used by
 player $q$, player $p$s' score is exactly the same as if $q$ had played a
 specific self-reactive memory-$n$ strategy.
 
-An maybe example will consider the reactive $\mathbf{\hat{p}} = (0, 1)$ and the
+A ``maybe'' example will consider the reactive $\mathbf{\hat{p}} = (0, 1)$ and the
 memory-1 strategy Pavlov or Win Stay Lose Shift $\mathbf{p} = (1, 0, 0, 1)$.
 
 \subsection{$2-$bit partner strategies}
 
-For $n=2$, $\mathbf{\hat{p}}=(\hat{p}_{CC}, \hat{p}_{CD}, \hat{p}_{DC})$, where
-$p\hat{p}_{CC}$ is the probability of cooperating in round \(t\) when the
+For $n=2$, $\mathbf{\hat{p}}=(\hat{p}_{CC}, \hat{p}_{CD}, \hat{p}_{DC}, \hat{p}_{DD})$, where
+$\hat{p}_{CC}$ is the probability of cooperating in round \(t\) when the
 co-player cooperated in the last 2 rounds, $\hat{p}_{CD}$ is the probability of
 cooperating given that the co-player cooperated in the second to last round and
 defected in the last, and so on. An agreeable 2-bit strategy is represented by
@@ -184,11 +184,11 @@ one or two defections occurred. Let \(r_i\) be the probability of cooperating
 given that the co-player cooperated \(i\) number of times in the last 2 turns.
 
 Thus, $r_2 = \hat{p}_1, r_1 = \hat{p}_2 =  \hat{p}_3, r_0 = \hat{p}_4$ and
-$\mathbf{\hat{p}}=(r_0, r_1, r_2)$. Conditions~(\ref{eq:two_bit_conditions})
+$\mathbf{\hat{p}}=(r_0, r_1, r_2=1)$. Conditions~(\ref{eq:two_bit_conditions})
 then become:
 
 \begin{equation}\label{eq:counting_two_bit_conditions}
-  \displaystyle r_2 < 1, \quad r_2 < 1-\frac{c}{2b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
+  \displaystyle r_2 < 1-\frac{c}{2b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
 
 \subsection{$3-$bit partner strategies}
@@ -196,7 +196,7 @@ then become:
 For $n=3$, $\mathbf{\hat{p}}=(\hat{p}_{CCC}, \hat{p}_{CCD}, \hat{p}_{CDC},
 \hat{p}_{CDD}, \hat{p}_{DCC}, \hat{p}_{DCD}, \hat{p}_{DDC}, \hat{p}_{DDD})$
 where $\hat{p}_{CCC}$ is the probability of cooperating in round $t$ when the
-co-player cooperates in the last 3rounds, $\hat{p}_{CCD}$ is the probability of
+co-player cooperates in the last 3 rounds, $\hat{p}_{CCD}$ is the probability of
 cooperating given that the co-player cooperated in the third and second to last
 rounds and defected in the last, etc. An agreeable $3-$bit strategy is of the
 vector $\mathbf{\hat{p}}=(1, \hat{p}_{CCD}, \hat{p}_{CDC}, \hat{p}_{CDD},
@@ -218,11 +218,11 @@ strategies. Let $r_i$ be the probability of cooperating given that the co-player
 cooperated $i$ number of times in the last 3 turns. So, $r_3 = \hat{p}_{CCC},
 r_2 = \hat{p}_{CCD} =  \hat{p}_{CDC} = \hat{p}_{DCC}, r_1 = \hat{p}_{CDD} =
 \hat{p}_{DCD} =  \hat{p}_{DDC}, r_0 = \hat{p}_{CCC}$ and $\mathbf{\hat{p}}=(r_0,
-r_1, r_2, r_3)$. Then, conditions~(\ref{eq:three_bit_conditions}), the
+r_1, r_2, r_3=1)$. Then, conditions~(\ref{eq:three_bit_conditions}), the
 conditions for being a partner strategy become:
 
 \begin{equation}\label{eq:counting_three_bit_conditions}
-  \displaystyle r_3 < 1, \quad r_2 < 1-\frac{c}{3b}, \quad r_1 < 1-\frac{2c}{3b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
+  \displaystyle r_2 < 1-\frac{c}{3b}, \quad r_1 < 1-\frac{2c}{3b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
 
 
@@ -234,7 +234,7 @@ counting reactive strategy to be a partner strategy, the strategy's entries must
 satisfy the conditions:
 
 \begin{align*}
-    r_{n}   \leq & 1 \\
+    r_{n}   = & 1 \\
     r_{n-1} \leq & 1  - \frac{(n - 1)}{n} \times \frac{c}{b}\\
     r_{n-2} \leq & 1  - \frac{(n - 2)}{n} \times \frac{c}{b}\\
     & \vdots \\
@@ -245,32 +245,42 @@ satisfy the conditions:
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=.5\textwidth]{figures/evolutionary_dynamics_discounting.jpeg}
-  \caption{\textbf{Evolutionary Strategies.} In the previous sections we have
+  \includegraphics[width=\textwidth]{figures/evolutionary_dynamics_one_two_three.pdf}
+  \caption{\textbf{Evolving strategies for $n=1, n=2$ and $n=3$.} In the previous sections we have
   characterized partners strategies for two and three bit reactive cases, and we
   have also discussed the case of counting reactive strategies. Here we want to
-  assess whether partner strategies are strategies that evolve are beneficial to
+  assess whether partner strategies are strategies that evolve, thus are beneficial to
   adopt in an evolutionary setting. We ran simulations based on Imhof and Nowak.
   For a single run of the evolutionary process, we record the cooperating
-  probabilities of the resident at each elementary time step. \textbf{a) Counting
+  probabilities of the resident at each elementary time step. \textbf{A. Counting
   two-bit reactive strategies}. In the top panel we show the most abundant
   strategies of the evolutionary process when the population can use any
-  counting two-bit reactive strategies ($r_0, r_1, r_2$). The abundant
+  counting two-bit reactive strategy ($r_0, r_1, r_2$). The abundant
   strategies are the residents that were fixed for the most time steps.
   The most abundant strategies fall within the region of the partner strategies.
   In the bottom panel we look at the evolving cooperation rate closer. The
   average cooperation is calculated by considering the cooperation rate within
   the resident population. For a given $\beta$ value we vary the cost $c \in [0, 1]$
   whilst we have fixed $b=1$. Three curves are shown, these are for different values
-  of selection strength, $\beta in {10^-1, 10^0, 10^1}$.
-  \textbf{b) One, two, three bits.} We ran 10 independent simulations for each
+  of selection strength, $\beta \in {10^-1, 10^0, 10^1}$.
+  \textbf{B. One, two, three bits.} We ran 10 independent simulations for each
   set of strategies and recorded the most abundant strategy for each run. The
   abundant strategy is the resident that was fixed for the most time steps. For
-  the simulations we used \(b=3 \text{ and } c=1\). The colored bars show the
-  average values of cooperation probabilities of the most abundant strategies.
-  The stars show the cooperation probabilities of the most abundant strategy for
-  each set. The boxplots illustrate the distributions of cooperation
-  probabilities for the ten runs.}
+  the simulations we used \(b=1 \text{ and } c=.5\). For $n$ equal to 1 and
+  2, \(T= 10 ^ 7\) and for $n=3$ then \(T= 2 \times10 ^ 7\).}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{figures/abundance_of_partner_strategies.pdf}
+  \caption{\textbf{Abundance of partner strategies.}
+  We ran simulations based on Imhof and Nowak, varying the cost ($c$) and
+  strength of selection ($\beta$). The cooperation benefit ($b$) is fixed at a
+  value of 1. The results demonstrate that partner strategies evolve notably
+  under strong selection ($\beta=1$) and lower cost conditions. Furthermore, the abundance
+  of partner strategies is consistently higher when individuals have access to
+  greater memory. The bottom panel displays how these partner strategies lead to
+  increased levels of cooperation.}
 \end{figure}
 
 \section{Discussion}
