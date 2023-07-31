@@ -16,6 +16,11 @@ u = repmat([b - c, -c, b, 0], 1, (sdim ^ 2) / 4);
 j = 2;
 for t = progress(1:numberIterations)
     Mut=rand(1, sdim);
+    if sdim = 2
+        Mut(3) = Mut(2);
+    if sdim = 1
+
+    if sdim = 4:
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, sdim);
     if rand(1) < phi
         Res=Mut; xDat(j,:)=[Res, t, coopM]; j=j+1;
