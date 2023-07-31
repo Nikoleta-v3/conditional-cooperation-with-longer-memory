@@ -4,7 +4,7 @@ rng(seed)
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
 AvCoop=0; AvPay=0; Res=starting_resident;
-filename = "../../data/counting_two_bit/_beta_" + beta + "_seed_" + seed + "_c_" + c;
+filename = "counting/_beta_" + beta + "_seed_" + seed + "_c_" + c;
 
 %% Initialization
 xDat=zeros(numberIterations/100, sdim + 2);
@@ -16,11 +16,14 @@ u = repmat([b - c, -c, b, 0], 1, (sdim ^ 2) / 4);
 j = 2;
 for t = progress(1:numberIterations)
     Mut=rand(1, sdim);
-    if sdim = 2
+    if sdim = 4
         Mut(3) = Mut(2);
-    if sdim = 1
-
-    if sdim = 4:
+    elseif sdim = 8
+        Mut(3) = Mut(2);
+        Mut(5) = Mut(2);
+        Mut(6) = Mut(4);
+        Mut(7) = Mut(4);
+    end
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, sdim);
     if rand(1) < phi
         Res=Mut; xDat(j,:)=[Res, t, coopM]; j=j+1;
