@@ -184,11 +184,11 @@ one or two defections occurred. Let \(r_i\) be the probability of cooperating
 given that the co-player cooperated \(i\) number of times in the last 2 turns.
 
 Thus, $r_2 = \hat{p}_1, r_1 = \hat{p}_2 =  \hat{p}_3, r_0 = \hat{p}_4$ and
-$\mathbf{\hat{p}}=(r_0, r_1, r_2=1)$. Conditions~(\ref{eq:two_bit_conditions})
+$\mathbf{\hat{p}}=(r_2=1, r_1, r_0)$. Conditions~(\ref{eq:two_bit_conditions})
 then become:
 
 \begin{equation}\label{eq:counting_two_bit_conditions}
-  \displaystyle r_2 < 1-\frac{c}{2b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
+  \displaystyle r_1 < 1-\frac{c}{2b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
 
 \subsection{$3-$bit partner strategies}
@@ -206,19 +206,19 @@ An agreeable $3-$bit reactive strategy is a partner strategy if the entries of
 $\mathbf{\hat{p}}$ satisfy:
 
 \begin{align}\label{eq:three_bit_conditions}
-  \hat{p}_{CCD} + \hat{p}_{CDC} + \hat{p}_{DCC} < 3\!-\! \frac{c}{b} & \qquad 
-  \hat{p}_{CDD} + \hat{p}_{DCD} + \hat{p}_{DDC} < 3\!-\! \frac{2c}{b} & \qquad 
+  \frac{\hat{p}_{CCD} + \hat{p}_{CDC} + \hat{p}_{DCC}}{3} < 1\!-\! \frac{c}{3b} & \qquad 
+  \frac{\hat{p}_{CDD} + \hat{p}_{DCD} + \hat{p}_{DDC}}{3} < 1\!-\! \frac{2c}{3b} & \qquad 
   \hat{p}_{DDD} < 1\!-\! \frac{c}{b} \\
-  & \hat{p}_{CCD} + \hat{p}_{CDD} + \hat{p}_{DDC} +  \hat{p}_{DCD}  < 4\!-\! \frac{2c}{b} 
-  & \qquad \hat{p}_{CDC} + \hat{p}_{DCD} < 2\!-\! \frac{c}{b}
+  & \frac{\hat{p}_{CCD} + \hat{p}_{CDD} + \hat{p}_{DCC} + \hat{p}_{DDC}}{4}  < 1\!-\! \frac{c}{2b} 
+  & \qquad \frac{\hat{p}_{CDC} + \hat{p}_{DCD}}{2} < 1\!-\! \frac{c}{2b}
 \end{align}
 
 A special case of $3-$bit reactive strategies are the $3-$bit counting reactive
 strategies. Let $r_i$ be the probability of cooperating given that the co-player
 cooperated $i$ number of times in the last 3 turns. So, $r_3 = \hat{p}_{CCC},
 r_2 = \hat{p}_{CCD} =  \hat{p}_{CDC} = \hat{p}_{DCC}, r_1 = \hat{p}_{CDD} =
-\hat{p}_{DCD} =  \hat{p}_{DDC}, r_0 = \hat{p}_{CCC}$ and $\mathbf{\hat{p}}=(r_0,
-r_1, r_2, r_3=1)$. Then, conditions~(\ref{eq:three_bit_conditions}), the
+\hat{p}_{DCD} =  \hat{p}_{DDC}, r_0 = \hat{p}_{CCC}$ and $\mathbf{\hat{p}}=(r_3=1,
+r_2, r_1, r_0)$. Then, conditions~(\ref{eq:three_bit_conditions}), the
 conditions for being a partner strategy become:
 
 \begin{equation}\label{eq:counting_three_bit_conditions}
