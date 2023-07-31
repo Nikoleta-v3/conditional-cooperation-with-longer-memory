@@ -1,7 +1,7 @@
 % Script to run the evilutionary process for a given set of parameters
 function evolRun();
 
-sdims = 8;
+sdim = 8;
 starting_resident = zeros(1, sdim);
 N = 100;
 b=1;
@@ -13,8 +13,6 @@ cs = linspace(0, 1, 11);
 
 parfor (i = 1:11)
     c = cs(i);
-    for j in 1:2
-        [xDat]=evolSimulationCounting(N, c, b, beta, numberIterations, starting_resident, seed, sdim);
-    end
+    [xDat]=evolSimulationCounting(N, c, b, beta, numberIterations, starting_resident, seed, sdim);
 end
 end
