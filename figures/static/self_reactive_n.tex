@@ -11,15 +11,15 @@
 \begin{document}
 \tikzset{man/.pic={
     \node[circle,fill,minimum size=10mm] (head) {};
-    \node[rounded corners=4pt,minimum height=1.2cm,minimum width=0.8cm,fill,below = 2pt of head] (body) {};
+    \node[rounded corners=4pt,minimum height=1.1cm,minimum width=0.8cm,fill,below = 2pt of head] (body) {};
     \draw[line width=2mm,round cap-round cap] ([shift={(4pt,-2pt)}]body.north east) --++(-90:6mm);
     \draw[line width=2mm,round cap-round cap] ([shift={(-4pt,-2pt)}]body.north west)--++(-90:6mm);
     }}
 \begin{tikzpicture}
 
-\pic[solarizedViolet] at (0, 0) (myman) {man};
+\pic[black] at (0, 0) (myman) {man};
 \node[align=center] (0) at (2, .5) {\includegraphics[width=.2\textwidth]{self_reactive_n.png}};
-\node at (0, -2) (myman) {\textcolor{solarizedViolet}{self reactive$-n$}};
+\node at (0, -2) (myman) {\textcolor{black}{self reactive$-n$}};
 
 \end{tikzpicture}
 \end{document}
