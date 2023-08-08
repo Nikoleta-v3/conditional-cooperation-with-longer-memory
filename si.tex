@@ -45,7 +45,7 @@
 
 \section{Formal Model}
 
-We consider the infinitely repeated games among two players, player $p$ and
+We consider infinitely repeated games among two players, player $p$ and
 player $q$. Each round, they engage in the donation game with payoff matrix
 
 \begin{equation} \label{Eq:DonationGame}
@@ -59,7 +59,7 @@ b	&0
 
 Here $b$ and $c$ denote the benefit and the cost of cooperation, respectively. 
 We assume $b\!>\!c\!>\!0$ throughout.
-Therefore, the payoff matrix~\eqref{Eq:DonationGame} is a special case of a
+Therefore, the payoff matrix~\eqref{Eq:DonationGame} is a special case of the
 prisoner's dilemma with payoff matrix,
 
 \begin{equation} \label{Eq:PrisonerDilemma}
@@ -71,22 +71,24 @@ prisoner's dilemma with payoff matrix,
     \right),
 \end{equation}
 
-with $T > R > S > P$ and $2 R > T + S$.
+with $T > R > S > P$ and $2 R > T + S$. Here, $R$ is the reward payoff of mutual
+cooperation, $T$ is the temptation to defect payoff, $S$ is the sucker's payoff,
+and $P$ is the punishment payoff for mutual defection.
 
-{\bf Memory-$n$ strategies.} We assume in the following, that the players'
-decisions only depend on the outcome of the previous $n$ rounds. To this end, an
-{\it $n$-history for player $p$} is a string
-$h^p=(a^p_{-1},\ldots,a^p_{-n})\!\in\!\{C,D\}^n$. An entry $a^p_{-k}$
-corresponds to player $p$'s action $k$ rounds ago. Let $H^p$ denote the space of
-all $n$-histories of player~$p$. Analogously, we define $H^q$ as the set of
-$n$-histories $h^q$ of player~$q$. A pair $h\!=\!(h^p,h^q)$ is called an {\it
-$n$-history of the game}. We use $H=H^p\times H^q$ to denote the space of all
-such histories. This set contains $|H|=2^{2n}$ elements.
+We assume in the following, that the players' decisions only depend on the
+outcome of the previous $n$ rounds. To this end, an {\it $n$-history for player
+$p$} is a string $h^p=(a^p_{-1},\ldots,a^p_{-n})\!\in\!\{C,D\}^n$. An entry
+$a^p_{-k}$ corresponds to player $p$'s action $k$ rounds ago. Let $H^p$ denote
+the space of all $n$-histories of player~$p$. Analogously, we define $H^q$ as
+the set of $n$-histories $h^q$ of player~$q$. Sets $H^p$ and $H^q$ contain
+$|H^p|=|H^q|=2^{n}$ elements each. A pair $h\!=\!(h^p,h^q)$ is called
+an {\it $n$-history of the game}. We use $H=H^p\times H^q$ to denote the space
+of all such histories. This set contains $|H|=2^{2n}$ elements.
 
-A {\it memory-$n$} strategy is a vector $\mathbf{m}=(m_h)_{h\in
-H}\in[0,1]^{2n}$. Each entry $m_h$ corresponds to the player's cooperation
-probability in the next round, depending on the outcome of the previous $n$
-rounds.
+{\bf Memory-$n$ strategies.} A {\it memory-$n$} strategy is a vector
+$\mathbf{m}=(m_h)_{h\in H}\in[0,1]^{2n}$. Each entry $m_h$ corresponds to the
+player's cooperation probability in the next round, depending on the outcome of
+the previous $n$ rounds.
 
 If the two players use memory-$n$ strategies $\mathbf{m}$ and $\mathbf{m'}$, one
 can represent the interaction as a Markov chain with a $2^{2n}\!\times\!2^{2n}$
@@ -128,9 +130,9 @@ mutual cooperation payoff. Irrespective of the co-player's strategy. Namely if,
     s_{\mathbf{m'},\mathbf{m}} \leq (b - c) \; \forall \; m'.
 \end{equation}
 
-{\bf Partner Strategies.}  A player's strategy is \textit{nice}, if the player
-is never the first to defect. A \textit{partner strategy} for player $p$ is a
-nice strategy such that,
+{\bf Partner Strategies.} A player's strategy is \textit{nice}, if the player is
+never the first to defect. For player $p$, a \textit{partner strategy} is a nice
+strategy such that,
 
 \begin{equation}\label{Eq:Partner}
     s_{\mathbf{m'},\mathbf{m}} \geq (b - c) \; \Rightarrow \; s_{\mathbf{m'},\mathbf{m}} = s_{\mathbf{m},\mathbf{m'}} = (b - c).
@@ -138,25 +140,29 @@ nice strategy such that,
 
 irrespective of the co-player's strategy.
 
-Thus, if a player uses a partner strategy, both players can share the rewards
-fairly. However, if a co-player prefers an unfair approach, they will receive a
-reduced payoff as a consequence. Partner strategies, by definition, are best
-responses to themselves, making them Nash equilibria~\cite{Hilbe:GEB:2015}.
+Partner strategies, by definition, are best responses to themselves, making them
+Nash strategies~\cite{Hilbe:GEB:2015}.
 
-Previously the work of \citep{akin:EGADS:2016} characterized all partner
-strategies for $n=1$, and work by \citep{hilbe:PNAS:2017} characterized subsets
-of partner strategies for higher memory ($n >1$).  In this work, we aim to
-characterize all partner strategies for $n=2, n=3$ for reactive strategies. We
-formally introduce reactive strategies and present the results from section
+% If a player uses a partner strategy, both players can share the rewards
+% fairly. However, if a co-player prefers an unfair approach, they will receive a
+% reduced payoff as a consequence. 
+
+Previously the work, of \citep{akin:EGADS:2016} characterized all partner
+strategies for $n=1$. For higher memory ($n>1$) a few
+works~\citep{hilbe:PNAS:2017} gave managed to characterized partner strategies
+bit only a subset of them. As memory increases analytical results become more
+difficult to obtain. However, in this work we characterize all partner
+strategies for $n=2, n=3$ for reactive strategies. We formally introduce
+reactive strategies and present the results from section
 \ref{section:reactive_strategies} onwards. In the next section, we will discuss
 a series of results for the general case of memory$-n$.
 
 \section{An Extension of Akin's Theorem}
 
-The work of Akin focuses on the case of memory-1 strategies. Thus, $n=1$, and a
-memory-1 strategy of player $p$ is the vector $m = (m_1, m_2, m_3, ,m_4)$, and
-against a co-player $m'$ the stationary distribution is of $v = (v_1, v_2, v_3,
-v_4)$. Akin's lemma is the following:
+The work of~\citep{akin:EGADS:2016} focuses on the case of memory-one strategies,
+thus $n=1$. A memory-one strategy of player $p$ is the vector $m = (m_1, m_2,
+m_3, ,m_4)$, and against a co-player $m'$ the stationary distribution is of $v =
+(v_1, v_2, v_3, v_4)$. Akin's lemma is the following:
 
 \begin{theorem}[Akin's Lemma]\label{theorem:akin} Assume that player \(p\) uses
     the memory-one strategy \(\mathbf{m}=(m_1, m_2, m_3, m_4)\), and \(q\) uses
@@ -437,6 +443,36 @@ satisfy the conditions:
     & \vdots \\
     r_{0} \leq &  1  - \frac{c}{b}\\
 \end{align*}
+
+\section{Figures}
+
+% \begin{figure}
+%   \includegraphics[options]{fig}
+% \end{figure}
+
+\begin{figure}[!htbp]
+  \includegraphics[width=\textwidth]{figures/abundance_of_partner_strategies.pdf}
+  \caption{The abundance of partner strategies for $n=1,2,3$ and $b=1, c=0.5$.}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \includegraphics[width=\textwidth]{figures/abundance_of_partner_counting_strategies.pdf}
+  \caption{The abundance of partner counting strategies for $n=1,2,3$ and $b=1, c=0.5$.}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \includegraphics[width=\textwidth]{figures/abundant_strategies.pdf}
+  \caption{The most abundant reactive-$n$ strategies for $n=1,2,3$ and $b=1, c=0.5, \beta=1$.}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \includegraphics[width=\textwidth]{figures/abundant_strategies_counting.pdf}
+  \caption{The most abundant reactive-counting-$n$ strategies for $n=1,2,3$ and $b=1, c=0.5, \beta=1$.}
+\end{figure}
+
+% \begin{figure}
+%   \includegraphics[options]{fig}
+% \end{figure}
 
 ~\\
 \bibliography{bibliography.bib}
