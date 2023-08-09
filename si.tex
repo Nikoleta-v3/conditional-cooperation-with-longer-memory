@@ -301,7 +301,11 @@ intriguing results.
 To begin, let's introduce some additional notation. Suppose player $p$ adopts
 are reactive$-n$ strategy $\mathbf{p}$, and suppose player $q$ adopts an
 arbitrary memory-$n$ strategy. Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant
-of the game between the two players with $\displaystyle \sum_{h \in H} v_h = 1$.
+of the game between the two players with,
+
+\begin{equation}\label{eq:invariant_distribution_sum}
+  \displaystyle \sum_{h \in H} v_h = 1.
+\end{equation}
 
 We define the following marginal distributions with respect to the possible $n$-histories of player~$q$,
 
@@ -315,7 +319,7 @@ Based on the above notation, we can define player $q$'s average cooperation rate
 $\rho_\mathbf{m}$. Let, $H^{q}_{C}$ be the subset of $H^{q}$,
 
 \begin{equation}
-  H^{q}_{C} = \{h^q \in H^q : h^q_{-1} = C \; \lor \; h^q_{-2} = C\}, ~~then~~
+  H^{q}_{C} = \{h^q \in H^q : (h^q_{-2}, h^q_{-1}) = (C, C) \; \lor \; (h^q_{-2}, h^q_{-1}) = (C, D)\}, ~~then~~
 \end{equation}
 
 \begin{equation} \label{Eq:rhoq_alln}
@@ -625,51 +629,71 @@ average cooperation rate $\rho_\mathbf{m}$ as
 Note that the following equalities hold in the case of $n=3$,
 
 \begin{align}
-  v^{q}_{CCD} + v^{q}_{CCD}  = 
+  v^{q}_{CCD} & = v^{q}_{DCC} \\ \label{Eq:Equality1_n3}
+  v^{q}_{DDC} & = v^{q}_{CDD} \\ \label{Eq:Equality2_n3}
+  v^{q}_{CCD} + v^{q}_{DCD}  & = v^{q}_{CDC} + v^{q}_{DDC} \\ \label{Eq:Equality3_n3}
 \end{align}
 
-% Here, the second equality holds because it does not matter whether we define
-% player $q$'s cooperation rate based on the first or the second round of each
-% 2-history. In particular, we can use this equality to conclude
+The average cooperation rate of $p$'s is given by
 
-% \begin{equation} \label{Eq:EqualityV}
-% v^q_{CD} = v^q_{DC}.
-% \end{equation}
-
-% Similarly, we can express player $p$'s average cooperation rate
-% $\rho_\mathbf{p}$ in terms of $v^q_{CC}$, $v^q_{CD}$, $v^q_{DC}$, $v^q_{DD}$ by
-% noting that
-
-% \begin{equation} \label{Eq:rhop_n2}
-% \begin{array}{lll}
-% \rho_\mathbf{p} &= &\displaystyle v^q_{CC}\, p_{CC} +  v^q_{CD}\,p_{CD} + v^q_{DC}\, p_{DC} + v^q_{DD}\, p_{DD}\\[0.2cm]
-% 	& =  &v^q_{CC}\, p_{CC} +  v^q_{CD}\,(p_{CD}\!+\!p_{DC}) + v^q_{DD}\, p_{DD}.
-% \end{array}
-% \end{equation}
-
-% Here, the second equality is due to Eq.~\eqref{Eq:EqualityV}.
-
-% Finally, we note that we trivially have the following relationship (since all probabilities need to add up to one),
-
-% \begin{equation} \label{Eq:normalization}
-% 1 = v^q_{CC} +  v^q_{CD} + v^q_{DC} + v^q_{DD} = v^q_{CC} +  2v^q_{CD} + v^q_{DD}
-% \end{equation}
-
-% After these preparations, we can prove our theorem based on the same method as in \citet{akin:EGADS:2016}.
+\small{
+\begin{equation} \label{Eq:rhop_n3}
+\begin{array}{lcl}
+\rho_\mathbf{p} & = &\displaystyle v^q_{CCC}\, p_{CCC}+ v^q_{CCD}\, p_{CCD} + v^q_{CDC}\, p_{CDC} + v^q_{CDD}\, p_{CDD} + v^q_{DCD}\, p_{DCD} + v^q_{DDC}\, p_{DDC} + v^q_{DDD}\, p_{DDD} \\
+&\stackrel{Eq.~\eqref{Eq:Equality1_n3},~\eqref{Eq:Equality2_n3} }{=}& v^q_{CCC}\, p_{CCC} + v^q_{CCD}\, (p_{CCD} + p_{DCC}) + v^q_{CDC}\, p_{CDC} + v^q_{CDD}\, (p_{CDD} + p_{DDC}) + v^q_{DCD}\, p_{DCD} +  v^q_{DDD}\, p_{DDD} \\
+&\stackrel{Eq.~\eqref{Eq:Equality3_n3}}{=}& v^q_{CCC}\, p_{CCC} + v^q_{CCD}\, (p_{CCD} + p_{CDC} + p_{DCC}) + v^q_{DCD}\, (p_{CDC} + p_{DDC}) v^q_{DDD}\, p_{DDD} + \\
+& & v^q_{DDC}\, (p_{CDD} + p_{DCD} + p_{DDC}) + v^q_{CDD}\, (- p_{CDC} - p_{DDC})  + v^q_{DDD}\, p_{DDD} \\
+&\stackrel{Eq.~\eqref{eq:invariant_distribution_sum}}{=}& v^q_{CCC}\, p_{CCC} + v^q_{CCD}\, (p_{CCD} + p_{CDC} + p_{DCC}) + v^q_{DCD}\, (p_{CDC} + p_{DDC}) v^q_{DDD}\, p_{DDD} + \\
+& & v^q_{DDC}\, (p_{CDD} + p_{DCD} + p_{DDC}) + v^q_{CDD}\, (p_{CCD} + p_{DCC} + p_{DCD} + p_{DDC})  + (v^q_{DDD} + v^q_{CDD})\, p_{DDD} \\
+\end{array}
+\end{equation}
+}
  
-% \begin{proof}
-% Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
-% strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
+\begin{proof}
+Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
+strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
 
-% \begin{equation} \label{Eq:InequalityGood}
-% \begin{array}{rcl}
-% 0 	&\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
-% 	&\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{m}-(b\!-\!c)\\[0.2cm]
-% 	&\stackrel{Eqs.~\eqref{Eq:rhoq_n2}, \eqref{Eq:rhop_n2}, \eqref{Eq:normalization}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
-% 		- c\,\Big(v^q_{CC} \!+\! v^q_{CD}\Big) - (b\!-\!c)\Big(v^q_{CC} \!+\!  2v^q_{CD} \!+\! v^q_{DD}\Big)\\[0.2cm]
-% 	&=	&v^q_{CC} \,b\,(p_{CC}-1) + v^q_{CD}\Big(b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b\Big) + v^q_{DD}\Big(bp_{DD}-(b\!-\!c)\Big).
-% \end{array}
-% \end{equation}
+\begin{equation}
+\begin{array}{rcl}
+0 	&\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
+	&\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{m}-(b\!-\!c)\\[0.2cm]
+	&\stackrel{Eqs.~\eqref{Eq:rhoq_n2}, \eqref{Eq:rhop_n2}, \eqref{Eq:normalization}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
+		- c\,\Big(v^q_{CC} \!+\! v^q_{CD}\Big) - (b\!-\!c)\Big(v^q_{CC} \!+\!  2v^q_{CD} \!+\! v^q_{DD}\Big)\\[0.2cm]
+	&=	&v^q_{CC} \,b\,(p_{CC}-1) + v^q_{CD}\Big(b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b\Big) + v^q_{DD}\Big(bp_{DD}-(b\!-\!c)\Big).
+\end{array}
+\end{equation}
+
+\end{proof}
+
+{\bf Proof Two.} Consider all the pure self-reactive-three strategies, there
+are a total of 256 of them. These are given in the appendix. regardless, the
+payoff expressions for each of these strategies against a nice reactive-three
+strategies can be calculated explicilty. We will use these expressions to
+obtain the conditions for partner strategies similar to the previous subsection.
+
+\begin{proof}
+  The payoff expressions for a nice reactive-three strategy $p$ against all
+  pure self-reactive-three strategies are as follows,
+
+\begin{equation}\label{Eq:PayoffExpressionsReactiveThree}
+  \begin{array}{l}
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = b \times p_{CC} ~~for~~ i \in \{0, 2, 4, 6, 8, 10, 12, 14\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + p_{DD})}{3} - \frac{c}{3} ~~for~~ i \in \{1, 9\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + p_{DD} + 1)}{4} - \frac{c}{2} ~~for~~ i \in \{3\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC})}{2} - \frac{c}{2} ~~for~~ i \in \{4, 5, 12, 13\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + 1)}{3} - \frac{2c}{2} ~~for~~ i \in \{6, 7\}\\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = b - c ~~for~~ i \in \{8, 9, 10, 11, 12, 13, 14, 15\}\\
+  \end{array}
+\end{equation}
+
+Setting these to smaller than the mutual cooperation payoff $(b - c)$ give the
+following ten conditions,
+
+
+Note that only conditions are unique. The following can be derived from the
+sums of two or more of these conditions.
+
+\end{proof}
 
 % By assumption~\eqref{eq:two_bit_conditions},
 
@@ -737,6 +761,18 @@ satisfy the conditions:
     & \vdots \\
     r_{0} \leq &  1  - \frac{c}{b}\\
 \end{align*}
+
+
+\begin{align*}
+  H^{q}_{k} & = \{h^q \in H^q : \; |A(h^q)| =k\}, ~~for~~ \\
+  A(h^q) & = \{a^q \in h^q:  \; a^q = C\}
+\end{align*}
+
+\begin{equation}
+  \rho_\mathbf{p} = v^q_{C \dots C}\, r_n  \; + \sum_{k=1}^{n-1} r_{n -k}  \sum_{h \in H^q_k} v^q_h + \; v^q_{D \dots D} r_0 
+\end{equation}
+
+
 
 \section{Figures}
 
