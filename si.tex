@@ -11,6 +11,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{multirow}
+\usepackage{multicol}
 \usepackage[ruled,vlined]{algorithm2e}
 
 \usepackage{natbib}
@@ -304,7 +305,7 @@ of the game between the two players with $\displaystyle \sum_{h \in H} v_h = 1$.
 
 We define the following marginal distributions with respect to the possible $n$-histories of player~$q$,
 
-\begin{equation}
+\begin{equation}\label{Eq:marginal_distributions}
 \displaystyle v^q_{h} = \sum_{h^p\in H^p} v_{(h^p,h^q)} \; \forall \; h^q \in H^q.
 \end{equation}
 
@@ -345,42 +346,85 @@ sufficient to define the payoffs of the two players,
 
 \subsection{Sufficiency of Self reactive strategies}
 
-To characterize all partner $n$-bit reactive strategies, one would usually
-need to check against all pure $n$-memory one strategies~\cite{mcavoy:PRSA:2019}.
-However, we demonstrate that when player $p$ employs an $n$-bit reactive strategy,
-it is sufficient to check only against $n-$bit self-reactive strategies. This
-finding aligns with the previous result by Press and Dyson~\cite{press:PNAS:2012}.
+To characterize all partner $n$-bit reactive strategies, one would usually need
+to check against all pure $n$-memory one strategies~\cite{mcavoy:PRSA:2019}.
+However, we demonstrate that when player $p$ employs an $n$-bit reactive
+strategy, it is sufficient to check only against $n-$bit self-reactive
+strategies. This is a direct outcome of Lemma~\ref{lemma:self_reactive_sufficiency}.
 
-More specifically, the result states that for any memory-n strategy used by
-player $q$, player $p$s' score is exactly the same as if $q$ had played a
-specific self-reactive memory-$n$ strategy.
+{\it Self-reactive-$n$} strategies are also a subset of memory-$n$ strategies.
+They only consider the focal player's own $n$-history, and ignore the co-player's
+$n$-history. Formally, a self-reactive-$n$ strategy is a vector
+$\mathbf{\tilde{p}} = (\tilde{p}_h)_{h \in H^q} \in [0, 1] ^ 2n$. Each entry
+$\tilde{p}_h$ corresponds to the player's cooperation probability in the next,
+depending on the player's own action(s) in the previous $n$ rounds.
 
-A ``maybe'' example will consider the reactive $\mathbf{\hat{p}} = (0, 1)$ and the
-memory-1 strategy Pavlov or Win Stay Lose Shift $\mathbf{p} = (1, 0, 0, 1)$.
+\begin{lemma}\label{lemma:self_reactive_sufficiency}
+  Let $\mathbf{p}$ be an reactive$-n$ strategy for player $p$. Then, for any
+  memory$-n$ strategy $\mathbf{m}$ used by player $q$, player $p$'s score is
+  exactly the same as if $q$ had played a specific self-reactive memory-$n$
+  strategy.
+\end{lemma}
 
-\subsection{$2-$bit partner strategies}
+\begin{proof}
+\end{proof}
 
-For $n=2$, $\mathbf{\hat{p}}=(\hat{p}_{CC}, \hat{p}_{CD}, \hat{p}_{DC}, \hat{p}_{DD})$, where
-$\hat{p}_{CC}$ is the probability of cooperating in round \(t\) when the
-co-player cooperated in the last 2 rounds, $\hat{p}_{CD}$ is the probability of
-cooperating given that the co-player cooperated in the second to last round and
-defected in the last, and so on. An agreeable 2-bit strategy is represented by
-the vector $\mathbf{\hat{p}}=(1, \hat{p}_{CD}, \hat{p}_{DC}, \hat{p}_{DD})$:
+Note that Lemma~\ref{lemma:self_reactive_sufficiency} aligns with the previous
+result by~\cite{press:PNAS:2012}. They discussed the case where one player uses
+a memory-one strategy and the other player employs a longer memory strategy.
+They demonstrated that the payoff of the player with the longer memory is
+exactly the same as if the player had employed a specific shorter-memory
+strategy, disregarding any history beyond what is shared with the short-memory
+player. The result here follows a similar intuition: if there is a part of
+history that one player does not observe, then the co-player gains nothing by
+considering the history not shared with the short-memory player.
 
-An agreeable $2-$bit reactive strategy is a partner strategy if the entries of
-$\mathbf{\hat{p}}$ satisfy:
+More specifically, the play of a self-reactive player solely relies on their own
+previous actions. Hence, describing the self-reactive player's play can be
+achieved through a Markov process with a $2^{n}\!\times\!2^{n}$ transition
+matrix $\tilde{M}$ instead. The stationary distribution $\mathbf{\tilde{v}}$ of
+$\tilde{M}$ has the following property:
 
-\begin{equation}\label{eq:two_bit_conditions}
-  \displaystyle \hat{p}_{DD} < 1\!-\! \frac{c}{b}  ~~and~~ \displaystyle \frac{\hat{p}_{CD} + \hat{p}_{DC}}{2} < 1- \frac{1}{2} \cdot \frac{c}{b}.
+\begin{equation}
+  v_{h} = u^q_{h} \; \forall \; h \in H^q.
 \end{equation}
 
-We have two independent proves of Theorem. The first proves is in line with the
-work of Akin and the second prove rely on Theorem. Here we present both proves.
-Suppose player $p$ adopts a 2-bit reactive strategy $\mathbf{p}\!=\!(p_{CC},p_{CD}, p_{DC}, p_{DD})$. 
-Moreover, suppose player~$q$ adopts an arbitrary memory-2 strategy. 
-Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant distribution of the game between the two players. 
+From hereupon we will use the notation $\mathbf{m}, \mathbf{p}, \text{ and }
+\mathbf{\tilde{p}}$ to denote memory-$n$, reactive-$n$, and self-reactive-$n$
+strategies.
 
-We define the following four marginal distributions with respect to the possible two-histories of player~$q$, 
+\subsection{Reactive-Two Partner Strategies}
+
+In this section, we focus on the case of $n=2$. Reactive-two strategies are denoted as a vector
+$\mathbf{p}=(p_{CC}, p_{CD}, p_{DC}, p_{DD})$ where $p_{CC}$ is the
+probability of cooperating in this turn when the co-player cooperated in the
+last 2 turns, $p_{CD}$ is the probability of cooperating given that the
+co-player cooperated in the second to last turn and defected in the last, and so
+forth. A nice reactive-two strategy is represented by the vector $\mathbf{p}=(1,
+p_{CD}, p_{DC}, p_{DD})$.
+
+\begin{theorem}[``Reactive-Two Partner Strategies'']\label{theorem:reactive_two_partner_strategies}
+A reactive-two strategy $\mathbf{p}$, is a partner strategy if and only if,
+it's nice ($p_{CC} = 1$) and the remaining entries satisfy the conditions:
+
+\begin{equation}\label{eq:two_bit_conditions}
+  \displaystyle p_{DD} < 1\!-\! \frac{c}{b}  ~~and~~ \displaystyle \frac{p_{CD} + p_{DC}}{2} < 1- \frac{1}{2} \cdot \frac{c}{b}.
+\end{equation}
+\end{theorem}
+
+There are two independent proves of
+Theorem~\ref{theorem:reactive_two_partner_strategies}. The first prove is
+in line with the work of~\citep{akin:EGADS:2016}, and the second one relies on
+Lemma~\ref{lemma:self_reactive_sufficiency}. Here, we discuss both.
+
+{\bf Proof One.} Suppose player $p$ adopts a
+reactive-two strategy $\mathbf{p}\!=\!(p_{CC},p_{CD}, p_{DC}, p_{DD})$.
+Moreover, suppose player~$q$ adopts an arbitrary memory-2 strategy $\mathbf{m}$.
+Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant distribution of the game between
+the two players.
+
+We define the following four marginal distributions with respect to the possible two-histories of player~$q$,
+
 \begin{equation}
 \begin{array}{l}
 \displaystyle v^q_{CC} = \sum_{h^p\in H^p} v_{(h^p,CC)}\\
@@ -389,116 +433,297 @@ We define the following four marginal distributions with respect to the possible
 \displaystyle v^q_{DD} = \sum_{h^p\in H^p} v_{(h^p,DD)}.
 \end{array}
 \end{equation}
-These four entries describe how often we observe player $q$ to choose actions $CC$, $CD$, $DC$, $DD$ in two consecutive rounds (irrespective of the actions of player $p$). Based on the above notation, we can define player $q$'s average cooperation rate $\rho_\mathbf{q}$ as 
-\begin{equation} \label{Eq:rhoq}
-\rho_\mathbf{q} := v^q_{CC} + v^q_{CD} = v^q_{CC} + v^q_{DC}.
+
+These four entries describe how often we observe player $q$ to choose actions
+$CC$, $CD$, $DC$, $DD$ in two consecutive rounds (irrespective of the actions of
+player $p$). We can define player $q$'s average cooperation rate $\rho_\mathbf{m}$ as 
+
+\begin{equation} \label{Eq:rhoq_n2}
+\rho_\mathbf{m} := v^q_{CC} + v^q_{CD} = v^q_{CC} + v^q_{DC}.
 \end{equation}
-Here, the second equality holds because it does not matter whether we define player $q$'s cooperation rate based on the first or the second round of each 2-history. In particular, we can use this equality to conclude
+
+Here, the second equality holds because it does not matter whether we define
+player $q$'s cooperation rate based on the first or the second round of each
+2-history. In particular, we can use this equality to conclude
+
 \begin{equation} \label{Eq:EqualityV}
 v^q_{CD} = v^q_{DC}.
 \end{equation}
-Similarly, we can express player $p$'s average cooperation rate $\rho_\mathbf{p}$ in terms of $v^q_{CC}$, $v^q_{CD}$, $v^q_{DC}$, $v^q_{DD}$ by noting that 
-\begin{equation} \label{Eq:rhop}
+
+Similarly, we can express player $p$'s average cooperation rate
+$\rho_\mathbf{p}$ in terms of $v^q_{CC}$, $v^q_{CD}$, $v^q_{DC}$, $v^q_{DD}$ by
+noting that
+
+\begin{equation} \label{Eq:rhop_n2}
 \begin{array}{lll}
 \rho_\mathbf{p} &= &\displaystyle v^q_{CC}\, p_{CC} +  v^q_{CD}\,p_{CD} + v^q_{DC}\, p_{DC} + v^q_{DD}\, p_{DD}\\[0.2cm]
 	& =  &v^q_{CC}\, p_{CC} +  v^q_{CD}\,(p_{CD}\!+\!p_{DC}) + v^q_{DD}\, p_{DD}.
 \end{array}
 \end{equation}
-Here, the second equality is due to Eq.~\eqref{Eq:EqualityV}. Because we consider simple donation games, we note that these two quantities are sufficient to define the payoffs of the two players, 
-\begin{equation} \label{Eq:payoff}
-\begin{array}{lll}
-s_\mathbf{p} =  b\, \rho_\mathbf{q} - c\, \rho_\mathbf{p}\\
-s_\mathbf{q} = b\, \rho_\mathbf{p} - c\, \rho_\mathbf{q}.
-\end{array}
-\end{equation}
-Finally, we note that we trivially have the following relationship (since all probabilities need to add up to one), 
+
+Here, the second equality is due to Eq.~\eqref{Eq:EqualityV}.
+
+Finally, we note that we trivially have the following relationship (since all probabilities need to add up to one),
+
 \begin{equation} \label{Eq:normalization}
 1 = v^q_{CC} +  v^q_{CD} + v^q_{DC} + v^q_{DD} = v^q_{CC} +  2v^q_{CD} + v^q_{DD}
 \end{equation}
-After these preparations, we can prove our conjecture based on the same method as in \citet{akin:EGADS:2016}.
+
+After these preparations, we can prove our theorem based on the same method as in \citet{akin:EGADS:2016}.
  
- \begin{Prop}[`Main conjecture']
- Suppose the entries of $\mathbf{p}$ satisfy 
- \begin{equation} \label{Eq:GoodConditions}
- p_{CC}\!=\!1,~~~~~\frac{p_{CD}+p_{DC}}{2} \!<\! 1\!-\!\frac{c}{2b},~~~~~p_{DD}<1\!-\!\frac{c}{b}.
- \end{equation} 
- Then $\mathbf{p}$ is a good strategy. 
- \end{Prop}
 \begin{proof}
-Suppose player $q$ has some strategy $\mathbf{q}$ such that $s_\mathbf{q} \ge b\!-\!c$. It follows that
+Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
+strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
+
 \begin{equation} \label{Eq:InequalityGood}
 \begin{array}{rcl}
-0 	&\le	&s_\mathbf{q}-(b\!-\!c)\\[0.2cm]
-	&\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{q}-(b\!-\!c)\\[0.2cm]
-	&\stackrel{Eqs.~\eqref{Eq:rhoq}, \eqref{Eq:rhop}, \eqref{Eq:normalization}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
+0 	&\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
+	&\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{m}-(b\!-\!c)\\[0.2cm]
+	&\stackrel{Eqs.~\eqref{Eq:rhoq_n2}, \eqref{Eq:rhop_n2}, \eqref{Eq:normalization}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
 		- c\,\Big(v^q_{CC} \!+\! v^q_{CD}\Big) - (b\!-\!c)\Big(v^q_{CC} \!+\!  2v^q_{CD} \!+\! v^q_{DD}\Big)\\[0.2cm]
 	&=	&v^q_{CC} \,b\,(p_{CC}-1) + v^q_{CD}\Big(b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b\Big) + v^q_{DD}\Big(bp_{DD}-(b\!-\!c)\Big).
 \end{array}
 \end{equation}
-By assumption~\eqref{Eq:GoodConditions},
+
+By assumption~\eqref{eq:two_bit_conditions},
+
 \begin{equation}
 p_{CC}=1,~~~~~b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b<0,~~~~~bp_{DD}-(b\!-\!c)<0.
 \end{equation}
-Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGood} can only hold if $v^q_{CD}\!=\!v^q_{DD}\!=\!0$, which implies $v^q_{DC}\!=\!0$ because of Eq.~\eqref{Eq:EqualityV}. But then it follows that $v^q_{CC}\!=\!1$. By Eqs.~\eqref{Eq:rhoq} and~\eqref{Eq:rhop} it follows that $\rho_\mathbf{q}\!=\!\rho_\mathbf{p}\!=\!1$, and hence $s_\mathbf{q}\!=\!s_\mathbf{p}\!=\!b\!-\!c$. 
+
+Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGood} can only
+hold if $v^q_{CD}\!=\!v^q_{DD}\!=\!0$, which implies $v^q_{DC}\!=\!0$ because of
+Eq.~\eqref{Eq:EqualityV}. But then it follows that $v^q_{CC}\!=\!1$. By
+Eqs.~\eqref{Eq:rhoq_n2} and~\eqref{Eq:rhop_n2} it follows that
+$\rho_\mathbf{m}\!=\!\rho_\mathbf{p}\!=\!1$, and hence
+$s_{\mathbf{m}, \mathbf{p}}\!=\!s_{\mathbf{p}, \mathbf{m}}\!=\!b\!-\!c$. 
+\
 \end{proof}
 
-\subsection{$3-$bit partner strategies}
+{\bf Proof Two.} Suppose player $p$ adopts a nice reactive-two strategy
+$\mathbf{p}\!=\!(1, p_{CD}, p_{DC}, p_{DD})$. For $\mathbf{p}$ to be a Nash
+strategy,
 
-For $n=3$, $\mathbf{\hat{p}}=(\hat{p}_{CCC}, \hat{p}_{CCD}, \hat{p}_{CDC},
-\hat{p}_{CDD}, \hat{p}_{DCC}, \hat{p}_{DCD}, \hat{p}_{DDC}, \hat{p}_{DDD})$
-where $\hat{p}_{CCC}$ is the probability of cooperating in round $t$ when the
-co-player cooperates in the last 3 rounds, $\hat{p}_{CCD}$ is the probability of
-cooperating given that the co-player cooperated in the third and second to last
-rounds and defected in the last, etc. An agreeable $3-$bit strategy is of the
-vector $\mathbf{\hat{p}}=(1, \hat{p}_{CCD}, \hat{p}_{CDC}, \hat{p}_{CDD},
-\hat{p}_{DCC}, \hat{p}_{DCD}, \hat{p}_{DDC}, \hat{p}_{DDD})$.
+\begin{equation}\label{Eq:NashReactive}
+  s_{\mathbf{m}, \mathbf{p}} \leq (b - c),
+\end{equation}
 
-An agreeable $3-$bit reactive strategy is a partner strategy if the entries of
-$\mathbf{\hat{p}}$ satisfy:
+must hold against all pure memory-\(2\) strategies (\(\mathbf{m} \in \{0, 1\}^{4
+^ 2}\)). Due to Lemma~\ref{lemma:self_reactive_sufficiency}, it is sufficient to
+check only against pure self-reactive strategies, and in the case of $n=2$ there
+can be only 16 such strategies. We refer to them as $\mathbf{\tilde{q}}^{i}$ for
+$i \in 1, \dots, 16$. The strategies are as follow,
 
-\begin{align}\label{eq:three_bit_conditions}
-  \frac{\hat{p}_{CCD} + \hat{p}_{CDC} + \hat{p}_{DCC}}{3} < 1\!-\! \frac{1}{3} \cdot \frac{c}{b} & \qquad 
-  \frac{\hat{p}_{CDD} + \hat{p}_{DCD} + \hat{p}_{DDC}}{3} < 1\!-\! \frac{2}{3} \cdot \frac{c}{b} & \qquad 
-  \hat{p}_{DDD} < 1\!-\! \frac{c}{b} \\
-  & \frac{\hat{p}_{CCD} + \hat{p}_{CDD} + \hat{p}_{DCC} + \hat{p}_{DDC}}{4}  < 1\!-\! \frac{1}{2} \cdot \frac{c}{b} 
-  & \qquad \frac{\hat{p}_{CDC} + \hat{p}_{DCD}}{2} < 1\!-\! \frac{1}{2} \cdot \frac{c}{b}
+\begin{multicols}{4}
+  \begin{itemize}
+    \item $\mathbf{\tilde{q}}^{0} =$ (0, 0, 0, 0)
+    \item $\mathbf{\tilde{q}}^{1} =$ (0, 0, 0, 1)
+    \item $\mathbf{\tilde{q}}^{2} =$ (0, 0, 1, 0)
+    \item $\mathbf{\tilde{q}}^{3} =$ (0, 0, 1, 1)
+    \item $\mathbf{\tilde{q}}^{4} =$ (0, 1, 0, 0)
+    \item $\mathbf{\tilde{q}}^{5} =$ (0, 1, 0, 1)
+    \item $\mathbf{\tilde{q}}^{6} =$ (0, 1, 1, 0)
+    \item $\mathbf{\tilde{q}}^{7} =$ (0, 1, 1, 1)
+    \item $\mathbf{\tilde{q}}^{8} =$ (1, 0, 0, 0)
+    \item $\mathbf{\tilde{q}}^{9} =$ (1, 0, 0, 1)
+    \item $\mathbf{\tilde{q}}^{10} =$ (1, 0, 1, 0)
+    \item $\mathbf{\tilde{q}}^{11} =$ (1, 0, 1, 1)
+    \item $\mathbf{\tilde{q}}^{12} =$ (1, 1, 0, 0)
+    \item $\mathbf{\tilde{q}}^{13} =$ (1, 1, 0, 1)
+    \item $\mathbf{\tilde{q}}^{14} =$ (1, 1, 1, 0)
+    \item $\mathbf{\tilde{q}}^{15} =$ (1, 1, 1, 1)
+  \end{itemize}
+\end{multicols}
+
+\begin{proof}
+Let the following payoffs of a nice reactive-two strategy $p$ against
+the set of pure self-reactive-two strategies,
+
+\begin{equation}\label{Eq:PayoffExpressionsReactiveTwo}
+  \begin{array}{l}
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = b \times p_{CC} ~~for~~ i \in \{0, 2, 4, 6, 8, 10, 12, 14\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + p_{DD})}{3} - \frac{c}{3} ~~for~~ i \in \{1, 9\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + p_{DD} + 1)}{4} - \frac{c}{2} ~~for~~ i \in \{3\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC})}{2} - \frac{c}{2} ~~for~~ i \in \{4, 5, 12, 13\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + 1)}{3} - \frac{2c}{2} ~~for~~ i \in \{6, 7\}\\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = b - c ~~for~~ i \in \{8, 9, 10, 11, 12, 13, 14, 15\}\\
+  \end{array}
+\end{equation}
+
+Setting expression of Eq.~\eqref{Eq:PayoffExpressionsReactiveTwo} to smaller than
+$(b - c)$ we get the three following conditions,
+
+\begin{align} 
+  p_{DD} & < 1 - \frac{c}{b} \\ \label{Eq:Condition2Reactive1}
+  \frac{p_{CD} + p_{DC} + p_{DD}}{3} & < 1 - \frac{2c}{3b} \\ \label{Eq:Condition2Reactive2}
+  \frac{p_{CD} + p_{DC}}{2} & < 1 - \frac{c}{2b} \\ \label{Eq:Condition2Reactive3}
 \end{align}
 
-We have two independent proves of Theorem. The first proves is in line with the
-work of Akin and the second prove rely on Theorem. Here we present both proves.
+Note that condition~\eqref{Eq:Condition2Reactive2} is the sum of
+conditions~\eqref{Eq:Condition2Reactive1} and~\eqref{Eq:Condition2Reactive3}.
+Thus, only conditions \eqref{Eq:Condition2Reactive1} and \eqref{Eq:Condition2Reactive3}
+are necessary.
+\end{proof}
 
+\subsection{Reactive-Three Partner Strategies}
 
-\subsection{$n-$bit counting partner strategies}
+In this section, we focus on the case of $n=3$. Reactive-three strategies are
+denoted as a vector $\mathbf{p}=(p_{CCC}, p_{CCD}, p_{CDC}, p_{CDD}, p_{DCC},
+p_{DCD}, p_{DDC}, p_{DDD})$ where $p_{CCC}$ is the probability of cooperating in
+round $t$ when the co-player cooperates in the last 3 rounds, $p_{CCD}$ is the
+probability of cooperating given that the co-player cooperated in the third and
+second to last rounds and defected in the last, and so forth. A nice
+reactive-three strategy is represented by the vector $\mathbf{p}=(1, p_{CCD},
+p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{DDD})$.
 
-A special case of reactive strategies are counting reactive strategies.
+\begin{theorem}[``Reactive-Three Partner Strategies'']\label{theorem:reactive_three_partner_strategies}
+A reactive-three strategy $\mathbf{p}$, is a partner strategy if and only if,
+it's nice ($p_{CCC} = 1$) and the remaining entries satisfy the conditions:
 
-A special case of $2-$bit reactive strategies is the {\it $2-$bit counting
-reactive} strategies. These are strategies that respond to the action of the
-co-player, but they do not differentiate between when defection occurs, only if
-one or two defections occurred. Let \(r_i\) be the probability of cooperating
-given that the co-player cooperated \(i\) number of times in the last 2 turns.
+\begin{align}\label{eq:three_bit_conditions}
+  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} < 1\!-\! \frac{1}{3} \cdot \frac{c}{b} & \qquad 
+  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} < 1\!-\! \frac{2}{3} \cdot \frac{c}{b} & \qquad 
+  p_{DDD} < 1\!-\! \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & < 1\!-\! \frac{1}{2} \cdot \frac{c}{b} 
+  \qquad \frac{p_{CDC} + p_{DCD}}{2} < 1\!-\! \frac{1}{2} \cdot \frac{c}{b}
+\end{align}
+\end{theorem}
 
-Thus, $r_2 = \hat{p}_1, r_1 = \hat{p}_2 =  \hat{p}_3, r_0 = \hat{p}_4$ and
-$\mathbf{\hat{p}}=(r_2=1, r_1, r_0)$. Conditions~(\ref{eq:two_bit_conditions})
-then become:
+Once again, there are two independent proves of
+Theorem~\ref{theorem:reactive_three_partner_strategies}, and present both.
+
+{\bf Proof One.} Suppose player $p$ adopts a reactive-three strategy
+$\mathbf{p}$, and suppose player~$q$ adopts an arbitrary memory-three strategy
+$\mathbf{m}$. Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant distribution of
+the game between the two players.
+
+We define the following eight marginal distributions with respect to the possible
+three-histories of player~$q$,
+
+\begin{equation}
+\begin{array}{l}
+\displaystyle v^q_{CCC} = \sum_{h^p\in H^p} v_{(h^p,CCC)}\\
+\displaystyle v^q_{CCD} = \sum_{h^p\in H^p} v_{(h^p,CCD)}\\
+\displaystyle v^q_{CDC} = \sum_{h^p\in H^p} v_{(h^p,CDC)}\\
+\displaystyle v^q_{CDD} = \sum_{h^p\in H^p} v_{(h^p,CDD)}\\
+\displaystyle v^q_{DCC} = \sum_{h^p\in H^p} v_{(h^p,DCC)}\\
+\displaystyle v^q_{DCD} = \sum_{h^p\in H^p} v_{(h^p,DCD)}\\
+\displaystyle v^q_{DDC} = \sum_{h^p\in H^p} v_{(h^p,DDC)}\\
+\displaystyle v^q_{DDD} = \sum_{h^p\in H^p} v_{(h^p,DDD)}.
+\end{array}
+\end{equation}
+
+These eight entries describe how often we observe player $q$ to choose actions
+$CCC$, $CCD$, $CDC$, $CDD$, $DCC$, $DCD$, $DDC$, $DDD$ in three consecutive
+rounds (irrespective of the actions of player $p$). We can define player $q$'s
+average cooperation rate $\rho_\mathbf{m}$ as 
+
+\begin{equation} \label{Eq:rhoq_n3}
+\rho_\mathbf{m} := v^q_{CCC} + v^q_{CCD} + v^q_{DCC} + v^q_{DCD}
+\end{equation}
+
+Note that the following equalities hold in the case of $n=3$,
+
+\begin{align}
+  v^{q}_{CCD} + v^{q}_{CCD}  = 
+\end{align}
+
+% Here, the second equality holds because it does not matter whether we define
+% player $q$'s cooperation rate based on the first or the second round of each
+% 2-history. In particular, we can use this equality to conclude
+
+% \begin{equation} \label{Eq:EqualityV}
+% v^q_{CD} = v^q_{DC}.
+% \end{equation}
+
+% Similarly, we can express player $p$'s average cooperation rate
+% $\rho_\mathbf{p}$ in terms of $v^q_{CC}$, $v^q_{CD}$, $v^q_{DC}$, $v^q_{DD}$ by
+% noting that
+
+% \begin{equation} \label{Eq:rhop_n2}
+% \begin{array}{lll}
+% \rho_\mathbf{p} &= &\displaystyle v^q_{CC}\, p_{CC} +  v^q_{CD}\,p_{CD} + v^q_{DC}\, p_{DC} + v^q_{DD}\, p_{DD}\\[0.2cm]
+% 	& =  &v^q_{CC}\, p_{CC} +  v^q_{CD}\,(p_{CD}\!+\!p_{DC}) + v^q_{DD}\, p_{DD}.
+% \end{array}
+% \end{equation}
+
+% Here, the second equality is due to Eq.~\eqref{Eq:EqualityV}.
+
+% Finally, we note that we trivially have the following relationship (since all probabilities need to add up to one),
+
+% \begin{equation} \label{Eq:normalization}
+% 1 = v^q_{CC} +  v^q_{CD} + v^q_{DC} + v^q_{DD} = v^q_{CC} +  2v^q_{CD} + v^q_{DD}
+% \end{equation}
+
+% After these preparations, we can prove our theorem based on the same method as in \citet{akin:EGADS:2016}.
+ 
+% \begin{proof}
+% Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
+% strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
+
+% \begin{equation} \label{Eq:InequalityGood}
+% \begin{array}{rcl}
+% 0 	&\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
+% 	&\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{m}-(b\!-\!c)\\[0.2cm]
+% 	&\stackrel{Eqs.~\eqref{Eq:rhoq_n2}, \eqref{Eq:rhop_n2}, \eqref{Eq:normalization}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
+% 		- c\,\Big(v^q_{CC} \!+\! v^q_{CD}\Big) - (b\!-\!c)\Big(v^q_{CC} \!+\!  2v^q_{CD} \!+\! v^q_{DD}\Big)\\[0.2cm]
+% 	&=	&v^q_{CC} \,b\,(p_{CC}-1) + v^q_{CD}\Big(b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b\Big) + v^q_{DD}\Big(bp_{DD}-(b\!-\!c)\Big).
+% \end{array}
+% \end{equation}
+
+% By assumption~\eqref{eq:two_bit_conditions},
+
+% \begin{equation}
+% p_{CC}=1,~~~~~b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b<0,~~~~~bp_{DD}-(b\!-\!c)<0.
+% \end{equation}
+
+% Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGood} can only
+% hold if $v^q_{CD}\!=\!v^q_{DD}\!=\!0$, which implies $v^q_{DC}\!=\!0$ because of
+% Eq.~\eqref{Eq:EqualityV}. But then it follows that $v^q_{CC}\!=\!1$. By
+% Eqs.~\eqref{Eq:rhoq_n2} and~\eqref{Eq:rhop_n2} it follows that
+% $\rho_\mathbf{m}\!=\!\rho_\mathbf{p}\!=\!1$, and hence
+% $s_{\mathbf{m}, \mathbf{p}}\!=\!s_{\mathbf{p}, \mathbf{m}}\!=\!b\!-\!c$. 
+% \
+% \end{proof}
+
+\subsection{Reactive Counting Partner Strategies}
+
+A special case of reactive strategies is reactive-counting strategies. These are
+strategies that respond to the co-player's actions, but they do not distinguish
+between when cooperations/defections occurred; they solely consider the count of
+cooperations in the last n turns. A reactive-counting-n strategy is represented
+by a vector $\mathbf{r}=(r_i)_{i \in [0, dots, n]}$, where the entries \(r_i\)
+indicate the probability of cooperating given that the co-player cooperated
+\(i\) times in the last \(n\) turns.
+
+{\bf Reactive-Counting-Two Partner Strategies.} These are denoted by the vector
+$\mathbf{r}=(r_2, r_1, r_0)$ where $r_i$ is the probability of cooperating in
+after $i$ cooperations in the last 2 turns. We can characterise reactive-counting-two
+partner strategies by setting $r_2 = 1$, and $p_{CD} = p_{DC} = r_1$ and $p_{DD} = r_0$
+in conditions~\eqref{eq:two_bit_conditions}. This gives us the following result.
+
+\begin{lemma}
+A nice reactive-counting-two strategy $\mathbf{r} = (1, r_1, r_0)$ is a partner strategy if and only if,
 
 \begin{equation}\label{eq:counting_two_bit_conditions}
   \displaystyle r_1 < 1-\frac{1}{2} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
+\end{lemma}
 
+{\bf Reactive-Counting-Three Partner Strategies.} These are denoted by the vector
+$\mathbf{r}=(r_3, r_2, r_1, r_0)$ where $r_i$ is the probability of cooperating in
+after $i$ cooperations in the last 3 turns. We can characterise reactive-counting-three
+partner strategies by setting $r_3 = 1$, and $p_{CCD} = p_{CDC} = r_2,
+p_{DCD} = p_{DDC} = r_1$ and $p_{DDD} = r_0$
+in conditions~\eqref{eq:three_bit_conditions}. This gives us the following result.
 
-A special case of $3-$bit reactive strategies are the $3-$bit counting reactive
-strategies. Let $r_i$ be the probability of cooperating given that the co-player
-cooperated $i$ number of times in the last 3 turns. So, $r_3 = \hat{p}_{CCC},
-r_2 = \hat{p}_{CCD} =  \hat{p}_{CDC} = \hat{p}_{DCC}, r_1 = \hat{p}_{CDD} =
-\hat{p}_{DCD} =  \hat{p}_{DDC}, r_0 = \hat{p}_{CCC}$ and $\mathbf{\hat{p}}=(r_3=1,
-r_2, r_1, r_0)$. Then, conditions~(\ref{eq:three_bit_conditions}), the
-conditions for being a partner strategy become:
+\begin{lemma}
+A nice reactive-counting-three strategy $\mathbf{r} = (1, r_2, r_1, r_0)$ is a partner strategy if and only if,
 
 \begin{equation}\label{eq:counting_three_bit_conditions}
   \displaystyle r_2 < 1- \frac{1}{3} \cdot \frac{c}{b}, \quad r_1 < 1- \frac{2}{3} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
-
+\end{lemma}
 
 In the case of counting reactive strategies, we observe a pattern in the
 conditions they must satisfy to be partner strategies. We show that for an $n-$bit
