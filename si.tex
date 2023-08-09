@@ -79,25 +79,25 @@ We assume in the following, that the players' decisions only depend on the
 outcome of the previous $n$ rounds. To this end, an {\it $n$-history for player
 $p$} is a string $h^p=(a^p_{-1},\ldots,a^p_{-n})\!\in\!\{C,D\}^n$. An entry
 $a^p_{-k}$ corresponds to player $p$'s action $k$ rounds ago. Let $H^p$ denote
-the space of all $n$-histories of player~$p$. Analogously, we define $H^q$ as
-the set of $n$-histories $h^q$ of player~$q$. Sets $H^p$ and $H^q$ contain
-$|H^p|=|H^q|=2^{n}$ elements each. A pair $h\!=\!(h^p,h^q)$ is called
-an {\it $n$-history of the game}. We use $H=H^p\times H^q$ to denote the space
-of all such histories. This set contains $|H|=2^{2n}$ elements.
+the space of all $n$-histories of player~$p$. Analogously, let $H^q$ as the set
+of $n$-histories $h^q$ of player~$q$. Sets $H^p$ and $H^q$ contain
+$|H^p|=|H^q|=2^{n}$ elements each.
+
+A pair $h\!=\!(h^p,h^q)$ is called an {\it $n$-history of the game}. We use
+$H=H^p\times H^q$ to denote the space of all such histories. This set contains
+$|H|=2^{2n}$ elements.
 
 {\bf Memory-$n$ strategies.} A {\it memory-$n$} strategy is a vector
 $\mathbf{m}=(m_h)_{h\in H}\in[0,1]^{2n}$. Each entry $m_h$ corresponds to the
 player's cooperation probability in the next round, depending on the outcome of
-the previous $n$ rounds.
-
-If the two players use memory-$n$ strategies $\mathbf{m}$ and $\mathbf{m'}$, one
-can represent the interaction as a Markov chain with a $2^{2n}\!\times\!2^{2n}$
-transition matrix $M$. Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant
-distribution of this Markov chain. Based on the invariant distribution $\mathbf{v}$, we can also compute the
+the previous $n$ rounds. If the two players use memory-$n$ strategies
+$\mathbf{m}$ and $\mathbf{m'}$, one can represent the interaction as a Markov
+chain with a $2^{2n}\!\times\!2^{2n}$ transition matrix $M$. Let
+$\mathbf{v}=(v_h)_{h\in H}$ be an invariant distribution of this Markov chain.
+Based on the invariant distribution $\mathbf{v}$, we can also compute the
 players' payoffs. To this end, let $\mathbf{S}^k = (S_h^k)_{h\in H}$ denote the
 vector that returns for each $h$ the one-shot payoff that player $p$ obtained
 $k$ rounds ago,
-
 
 \begin{equation}
     S_h^k = \left\{
@@ -121,63 +121,78 @@ The equalities $\mathbf{v}\cdot \mathbf{S}^1 = \ldots = \mathbf{v} \cdot
 past $n$ rounds we use to define average payoffs. The payoff
 $s_{\mathbf{m'},\mathbf{m}}$ of player $q$ can be defined analogously.
 
+Let's provide definitions for some additional terms that will be used in this
+manuscript.
 
 {\bf Nash Strategies.} A strategy $\mathbf{m}$ for player $p$, is a \textit{Nash
-strategy}, if the co-player never receives a payoff higher than that of the
-mutual cooperation payoff. Irrespective of the co-player's strategy. Namely if,
+strategy}, if player $q$ never receives a payoff higher than that of the mutual
+cooperation payoff. Irrespective of $q$'s strategy. Namely if,
 
 \begin{equation}\label{Eq:Nash}
     s_{\mathbf{m'},\mathbf{m}} \leq (b - c) \; \forall \; m'.
 \end{equation}
 
-{\bf Partner Strategies.} A player's strategy is \textit{nice}, if the player is
-never the first to defect. For player $p$, a \textit{partner strategy} is a nice
+{\bf Nice Strategies.} A player's strategy is \textit{nice}, if the player is
+never the first to defect.
+
+{\bf Partner Strategies.} For player $p$, a \textit{partner strategy} is a nice
 strategy such that,
 
-\begin{equation}\label{Eq:Partner}
-    s_{\mathbf{m'},\mathbf{m}} \geq (b - c) \; \Rightarrow \; s_{\mathbf{m'},\mathbf{m}} = s_{\mathbf{m},\mathbf{m'}} = (b - c).
-\end{equation}
+\begin{align}\label{Eq:Partner}
+    s_{\mathbf{m'},\mathbf{m}} & < (b - c) \; \Rightarrow \; s_{\mathbf{m},\mathbf{m'}} < (b - c), ~~and~~\\
+    s_{\mathbf{m'},\mathbf{m}} & \geq (b - c) \; \Rightarrow \; s_{\mathbf{m'},\mathbf{m}} = s_{\mathbf{m},\mathbf{m'}} = (b - c).
+\end{align}
 
-irrespective of the co-player's strategy.
+irrespective of the co-player's strategy. In other words, partners strive to
+achieve the mutual cooperation payoff R with their co-player. However, if the
+co-player doesn't cooperate, they are prepared to penalize them with lower
+payoffs. Partner strategies, by definition, are best responses to themselves,
+making them Nash strategies~\cite{Hilbe:GEB:2015}. All partner strategies are
+Nash strategies, but not all Nash strategies are partner strategies.
 
-Partner strategies, by definition, are best responses to themselves, making them
-Nash strategies~\cite{Hilbe:GEB:2015}.
-
-% If a player uses a partner strategy, both players can share the rewards
-% fairly. However, if a co-player prefers an unfair approach, they will receive a
-% reduced payoff as a consequence. 
+{\bf \%ToDo} Why are partner strategies interesting to study?
 
 Previously the work, of \citep{akin:EGADS:2016} characterized all partner
 strategies for $n=1$. For higher memory ($n>1$) a few
-works~\citep{hilbe:PNAS:2017} gave managed to characterized partner strategies
-bit only a subset of them. As memory increases analytical results become more
-difficult to obtain. However, in this work we characterize all partner
-strategies for $n=2, n=3$ for reactive strategies. We formally introduce
-reactive strategies and present the results from section
-\ref{section:reactive_strategies} onwards. In the next section, we will discuss
-a series of results for the general case of memory$-n$.
+works~\citep{hilbe:PNAS:2017} have managed to characterized partner strategies
+bit only a subset of them because as memory increases analytical results become
+more difficult to obtain. However, in this work we characterize all partner
+reactive strategies for $n=2, n=3$. We formally introduce reactive strategies
+and present the results from section \ref{section:reactive_strategies} onwards.
+In the next section, we will discuss a series of results for the general case of
+memory$-n$.
 
-\section{An Extension of Akin's Theorem}
+\section{An Extension of Akin's Lemma}
 
-The work of~\citep{akin:EGADS:2016} focuses on the case of memory-one strategies,
-thus $n=1$. A memory-one strategy of player $p$ is the vector $m = (m_1, m_2,
-m_3, ,m_4)$, and against a co-player $m'$ the stationary distribution is of $v =
-(v_1, v_2, v_3, v_4)$. Akin's lemma is the following:
+The work of~\citep{akin:EGADS:2016} focuses on the case of memory-one
+strategies, thus for $n=1$. A memory-one strategy of player $p$ is the vector
+$\mathbf{m} = (m_1, m_2, m_3, ,m_4)$, and against a co-player $\mathbf{m}'$ the
+stationary distribution is of $\mathbf{v} = (v_1, v_2, v_3, v_4)$. Akin's lemma
+states the following,
 
-\begin{theorem}[Akin's Lemma]\label{theorem:akin} Assume that player \(p\) uses
-    the memory-one strategy \(\mathbf{m}=(m_1, m_2, m_3, m_4)\), and \(q\) uses
-    a strategy that leads to a sequence of distributions \(\{\mathbf{v}^{(n)}, n
-    = 1, 2, ...\}\) with \(\mathbf{v}^{(k)}\) representing the distribution over
-    the states in the \(k^{\text{th}}\) round of the game. Let  \(\mathbf{v}\)
-    be the associated stationary distribution, and let \(\mathbf{\tilde{m}} =
-    \mathbf{m} - \mathbf{e}_{12}\) where \(\mathbf{e}_{12} = (1, 1, 0, 0)\).
-    Then,
+\begin{lemma}[Akin's Lemma]\label{lemma:akin}
+
+Assume that player \(p\) uses the memory-one strategy \(\mathbf{m}=(m_1, m_2,
+m_3, m_4)\), and \(q\) uses a strategy that leads to a sequence of distributions
+\(\{\mathbf{v}^{(n)}, n = 1, 2, ...\}\) with \(\mathbf{v}^{(k)}\) representing
+the distribution over the states in the \(k^{\text{th}}\) round of the game. Let
+\(\mathbf{v}\) be the associated stationary distribution, and let
+\(\mathbf{\tilde{m}} = \mathbf{m} - \mathbf{e}_{12}\) where \(\mathbf{e}_{12} =
+(1, 1, 0, 0)\). Then,
   
     \begin{align}
-      \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{(k)} \cdot \mathbf{\tilde{m}} = 0, \text{ and therefore } \mathbf{v} \cdot \mathbf{\tilde{m}} = 0.
+      \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{(k)} \cdot \mathbf{\tilde{m}} & = 0, \text{ and therefore } \mathbf{v} \cdot \mathbf{\tilde{m}} = 0. \\
+      \mathbf{v} \cdot \mathbf{\tilde{m}} = (m_{CC} - 1) v_{CC} + & (m_{CD} - 1) v_{CD} + m_{DC} v_{DC} + m_{DD} v_{DD}.
     \end{align}
-\end{theorem}
+\end{lemma}
 
+The interpretation of this lemma is that the player's probabilities $p$ of
+switching from cooperation to defection and from defection to cooperation are
+equal. This is due to the fact that player $p$ can only switch from cooperation
+to defection if they have previously switched from defection to cooperation.
+
+In the following we generalise Akin's Lemma to $n>1$. Before we do so, we provide
+some further, definition.
 
 One special case of such a memory-$n$ strategy is the  {\it round-$k$-repeat
 strategy}. Player $p$ uses a {\it round-$k$-repeat strategy}
@@ -201,7 +216,6 @@ $\mathbf{v}\cdot\mathbf{m}$ corresponds to a setup in which one first draws a
 history $h$ according to the invariant distribution $\mathbf{v}$; then one takes
 player $p$'s probability $m_h$ to cooperate in the next round; the expectation
 of this procedure is $\sum_{h\in H} v_h m_h$.
-
 
 \noindent
 {\bf Zero-determinant strategies.}
@@ -237,7 +251,7 @@ m_h = \left\{
 That is, this strategy implements Tit-for-Tat (for $k\!=\!1$) or delayed
 versions thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced
 payoff relationship is $s_\mathbf{p}\!=\! s_\mathbf{q}$ (in particular, these
-strategies are {\it good}). 
+strategies are {\it partners}).
 
 Another interesting special case arises if  $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and
 $\alpha\!=\!0$, $\beta\!=\!-1/b$, $\gamma\!=\!1\!-\!c/b$. In that case
@@ -256,26 +270,80 @@ That is, the generated strategy is GTFT (if $k\!=\!1$), or delayed versions
 thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced payoff
 relationship is $s_{\mathbf{m'}, \mathbf{m}}\!=\!b\!-\!c$. In particular, these
 strategies are not {\it partner strategies}, but they satisfy the notion of
-being {\it Nash}.\\
+being {\it Nash strategies}.\\
+
+The two aforementioned results can be summarized as follows:
+
+\begin{itemize}
+  \item Any Tit-for-Tat strategy for any $n$, including delayed versions for $k > 1$,
+  is considered a partner strategy.
+  \item Any GTFT strategy for any $n$, including delayed versions for $k > 1$,
+  is considered a partner strategy.
+\end{itemize}
+
+{\bf \%ToDo} Should these results be propositions?
+
+\section{Reactive Partner Strategies}\label{section:reactive_strategies}
+
+A {\it $n-$ bit reactive strategy} is denoted by a vector
+$\mathbf{p}=(p_h)_{h\in H^q}\in[0,1]^{2n}$. Each entry $p_h$ corresponds to the
+player's cooperation probability in the next round, based on the co-player's
+action(s) in the previous $n$ rounds. Therefore, $n$-bit reactive strategies
+exclusively rely on the co-player's $n$-history, remaining unaffected by the
+focal player's own actions during the past $n$ rounds. From this point onward,
+we distinguish between memory-$n$ strategies and reactive-$n$ strategies, using
+notations $\mathbf{m}$ and $\mathbf{p}$ respectively for each set of strategies.
+
+By concentrating on this specific set of strategies, we derive a sequence of
+intriguing results.
+
+To begin, let's introduce some additional notation. Suppose player $p$ adopts
+are reactive$-n$ strategy $\mathbf{p}$, and suppose player $q$ adopts an
+arbitrary memory-$n$ strategy. Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant
+of the game between the two players with $\displaystyle \sum_{h \in H} v_h = 1$.
+
+We define the following marginal distributions with respect to the possible $n$-histories of player~$q$,
+
+\begin{equation}
+\displaystyle v^q_{h} = \sum_{h^p\in H^p} v_{(h^p,h^q)} \; \forall \; h^q \in H^q.
+\end{equation}
+
+These entries describe how often we observe player $q$ to choose action(s)
+$h^q$, in $n$ consecutive rounds (irrespective of the actions of player $p$).
+Based on the above notation, we can define player $q$'s average cooperation rate
+$\rho_\mathbf{m}$. Let, $H^{q}_{C}$ be the subset of $H^{q}$,
+
+\begin{equation}
+  H^{q}_{C} = \{h^q \in H^q : h^q_{-1} = C \; \lor \; h^q_{-2} = C\}, ~~then~~
+\end{equation}
+
+\begin{equation} \label{Eq:rhoq_alln}
+  \rho_\mathbf{m} := \displaystyle \sum_{h \in H^{q}_{C}} v^q_{h}.
+\end{equation}
+
+Similarly, we can express player $p$'s average cooperation rate
+$\rho_\mathbf{p}$ in terms of $v^q_{h}$ by
+noting that
+
+\begin{equation} \label{Eq:rhop_alln}
+  \begin{array}{lll}
+    \rho_\mathbf{p} &= &\displaystyle \sum_{h \in H^q} v^q_{h}\, p_{h}.
+  \end{array}
+\end{equation}
+
+Because we consider simple donation games, we note that these two quantities,
+$\rho_\mathbf{m}  ~~and~~ \rho_\mathbf{p},$ are
+sufficient to define the payoffs of the two players,
+
+\begin{equation} \label{Eq:payoff}
+  \begin{array}{lll}
+  s_{\mathbf{p}, \mathbf{m}}  =  b\, \rho_\mathbf{m} - c\, \rho_\mathbf{p}\\
+  s_{\mathbf{m}, \mathbf{q}} = b\, \rho_\mathbf{p} - c\, \rho_\mathbf{m}.
+  \end{array}
+\end{equation}
 
 
-\section{Reactive and Partner Strategies}\label{section:reactive_strategies}
-
-A {\it $n-$ bit reactive strategy} is a vector $\mathbf{p}=(p_h)_{h\in
-H^q}\in[0,1]^{2n}$. Each entry $p_h$ corresponds to the player's cooperation
-probability in the next round, depending on the co-player's action(s) of the
-previous \(n\) rounds. Thus, \(n\)-bit reactive strategies only depend on the
-co-player's \(n\)-history (independent of the focal player's own actions during
-the past \(n\) rounds).
-
-We will differentiate from memory-$n$ strategies by using $\mathbf{p}$ to
-represent reactive strategies. Studying this subset of strategies leads to a
-number of interesting results.
-
-By focusing on this specific set of strategies we derive a series of interesting
-results.
-
-\subsection{Sufficiency of self reactive strategies}
+\subsection{Sufficiency of Self reactive strategies}
 
 To characterize all partner $n$-bit reactive strategies, one would usually
 need to check against all pure $n$-memory one strategies~\cite{mcavoy:PRSA:2019}.
@@ -311,6 +379,7 @@ work of Akin and the second prove rely on Theorem. Here we present both proves.
 Suppose player $p$ adopts a 2-bit reactive strategy $\mathbf{p}\!=\!(p_{CC},p_{CD}, p_{DC}, p_{DD})$. 
 Moreover, suppose player~$q$ adopts an arbitrary memory-2 strategy. 
 Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant distribution of the game between the two players. 
+
 We define the following four marginal distributions with respect to the possible two-histories of player~$q$, 
 \begin{equation}
 \begin{array}{l}
