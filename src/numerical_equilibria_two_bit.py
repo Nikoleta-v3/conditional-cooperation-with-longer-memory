@@ -27,16 +27,18 @@ def match_payoff(player, coplayer, Sx):
     return ss @ Sx
 
 
-def task(i, strategy, coplayers, labels, filename, Sx, b, c):
+def task(i, strategy, coplayers, labels, filename, Sx, R, P):
 
     sx = match_payoff(strategy, strategy, Sx)
     data = []
 
-    for label, coplayer in zip(labels, coplayers):
-
+    for label, (q1, q2, q3, q4) in zip(labels, coplayers):
+        
+        coplayer =  [q1, q1, q2, q2, q1, q1, q2, q2,
+                     q3, q3, q4, q4, q3, q3, q4, q4],
         sy = match_payoff(coplayer, strategy, Sx)
         A = np.isclose(sx, sy, atol=10 ** -4) or sx > sy
-        B = np.isclose(sy, R, atol=10 ** -4) or sy < (b - c)
+        B = np.isclose(sy, R, atol=10 ** -4) or sy < R
 
         data_point = [
             i,
@@ -46,8 +48,8 @@ def task(i, strategy, coplayers, labels, filename, Sx, b, c):
             sy,
             A,
             B,
-            b,
-            c,
+            R,
+            P,
         ]
         data.append(data_point)
 
@@ -58,26 +60,21 @@ def task(i, strategy, coplayers, labels, filename, Sx, b, c):
 if __name__ == "__main__":
     max_simulation_number = 1000
     dimensions = int(sys.argv[1])
-    b = 2
-    c = 1
+    # b = 2
+    # c = 1
     n = 5
-    # R = 0.6
-    # P = 0.1
+    R = 0.2
+    P = 0.1
     seed = 0
-    folder = "two_bit_against_memory_two"
+    folder = "prisoners_dilemma_n_two"
     lbound = 100
     ubound = 200
 
-    deterministic_strategies = list(
-        itertools.product([0, 1], repeat=2 ** (2 * dimensions))
-    )
+    pure_self_reactive = list(itertools.product([0, 1], repeat=4))
 
-    labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
-    Sx = eq.payoffs_donation(b, c, dim=4)
-    #np.random.seed(seed)
-    # steps = np.arange(100, max_simulation_number, 100)
-    
-    # for lbound, ubound in zip(steps[:-1], steps[1:]):
+    labels = [f"N{i}" for i, _ in enumerate(pure_self_reactive)]
+    Sx = np.array([R, 0, 1, P] * 4)
+
     jobs = []
     for i in tqdm.tqdm(range(lbound, ubound)):
         np.random.seed(i)
@@ -106,12 +103,12 @@ if __name__ == "__main__":
                     dask.delayed(task)(
                         i,
                         strategy,
-                        deterministic_strategies,
+                        pure_self_reactive,
                         labels,
                         filename,
                         Sx,
-                        b,
-                        c,
+                        R,
+                        P,
                     )
                 )
     dask.compute(*jobs, nworkers=n)

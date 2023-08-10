@@ -69,7 +69,7 @@ def match_payoff(player, coplayer, Sx):
     return ss @ Sx
 
 
-def task(i, strategy, coplayers, labels, filename, Sx, b, c, trans):
+def task(i, strategy, coplayers, labels, filename, Sx, R, P, trans):
 
     sx = match_payoff(strategy, strategy, Sx)
     data = []
@@ -78,7 +78,7 @@ def task(i, strategy, coplayers, labels, filename, Sx, b, c, trans):
 
         sy = match_payoff(coplayer, strategy, Sx)
         A = np.isclose(sx, sy, atol=10 ** -4) or sx > sy
-        B = np.isclose(sy, b - c, atol=10 ** -4) or sy < (b - c)
+        B = np.isclose(sy, R, atol=10 ** -4) or sy < R
 
         data_point = [
             i,
@@ -88,8 +88,8 @@ def task(i, strategy, coplayers, labels, filename, Sx, b, c, trans):
             sy,
             A,
             B,
-            b,
-            c,
+            R,
+            P,
         ]
         data.append(data_point)
 
@@ -99,9 +99,9 @@ def task(i, strategy, coplayers, labels, filename, Sx, b, c, trans):
 
 if __name__ == "__main__":
     max_simulation_number = 1
-    b = 2
-    c = 1
-    folder = "three_bit_against_self_reactive_three"
+    R = .6
+    P = .1
+    folder = "prisoners_dilemma_n_three"
 
     deterministic_transitions = list(itertools.product([0, 1], repeat=8))
 
@@ -147,7 +147,7 @@ if __name__ == "__main__":
         deterministic_strategies.append(self_reactive)
 
     labels = [f"N{i}" for i, _ in enumerate(deterministic_strategies)]
-    Sx = eq.payoffs_donation(b, c, dim=16)
+    Sx = np.array([R, 0, 1, P] * 16)#eq.payoffs_donation(b, c, dim=16)
 
     for i in tqdm.tqdm(range(max_simulation_number)):
         np.random.seed(i)
@@ -195,7 +195,7 @@ if __name__ == "__main__":
             labels,
             filename,
             Sx,
-            b,
-            c,
+            R,
+            P,
             (p1, p2, p3, p4, p5, p6, p7, p8),
         )
