@@ -33,9 +33,8 @@ def task(i, strategy, coplayers, labels, filename, Sx, R, P):
     data = []
 
     for label, (q1, q2, q3, q4) in zip(labels, coplayers):
-        
         coplayer =  [q1, q1, q2, q2, q1, q1, q2, q2,
-                     q3, q3, q4, q4, q3, q3, q4, q4],
+                     q3, q3, q4, q4, q3, q3, q4, q4]
         sy = match_payoff(coplayer, strategy, Sx)
         A = np.isclose(sx, sy, atol=10 ** -4) or sx > sy
         B = np.isclose(sy, R, atol=10 ** -4) or sy < R
@@ -62,13 +61,11 @@ if __name__ == "__main__":
     dimensions = int(sys.argv[1])
     # b = 2
     # c = 1
-    n = 5
+    n = 1
     R = 0.2
     P = 0.1
     seed = 0
     folder = "prisoners_dilemma_n_two"
-    lbound = 100
-    ubound = 200
 
     pure_self_reactive = list(itertools.product([0, 1], repeat=4))
 
@@ -76,7 +73,7 @@ if __name__ == "__main__":
     Sx = np.array([R, 0, 1, P] * 4)
 
     jobs = []
-    for i in tqdm.tqdm(range(lbound, ubound)):
+    for i in tqdm.tqdm(range(max_simulation_number)):
         np.random.seed(i)
         filename = f"{folder}/dimensions_{dimensions}_iter_{i}_number_of_trials_{max_simulation_number}.csv"
         p1, p2, p3, p4 = np.random.random((1, 4)).round(5)[0]
