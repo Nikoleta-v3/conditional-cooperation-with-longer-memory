@@ -130,7 +130,7 @@ strategy}, if player $q$ never receives a payoff higher than that of the mutual
 cooperation payoff. Irrespective of $q$'s strategy. Namely if,
 
 \begin{equation}\label{Eq:Nash}
-    s_{\mathbf{m'},\mathbf{m}} \leq (b - c) \; \forall \; m'.
+    s_{\mathbf{m'},\mathbf{m}} \leq (b - c) \; \forall \; m' \; \in [0, 1]^{2n}.
 \end{equation}
 
 {\bf Nice Strategies.} A player's strategy is \textit{nice}, if the player is
@@ -140,67 +140,62 @@ never the first to defect.
 strategy such that,
 
 \begin{align}\label{Eq:Partner}
-    s_{\mathbf{m'},\mathbf{m}} & < (b - c) \; \Rightarrow \; s_{\mathbf{m},\mathbf{m'}} < (b - c), ~~and~~\\
-    s_{\mathbf{m'},\mathbf{m}} & \geq (b - c) \; \Rightarrow \; s_{\mathbf{m'},\mathbf{m}} = s_{\mathbf{m},\mathbf{m'}} = (b - c).
+    s_{\mathbf{m'},\mathbf{m}} & < (b - c) \; \Rightarrow \quad s_{\mathbf{m},\mathbf{m'}} < (b - c), ~~and~~\\
+    s_{\mathbf{m'},\mathbf{m}} & \geq (b - c) \; \Rightarrow \quad s_{\mathbf{m'},\mathbf{m}} = s_{\mathbf{m},\mathbf{m'}} = (b - c) \quad \forall \; m' \; \in [0, 1]^{2n}.
 \end{align}
 
-irrespective of the co-player's strategy. In other words, partners strive to
-achieve the mutual cooperation payoff R with their co-player. However, if the
-co-player doesn't cooperate, they are prepared to penalize them with lower
-payoffs. Partner strategies, by definition, are best responses to themselves,
-making them Nash strategies~\cite{Hilbe:GEB:2015}. All partner strategies are
-Nash strategies, but not all Nash strategies are partner strategies.
+{\bf \%ToDo} Do we need both?
+
+In other words, partners strive to achieve the mutual cooperation payoff of $(b -
+c)$ with their co-player. However, if the co-player doesn't cooperate, they are
+prepared to penalize them with lower payoffs. Partner strategies, by definition,
+are best responses to themselves, making them Nash strategies~\citep{Hilbe:GEB:2015}.
+All partner strategies are Nash strategies, but not all Nash strategies
+are partner strategies.
 
 {\bf \%ToDo} Why are partner strategies interesting to study?
 
-Previously the work, of \citep{akin:EGADS:2016} characterized all partner
-strategies for $n=1$. For higher memory ($n>1$) a few
-works~\citep{hilbe:PNAS:2017} have managed to characterized partner strategies
-bit only a subset of them because as memory increases analytical results become
-more difficult to obtain. However, in this work we characterize all partner
-reactive strategies for $n=2, n=3$. We formally introduce reactive strategies
-and present the results from section \ref{section:reactive_strategies} onwards.
-In the next section, we will discuss a series of results for the general case of
-memory$-n$.
+Previously, the work of~\citep{akin:EGADS:2016} characterized all partner strategies in the
+case of memory-one strategies. For higher memory values ($n > 1$), a few works
+(\citep{hilbe:PNAS:2017}) have managed to characterize subsets of memory$-n$ partner
+strategies. This difficulty arises from the fact that as memory increases,
+obtaining analytical results becomes more challenging. In this work, we focus on
+reactive strategies instead of memory$-n$ strategies. Reactive strategies, a
+subset of memory$-n$ strategies, are formally introduced in Section~\ref{section:reactive_strategies}. We
+characterize all reactive partner strategies for $n = 2$ and $n = 3$, and present a
+series of results starting from Section~\ref{section:self_reactive_sufficiency}. In the following section, we will
+discuss a series of results for the case of memory$-n$.
 
 \section{An Extension of Akin's Lemma}
 
-The work of~\citep{akin:EGADS:2016} focuses on the case of memory-one
-strategies, thus for $n=1$. A memory-one strategy of player $p$ is the vector
-$\mathbf{m} = (m_1, m_2, m_3, ,m_4)$, and against a co-player $\mathbf{m}'$ the
-stationary distribution is of $\mathbf{v} = (v_1, v_2, v_3, v_4)$. Akin's lemma
+\textbf{Akin's Lemma.} The work of~\citep{akin:EGADS:2016} focuses on the case of
+memory-one strategies, thus for $n=1$. A memory-one strategy of player $p$ is
+represented by the vector $\mathbf{m} = (m_1, m_2, m_3, m_4)$, and and when
+played against a co-player with strategy $\mathbf{m}'$, the resulting stationary
+distribution is denoted as $\mathbf{v} = (v_1, v_2, v_3, v_4)$. Akin's lemma
 states the following,
 
 \begin{lemma}[Akin's Lemma]\label{lemma:akin}
 
 Assume that player \(p\) uses the memory-one strategy \(\mathbf{m}=(m_1, m_2,
 m_3, m_4)\), and \(q\) uses a strategy that leads to a sequence of distributions
-\(\{\mathbf{v}^{(n)}, n = 1, 2, ...\}\) with \(\mathbf{v}^{(k)}\) representing
-the distribution over the states in the \(k^{\text{th}}\) round of the game. Let
-\(\mathbf{v}\) be the associated stationary distribution, and let
-\(\mathbf{\tilde{m}} = \mathbf{m} - \mathbf{e}_{12}\) where \(\mathbf{e}_{12} =
-(1, 1, 0, 0)\). Then,
-  
+\(\{\mathbf{v}^{k}, k = 1, 2, ...\}\) with \(\mathbf{v}^{k}\) representing the
+distribution over the states in the \(k^{\text{th}}\) round of the game. Let
+\(\mathbf{v}\) be the associated stationary distribution, then,
+
     \begin{align}
-      \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{(k)} \cdot \mathbf{\tilde{m}} & = 0, \text{ and therefore } \mathbf{v} \cdot \mathbf{\tilde{m}} = 0. \\
-      \mathbf{v} \cdot \mathbf{\tilde{m}} = (m_{CC} - 1) v_{CC} + & (m_{CD} - 1) v_{CD} + m_{DC} v_{DC} + m_{DD} v_{DD}.
+      \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{k} \cdot (\mathbf{m} - (1, 1, 0 , 0)) & = 0, \text{ and therefore } \mathbf{v} \cdot (\mathbf{m} - (1, 1, 0, 0)) = 0.
     \end{align}
 \end{lemma}
 
-The interpretation of this lemma is that the player's probabilities $p$ of
-switching from cooperation to defection and from defection to cooperation are
-equal. This is due to the fact that player $p$ can only switch from cooperation
-to defection if they have previously switched from defection to cooperation.
+\textbf{Akin's Lemma for $1\!\le\!k\!\le\!n$.}
 
-In the following we generalise Akin's Lemma to $n>1$. Before we do so, we provide
-some further, definition.
-
-One special case of such a memory-$n$ strategy is the  {\it round-$k$-repeat
-strategy}. Player $p$ uses a {\it round-$k$-repeat strategy}
-$\mathbf{m}^{k-\text{Rep}}$ if in any given round, the player chooses the same
-action as $k$ rounds ago. That is, if the game's $n$-history is such that
-$a^p_{-k}\!=\!C$, then $m^{k-\text{Rep}}_h\!=\!1$; otherwise
-$m^{k-\text{Rep}}_h\!=\!0$.
+One special case of memory$-n$ strategies are the round$-k-$repeat strategies for
+some $1\!\le\!k\!\le\!n$. Player $p$ uses a
+{\it round-$k$-repeat strategy} $\mathbf{m}^{k-\text{Rep}}$ if in any given
+round, the player chooses the same action as $k$ rounds ago. That is, if the
+game's $n$-history is such that $a^p_{-k}\!=\!C$, then
+$m^{k-\text{Rep}}_h\!=\!1$; otherwise $m^{k-\text{Rep}}_h\!=\!0$.
 
 With the same method as in \citep{akin:EGADS:2016}, one can show {\it Akin's
 Lemma}: For each $k$ with $1\!\le\!k\!\le\!n$, the invariant distribution
@@ -217,6 +212,10 @@ $\mathbf{v}\cdot\mathbf{m}$ corresponds to a setup in which one first draws a
 history $h$ according to the invariant distribution $\mathbf{v}$; then one takes
 player $p$'s probability $m_h$ to cooperate in the next round; the expectation
 of this procedure is $\sum_{h\in H} v_h m_h$.
+
+{\bf \%ToDo} Do we need a proof here? The intuition is summarising the proof.
+
+{\bf \%ToDo} Do we use italics when referring to keywords of the manuscript?
 
 \noindent
 {\bf Zero-determinant strategies.}
@@ -251,7 +250,7 @@ m_h = \left\{
 
 That is, this strategy implements Tit-for-Tat (for $k\!=\!1$) or delayed
 versions thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced
-payoff relationship is $s_\mathbf{p}\!=\! s_\mathbf{q}$ (in particular, these
+payoff relationship is $s_{\mathbf{m}, \mathbf{m'}}\!=\! s_{\mathbf{m'}, \mathbf{m}}$ (in particular, these
 strategies are {\it partners}).
 
 Another interesting special case arises if  $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and
@@ -279,14 +278,14 @@ The two aforementioned results can be summarized as follows:
   \item Any Tit-for-Tat strategy for any $n$, including delayed versions for $k > 1$,
   is considered a partner strategy.
   \item Any GTFT strategy for any $n$, including delayed versions for $k > 1$,
-  is considered a partner strategy.
+  is considered a Nash strategy.
 \end{itemize}
 
 {\bf \%ToDo} Should these results be propositions?
 
 \section{Reactive Partner Strategies}\label{section:reactive_strategies}
 
-A {\it $n-$ bit reactive strategy} is denoted by a vector
+A {\it reactive$-n$ strategy} is denoted by a vector
 $\mathbf{p}=(p_h)_{h\in H^q}\in[0,1]^{2n}$. Each entry $p_h$ corresponds to the
 player's cooperation probability in the next round, based on the co-player's
 action(s) in the previous $n$ rounds. Therefore, $n$-bit reactive strategies
@@ -295,44 +294,52 @@ focal player's own actions during the past $n$ rounds. From this point onward,
 we distinguish between memory-$n$ strategies and reactive-$n$ strategies, using
 notations $\mathbf{m}$ and $\mathbf{p}$ respectively for each set of strategies.
 
-By concentrating on this specific set of strategies, we derive a sequence of
-intriguing results.
-
 To begin, let's introduce some additional notation. Suppose player $p$ adopts
 are reactive$-n$ strategy $\mathbf{p}$, and suppose player $q$ adopts an
 arbitrary memory-$n$ strategy. Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant
-of the game between the two players with,
-
-\begin{equation}\label{eq:invariant_distribution_sum}
-  \displaystyle \sum_{h \in H} v_h = 1.
-\end{equation}
-
-We define the following marginal distributions with respect to the possible $n$-histories of player~$q$,
+of the game between the two players. We define the following marginal
+distributions with respect to the possible $n$-histories of player~$q$,
 
 \begin{equation}\label{Eq:marginal_distributions}
 \displaystyle v^q_{h} = \sum_{h^p\in H^p} v_{(h^p,h^q)} \; \forall \; h^q \in H^q.
 \end{equation}
 
-These entries describe how often we observe player $q$ to choose action(s)
-$h^q$, in $n$ consecutive rounds (irrespective of the actions of player $p$).
-Based on the above notation, we can define player $q$'s average cooperation rate
-$\rho_\mathbf{m}$. Let, $H^{q}_{C}$ be the subset of $H^{q}$,
+These entries describe how often we observe player $q$ to choose actions $h^q$,
+in $n$ consecutive rounds (irrespective of the actions of player $p$).
+Note that,
+
+
+\begin{equation}\label{eq:normalization_marginal_distributions}
+  \displaystyle \sum_{h \in H^q} v^q_{h} = 1.
+\end{equation}
+
+
+Similarly, the cooperation rate of player $q$ can also be defined irrespective
+of the actions of player $p$. Let $H^{q}_{k=C}$ be the subset of $H^{q}$, for which,
 
 \begin{equation}
-  H^{q}_{C} = \{h^q \in H^q : (h^q_{-2}, h^q_{-1}) = (C, C) \; \lor \; (h^q_{-2}, h^q_{-1}) = (C, D)\}, ~~then~~
+  H^{q}_{k=C} = \{h \in H^q : h_{-k} = C\}.
 \end{equation}
 
-\begin{equation} \label{Eq:rhoq_alln}
-  \rho_\mathbf{m} := \displaystyle \sum_{h \in H^{q}_{C}} v^q_{h}.
+Let $\rho_\mathbf{m}$ be the cooperation rate of
+player $q$ playing an arbitrary memory-$n$ strategy $\mathbf{m}$ when playing
+against player $p$ with a reactive strategy,
+
+\begin{equation}
+  \rho_\mathbf{m} = \sum_{h \in H^{q}_{1=C}} v^q_{h} \; = \; \sum_{h \in H^{q}_{2=C}} v^q_{h} \; = \; \dots \; = \sum_{h \in H^{q}_{n=C}} v^q_{h}.
 \end{equation}
 
-Similarly, we can express player $p$'s average cooperation rate
-$\rho_\mathbf{p}$ in terms of $v^q_{h}$ by
-noting that
+The equalities $\displaystyle \sum_{h \in H^{q}_{1=C}} v^q_{h} \; = \; \sum_{h \in
+H^{q}_{2=C}} v^q_{h} \; = \; \dots \; = \sum_{h \in H^{q}_{n=C}} v^q_{h}$
+correspond to the intuition that it does not matter which of the past $n$ rounds
+player $q$ cooperated to define the cooperation rate.
+
+We can also express player $p$'s average cooperation rate $\rho_\mathbf{p}$ in terms
+of $v^q_{h}$ by noting that,
 
 \begin{equation} \label{Eq:rhop_alln}
   \begin{array}{lll}
-    \rho_\mathbf{p} &= &\displaystyle \sum_{h \in H^q} v^q_{h}\, p_{h}.
+    \rho_\mathbf{p} &= &\displaystyle \sum_{h \in H^q} v^q_{h} \cdot p_{h}.
   \end{array}
 \end{equation}
 
@@ -348,18 +355,18 @@ sufficient to define the payoffs of the two players,
 \end{equation}
 
 
-\subsection{Sufficiency of Self reactive strategies}
+\subsection{Sufficiency of Self reactive strategies}\label{section:self_reactive_sufficiency}
 
-To characterize all partner $n$-bit reactive strategies, one would usually need
-to check against all pure $n$-memory one strategies~\cite{mcavoy:PRSA:2019}.
-However, we demonstrate that when player $p$ employs an $n$-bit reactive
-strategy, it is sufficient to check only against $n-$bit self-reactive
+To characterize all partner reactive-$n$ strategies, one would usually need
+to check against all pure memory-$n$ strategies~\cite{mcavoy:PRSA:2019}.
+However, we demonstrate that when player $p$ uses a reactive-$n$
+strategy, it is sufficient to check only against self-reactive-$n$
 strategies. This is a direct outcome of Lemma~\ref{lemma:self_reactive_sufficiency}.
 
 {\it Self-reactive-$n$} strategies are also a subset of memory-$n$ strategies.
-They only consider the focal player's own $n$-history, and ignore the co-player's
-$n$-history. Formally, a self-reactive-$n$ strategy is a vector
-$\mathbf{\tilde{p}} = (\tilde{p}_h)_{h \in H^q} \in [0, 1] ^ 2n$. Each entry
+They only consider the focal player's own $n$-history, and ignore the co-player's.
+Formally, a self-reactive-$n$ strategy is a vector
+$\mathbf{\tilde{p}} = (\tilde{p}_h)_{h \in H^p} \in [0, 1] ^ {2n}$. Each entry
 $\tilde{p}_h$ corresponds to the player's cooperation probability in the next,
 depending on the player's own action(s) in the previous $n$ rounds.
 
@@ -367,7 +374,7 @@ depending on the player's own action(s) in the previous $n$ rounds.
   Let $\mathbf{p}$ be an reactive$-n$ strategy for player $p$. Then, for any
   memory$-n$ strategy $\mathbf{m}$ used by player $q$, player $p$'s score is
   exactly the same as if $q$ had played a specific self-reactive memory-$n$
-  strategy.
+  strategy $\mathbf{\tilde{p}}$.
 \end{lemma}
 
 \begin{proof}
@@ -390,7 +397,7 @@ matrix $\tilde{M}$ instead. The stationary distribution $\mathbf{\tilde{v}}$ of
 $\tilde{M}$ has the following property:
 
 \begin{equation}
-  v_{h} = u^q_{h} \; \forall \; h \in H^q.
+  \tilde{u}_{h} = u^q_{h} \; \forall \; h \in H^q.
 \end{equation}
 
 From hereupon we will use the notation $\mathbf{m}, \mathbf{p}, \text{ and }
@@ -467,13 +474,8 @@ noting that
 
 Here, the second equality is due to Eq.~\eqref{Eq:EqualityV}.
 
-Finally, we note that we trivially have the following relationship (since all probabilities need to add up to one),
-
-\begin{equation} \label{Eq:normalization}
-1 = v^q_{CC} +  v^q_{CD} + v^q_{DC} + v^q_{DD} = v^q_{CC} +  2v^q_{CD} + v^q_{DD}
-\end{equation}
-
-After these preparations, we can prove our theorem based on the same method as in \citet{akin:EGADS:2016}.
+After these preparations, we can prove our theorem based on the same method as
+in \citet{akin:EGADS:2016}.
  
 \begin{proof}
 Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
@@ -483,7 +485,7 @@ strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
 \begin{array}{rcl}
 0 	&\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
 	&\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{m}-(b\!-\!c)\\[0.2cm]
-	&\stackrel{Eqs.~\eqref{Eq:rhoq_n2}, \eqref{Eq:rhop_n2}, \eqref{Eq:normalization}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
+	&\stackrel{Eqs.~\eqref{Eq:rhoq_n2}, \eqref{Eq:rhop_n2}, \eqref{eq:normalization_marginal_distributions}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
 		- c\,\Big(v^q_{CC} \!+\! v^q_{CD}\Big) - (b\!-\!c)\Big(v^q_{CC} \!+\!  2v^q_{CD} \!+\! v^q_{DD}\Big)\\[0.2cm]
 	&=	&v^q_{CC} \,b\,(p_{CC}-1) + v^q_{CD}\Big(b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b\Big) + v^q_{DD}\Big(bp_{DD}-(b\!-\!c)\Big).
 \end{array}
@@ -540,33 +542,45 @@ $i \in 1, \dots, 16$. The strategies are as follow,
 \end{multicols}
 
 \begin{proof}
-Let the following payoffs of a nice reactive-two strategy $p$ against
-the set of pure self-reactive-two strategies,
+Suppose player $p$ plays a nice reactive-two strategy $\mathbf{p} = (1, p_{CD},
+p_{DC}, p_{DD})$, and suppose the co-player $q$ plays a pure self-reactive-two
+strategy $\mathbf{\tilde{q}}$. The possible payoffs for
+$\mathbf{\tilde{q}} \in \{\mathbf{\tilde{q}}^{0}, \dots, \mathbf{\tilde{q}}^{16}\}$
+are:
 
-\begin{equation}\label{Eq:PayoffExpressionsReactiveTwo}
-  \begin{array}{l}
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = b \times p_{CC} ~~for~~ i \in \{0, 2, 4, 6, 8, 10, 12, 14\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + p_{DD})}{3} - \frac{c}{3} ~~for~~ i \in \{1, 9\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + p_{DD} + 1)}{4} - \frac{c}{2} ~~for~~ i \in \{3\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC})}{2} - \frac{c}{2} ~~for~~ i \in \{4, 5, 12, 13\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b (p_{CD} + p_{DC} + 1)}{3} - \frac{2c}{2} ~~for~~ i \in \{6, 7\}\\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = b - c ~~for~~ i \in \{8, 9, 10, 11, 12, 13, 14, 15\}\\
+\begin{equation*}\label{Eq:PayoffExpressionsReactiveTwo}
+  \begin{array}{lcllccl}
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & b \cdot p_{DD} & ~~and~~ & s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & -c \cdot p_{DD} & ~~for~~ i \in & \{0, 2, 4, 6, 8, \\
+    & & & & & & \; 10, 12, 14\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD})}{3} - \frac{1}{3} \cdot c  & ~~and~~ &  s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & \frac{1}{3} \cdot b - \frac{c \cdot \left(p_{CD} + p_{DC} + p_{DD}\right)}{3} & ~~for~~ i \in & \{1, 9\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD} + 1)}{4} - \frac{1}{2} \cdot c  & ~~and~~ &  s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & \frac{1}{2} \cdot b - \frac{c \cdot \left(p_{CD} + p_{DC} + p_{DD} + 1\right)}{4} & ~~for~~ i \in & \{3\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC})}{2} - \frac{1}{2} \cdot c  & ~~and~~ &  s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = &  \frac{1}{2} \cdot b - \frac{c \cdot \left(p_{CD} + p_{DC}\right)}{2} & ~~for~~ i \in & \{4, 5, 12, 13\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + 1)}{3} - \frac{2}{3} \cdot c  & ~~and~~ &  s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & \frac{2}{3} \cdot b - \frac{c \cdot \left(p_{CD} + p_{DC} + 1\right)}{3} & ~~for~~ i \in & \{6, 7\}\\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & b - c  & ~~and~~ & s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & (b - c) & ~~for~~ i \in & \{8, 9, 10, 11,\\
+    & & & & & & \; 12, 13, 14, 15\}
   \end{array}
-\end{equation}
+\end{equation*}
 
-Setting expression of Eq.~\eqref{Eq:PayoffExpressionsReactiveTwo} to smaller than
-$(b - c)$ we get the three following conditions,
+Setting the payoff expressions of $s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}}$ to
+smaller or equal to $(b - c)$ we get the following unique conditions,
 
 \begin{align} 
-  p_{DD} & < 1 - \frac{c}{b} \\ \label{Eq:Condition2Reactive1}
-  \frac{p_{CD} + p_{DC} + p_{DD}}{3} & < 1 - \frac{2c}{3b} \\ \label{Eq:Condition2Reactive2}
-  \frac{p_{CD} + p_{DC}}{2} & < 1 - \frac{c}{2b} \\ \label{Eq:Condition2Reactive3}
+  p_{DD} & \leq 1 - \frac{c}{b} \\ \label{Eq:Condition2Reactive1}
+  \frac{p_{CD} + p_{DC} + p_{DD}}{3} & \leq 1 - \frac{2c}{3b} \\ \label{Eq:Condition2Reactive2}
+  \frac{p_{CD} + p_{DC}}{2} & \leq 1 - \frac{c}{2b} \\ \label{Eq:Condition2Reactive3}
 \end{align}
 
 Note that condition~\eqref{Eq:Condition2Reactive2} is the sum of
 conditions~\eqref{Eq:Condition2Reactive1} and~\eqref{Eq:Condition2Reactive3}.
-Thus, only conditions \eqref{Eq:Condition2Reactive1} and \eqref{Eq:Condition2Reactive3}
-are necessary.
+Thus, only conditions \eqref{Eq:Condition2Reactive1} and
+\eqref{Eq:Condition2Reactive3} are necessary.
+
+By setting, $p_{DD} = 1 - \frac{c}{b}$ and $\frac{p_{CD} + p_{DC}}{2} = 1 -
+\frac{c}{2b}$ to any of the above expressions of $s_{\mathbf{\mathbf{p},
+\tilde{q}}^{i}}$ we can see that $s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} < (b -
+c)$. Thus, for $\mathbf{p}$ to be a partner strategy, the inequalities must be
+strict.
+
 \end{proof}
 
 \subsection{Reactive-Three Partner Strategies}
@@ -623,121 +637,139 @@ rounds (irrespective of the actions of player $p$). We can define player $q$'s
 average cooperation rate $\rho_\mathbf{m}$ as 
 
 \begin{equation} \label{Eq:rhoq_n3}
-\rho_\mathbf{m} := v^q_{CCC} + v^q_{CCD} + v^q_{DCC} + v^q_{DCD}
+\rho_\mathbf{m} := v^q_{CCC} + v^q_{CCD} + v^q_{DCC} + v^q_{DCD}.
 \end{equation}
 
-Note that the following equalities hold in the case of $n=3$,
+In the case of $n=3$ the following equalities hold,
 
-\begin{align}
-  v^{q}_{CCD} & = v^{q}_{DCC} \\ \label{Eq:Equality1_n3}
-  v^{q}_{DDC} & = v^{q}_{CDD} \\ \label{Eq:Equality2_n3}
-  v^{q}_{CCD} + v^{q}_{DCD}  & = v^{q}_{CDC} + v^{q}_{DDC} \\ \label{Eq:Equality3_n3}
+\begin{align} 
+  v^{q}_{CCD} & = v^{q}_{DCC} \label{Eq:Equality1_n3} \\ 
+  v^{q}_{DDC} & = v^{q}_{CDD} \label{Eq:Equality2_n3} \\  
+  v^{q}_{CCD} + v^{q}_{DCD}  & = v^{q}_{CDC} + v^{q}_{DDC} \Rightarrow \nonumber \\ 
+  v^{q}_{CCD} & = v^{q}_{CDC} + v^{q}_{CDD} - v^{q}_{DCD} \label{Eq:Equality3_n3} 
 \end{align}
 
 The average cooperation rate of $p$'s is given by
 
-\small{
-\begin{equation} \label{Eq:rhop_n3}
-\begin{array}{lcl}
-\rho_\mathbf{p} & = &\displaystyle v^q_{CCC}\, p_{CCC}+ v^q_{CCD}\, p_{CCD} + v^q_{CDC}\, p_{CDC} + v^q_{CDD}\, p_{CDD} + v^q_{DCD}\, p_{DCD} + v^q_{DDC}\, p_{DDC} + v^q_{DDD}\, p_{DDD} \\
-&\stackrel{Eq.~\eqref{Eq:Equality1_n3},~\eqref{Eq:Equality2_n3} }{=}& v^q_{CCC}\, p_{CCC} + v^q_{CCD}\, (p_{CCD} + p_{DCC}) + v^q_{CDC}\, p_{CDC} + v^q_{CDD}\, (p_{CDD} + p_{DDC}) + v^q_{DCD}\, p_{DCD} +  v^q_{DDD}\, p_{DDD} \\
-&\stackrel{Eq.~\eqref{Eq:Equality3_n3}}{=}& v^q_{CCC}\, p_{CCC} + v^q_{CCD}\, (p_{CCD} + p_{CDC} + p_{DCC}) + v^q_{DCD}\, (p_{CDC} + p_{DDC}) v^q_{DDD}\, p_{DDD} + \\
-& & v^q_{DDC}\, (p_{CDD} + p_{DCD} + p_{DDC}) + v^q_{CDD}\, (- p_{CDC} - p_{DDC})  + v^q_{DDD}\, p_{DDD} \\
-&\stackrel{Eq.~\eqref{eq:invariant_distribution_sum}}{=}& v^q_{CCC}\, p_{CCC} + v^q_{CCD}\, (p_{CCD} + p_{CDC} + p_{DCC}) + v^q_{DCD}\, (p_{CDC} + p_{DDC}) v^q_{DDD}\, p_{DDD} + \\
-& & v^q_{DDC}\, (p_{CDD} + p_{DCD} + p_{DDC}) + v^q_{CDD}\, (p_{CCD} + p_{DCC} + p_{DCD} + p_{DDC})  + (v^q_{DDD} + v^q_{CDD})\, p_{DDD} \\
-\end{array}
+\begin{equation}\label{Eq:rhop_n3}
+  \begin{array}{rcc}
+  \rho_\mathbf{p} & = & \displaystyle v^q_{CCC}\, p_{CCC}+ v^q_{CCD}\, p_{CCD} + v^q_{CDC}\, p_{CDC} + v^q_{CDD}\, p_{CDD} + v^q_{DCD}\, p_{DCD} +  \\ [.7em]
+  & & + v^q_{DDC}\, p_{DDC} + v^q_{DDD}\, p_{DDD} \\
+  & \stackrel{Eqs.~\eqref{Eq:Equality1_n3}, \eqref{Eq:Equality2_n3}}{=} & \displaystyle v^q_{CCC}\, p_{CCC}+ v^q_{CCD}\, (p_{CCD} + p_{DCC}) + v^q_{CDC}\, p_{CDC} + v^q_{CDD}\, (p_{CDD} + p_{DDC}) + \\ [.7em]
+  & & v^q_{DCD}\, p_{DCD} + v^q_{DDD}\, p_{DDD}
+  \end{array}
 \end{equation}
-}
  
 \begin{proof}
+
 Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
 strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
 
-\begin{equation}
+\begin{equation}\label{Eq:InequalityGoodN3}
 \begin{array}{rcl}
-0 	&\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
+0 &\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
 	&\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{m}-(b\!-\!c)\\[0.2cm]
-	&\stackrel{Eqs.~\eqref{Eq:rhoq_n2}, \eqref{Eq:rhop_n2}, \eqref{Eq:normalization}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
-		- c\,\Big(v^q_{CC} \!+\! v^q_{CD}\Big) - (b\!-\!c)\Big(v^q_{CC} \!+\!  2v^q_{CD} \!+\! v^q_{DD}\Big)\\[0.2cm]
-	&=	&v^q_{CC} \,b\,(p_{CC}-1) + v^q_{CD}\Big(b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b\Big) + v^q_{DD}\Big(bp_{DD}-(b\!-\!c)\Big).
+	&\stackrel{Eqs.~\eqref{Eq:rhop_n3}, \eqref{eq:normalization_marginal_distributions}}{=}	& 
+  b\,\Big( v^q_{CCC} p_{CCC} \!+\!  v^q_{CCD}(p_{CCD}\!+\!p_{DCC}) \!+\! v^q_{CDC} p_{CDC} \!+\! v^q_{DDC}(p_{CDD}\!+\!p_{DDC}) \!+\! v^q_{DCD} p_{DCD} \!+\! v^q_{DDD} p_{DDD}\Big) \\ [0.2cm]
+  & & - c\,\Big(v^q_{CCC} \!+\! 2 v^q_{CCD} \!+\! v^q_{DCD}\Big) - (b\!-\!c)\Big(v^q_{CCC} \!+\! 2 v^q_{CCD} \!+\! v^q_{CDC} \!+\! 2 v^q_{DDC} \!+\! v^q_{DCD} \!+\! v^q_{DDD} \Big) \\ [0.4cm]
+  & = & b\, v^q_{CCC} (p_{CCC} - 1) + v^q_{CCD} (b\, (p_{CCD} + p_{DCC} - 2)) + v^q_{CDC} (b\, (p_{CDC} - 1) + c) + \\ [0.2cm]
+  & & v^q_{CDD} (b\, (p_{CDD} + p_{DDC} - 2) + 2\, c) + v^q_{DCD} (b\, (p _{DCD} - 1)) + v^q_{DDD} (b\, (p _{DDD} - 1) + c) \\ [0.4cm]
+  &\stackrel{Eq.~\eqref{Eq:Equality3_n3}}{=}	& b\, v^q_{CCC} (p_{CCC} - 1) + v^q_{DDD} (b\, (p _{DDD} - 1) + c) + v^q_{CDC} (b\, (p_{CCD} + p_{DCC} + p_{CDC}- 3) + c) + \\ [0.2cm]
+  & & v^q_{CDD} (b\, (p_{CDD} + p_{DDC} + p_{CCD} + p_{DCC} - 4) + 2\, c) + v^q_{DCD} (b\, (p _{DCD}  - 1) -  b\, (p_{CCD} + p_{DCC}) - 2)
 \end{array}
 \end{equation}
 
+By assumption,
+
+\begin{equation*}
+\begin{array}{c}
+p_{CCC} = 1, \quad b\, (p _{DDD} - 1) + c < 0,  \quad b\, (p_{CCD} + p_{DCC} + p_{CDC}- 3) + c \\ [0.4cm]
+b\, (p_{CDD} + p_{DDC} + p_{CCD} + p_{DCC} - 4) + 2\, c < 0 \Rightarrow - b\, (p_{CCD} + p_{DCC} - 2) > b\, (p_{CDD} + p_{DDC} - 2) + 2\, c \\ [0.4cm]
+b\, (p _{DCD}  - 1) -  b\, (p_{CCD} + p_{DCC}) - 2 < 0 \Rightarrow  b\, (p _{DCD} + p_{CDD} + p_{DDC} - 3) + 2\, c < 0.
+\end{array}
+\end{equation*}
+
+Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGoodN3} can only
+hold if $v^q_{DDD}\!=\!v^q_{CDC}\!=\!v^q_{CDD}\!=\!v^q_{DCD}\!=\!0$, which
+implies $v^q_{DDC}\!=\!0$ because of Eq.~\eqref{Eq:Equality2_n3} and $v^q_{CCD}\!=\!0$
+because of Eq.~\eqref{Eq:Equality3_n3}.
+But then it follows that $v^q_{CCC}\!=\!1$. By
+Eqs.~\eqref{Eq:rhoq_n3} and~\eqref{Eq:rhop_n3} it follows that
+$\rho_\mathbf{m}\!=\!\rho_\mathbf{p}\!=\!1$, and hence
+$s_{\mathbf{m}, \mathbf{p}}\!=\!s_{\mathbf{p}, \mathbf{m}}\!=\!b\!-\!c$. 
+\
 \end{proof}
 
-{\bf Proof Two.} Consider all the pure self-reactive-three strategies, there
-are a total of 256 of them. These are given in the appendix. regardless, the
-payoff expressions for each of these strategies against a nice reactive-three
-strategies can be calculated explicilty. We will use these expressions to
-obtain the conditions for partner strategies similar to the previous subsection.
+{\bf Proof Two.} Consider all the pure self-reactive-three strategies, there are
+a total of 256 of them. These are given in the appendix. regardless, the payoff
+expressions for each of these strategies against a nice reactive-three
+strategies can be calculated explicitly. We will use these expressions to obtain
+the conditions for partner strategies similar to the previous subsection.
 
 \begin{proof}
   The payoff expressions for a nice reactive-three strategy $p$ against all
   pure self-reactive-three strategies are as follows,
 
+\small{
 \begin{equation}\label{Eq:PayoffExpressionsReactiveThree}
-  \begin{array}{l}
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b(p_4 + p_6 + p_7 + p_8) \!- \!c}{4} ~~for~~ i \in \{1, 9, 33, 41, 65, 73, 97, 105, 129, 137, 161, 169, 193, 201, 225, 233\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{4} + p_{5} + p_{7} + p_{8}\right) \!- \!2 c}{5} ~~for~~ i \in \{3, 7, 35, 39, 131, 135, 163, 167\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{3} + p_{6}\right) - c}{2} ~~for~~ i \in \{4 \!- \!7, 12 \!- \!15, 20 \!- \!23, 28 \!- \!31, 68 \!- \!71, 76 \!- \!79, 84 \!- \!87, 92 \!- \!95, 132 \!- \!135, 140 \!- \!143, 148- 151, 156 \!- \!159, 196 \!- \!199, 204 \!- \!207, 212 \!- \!215, 220 \!- \!223\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{4} + p_{5} + p_{7} + p_{8} + 1\right)}{6} - \frac{c}{2} ~~for~~ i \in \{11, ,15, ,43, ,47\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{4} + p_{6} + p_{7}\right) - c}{3} ~~for~~ i \in \{16,17,24,25,48,49,56,57,80,81,88,89,112,113,120,121,144,145,152,153,176,177,184,185,208,209,216,217,240,241,248,249\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{4} + p_{5} + p_{7}\right) - 2 c}{4} ~~for~~ i \in \{18, 19, 22, 23, 50, 51, 54, 55, 146, 147, 150, 151, 178, 179, 182, 183\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{4} + p_{5} + p_{7} + 1\right) - 3 c}{5} ~~for~~ i \in \{26, 27, 30, 31, 58, 59, 62, 63\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{3} + p_{4} + p_{5} + p_{6} + p_{7} + p_{8}\right) - 3 c}{7} ~~for~~ i \in \{37, 67, 165, 195\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{3} + p_{4} + p_{5} + p_{6} + p_{7} + p_{8} + 1\right)}{8} - \frac{c}{2} ~~for~~ i \in \{45, 75\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{3} + p_{4} + p_{5} + p_{6} + p_{7}\right)}{6} - \frac{c}{2} ~~for~~ i \in \{52, 53, 82, 83, 180, 181, 210, 211\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{3} + p_{4} + p_{5} + p_{6} + p_{7} + 1\right) - 4c}{7} ~~for~~ i \in \{60, 61, 90, 91\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{3} + p_{5}\right) - 2 c}{3} ~~for~~ i \in \{96\!- \!103, 112\!- \!119, 224\!- \!231, 240\!- \!247\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = \frac{b \left(p_{2} + p_{3} + p_{5} + 1\right) - 3c}{4} ~~for~~ i \in \{104\!-\!111, 120\!- \!127\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = (b - c) ~~for~~ i \in [128, 255] \\ [1em]
-  \end{array}
-\end{equation}
+\begin{array}{lcll}
+  s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & b \; p_{DDD} & ~~for~~ i \in & [0, 2, 4, 6, \dots, 250, 252, 254] \\ [0.1cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CDD} + p_{DCD} + p_{DDC} + p_{DDD})}{4} - \frac{1}{4} \cdot c & ~~for~~ i \in & \{ 1, 9, 33, 41, 65, 73, 97, 105, 129, 137, 161,
+    \\ & & &  169, 193, 201, 225, 233\} \\ [0.1cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC} + p_{DDD}\right)}{5} - \frac{2}{5} \cdot c & ~~for~~ i \in & \{ 3, 7, 35, 39, 131, 135, 163, 167\} \\ [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CDC} + p_{DCD}\right)}{2} - \frac{1}{2} \cdot c & ~~for~~ i \in & \{ 4 \!- \!7, 12 \!- \!15, 20 \!- \!23, 28 \!- \!31, 68 \!- \!71,
+    \\ & & &  76 \!- \!79, 84 \!- \!87, 92 \!- \!95, 132 \!- \!135, 
+    \\ & & & 140 \!- \!143, 148- 151, 156 \!- \!159, 
+    \\ & & & 196 \!- \!199, 204 \!- \!207, 212 \!- \!215, 220 \!- \!223\} \\ 
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC} + p_{DDD} + 1\right)}{6} - \frac{1}{2} \cdot c & ~~for~~ i \in & \{ 11, 15, 43, 47\} \\ [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CDD} + p_{DCD} + p_{DDC}\right)}{3} - \frac{1}{3} \cdot c & ~~for~~ i \in & \{ 16,17,24,25,48,49,56,57,80,81,88,
+    \\ & & & 89,112, 113,120,121, 144,145,152,153,
+    \\ & & & 176,177,184,185,208,209,216,217,
+    \\ & & & 240, 241,248,249\} \\ 
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}\right)}{4} - \frac{1}{2} \cdot c & ~~for~~ i \in & \{ 18, 19, 22, 23, 50, 51, 54, 55, 146, 147,
+    \\ & & &  150, 151, 178, 179, 182, 183\} \\ 
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC} + 1\right)}{5} - \frac{3}{5} \cdot c & ~~for~~ i \in & \{ 26, 27, 30, 31, 58, 59, 62, 63\} \\ [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC} + p_{DDD}\right)}{7}  - \frac{3}{7} \cdot c& ~~for~~ i \in & \{ 37, 67, 165, 195\} \\ [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC} + p_{DDD} + 1\right)}{8} - \frac{1}{2} \cdot c & ~~for~~ i \in & \{ 45, 75\} \\ [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}\right)}{6} - \frac{1}{2} \cdot c & ~~for~~ i \in & \{ 52, 53, 82, 83, 180, 181, 210, 211\} \\  [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC} + 1\right)}{7} - \frac{4}{7} \cdot c & ~~for~~ i \in & \{ 60, 61, 90, 91\} \\ [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDC} + p_{DCC}\right)}{3} - \frac{2}{3} \cdot c & ~~for~~ i \in & \{ 96\!- \!103, 112\!- \!119, 224\!- \!231, 240\!- \!247\} \\ [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot \left(p_{CCD} + p_{CDC} + p_{DCC} + 1\right)}{4} - \frac{3}{4} \cdot c & ~~for~~ i \in & \{ 104\!-\!111, 120\!- \!127\} \\ [0.2cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & (b - c) & ~~for~~ i \in & [128, 255] \\
+\end{array}
+\end{equation}}
 
 Setting these to smaller than the mutual cooperation payoff $(b - c)$ give the
 following ten conditions,
 
-\begin{align}
-  p_8 \leq 1 \!- \!\frac{c}{b} \\
-  p_4 + p_6 + p_7 + p_8 \leq 4 - \frac{3c}{b} \\
-  p_{2} + p_{4} + p_{5} + p_{7} + p_{8} \leq 5 - \frac{3 c}{b} \\
-  p_{3} + p_{6}\leq2 - \frac{c}{b} \\
-  p_{4} + p_{6} + p_{7}\leq3 - \frac{2 c}{b} \\
-  p_{2} + p_{4} + p_{5} + p_{7}\leq4 - \frac{2 c}{b} \\
-  p_{2} + p_{3} + p_{4} + p_{5} + p_{6} + p_{7} + p_{8}\leq7 - \frac{4 c}{b} \\
-  p_{2} + p_{3} + p_{4} + p_{5} + p_{6} + p_{7}\leq6 - \frac{3 c}{b} \\
-  p_{2} + p_{3} + p_{5}\leq3 - \frac{c}{b}
-\end{align}
-
+\begin{equation*}
+\begin{array}{c}
+  p_{DDD} \leq 1 \!- \!\frac{c}{b},
+  \quad \frac{p_{CDC} + p_{DCD}}{2} \leq 1 - \frac{1}{2} \cdot \frac{c}{b}, 
+  \quad \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} \leq 1 - \frac{2}{3} \cdot \frac{c}{b}, \\ [.5cm]
+  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} \leq 1 - \frac{1}{3} \cdot \frac{c}{b},
+  \quad \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \leq 1 - \frac{1}{2}  \cdot \frac{c}{b} \\ [.5cm]
+  \frac{p_{CDD} + p_{DCD} + p_{DDC} + p_{DDD}}{4} \leq 1 - \frac{3}{4} \cdot \frac{c}{b},
+  \quad \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC} + p_{8}}{7} \leq 1 - \frac{4}{7} \cdot \frac{c}{b}, \\ [.5cm]
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC} + p_{8}}{5} \leq 1 - \frac{3}{5} \cdot \frac{c}{b},
+  \quad \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{6} \leq 1 - \frac{1}{2} \cdot \frac{c}{b}
+\end{array}
+\end{equation*}
 
 Note that only conditions are unique. The following can be derived from the
 sums of two or more of these conditions.
 
 \end{proof}
 
-% By assumption~\eqref{eq:two_bit_conditions},
-
-% \begin{equation}
-% p_{CC}=1,~~~~~b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b<0,~~~~~bp_{DD}-(b\!-\!c)<0.
-% \end{equation}
-
-% Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGood} can only
-% hold if $v^q_{CD}\!=\!v^q_{DD}\!=\!0$, which implies $v^q_{DC}\!=\!0$ because of
-% Eq.~\eqref{Eq:EqualityV}. But then it follows that $v^q_{CC}\!=\!1$. By
-% Eqs.~\eqref{Eq:rhoq_n2} and~\eqref{Eq:rhop_n2} it follows that
-% $\rho_\mathbf{m}\!=\!\rho_\mathbf{p}\!=\!1$, and hence
-% $s_{\mathbf{m}, \mathbf{p}}\!=\!s_{\mathbf{p}, \mathbf{m}}\!=\!b\!-\!c$. 
-% \
-% \end{proof}
 
 \subsection{Reactive Counting Partner Strategies}
 
 A special case of reactive strategies is reactive-counting strategies. These are
 strategies that respond to the co-player's actions, but they do not distinguish
 between when cooperations/defections occurred; they solely consider the count of
-cooperations in the last n turns. A reactive-counting-n strategy is represented
-by a vector $\mathbf{r}=(r_i)_{i \in [0, dots, n]}$, where the entries \(r_i\)
-indicate the probability of cooperating given that the co-player cooperated
+cooperations in the last $n$ turns. A reactive-counting-$n$ strategy is represented
+by a vector $\mathbf{r}=(r_i)_{i \in [0, n]}$, where the entry \(r_i\)
+indicates the probability of cooperating given that the co-player cooperated
 \(i\) times in the last \(n\) turns.
 
 {\bf Reactive-Counting-Two Partner Strategies.} These are denoted by the vector
@@ -769,30 +801,172 @@ A nice reactive-counting-three strategy $\mathbf{r} = (1, r_2, r_1, r_0)$ is a p
 \end{equation}
 \end{lemma}
 
-In the case of counting reactive strategies, we observe a pattern in the
-conditions they must satisfy to be partner strategies. We show that for an $n-$bit
-counting reactive strategy to be a partner strategy, the strategy's entries must
-satisfy the conditions:
+In the case of counting reactive strategies, we generalise to the case of $n$.
 
-\begin{align*}
-    r_{n}   = & 1 \\
-    r_{n-1} \leq & 1  - \frac{(n - 1)}{n} \times \frac{c}{b}\\
-    r_{n-2} \leq & 1  - \frac{(n - 2)}{n} \times \frac{c}{b}\\
-    & \vdots \\
-    r_{0} \leq &  1  - \frac{c}{b}\\
-\end{align*}
+% However, we present a sufficient condition and not a necessary. That means that
+% a reactive-counting-$n$ strategy must satisfy the conditions to be a partner,
+% but it's not necessarily a partner strategy.
 
+Given a reactive-counting-$n$ strategy $\mathbf{r} = (r_n, r_{n-1}, \dots,
+r_0)$, in the strategy's eyes the game can end up in $n$ states. Each $u_{i}$
+state represents the state that the co-player cooperated $i$ times in the last
+$n$ turns with,
 
-\begin{align*}
-  H^{q}_{k} & = \{h^q \in H^q : \; |A(h^q)| =k\}, ~~for~~ \\
-  A(h^q) & = \{a^q \in h^q:  \; a^q = C\}
-\end{align*}
-
-\begin{equation}
-  \rho_\mathbf{p} = v^q_{C \dots C}\, r_n  \; + \sum_{k=1}^{n-1} r_{n -k}  \sum_{h \in H^q_k} v^q_h + \; v^q_{D \dots D} r_0 
+\begin{equation}\label{Eq:normalization_counting}
+  \sum_{i=0}^{n} u_{i} = 1 \Rightarrow \sum_{k=0}^{n} u_{n - k} = 1.
 \end{equation}
 
+Thus the cooperation ratio of the strategy is,
 
+\begin{equation}\label{Eq:player_cooperation_counting}
+  \rho_{\mathbf{p}} = \sum_{k=0}^{n} r_{n - k} \cdot u_{n - k}.
+\end{equation}
+
+the probability of cooperating given that the co-player cooperated $i$ times.
+The co-player can use any self-reactive-$n$ strategy, and thus the co-player
+differentiates between when the last cooperation/defection occurred. However,
+we can still express the co-player's cooperation rate as a function of $u_{i}$.
+More specifically, the co-player's cooperation rate is,
+
+\begin{equation}\label{Eq:coplayer_cooperation_counting}
+  \rho_{\mathbf{\tilde{p}}} = \sum_{k=0}^{n} \frac{n - k}{n} \cdot u_{n - k}.
+\end{equation}
+
+With this we have all the required tools to prove the following theorem.
+
+\begin{theorem}[``Reactive-Counting Partner Strategies'']
+A reactive-counting$-n$ strategy $\mathbf{r}=(r_i)_{i \in [0, n]}$,
+is a partner strategy if and only if, the $r_i$ entries satisfy the conditions:
+
+\begin{equation}
+  r_{n} = 1, \text{ and  } r_{n - k} < 1 - \frac{k}{n} \cdot \frac{c}{b}, \text{ for } k \in [1, n].
+\end{equation}
+
+\begin{proof}
+Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-counting
+strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
+
+\begin{equation}
+\begin{array}{rcl}
+0 	&\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
+  &\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{m}-(b\!-\!c)\\[0.2cm]
+  &\stackrel{Eqs.~\eqref{Eq:normalization_counting}, \eqref{Eq:player_cooperation_counting}, \eqref{Eq:coplayer_cooperation_counting}}{=}	& 
+  \displaystyle b\; \sum_{k=0}^{n} r_{n - k} \cdot u_{n - k} - c\, \sum_{k=0}^{n} \frac{n - k}{n} \cdot u_{n - k} - (b - c)\; \sum_{k=0}^{n} u_{n - k}\\[0.2cm]
+  & & \displaystyle  u_{n} \Big(b\, (r_n - 1) \Big) +  \sum_{k=1}^{n} u_{n - k} \Big(b\; \sum_{k=1}^{n} r_{n - k} - c\, \sum_{k=0}^{n - 1} \frac{n - k}{n} - (b - c)\; \sum_{k=0}^{n - 1} 1\Big)
+\end{array}
+\end{equation}
+
+For $(n-k) \in R$, if,
+
+\begin{align}
+  \Big(b\; r_{n - k} - c\, \frac{n - k}{n} - (b - c)\Big) & < 0 \Rightarrow \\ 
+  b \, (r_{n - k} - 1) + (1 - \frac{n - k}{n})\, c & < 0 \Rightarrow \\ 
+  r_{n - k} < 1 - \frac{n}{k} \cdot \frac{c}{b}
+\end{align}
+
+then $u_{n - k} for \in R \!=\! 0$, which implies that $u_{n} = 1$.
+\end{proof}
+
+\end{theorem}
+
+\section{Prisoner's Dilemma}
+
+To characterise partner strategies for the general prisoner's dilemma, we can
+use the method based on Lemma~\ref{lemma:self_reactive_sufficiency}. Here
+we discuss this result in the case of $n=2$.
+
+There are 16 pure-self reactive strategies in $n=2$. To calculate the explicit
+payoff expressions for each pure strategy against a nice reactive-two strategy
+$\mathbf{p} = (1, p_{CD}, p_{DC}, p_{CD})$ we use the method discussed in
+Section~\ref{section:self_reactive_sufficiency}. More specifically, for a
+self-reactive strategy $\mathbf{q}$, we calculate where the strategy is in
+the long term using the transition matrix,
+
+\begin{equation}
+  \tilde{M} = \left[\begin{matrix}
+    \tilde{p}_1 & 1 - \tilde{p}_1 & 0 & 0 \\ 
+    0 & 0 & \tilde{p}_2 & 1 - \tilde{p}_2 \\ 
+    \tilde{p}_3 & 1 - \tilde{p}_3 & 0 & 0 \\ 
+    0 & 0 & \tilde{p}_4 & 1 - \tilde{p}_4
+  \end{matrix}\right]
+\end{equation}
+
+Using the stationary vector $\tilde{\mathbf{v}}$ we can define the payoffs in
+the general prisoner's dilemma as follows:
+
+\begin{equation*}
+  \mathbf{s_{q, p}} = a_R \cdot R + a_S \cdot S + a_T \cdot T + a_P \cdot P, ~~where~~
+\end{equation*}
+
+\begin{equation*}
+  \begin{array}{lc}
+  a_R = & \tilde{v}_{CC} \, p_{CC} \, \tilde{q}_{CC} + \tilde{v}_{CD} \, p_{CD} \, \tilde{q}_{CD} + \tilde{v}_{DC} \, p_{DC} \, \tilde{q}_{DC} + \tilde{v}_{DD} \, p_{DD} \, \tilde{q}_{DD}, \\ [0.2cm]
+  a_S = & \tilde{v}_{CC} \, p_{CC} \, (1 - \tilde{q}_{CC}) + \tilde{v}_{CD} \, p_{CD} \, (1 - \tilde{q}_{CD}) + \tilde{v}_{DC} \, p_{DC} \, (1 - \tilde{q}_{DC}) + \tilde{v}_{DD} \, p_{DD} \, (1 - \tilde{q}_{DD}), \\ [0.2cm]
+  a_T = & \tilde{v}_{CC} \, (1 - p_{CC}) \, \tilde{q}_{CC} + \tilde{v}_{CD} \, (1 - p_{CD}) \, \tilde{q}_{CD} + \tilde{v}_{DC} \, (1 - p_{DC}) \, \tilde{q}_{DC} + \tilde{v}_{DD} \, (1 - p_{DD}) \, \tilde{q}_{DD}, \\ [0.2cm]
+  a_P = & \tilde{v}_{CC} \, (1 - p_{CC}) \, (1 - \tilde{q}_{CC}) + \tilde{v}_{CD} \, (1 - p_{CD}) \, (1 - \tilde{q}_{CD}) + \tilde{v}_{DC} \, (1 - p_{DC}) \, (1 - \tilde{q}_{DC}) + \tilde{v}_{DD} \, (1 - p_{DD}) \, (1 - \tilde{q}_{DD}).
+\end{array}
+\end{equation*}
+
+This gives the following payoff expressions:
+
+\begin{equation*}
+  \begin{array}{lcl}
+  s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & P (1 - p_{DD}) + T p_{DD} & ~~for~~ i \in \{0, 2, 4, 6, 8, 10, 12, 14\} \\ [0.3cm]
+  s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{-P(p_{CD} + p_{DC} - 2) + Rp_{DD} - S(p_{DD} - 1) + T(p_{CD} + p_{DC})}{3} & ~~for~~ i \in \{1, 9\} \\ [0.3cm]
+  s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{P(1 - p_{CD}) + R(p_{DC} + p_{DD}) - S(p_{DC} + p_{DD} - 2) + T(p_{CD} + 1)}{4} & ~~for~~ i \in \{3\} \\ [0.3cm]
+  s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{P(1 - p_{DC}) + Rp_{CD} - S(p_{CD} - 1) + Tp_{DC}}{2} & ~~for~~ i \in \{4, 5, 12, 13\} \\ [0.3cm]
+  s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{R(p_{CD} + p_{DC}) - S(p_{CD} + p_{DC} - 2) + T}{3} & ~~for~~ i \in \{6, 7\} \\ [0.3cm]
+  s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & R & ~~for~~ i \in \{8, 9, 10, 11, 12, 13, 14, 15\} \\ [0.3cm]
+\end{array}
+\end{equation*}
+
+Setting the above expressions to smaller than $R$ gives the following conditions,
+
+\normalsize{
+\begin{equation*}
+  \begin{array}{c}
+  p_{DD} < \frac{P - R}{P - T}, 
+  \qquad p_{CD} + p_{DC} < \frac{2 P + R (p_{DD} - 3) - S (p_{DD} + 1)}{P - T},
+  \qquad p_{CD} + p_{DC} < \frac{3 R - 2 S - T}{R - S} \\ [0.4cm]
+  p_{DC} + p_{DD} < \frac{P (p_{CD} - 1) - 2 S - T (p_{CD} + 1)}{R - S},
+  \qquad p_{CD} \left(R - S\right) + p_{DC} \left(T - P\right) < 2 R - S - P \\
+\end{array}
+\end{equation*}}
+
+Consider the case where $T=1$ and $S=0$,
+
+\begin{equation*}
+  \begin{array}{c}
+  p_{DD} < \frac{P - R}{P - 1},
+  \qquad p_{CD} + p_{DC} < \frac{2 P + R (p_{DD} - 3)}{P - 1},
+  \qquad p_{CD} + p_{DC} < \frac{3 R - 1}{R} \\ [0.4cm]
+  p_{DC} + p_{DD} < \frac{P (p_{CD} - 1) - 1 (p_{CD} + 1)}{R},
+  \qquad p_{CD} \, R + p_{DC} \left(1 - P\right) < 2 R  - P.
+\end{array}
+\end{equation*}
+
+There are five conditions, however note that 
+
+\begin{align}
+p_{CD}  & < \frac{2 R - P - p_{DC} \left(1 - P\right)}{R}\\
+p_{CD} & < \frac{3 R - 1}{R} - p_{DC}
+\end{align}
+
+by setting (66) greater ti 65 we get,
+
+\begin{equation*}
+  (1 - P) < R
+\end{equation*}
+
+which is always true and thus we can only consider condition 66, as condition
+65 will also be satisfied.
+
+Similarly by setting (64) greater ti 61 we get,
+
+
+\begin{align}
+  \frac{2 P + R p_{DD} - 3 R}{P - 1}  & < \frac{3 R - 1}{R}
+\end{align} 
 
 \section{Figures}
 
@@ -823,6 +997,12 @@ satisfy the conditions:
 % \begin{figure}
 %   \includegraphics[options]{fig}
 % \end{figure}
+
+\section{Pure Self-Reactive-Three Strategies}
+
+\begin{multicols}{3}
+\input{figures/static/pure_self_reactive_n_3.txt}
+\end{multicols}
 
 ~\\
 \bibliography{bibliography.bib}
