@@ -60,7 +60,7 @@ b	&0
 
 Here $b$ and $c$ denote the benefit and the cost of cooperation, respectively. 
 We assume $b\!>\!c\!>\!0$ throughout.
-Therefore, the payoff matrix~\eqref{Eq:DonationGame} is a special case of the
+Therefore, payoff matrix~\eqref{Eq:DonationGame} is a special case of the
 prisoner's dilemma with payoff matrix,
 
 \begin{equation} \label{Eq:PrisonerDilemma}
@@ -72,7 +72,7 @@ prisoner's dilemma with payoff matrix,
     \right),
 \end{equation}
 
-with $T > R > S > P$ and $2 R > T + S$. Here, $R$ is the reward payoff of mutual
+where $T > R > S > P$ and $2 R > T + S$. Here, $R$ is the reward payoff of mutual
 cooperation, $T$ is the temptation to defect payoff, $S$ is the sucker's payoff,
 and $P$ is the punishment payoff for mutual defection.
 
@@ -134,26 +134,19 @@ cooperation payoff. Irrespective of $q$'s strategy. Namely if,
 \end{equation}
 
 {\bf Nice Strategies.} A player's strategy is \textit{nice}, if the player is
-never the first to defect.
+never the first to defect. A nice strategy against itself receives the
+mutual cooperation payoff, $(b - c)$.
 
-{\bf Partner Strategies.} For player $p$, a \textit{partner strategy} is a nice
-strategy such that,
+{\bf Partner Strategies.} For player $p$, a \textit{partner strategy} is a strategy
+which is both nice and Nash.
 
-\begin{align}\label{Eq:Partner}
-    s_{\mathbf{m'},\mathbf{m}} & < (b - c) \; \Rightarrow \quad s_{\mathbf{m},\mathbf{m'}} < (b - c), ~~and~~\\
-    s_{\mathbf{m'},\mathbf{m}} & \geq (b - c) \; \Rightarrow \quad s_{\mathbf{m'},\mathbf{m}} = s_{\mathbf{m},\mathbf{m'}} = (b - c) \quad \forall \; m' \; \in [0, 1]^{2n}.
-\end{align}
-
-{\bf \%ToDo} Do we need both?
-
-In other words, partners strive to achieve the mutual cooperation payoff of $(b -
-c)$ with their co-player. However, if the co-player doesn't cooperate, they are
-prepared to penalize them with lower payoffs. Partner strategies, by definition,
-are best responses to themselves, making them Nash strategies~\citep{Hilbe:GEB:2015}.
-All partner strategies are Nash strategies, but not all Nash strategies
-are partner strategies.
-
-{\bf \%ToDo} Why are partner strategies interesting to study?
+Partners strategies are of interest because they are strategies that strive to
+achieve the mutual cooperation payoff of $(b - c)$ with their co-player.
+However, if the co-player doesn't cooperate, they are prepared to penalize them
+with lower payoffs. Partner strategies, by definition, are best responses to
+themselves, making them Nash strategies~\citep{Hilbe:GEB:2015}. All partner
+strategies are Nash strategies, but not all Nash strategies are partner
+strategies.
 
 Previously, the work of~\citep{akin:EGADS:2016} characterized all partner strategies in the
 case of memory-one strategies. For higher memory values ($n > 1$), a few works
@@ -215,8 +208,6 @@ of this procedure is $\sum_{h\in H} v_h m_h$.
 
 {\bf \%ToDo} Do we need a proof here? The intuition is summarising the proof.
 
-{\bf \%ToDo} Do we use italics when referring to keywords of the manuscript?
-
 \noindent
 {\bf Zero-determinant strategies.}
 Based on Akin's Lemma, we can derive a theory of zero-determinant strategies
@@ -249,9 +240,10 @@ m_h = \left\{
 \end{equation}
 
 That is, this strategy implements Tit-for-Tat (for $k\!=\!1$) or delayed
-versions thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced
-payoff relationship is $s_{\mathbf{m}, \mathbf{m'}}\!=\! s_{\mathbf{m'}, \mathbf{m}}$ (in particular, these
-strategies are {\it partners}).
+versions thereof (for $k\!>\!1$). These strategies are partners strategies that
+also satisfy a stronger relationship. By Eq.~\eqref{Eq:PayoffZD}, the enforced
+payoff relationship is $s_{\mathbf{m}, \mathbf{m'}}\!=\! s_{\mathbf{m'},
+\mathbf{m}}$.
 
 Another interesting special case arises if  $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and
 $\alpha\!=\!0$, $\beta\!=\!-1/b$, $\gamma\!=\!1\!-\!c/b$. In that case
@@ -269,19 +261,18 @@ m_h = \left\{
 That is, the generated strategy is GTFT (if $k\!=\!1$), or delayed versions
 thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced payoff
 relationship is $s_{\mathbf{m'}, \mathbf{m}}\!=\!b\!-\!c$. In particular, these
-strategies are not {\it partner strategies}, but they satisfy the notion of
-being {\it Nash strategies}.\\
+strategies are partner strategies.\\
 
-The two aforementioned results can be summarized as follows:
+% The two aforementioned results can be summarized as follows:
 
-\begin{itemize}
-  \item Any Tit-for-Tat strategy for any $n$, including delayed versions for $k > 1$,
-  is considered a partner strategy.
-  \item Any GTFT strategy for any $n$, including delayed versions for $k > 1$,
-  is considered a Nash strategy.
-\end{itemize}
+% \begin{itemize}
+%   \item Any Tit-for-Tat strategy for any $n$, including delayed versions for $k > 1$,
+%   is considered a partner strategy.
+%   \item Any GTFT strategy for any $n$, including delayed versions for $k > 1$,
+%   is considered a Nash strategy.
+% \end{itemize}
 
-{\bf \%ToDo} Should these results be propositions?
+% {\bf \%ToDo} These could be propositions or corollaries.
 
 \section{Reactive Partner Strategies}\label{section:reactive_strategies}
 
@@ -308,31 +299,28 @@ These entries describe how often we observe player $q$ to choose actions $h^q$,
 in $n$ consecutive rounds (irrespective of the actions of player $p$).
 Note that,
 
-
 \begin{equation}\label{eq:normalization_marginal_distributions}
   \displaystyle \sum_{h \in H^q} v^q_{h} = 1.
 \end{equation}
 
-
 Similarly, the cooperation rate of player $q$ can also be defined irrespective
-of the actions of player $p$. Let $H^{q}_{k=C}$ be the subset of $H^{q}$, for which,
+of the actions of player $p$. Let $H^{q}_{k}$ be the subset of $H^{q}$, for which,
 
 \begin{equation}
-  H^{q}_{k=C} = \{h \in H^q : h_{-k} = C\}.
+  H^{q}_{k} = \{h \in H^q : h_{-k} = C\}.
 \end{equation}
 
 Let $\rho_\mathbf{m}$ be the cooperation rate of
 player $q$ playing an arbitrary memory-$n$ strategy $\mathbf{m}$ when playing
 against player $p$ with a reactive strategy,
 
-\begin{equation}
-  \rho_\mathbf{m} = \sum_{h \in H^{q}_{1=C}} v^q_{h} \; = \; \sum_{h \in H^{q}_{2=C}} v^q_{h} \; = \; \dots \; = \sum_{h \in H^{q}_{n=C}} v^q_{h}.
+\begin{equation}\label{Eq:coplayer_cooperation_expr}
+  \rho_\mathbf{m} = \sum_{h \in H^{q}_{1}} v^q_{h} \; = \; \sum_{h \in H^{q}_{2}} v^q_{h} \; = \; \dots \; = \sum_{h \in H^{q}_{n}} v^q_{h}.
 \end{equation}
 
-The equalities $\displaystyle \sum_{h \in H^{q}_{1=C}} v^q_{h} \; = \; \sum_{h \in
-H^{q}_{2=C}} v^q_{h} \; = \; \dots \; = \sum_{h \in H^{q}_{n=C}} v^q_{h}$
-correspond to the intuition that it does not matter which of the past $n$ rounds
-player $q$ cooperated to define the cooperation rate.
+Equality~\eqref{Eq:coplayer_cooperation_expr} correspond to the intuition that
+it does not matter which of the past $n$ rounds player $q$ cooperated to define
+the cooperation rate.
 
 We can also express player $p$'s average cooperation rate $\rho_\mathbf{p}$ in terms
 of $v^q_{h}$ by noting that,
@@ -474,16 +462,34 @@ noting that
 
 Here, the second equality is due to Eq.~\eqref{Eq:EqualityV}.
 
-After these preparations, we can prove our theorem based on the same method as
-in \citet{akin:EGADS:2016}.
+% After these
+% preparations, we can prove our theorem based on the same method as
+% in~\citet{akin:EGADS:2016}.
  
 \begin{proof}
-Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
-strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
+A reactive-two strategy \(\mathbf{p} = (p_{CC}, p_{CD}, p_{DC}, p_{DD})\) can only
+be a Nash equilibrium if {\it no} other strategy yields a larger payoff, in
+particular neither \text{AllD} nor the \text{Alternator} strategy must yield a
+larger payoff, where AllD\(=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\)
+and Alternator\(=(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)\). Thus,
+\(\mathbf{p}\) can only form a Nash equilibrium if 
 
-\begin{equation} \label{Eq:InequalityGood}
+\begin{align*}
+\pi(\text{AllD}, \mathbf{p}) \leq b\!-\!c & \quad \text{ and } \quad \pi(\text{Alternator}, \mathbf{p}) \leq b\!-\!c,
+\end{align*}
+
+or equivalently, if
+
+\begin{align}\label{Eq:NashConditionDonationGame}
+  p_{DD} \leq 1 - \frac{c}{b} & \quad \text{ and } \quad  p_{CD} + p_{DC} \leq 1 + \frac{b\!-\!c}{c}.
+\end{align}
+
+Now, suppose player $q$ has some strategy $\mathbf{m}$ such that $s_{\mathbf{m},
+\mathbf{p}} > b\!-\!c$. It follows that
+
+\begin{equation} \label{Eq:InequalityPartner}
 \begin{array}{rcl}
-0 	&\le	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
+0 	& <	&s_{\mathbf{m}, \mathbf{p}}-(b\!-\!c)\\[0.2cm]
 	&\stackrel{Eq.~\eqref{Eq:payoff}}{=}	&b\rho_\mathbf{p} - c\rho_\mathbf{m}-(b\!-\!c)\\[0.2cm]
 	&\stackrel{Eqs.~\eqref{Eq:rhoq_n2}, \eqref{Eq:rhop_n2}, \eqref{eq:normalization_marginal_distributions}}{=}	&b\,\Big( v^q_{CC} p_{CC} \!+\!  v^q_{CD}(p_{CD}\!+\!p_{DC}) \!+\! v^q_{DD} p_{DD}\Big) 
 		- c\,\Big(v^q_{CC} \!+\! v^q_{CD}\Big) - (b\!-\!c)\Big(v^q_{CC} \!+\!  2v^q_{CD} \!+\! v^q_{DD}\Big)\\[0.2cm]
@@ -491,19 +497,22 @@ strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
 \end{array}
 \end{equation}
 
-By assumption~\eqref{eq:two_bit_conditions},
+Condition~\eqref{Eq:InequalityPartner} can hold only if,
 
 \begin{equation}
-p_{CC}=1,~~~~~b(p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b<0,~~~~~bp_{DD}-(b\!-\!c)<0.
+  b \, (p_{CD}\!+\!p_{DC})\!+\!c\!-\!2b > 0,~~~~~ b\, p_{DD} - (b\!-\!c) > 0.
 \end{equation}
 
-Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGood} can only
-hold if $v^q_{CD}\!=\!v^q_{DD}\!=\!0$, which implies $v^q_{DC}\!=\!0$ because of
-Eq.~\eqref{Eq:EqualityV}. But then it follows that $v^q_{CC}\!=\!1$. By
-Eqs.~\eqref{Eq:rhoq_n2} and~\eqref{Eq:rhop_n2} it follows that
-$\rho_\mathbf{m}\!=\!\rho_\mathbf{p}\!=\!1$, and hence
-$s_{\mathbf{m}, \mathbf{p}}\!=\!s_{\mathbf{p}, \mathbf{m}}\!=\!b\!-\!c$. 
-\
+Thus, Eq.~\eqref{Eq:NashConditionDonationGame} reassures that $\mathbf{p}$
+is Nash strategy, and given that $p_{CC} = 1$, it is a partner strategy.
+
+% Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGood} can only
+% hold if $v^q_{CD}\!=\!v^q_{DD}\!=\!0$, which implies $v^q_{DC}\!=\!0$ because of
+% Eq.~\eqref{Eq:EqualityV}. But then it follows that $v^q_{CC}\!=\!1$. By
+% Eqs.~\eqref{Eq:rhoq_n2} and~\eqref{Eq:rhop_n2} it follows that
+% $\rho_\mathbf{m}\!=\!\rho_\mathbf{p}\!=\!1$, and hence
+% $s_{\mathbf{m}, \mathbf{p}}\!=\!s_{\mathbf{p}, \mathbf{m}}\!=\!b\!-\!c$. 
+% \
 \end{proof}
 
 {\bf Proof Two.} Suppose player $p$ adopts a nice reactive-two strategy
@@ -549,15 +558,13 @@ $\mathbf{\tilde{q}} \in \{\mathbf{\tilde{q}}^{0}, \dots, \mathbf{\tilde{q}}^{16}
 are:
 
 \begin{equation*}\label{Eq:PayoffExpressionsReactiveTwo}
-  \begin{array}{lcllccl}
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & b \cdot p_{DD} & ~~and~~ & s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & -c \cdot p_{DD} & ~~for~~ i \in & \{0, 2, 4, 6, 8, \\
-    & & & & & & \; 10, 12, 14\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD})}{3} - \frac{1}{3} \cdot c  & ~~and~~ &  s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & \frac{1}{3} \cdot b - \frac{c \cdot \left(p_{CD} + p_{DC} + p_{DD}\right)}{3} & ~~for~~ i \in & \{1, 9\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD} + 1)}{4} - \frac{1}{2} \cdot c  & ~~and~~ &  s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & \frac{1}{2} \cdot b - \frac{c \cdot \left(p_{CD} + p_{DC} + p_{DD} + 1\right)}{4} & ~~for~~ i \in & \{3\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC})}{2} - \frac{1}{2} \cdot c  & ~~and~~ &  s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = &  \frac{1}{2} \cdot b - \frac{c \cdot \left(p_{CD} + p_{DC}\right)}{2} & ~~for~~ i \in & \{4, 5, 12, 13\} \\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + 1)}{3} - \frac{2}{3} \cdot c  & ~~and~~ &  s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & \frac{2}{3} \cdot b - \frac{c \cdot \left(p_{CD} + p_{DC} + 1\right)}{3} & ~~for~~ i \in & \{6, 7\}\\ [1em]
-    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & b - c  & ~~and~~ & s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} = & (b - c) & ~~for~~ i \in & \{8, 9, 10, 11,\\
-    & & & & & & \; 12, 13, 14, 15\}
+  \begin{array}{lclc}
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & b \cdot p_{DD} & ~~for~~ i \in & \{0, 2, 4, 6, 8, 10, 12, 14\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD})}{3} - \frac{1}{3} \cdot c  &  ~~for~~ i \in & \{1, 9\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD} + 1)}{4} - \frac{1}{2} \cdot c  & ~~for~~ i \in & \{3\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC})}{2} - \frac{1}{2} \cdot c  & ~~for~~ i \in & \{4, 5, 12, 13\} \\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + 1)}{3} - \frac{2}{3} \cdot c  &  ~~for~~ i \in & \{6, 7\}\\ [1em]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & b - c  & ~~for~~ i \in & \{8, 9, 10, 11, 12, 13, 14, 15\}
   \end{array}
 \end{equation*}
 
@@ -566,8 +573,8 @@ smaller or equal to $(b - c)$ we get the following unique conditions,
 
 \begin{align} 
   p_{DD} & \leq 1 - \frac{c}{b} \\ \label{Eq:Condition2Reactive1}
-  \frac{p_{CD} + p_{DC} + p_{DD}}{3} & \leq 1 - \frac{2c}{3b} \\ \label{Eq:Condition2Reactive2}
-  \frac{p_{CD} + p_{DC}}{2} & \leq 1 - \frac{c}{2b} \\ \label{Eq:Condition2Reactive3}
+  \frac{p_{CD} + p_{DC} + p_{DD}}{3} & \leq 1 - \frac{2}{3} \cdot \frac{c}{b} \\ \label{Eq:Condition2Reactive2}
+  \frac{p_{CD} + p_{DC}}{2} & \leq 1 - \frac{1}{2}  \cdot \frac{c}{b} \\ \label{Eq:Condition2Reactive3}
 \end{align}
 
 Note that condition~\eqref{Eq:Condition2Reactive2} is the sum of
@@ -575,11 +582,11 @@ conditions~\eqref{Eq:Condition2Reactive1} and~\eqref{Eq:Condition2Reactive3}.
 Thus, only conditions \eqref{Eq:Condition2Reactive1} and
 \eqref{Eq:Condition2Reactive3} are necessary.
 
-By setting, $p_{DD} = 1 - \frac{c}{b}$ and $\frac{p_{CD} + p_{DC}}{2} = 1 -
-\frac{c}{2b}$ to any of the above expressions of $s_{\mathbf{\mathbf{p},
-\tilde{q}}^{i}}$ we can see that $s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} < (b -
-c)$. Thus, for $\mathbf{p}$ to be a partner strategy, the inequalities must be
-strict.
+% By setting, $p_{DD} = 1 - \frac{c}{b}$ and $\frac{p_{CD} + p_{DC}}{2} = 1 -
+% \frac{c}{2b}$ to any of the above expressions of $s_{\mathbf{\mathbf{p},
+% \tilde{q}}^{i}}$ we can see that $s_{\mathbf{\mathbf{p}, \tilde{q}}^{i}} < (b -
+% c)$. Thus, for $\mathbf{p}$ to be a partner strategy, the inequalities must be
+% strict.
 
 \end{proof}
 
@@ -608,7 +615,7 @@ it's nice ($p_{CCC} = 1$) and the remaining entries satisfy the conditions:
 \end{theorem}
 
 Once again, there are two independent proves of
-Theorem~\ref{theorem:reactive_three_partner_strategies}, and present both.
+Theorem~\ref{theorem:reactive_three_partner_strategies}, and we will present both.
 
 {\bf Proof One.} Suppose player $p$ adopts a reactive-three strategy
 $\mathbf{p}$, and suppose player~$q$ adopts an arbitrary memory-three strategy
@@ -661,9 +668,31 @@ The average cooperation rate of $p$'s is given by
 \end{equation}
  
 \begin{proof}
+A reactive-three strategy \(\mathbf{p}\) can only
+be a Nash equilibrium if {\it no} other strategy yields a larger payoff, in
+particular neither \text{AllD} nor the following self-reactive-three strategies,
+$\mathbf{\tilde{q}^{15}} = (0, 0, 0, 0, 1, 1, 1, 1)$, $\mathbf{\tilde{q}^{17}} = (0, 0, 0, 1, 0, 0, 0, 1)$,
+$\mathbf{\tilde{q}^{51}} = (0, 0, 1, 1, 0, 0, 1, 1)$ and
+ $\mathbf{\tilde{q}^{102}} = (0, 1, 1, 0, 0, 1, 1, 0)$. Thus,
+\(\mathbf{p}\) can only form a Nash equilibrium if 
 
-Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
-strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
+\begin{align*}
+\pi(\text{AllD}, \mathbf{p}) \leq b\!-\!c \quad { and } \quad & \pi(\mathbf{\tilde{q}}^{15}, \mathbf{p}) \leq b\!-\!c \quad { and } \quad \pi(\mathbf{\tilde{q}}^{17}, \mathbf{p}) \leq b\!-\!c \quad { and } \\[1em]
+\pi(\mathbf{\tilde{q}}^{51}, \mathbf{p}) \leq b\!-\!c & \quad { and } \quad \pi(\mathbf{\tilde{q}}^{102}, \mathbf{p}) \leq b\!-\!c
+\end{align*}
+
+or equivalently, if
+
+\begin{align}\label{Eq:NashConditionDonationGameN3}
+    \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} < 1\!-\! \frac{1}{3} \cdot \frac{c}{b} & \qquad 
+    \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} < 1\!-\! \frac{2}{3} \cdot \frac{c}{b} & \qquad 
+    p_{DDD} < 1\!-\! \frac{c}{b} \\
+    \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & < 1\!-\! \frac{1}{2} \cdot \frac{c}{b} 
+    \qquad \frac{p_{CDC} + p_{DCD}}{2} < 1\!-\! \frac{1}{2} \cdot \frac{c}{b}
+\end{align}
+
+Now, suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-two
+strategy such that $s_{\mathbf{m}, \mathbf{p}} > b\!-\!c$. It follows that
 
 \begin{equation}\label{Eq:InequalityGoodN3}
 \begin{array}{rcl}
@@ -679,36 +708,41 @@ strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
 \end{array}
 \end{equation}
 
-By assumption,
+Condition~\eqref{Eq:InequalityGoodN3} holds only for,
 
 \begin{equation*}
 \begin{array}{c}
-p_{CCC} = 1, \quad b\, (p _{DDD} - 1) + c < 0,  \quad b\, (p_{CCD} + p_{DCC} + p_{CDC}- 3) + c \\ [0.4cm]
+b\, (p _{DDD} - 1) + c < 0,  \quad b\, (p_{CCD} + p_{DCC} + p_{CDC}- 3) + c \\ [0.4cm]
 b\, (p_{CDD} + p_{DDC} + p_{CCD} + p_{DCC} - 4) + 2\, c < 0 \Rightarrow - b\, (p_{CCD} + p_{DCC} - 2) > b\, (p_{CDD} + p_{DDC} - 2) + 2\, c \\ [0.4cm]
 b\, (p _{DCD}  - 1) -  b\, (p_{CCD} + p_{DCC}) - 2 < 0 \Rightarrow  b\, (p _{DCD} + p_{CDD} + p_{DDC} - 3) + 2\, c < 0.
 \end{array}
 \end{equation*}
 
-Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGoodN3} can only
-hold if $v^q_{DDD}\!=\!v^q_{CDC}\!=\!v^q_{CDD}\!=\!v^q_{DCD}\!=\!0$, which
-implies $v^q_{DDC}\!=\!0$ because of Eq.~\eqref{Eq:Equality2_n3} and $v^q_{CCD}\!=\!0$
-because of Eq.~\eqref{Eq:Equality3_n3}.
-But then it follows that $v^q_{CCC}\!=\!1$. By
-Eqs.~\eqref{Eq:rhoq_n3} and~\eqref{Eq:rhop_n3} it follows that
-$\rho_\mathbf{m}\!=\!\rho_\mathbf{p}\!=\!1$, and hence
-$s_{\mathbf{m}, \mathbf{p}}\!=\!s_{\mathbf{p}, \mathbf{m}}\!=\!b\!-\!c$. 
-\
+Thus, conditions Eq.~\eqref{Eq:NashConditionDonationGameN3} reassure that
+$\mathbf{p}$ is Nash strategy, and given that $p_{CC} = 1$, it is a partner
+strategy.
+
+% Because any $v^q_{XY}\!\ge\!0$, inequality~\eqref{Eq:InequalityGoodN3} can only
+% hold if $v^q_{DDD}\!=\!v^q_{CDC}\!=\!v^q_{CDD}\!=\!v^q_{DCD}\!=\!0$, which
+% implies $v^q_{DDC}\!=\!0$ because of Eq.~\eqref{Eq:Equality2_n3} and $v^q_{CCD}\!=\!0$
+% because of Eq.~\eqref{Eq:Equality3_n3}.
+% But then it follows that $v^q_{CCC}\!=\!1$. By
+% Eqs.~\eqref{Eq:rhoq_n3} and~\eqref{Eq:rhop_n3} it follows that
+% $\rho_\mathbf{m}\!=\!\rho_\mathbf{p}\!=\!1$, and hence
+% $s_{\mathbf{m}, \mathbf{p}}\!=\!s_{\mathbf{p}, \mathbf{m}}\!=\!b\!-\!c$. 
+% \
 \end{proof}
 
-{\bf Proof Two.} Consider all the pure self-reactive-three strategies, there are
-a total of 256 of them. These are given in the appendix. regardless, the payoff
-expressions for each of these strategies against a nice reactive-three
-strategies can be calculated explicitly. We will use these expressions to obtain
-the conditions for partner strategies similar to the previous subsection.
+{\bf Proof Two.} Consider all the pure self-reactive-three strategies. There is
+a total of 256 such strategies. These are given in the
+Section~\ref{section:pure_self_reactive_n3}. The payoff expression for each of
+these strategies against a nice reactive-three strategies can be calculated
+explicitly. We use these expressions to obtain the conditions for partner
+strategies similar to the previous subsection.
 
 \begin{proof}
-  The payoff expressions for a nice reactive-three strategy $p$ against all
-  pure self-reactive-three strategies are as follows,
+The payoff expressions for a nice reactive-three strategy $p$ against all
+pure self-reactive-three strategies are as follows,
 
 \small{
 \begin{equation}\label{Eq:PayoffExpressionsReactiveThree}
@@ -739,26 +773,26 @@ the conditions for partner strategies similar to the previous subsection.
 \end{array}
 \end{equation}}
 
-Setting these to smaller than the mutual cooperation payoff $(b - c)$ give the
-following ten conditions,
+Setting these to smaller or equal than the mutual cooperation payoff $(b - c)$
+give the following ten conditions,
 
-\begin{equation*}
-\begin{array}{c}
+\begin{align}
+% \begin{array}{c}
   p_{DDD} \leq 1 \!- \!\frac{c}{b},
   \quad \frac{p_{CDC} + p_{DCD}}{2} \leq 1 - \frac{1}{2} \cdot \frac{c}{b}, 
-  \quad \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} \leq 1 - \frac{2}{3} \cdot \frac{c}{b}, \\ [.5cm]
+  \quad \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} \leq 1 - \frac{2}{3} \cdot \frac{c}{b}, \label{eq:NashConditionsN3PartOne} \\[.5em]
   \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} \leq 1 - \frac{1}{3} \cdot \frac{c}{b},
-  \quad \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \leq 1 - \frac{1}{2}  \cdot \frac{c}{b} \\ [.5cm]
-  \frac{p_{CDD} + p_{DCD} + p_{DDC} + p_{DDD}}{4} \leq 1 - \frac{3}{4} \cdot \frac{c}{b},
-  \quad \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC} + p_{8}}{7} \leq 1 - \frac{4}{7} \cdot \frac{c}{b}, \\ [.5cm]
-  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC} + p_{8}}{5} \leq 1 - \frac{3}{5} \cdot \frac{c}{b},
+  \quad \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \leq 1 - \frac{1}{2}  \cdot \frac{c}{b} \label{eq:NashConditionsN3PartTwo} \\[.5em]
+  \frac{p_{CDD} + p_{DCD} + p_{DDC} + p_{DDD}}{4} \leq 1 - \frac{3}{4} \cdot \frac{c}{b}, \\[.5em]
+  \quad \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC} + p_{8}}{7} \leq 1 - \frac{4}{7} \cdot \frac{c}{b}, \\[.5em]
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC} + p_{8}}{5} \leq 1 - \frac{3}{5} \cdot \frac{c}{b}, \\[.5em]
   \quad \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{6} \leq 1 - \frac{1}{2} \cdot \frac{c}{b}
-\end{array}
-\end{equation*}
+% \end{array}
+\end{align}
 
-Note that only conditions are unique. The following can be derived from the
-sums of two or more of these conditions.
-
+Note that only conditions~\eqref{eq:NashConditionsN3PartOne}
+and~\eqref{eq:NashConditionsN3PartTwo} are unique. The remaining conditions can
+be derived from the sums of two or more of these conditions.
 \end{proof}
 
 
@@ -843,8 +877,43 @@ is a partner strategy if and only if, the $r_i$ entries satisfy the conditions:
 \end{equation}
 
 \begin{proof}
-Suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-counting
-strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
+Consider a set of alternating self-reactive-$n$ strategies that defect after
+cooperating $i$ times. Since $i \in [0, n]$, there can be only $n + 1$ such
+strategies. We will denote this set as $A = \{\mathbf{A^{0}}, \mathbf{A^{1}}, \dots,
+\mathbf{A^{n}} \}$.
+The payoff of an alternating self-reactive-$n$ against a counting-reactive$-n$
+$\mathbf{r}$ is given by,
+
+\begin{equation}\label{Eq:alternating_strategies_payoff}
+  s_{\mathbf{A^{i}}, \mathbf{r}} = b \cdot r_i - \frac{i}{n} \cdot c ~~for~~ i \in [0, n].
+\end{equation}
+
+The intuition behind Eq.~\eqref{Eq:alternating_strategies_payoff} is that in the
+long term of the gave the strategies end up in a state where $\mathbf{A^{i}}$
+has cooperated $i$ times in the last $n$ turns. Thus, here the co-player
+will cooperate, and provide the benefit $b$ with a probability $r_i$. Whilst in
+return the alternating strategy cooperated $\frac{i}{n}$ and pays the cost.
+As we have already discussed previously, a strategy can only be Nash if the
+payoff of the co-player does not exceed $(b - c)$. Thus for $\mathbf{p}$ to be Nash
+against each strategy in set $A$ (for $i \in [0, n]$),
+
+The intuition behind  Eq.~\eqref{Eq:alternating_strategies_payoff} is that in
+the long term, the strategies end up in a state where $\mathbf{A^{i}}$ has cooperated $i$ times
+in the last $n$ turns. Thus, the co-player will cooperate and provide the benefit
+$b$ with a probability $r_i$, while in return, the alternating strategy has
+cooperated $\frac{i}{n}$ times and pays the cost. As we have already discussed previously,
+a strategy can only be a Nash equilibrium if the payoff of the co-player does
+not exceed $(b - c)$. Therefore, for p to be a Nash equilibrium against each
+strategy in set $A$ (for $i \in [0, n]$),
+
+\begin{align}\label{eq:NashConditionDonationGameCounting}
+  s_{\mathbf{A^{i}}, \mathbf{r}} \leq b - c \\ 
+  b \cdot r_i - \frac{i}{n} \cdot c \leq   b - c \\
+  r_i \leq 1 - \frac{i}{n} \cdot \frac{c}{b}
+\end{align}
+
+Now, suppose player $q$ has some strategy $\mathbf{m}$ and player $p$ has a reactive-counting
+strategy such that $s_{\mathbf{m}, \mathbf{p}} > b\!-\!c$. It follows that
 
 \begin{equation}
 \begin{array}{rcl}
@@ -856,15 +925,16 @@ strategy such that $s_{\mathbf{m}, \mathbf{p}} \ge b\!-\!c$. It follows that
 \end{array}
 \end{equation}
 
-For $(n-k) \in R$, if,
+This condition holds only if,
 
 \begin{align}
   \Big(b\; r_{n - k} - c\, \frac{n - k}{n} - (b - c)\Big) & < 0 \Rightarrow \\ 
   b \, (r_{n - k} - 1) + (1 - \frac{n - k}{n})\, c & < 0 \Rightarrow \\ 
-  r_{n - k} < 1 - \frac{n}{k} \cdot \frac{c}{b}
+  r_{n - k} < 1 - \frac{n}{k} \cdot \frac{c}{b}.
 \end{align}
 
-then $u_{n - k} for \in R \!=\! 0$, which implies that $u_{n} = 1$.
+for $k \in [0, n]$. Thus, any counting strategy that satisfies conditions~\eqref{eq:NashConditionDonationGameCounting}
+is Nash, and if it is nice, it's also a partner strategy.
 \end{proof}
 
 \end{theorem}
@@ -968,37 +1038,39 @@ Similarly by setting (64) greater ti 61 we get,
   \frac{2 P + R p_{DD} - 3 R}{P - 1}  & < \frac{3 R - 1}{R}
 \end{align} 
 
-\section{Figures}
+% \section{Figures}
 
-% \begin{figure}
-%   \includegraphics[options]{fig}
+% % \begin{figure}
+% %   \includegraphics[options]{fig}
+% % \end{figure}
+
+% \begin{figure}[!htbp]
+%   \includegraphics[width=\textwidth]{figures/abundance_of_partner_strategies.pdf}
+%   \caption{The abundance of partner strategies for $n=1,2,3$ and $b=1, c=0.5$.}
 % \end{figure}
 
-\begin{figure}[!htbp]
-  \includegraphics[width=\textwidth]{figures/abundance_of_partner_strategies.pdf}
-  \caption{The abundance of partner strategies for $n=1,2,3$ and $b=1, c=0.5$.}
-\end{figure}
-
-\begin{figure}[!htbp]
-  \includegraphics[width=\textwidth]{figures/abundance_of_partner_counting_strategies.pdf}
-  \caption{The abundance of partner counting strategies for $n=1,2,3$ and $b=1, c=0.5$.}
-\end{figure}
-
-\begin{figure}[!htbp]
-  \includegraphics[width=\textwidth]{figures/abundant_strategies.pdf}
-  \caption{The most abundant reactive-$n$ strategies for $n=1,2,3$ and $b=1, c=0.5, \beta=1$.}
-\end{figure}
-
-\begin{figure}[!htbp]
-  \includegraphics[width=\textwidth]{figures/abundant_strategies_counting.pdf}
-  \caption{The most abundant reactive-counting-$n$ strategies for $n=1,2,3$ and $b=1, c=0.5, \beta=1$.}
-\end{figure}
-
-% \begin{figure}
-%   \includegraphics[options]{fig}
+% \begin{figure}[!htbp]
+%   \includegraphics[width=\textwidth]{figures/abundance_of_partner_counting_strategies.pdf}
+%   \caption{The abundance of partner counting strategies for $n=1,2,3$ and $b=1, c=0.5$.}
 % \end{figure}
 
-\section{Pure Self-Reactive-Three Strategies}
+% \begin{figure}[!htbp]
+%   \includegraphics[width=\textwidth]{figures/abundant_strategies.pdf}
+%   \caption{The most abundant reactive-$n$ strategies for $n=1,2,3$ and $b=1, c=0.5, \beta=1$.}
+% \end{figure}
+
+% \begin{figure}[!htbp]
+%   \includegraphics[width=\textwidth]{figures/abundant_strategies_counting.pdf}
+%   \caption{The most abundant reactive-counting-$n$ strategies for $n=1,2,3$ and $b=1, c=0.5, \beta=1$.}
+% \end{figure}
+
+% % \begin{figure}
+% %   \includegraphics[options]{fig}
+% % \end{figure}
+
+\section{Pure Self-Reactive-Three Strategies}\label{section:pure_self_reactive_n3}
+
+The 256 pure self-reactive-three strategies and their vectors are as follows,
 
 \begin{multicols}{3}
 \input{figures/static/pure_self_reactive_n_3.txt}
