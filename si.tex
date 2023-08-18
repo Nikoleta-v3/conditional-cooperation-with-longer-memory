@@ -784,8 +784,8 @@ give the following ten conditions,
   \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} \leq 1 - \frac{1}{3} \cdot \frac{c}{b},
   \quad \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \leq 1 - \frac{1}{2}  \cdot \frac{c}{b} \label{eq:NashConditionsN3PartTwo} \\[.5em]
   \frac{p_{CDD} + p_{DCD} + p_{DDC} + p_{DDD}}{4} \leq 1 - \frac{3}{4} \cdot \frac{c}{b}, \\[.5em]
-  \quad \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC} + p_{8}}{7} \leq 1 - \frac{4}{7} \cdot \frac{c}{b}, \\[.5em]
-  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC} + p_{8}}{5} \leq 1 - \frac{3}{5} \cdot \frac{c}{b}, \\[.5em]
+  \quad \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC} + p_{DDD}}{7} \leq 1 - \frac{4}{7} \cdot \frac{c}{b}, \\[.5em]
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC} + p_{DDD}}{5} \leq 1 - \frac{3}{5} \cdot \frac{c}{b}, \\[.5em]
   \quad \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{6} \leq 1 - \frac{1}{2} \cdot \frac{c}{b}
 % \end{array}
 \end{align}
@@ -992,29 +992,74 @@ This gives the following payoff expressions:
 
 Setting the above expressions to smaller than $R$ gives the following conditions,
 
-\normalsize{
 \begin{equation*}
   \begin{array}{c}
-  p_{DD} < \frac{P - R}{P - T}, 
-  \qquad p_{CD} + p_{DC} < \frac{2 P + R (p_{DD} - 3) - S (p_{DD} + 1)}{P - T},
-  \qquad p_{CD} + p_{DC} < \frac{3 R - 2 S - T}{R - S} \\ [0.4cm]
-  p_{DC} + p_{DD} < \frac{P \left(p_{CD} - 1\right) + 4 R - 2 S - T \left(p_{CD} + 1\right)}{R - S},
-  \qquad p_{CD} \left(R - S\right) + p_{DC} \left(T - P\right) < 2 R - S - P \\
+  (P - T)\, p_{DD} < P - R, 
+  \quad (T - P) \, (p_{CD} + p_{DC}) + (R - S)\,p_{DD} < 3 R + S - 2\,P, \\[0.4cm]
+  (T - P)\, p_{CD} + (R - S)\, (p_{CD} + p_{DC}) < 4\,R - 2\,S - P - T,
+  \qquad \left(R - S\right)\, p_{CD} + \left(T - P\right)\,p_{DC} < 2 R - S - P \\[0.4cm]
+  (R - S)\,(p_{CD} + p_{DC}) < 3 R - 2 S - T
 \end{array}
-\end{equation*}}
+\end{equation*}
 
 Consider the case where $T=1$ and $S=0$,
 
 \begin{equation*}
   \begin{array}{c}
-  p_{DD} < \frac{P - R}{P - 1},
-  \qquad p_{CD} + p_{DC} < \frac{2 P + R (p_{DD} - 3)}{P - 1},
-  \qquad p_{CD} + p_{DC} < \frac{3 R - 1}{R} \\ [0.4cm]
-  p_{DC} + p_{DD} < \frac{P \left(p_{CD} - 1\right) + 4 R - p_{CD} - 1}{R},
-  \qquad p_{CD} \, R + p_{DC} \left(1 - P\right) < 2 R  - P.
+  (P - 1)\, p_{DD} < P - R, 
+  \quad (1 - P) \, (p_{CD} + p_{DC}) + R\,p_{DD} < 3 R - 2\,P, \\[0.4cm]
+  (1 - P)\, p_{CD} + R\, (p_{CD} + p_{DC}) < 4\,R - P - 1,
+  \qquad R \, p_{CD} + \left(1 - P\right)\,p_{DC} < 2 R - P \\[0.4cm]
+  R\,(p_{CD} + p_{DC}) < 3 R - 1
 \end{array}
 \end{equation*}
 
+\begin{equation*}
+  \begin{array}{lcll}
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, \left(p_{CDD} + p_{DCD} + p_{DDC}\right) + 3\,P + (R - S)\, p_{DDD} + S}{4} &~~for~~ & i \in \\[0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, p_{CDC} + P + (R - S)\, p_{DCD} + S}{2} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = &- P \left(p_{DDD} - 1\right) + T p_{DDD} &~~for~~ & i \in \\[0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, (p_{CCD} + p_{CDD} + p_{DDC}) + 3\,P + (R - S)\, (p_{CDC} + p_{DCC} + p_{DCD} + p_{DDD}) + 4\,S + T}{8} &~~for~~ & i \in \\[0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, p_{DCC} + P + (R - S)\, (p_{CDC} + p_{CCD}) + 2\,S}{3}  &~~for~~ & i \in \\[0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, (p_{CCD} + p_{DCC} + p_{DDC}) + 3\,P + (R - S)\, (p_{CDC} + p_{CDD + p_{DCD}}) + 3\,S}{6}  &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, (p_{CCD} + p_{DDC}) + 2\,P + T + (R - S)\, (p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) + 4\,S}{7}  &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, (p_{CCD} + p_{CDD} + p_{DCC}) + 3\,P + (R - S)\, (p_{DDC} + p_{DDD}) + 2\,S}{5}  &~~for~~ & i \in  \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, (p_{DCD} + p_{DDC}) + 2\,P + (R - S)\, p_{CDD} + S}{3}  &~~for~~ & i \in  \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = &R &~~for~~ & i \in [128 - 255] \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, p_{CCD} + P + T + (R - S)\, (p_{CDD} + p_{DCC} + p_{DDC}) + S}{5} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{ (T - P)\, (p_{CCD} + p_{DCC}) + 2\,P + (R - S)\, (p_{CDD} + p_{DDD}) + 2\,S}{4} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{(T - P)\, p_{CDC} + 2\, P + T + (R - S)\, (p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) + 4\,S}{7} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{(T - P)\, (p_{CDC} + p_{CDD} + p_{DCD}) + 3\, P + T + (R - S)\, (p_{CCD} + p_{DCC} + p_{DDC} + p_{DDD}) + 4\,S}{8} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{(T - P)\, (p_{CDC} + p_{DDC} + p_{DCD}) + 3\, P + T + (R - S)\, (p_{CCD} + p_{CDD} + p_{DDC}) + 3\,S}{6} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{(T - P)\, (p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) + 4\, P + (R - S)\, (p_{CDC} + p_{DCD} + p_{DDD}) + 3\,S}{7} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{T  + (R - S)\, (p_{CCD} + p_{CDC} + p_{DCC}) + 3\,S}{4} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{(T - P)\, (p_{CCD} + p_{CDD}) + 2\,P + T + (R - S)\, (p_{DCC} + p_{DDC} + p_{DDD}) + 3\,S}{6} &~~for~~ & i \in \\ [0.4cm]
+    s_{\mathbf{\tilde{q}}^{i}, \mathbf{p}} = & \frac{(T - p)\, (p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) + 4\,P + (R - S)\, (p_{CCD} + p_{DDC} + p_{DDD}) + 3\,S}{7} &~~for~~ & i \in
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+  \begin{array}{lcll}
+     (T - P)\, \left(p_{CDD} + p_{DCD} + p_{DDC}\right) + (R - S)\, p_{DDD} & < 4\,R - 3\,P - S\\
+     (T - P)\, p_{CDC} +  (R - S)\, p_{DCD} & < 2\,R - P - S\\
+    - P \left(p_{DDD} - 1\right) + T p_{DDD} & < R \\
+     (T - P)\, (p_{CCD} + p_{CDD} + p_{DDC}) + 3\,P + (R - S)\, (p_{CDC} + p_{DCC} + p_{DCD} + p_{DDD}) + 4\,S + T & < 8\,R \\
+     (T - P)\, p_{DCC} + P + (R - S)\, (p_{CDC} + p_{CCD}) + 2\,S  & < 3\,R \\
+     (T - P)\, (p_{CCD} + p_{DCC} + p_{DDC}) + 3\,P + (R - S)\, (p_{CDC} + p_{CDD + p_{DCD}}) + 3\,S  & < 6\,R \\
+     (T - P)\, (p_{CCD} + p_{DDC}) + 2\,P + T + (R - S)\, (p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) + 4\,S  & < 7\,R \\
+     (T - P)\, (p_{CCD} + p_{CDD} + p_{DCC}) + 3\,P + (R - S)\, (p_{DDC} + p_{DDD}) + 2\,S  & < 5\,R \\
+     (T - P)\, (p_{DCD} + p_{DDC}) + 2\,P + (R - S)\, p_{CDD} + S  & < 3\,R \\
+     (T - P)\, p_{CCD} + P + T + (R - S)\, (p_{CDD} + p_{DCC} + p_{DDC}) + S & < 5\,R \\
+     (T - P)\, (p_{CCD} + p_{DCC}) + 2\,P + (R - S)\, (p_{CDD} + p_{DDD}) + 2\,S & < 4\,R \\
+     (T - P)\, p_{CDC} + 2\, P + T + (R - S)\, (p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) + 4\,S & < 7\,R \\
+     (T - P)\, (p_{CDC} + p_{CDD} + p_{DCD}) + 3\, P + T + (R - S)\, (p_{CCD} + p_{DCC} + p_{DDC} + p_{DDD}) + 4\,S & < 8\,R \\
+     (T - P)\, (p_{CDC} + p_{DDC} + p_{DCD}) + 3\, P + T + (R - S)\, (p_{CCD} + p_{CDD} + p_{DDC}) + 3\,S & < 6\,R \\
+     (T - P)\, (p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) + 4\, P + (R - S)\, (p_{CDC} + p_{DCD} + p_{DDD}) + 3\,S & < 7\,R \\
+     T  + (R - S)\, (p_{CCD} + p_{CDC} + p_{DCC}) + 3\,S & < 4\,R \\
+     (T - P)\, (p_{CCD} + p_{CDD}) + 2\,P + T + (R - S)\, (p_{DCC} + p_{DDC} + p_{DDD}) + 3\,S & < 6\,R \\
+     (T - p)\, (p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) + 4\,P + (R - S)\, (p_{CCD} + p_{DDC} + p_{DDD}) + 3\,S & < 7\,R \\
+    \end{array}
+\end{equation*}
 
 % \section{Figures}
 
