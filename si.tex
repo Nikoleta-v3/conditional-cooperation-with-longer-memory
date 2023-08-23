@@ -209,24 +209,31 @@ strategies.
 
 \section{An Extension of Akin's Lemma}
 
-The work of~\citep{akin:EGADS:2016} focuses on the case of
-memory-one strategies, thus for $n=1$. A memory-one strategy of player $p$ is
-represented by the vector $\mathbf{m} = (m_{CC}, m_{CD}, m_{DC}, m_{DD})$, and and when
-played against a co-player with strategy $\mathbf{m}'$, the resulting stationary
-distribution is denoted as $\mathbf{v} = (v_{CC}, v_{CD}, v_{DC}, v_{DD})$. Akin's lemma
-states the following,
-
-Assume that player \(1\) uses the memory-one strategy \(\mathbf{m}=(m_{CC}, m_{CD},
-m_{DC}, m_{DD})\), and \(q\) uses a strategy that leads to a sequence of distributions
-\(\{\mathbf{v}^{k}, k = 1, 2, ...\}\) with \(\mathbf{v}^{k}\) representing the
-distribution over the states in the \(k^{\text{th}}\) round of the game. Let
-\(\mathbf{v}\) be the associated stationary distribution, then,
+The work of~\citep{akin:EGADS:2016} focuses on memory-one strategies. In the
+case of $n=1$, a memory-one strategy is represented by the vector
+\(\mathbf{m}=(m_{CC}, m_{CD}, m_{DC}, m_{DD})\). Let player $1$ use the
+memory-one strategy $\mathbf{m}$ when interacting with player $2$. This leads to
+a sequence of distributions \(\{\mathbf{v}^{k}, k = 1, 2, ...\}\) with
+\(\mathbf{v}^{k}\) representing the distribution over the states in the
+\(k^{\text{th}}\) round of the game. Let $\mathbf{v}$ be an associated
+stationary distribution of the interaction. In this work Akin shows that,
 
 \begin{align}
-    \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{k} \cdot (\mathbf{m} - \mathbf{m}^{1-\text{Rep}}) & = 0, \text{ and therefore } \mathbf{v} \cdot (\mathbf{m} - (1, 1, 0, 0)) = 0.
+  \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{k=1}^{n} \mathbf{v}^{k} \cdot (\mathbf{m} - \mathbf{m}^{1-\text{Rep}}) & = 0, \text{ and therefore } \mathbf{v} \cdot (\mathbf{m} - \mathbf{m}^{1-\text{Rep}}) = 0.
 \end{align}
 
-With the same method as in \citep{akin:EGADS:2016}, one can show {\it Akin's
+With the same method as in \citep{akin:EGADS:2016}, one can derive a generalised
+version of his result, Lemma.
+
+\begin{lemma}\label{lemma:AkinGeneralised}
+Let player $1$ use a memory-$n$ strategy, and let player $2$ use any arbitrary
+strategy.
+
+The interaction between the two players leads to.
+\end{lemma}
+
+
+one can show {\it Akin's
 Lemma}: For each $k$ with $1\!\le\!k\!\le\!n$, the invariant distribution
 $\mathbf{v}$ satisfies the following relationship,
 
