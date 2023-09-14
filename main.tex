@@ -42,8 +42,52 @@
 
 \maketitle
 
+The donation game is a two person symmetric game that provides a simple model of
+cooperation. Each of the two players, simultaneously and independently decide to
+cooperate ($C$) or to defect ($D$). A player who cooperates pays a cost \(c >
+0\) to provide a benefit \(b > c\) for the co-player. A cooperator either gets
+\(b\!-\!c\) (if the co-player also cooperates) or \(-c\) (if the co-player
+defects). Respectively, a defector either gets \(b\) (if the co-player
+cooperates) or 0 (if the co-player defects), and so, the payoffs of player \(1\)
+and \(1\), take the forms $\mathbf{S}_{1} = (b - c, -c, b, 0)$ and
+$\mathbf{S}_{2} = (b - c, b, -c, 0)$.
 
-\section{Introduction}
+In the iterated version of the game, the two players are required to play an
+infinite number of rounds. In repeated games, players can use strategies that
+depend on the outcome of the previous rounds. We assume in the following, that the players' decisions only depend on the
+outcome of the previous $n$ rounds. To this end, an {\it $n$-history for player
+$i \in \{1, 2\}$} is a string $h^i=(a^i_{-n},\ldots,a^i_{-1})\!\in\!\{C,D\}^n$. An entry
+$a^i_{-k}$ corresponds to player $i$'s action $k$ rounds ago. Let $H^i$ denote
+the space of all $n$-histories for $i \in \{1, 2\}$. Set $H^i$
+contains $|H^i|=2^{n}$ elements. A pair $h\!=\!(h^1,h^2)$ is called an {\it
+$n$-history of the game}. We use $H=H^1\times H^2$ to denote the space of all
+such histories. This set contains $|H|=2^{2n}$ elements.
+
+A subset of these strategies are those that only depend on the
+previous round. These are called memory-one strategies. They have been studied
+extensively in the literature. Previous work has characterized all memory-one
+strategies that are Nash and parters. pattern strategies are a subset of Nash
+which ensure that the players share the rewards fairly. Set of strategies as
+well that from evolutionary process. Considering strategies that use more
+memory can beneficial, as they allow for more coopeartion to evolve, and
+as shown in the work of longer memory strategies can be more robust to errors
+and in multiagent interactions can be shown to be better as they can exploit
+weaker strategies. Exploring analytically or even numerically is an untractable
+problem. There are 10. only pure memory-two strategies and 10 memory-three.
+
+Previous work has explored the space of memory-n, n=2 and n-3, space but only
+particially, and not the intire space. In this work we exmplore the space
+of higher memory strategies. We use a specific s  et of strategies called reactive
+thta habe been explored. Reactive strategies are strategies that only depend on
+the coplayer's actions. 
+
+
+In this work we characterise all partner strategies
+for reactive-two and reactive-three. We show that when players use reactive
+strategies then it is sufficient to check only against self reactive strategies.
+For higher n we characterise.
+
+\section{Model}
 
 In this work we explore \textit{reactive strategies} in the infinitely repeated
 prisoner's dilemma. The prisoner's dilemma is a two person symmetric game that
