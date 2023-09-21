@@ -42,22 +42,138 @@
 
 \maketitle
 
+\begin{abstract}
+
+In the following we study repeated games and the strategies player's can
+derive in these games. Famously, in repeated game it is assumed that strategies
+that use the past history can be adopted. Here we focus on such a set, called the
+reactive strategies. In comparison to previous studies this work explores higher
+memory strategies, greater than one compared to the majority of the works in the
+literature. We demonstrate, how this set of strategies have an imidate effect
+of the co-oplayer and show that a history that is not shared does not befenit
+the longer strategy.
+
+We then characterise partner strategies, which are strategies assuring mutual
+cooperation without being exploited. A recipe for evolutionary stability.
+We show that the class of Tit For Tat and Generous Tit For strategies even the
+delayed versions of these strategies are partner strategies.
+
+For memory lengths of two and three we characterize all partner strategies
+amongst the reactive set. The conditions simple and yet newly found. For a specific
+class of reactive counting strategies, counting of defections/defections instead
+of remembering the actual occurance of the action, we can characterize partner
+strategies in all memory lengths.
+
+We further test the evolutionary properties of partner strategies in higher memory.
+The results show that.
+
+\end{abstract}
+
+\section{Introduction}
 
 \section{Model}
 
-We consider two players infinitely repeated games. In each round, players can
-choose to cooperate ($C$) or defect ($D$). If both players cooperate they
-receive a payoff $R$ (the reward for mutual cooperation), and if both players
-defect then they receive a payoff $P$ (the punishment for mutual defection). If
-one player cooperates, the cooperative player receives the sucker's payoff $S$,
-and the defecting players the temptation payoff $T$. The payoffs are such that
-$T > R > P > S$. Herein. we use a specific parametrization of the prisoner's
-dilemma, where cooperation means paying a cost $c$ for the co-player to derive a
-benefit $b>c$. As a result, the payoffs because $R=b-c, S=-c, T=b, P=0$. In the
-Appendix we show that the main results of this work hold for the general
-prisoner's dilemma.
+We consider two players in infinitely repeated games. In each round, player 1
+and player 2, can choose to cooperate ($C$) or defect ($D$). If both players
+cooperate, they receive a payoff $R$ (the reward for mutual cooperation), and if
+both players defect, they receive a payoff $P$ (the punishment for mutual
+defection). If one player cooperates, the cooperative player receives the
+sucker's payoff $S$, and the defecting player receives the temptation payoff
+$T$. The payoffs are such that $T > R > P > S$ and $2 R > T + S$. This game is
+the Prisoner's Dilemma. Here, we
+employ a specific parametrization of the Prisoner's Dilemma, where cooperation
+implies incurring a cost $c$ for the co-player to derive a benefit $b > c$.
+Consequently, the payoffs are defined as follows: \(R = b - c, S = -c, T = b, P =
+0\). In the Appendix, we present the results of this work, which are applicable to
+the general Prisoner's Dilemma.
 
-We assume in the following 
+We assume in the following, that the players' decisions only depend on the
+outcome of the previous $n$ rounds. To this end, an {\it $n$-history for player
+$i \in \{1, 2\}$} is a string $h^i=(a^i_{-n},\ldots,a^i_{-1})\!\in\!\{C,D\}^n$
+where an entry $a^i_{-k}$ corresponds to player $i$'s action $k$ rounds ago. Let
+$H^i$ denote the space of all $n$-histories for player $i$. Set $H^i$ contains
+$|H^i|=2^{n}$ elements. A pair $h\!=\!(h^1,h^2)$ is called an {\it $n$-history
+of the game}. A {\it reactive$-n$ strategy} for player 1 is a vector
+$\mathbf{p}=(p_h)_{h\in H^2} \in [0, 1]^{n}$. Each entry $p_h$ corresponds to
+the player's cooperation probability in the next round, based on the co-player's
+actions in the previous $n$ rounds. Therefore, reactive-$n$ strategies
+exclusively rely on the co-player's $n$-history, independent of the focal
+player's own actions. For \(n=1\), this definition of reactive-\(n\) strategies
+recovers the typical format of reactive-1 strategies, \(\mathbf{p}=(pC, pD,)\).
+
+Another class of reactive strategies discussing in this work are, {\it
+self-reactive-$n$} strategies only consider the focal player's own $n$-history,
+and ignore the co-player's. Formally, a self-reactive-$n$ strategy for player 1
+is a vector $\mathbf{\tilde{p}} = (\tilde{p}_h)_{h \in H^1} \in [0, 1] ^ {n}$.
+Each entry $\tilde{p}_h$ corresponds to the player's cooperation probability in
+the next, depending on the player's own actions in the previous $n$ rounds. We
+say that a reactive or self-reactive strategy is pure if all the entries of the
+strategy is either 0 or 1. We refer to the set of all pure self-reactive strategies
+as $\tilde{P}_n$.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=.75\textwidth]{figures/conceptual_figure_model.pdf}
+  \caption{\textbf{Model.} \textbf{A.} At each turn $t$ of the repeated game,
+  players \(p\) and \(q\) decide on an action \(a^{p}_{t}, a^{q}_{t} \in \{C,
+  D\}\), respectively. \textbf{B.} Memory$-1$ strategies are a set of very well
+  studied strategies that use the actions of both player at round $t-1$ to
+  decide on round $t$. In the graphical representation of memory-$1$ strategy
+  we demonstrate this by using a single full shaded square. \textbf{C.} In this work we
+  focus on reactive strategies, strategies that consider only the
+  co-players actions $h^q$. This is demonstrated in the graphical representation
+  by the shaded bottom half of the squares. \textbf{E.} Let the case of $n=1$, a $1-$bit
+  reactive strategy is a vector $\mathbf{\hat{p}}=(\hat{p}_{C}, \hat{p}_{D})$. $\hat{p}_C$
+  is the probability of cooperating given that the co-player cooperated and $\hat{p}_D$
+  given that they defected. Consider a 
+  match between two $1-$bit reactive strategies as shown in panel \textbf{E}. The top
+  player (player $\hat{p}$) cooperates with a probability $\hat{p}_C$ in the
+  second round since the co-player cooperated in the first round, player
+  $\hat{p}$ cooperates with a probability $\hat{p}_D$ in the second round
+  since the co-player cooperated. The player defects in round 3 with a probability $1 -
+  \hat{p}_C$ given that the co-player cooperated. \textbf{D.} Another strategies set that
+  we consider is that of $n-$bit self reactive strategies. These are strategies that
+  consider only their own previous $n$ action.}
+\end{figure}
+
+\section{Results}
+
+\section{Self-Reactive Sufficiency}
+
+To predict which reactive-\(n\) strategies are partner strategies, we need to
+characterize which nice reactive-\(n\) strategies are Nash. Verifying that a
+given strategy is a Nash equilibrium is not straightforward. In principle, this
+requires us to compare the payoff of the strategy to the payoff of all possible
+mutant strategies, taken from the uncountable set of all memory-\(n\)
+strategies. However, we are the first to show that it is sufficient to compare q
+to all self-reactive strategies, a strategy set of a lower dimension, and more
+specially only the pure self-reactive strategies. Namely, our initial result is
+as follows,
+
+\begin{lemma}\label{lemma:self_reactive_sufficiency}
+  Let $\mathbf{p}$ be a reactive$-n$ strategy for player $1$. Then, for any
+  memory$-n$ strategy $\mathbf{m}$ used by player $2$, player $1$'s score is
+  exactly the same as if $2$ had played a specific self-reactive memory-$n$
+  strategy $\mathbf{\tilde{p}}$.
+\end{lemma}
+
+\cite{press:PNAS:2012} discussed the case where one player uses a memory-one
+strategy and the other player employs a longer memory strategy. They
+demonstrated that the payoff of the player with the longer memory is exactly the
+same as if the player had employed a specific shorter-memory strategy,
+disregarding any history beyond what is shared with the short-memory player.
+Here we show a result that follows a similar intuition: if there is a part of
+history that one player does not observe, then the co-player gains nothing by
+considering the history not shared with the reactive player.
+
+We further showcase,
+
+This result has an important application. In the case of \(n=2\) the number
+of strategies one has to check against is. For a comparison consider that
+there are memory-2 strategies.
+
+In the case of memory-1 strategies have shown that one has to check against
+memory-one. Thus, even for.
 
 
 
