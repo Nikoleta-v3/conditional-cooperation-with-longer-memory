@@ -46,73 +46,31 @@
 
 \begin{abstract}
 
-We focus on repeated games and the strategies players can employ in these
-games. It is famously assumed in repeated games that strategies utilizing past
-history can be employed. Here, we concentrate on a specific set of strategies
-known as reactive strategies. Notably, our work stands out by exploring
-strategies with longer memory spans, in contrast to the prevailing norm in
-existing literature.
+In the following, we study repeated games and the strategies players can
+employ in these games. Famously, in repeated games it is assumed that
+strategies that use the past history can be adopted. Here we focus on such a
+set, called reactive strategies. In comparison to previous studies this work
+explores higher memory strategies, greater than one compared to the majority
+of the works in the literature.
 
-We demonstrate how this set of strategies has an immediate effect on the
-co-player and show that a history that is not shared does not benefit the longer
-strategy.
-
-In the following, we study repeated games and the strategies players can employ
-in these games. Famously, in repeated games, it is assumed that strategies that
-use past history can be adopted. Here, we focus on such a set, called reactive
-strategies. In comparison to previous studies, this work explores higher memory
-strategies, greater than one, compared to the majority of the works in the
-literature. We demonstrate how this set of strategies has an immediate effect on
-the co-player and show that a history that is not shared does not benefit the
+We demonstrate how this set of strategies have an immediate effect on the
+co-player and show that a history that is not shared does not benefit the
 longer strategy.
 
-We then characterize partner strategies, which are strategies assuring mutual
-cooperation without being exploited—a recipe for evolutionary stability. We show
-that the class of Tit For Tat and Generous Tit For strategies, even in their
-delayed versions, are partner strategies.
+We then characterise partner strategies, which are strategies ensuring mutual
+cooperation without being exploited. A recipe for evolutionary stability. We
+show that the class of Tit For Tat and Generous Tit For strategies even the
+delayed versions of these strategies are partner strategies.
 
-For memory lengths of two and three, we characterize all partner strategies
-among the reactive set. The conditions are simple yet newly found. For a
-specific class of reactive counting strategies—counting defections/defections
-instead of remembering the actual occurrence of the action—we can characterize
-partner strategies at all memory lengths.
+For memory lengths of two and three we characterize all partner strategies
+amongst the reactive set. The conditions are simple and yet newly found. For a
+specific class of reactive counting strategies, counting of
+defections/defections instead of remembering the actual occurrence of the
+action, we can characterize partner strategies in all memory lengths.
 
 We further test the evolutionary properties of partner strategies in higher
-memory. The results show that..
+memory. The results show that.
 
-% We focus on repeated games and the strategies players can employ in these
-% games. It is famously assumed in repeated games that strategies utilizing past
-% history can be employed. Here, we concentrate on a specific set of strategies
-% known as reactive strategies. Notably, our work stands out by exploring
-% strategies with longer memory spans, in contrast to the prevailing norm in
-% existing literature.
-
-% We demonstrate, how this set of strategies have an imidate effect
-% of the co-oplayer and show that a history that is not shared does not befenit
-% the longer strategy.
-
-% In the following we study repeated games and the strategies player's can
-% derive in these games. Famously, in repeated game it is assumed that strategies
-% that use the past history can be adopted. Here we focus on such a set, called the
-% reactive strategies. In comparison to previous studies this work explores higher
-% memory strategies, greater than one compared to the majority of the works in the
-% literature. We demonstrate, how this set of strategies have an imidate effect
-% of the co-oplayer and show that a history that is not shared does not befenit
-% the longer strategy.
-
-% We then characterise partner strategies, which are strategies assuring mutual
-% cooperation without being exploited. A recipe for evolutionary stability.
-% We show that the class of Tit For Tat and Generous Tit For strategies even the
-% delayed versions of these strategies are partner strategies.
-
-% For memory lengths of two and three we characterize all partner strategies
-% amongst the reactive set. The conditions simple and yet newly found. For a specific
-% class of reactive counting strategies, counting of defections/defections instead
-% of remembering the actual occurance of the action, we can characterize partner
-% strategies in all memory lengths.
-
-% We further test the evolutionary properties of partner strategies in higher memory.
-% The results show that.
 
 \end{abstract}
 
@@ -296,17 +254,15 @@ and we record the resident strategies at each time step.
 
 \section{Results}
 
-\subsection{Self-Reactive Sufficiency}
-
-To predict which reactive-$n$ strategies are partner strategies, we must first
-characterize which nice reactive-$n$ strategies are Nash equilibria. Determining
-whether a given strategy, $\mathbf{p}$, is a Nash equilibrium is not
-straightforward. In principle, this would involve comparing the payoff of
-$\mathbf{p}$ to the payoff of all possible mutant strategies. However, in this
-work, we demonstrate otherwise. Specifically, we show that if a player adopts a
-reactive strategy, it is only necessary to consider mutant strategies that are
-self-reactive-$n$. In other words, we show the following result (see Appendix for
-proof),
+\textbf{Self-Reactive Sufficiency.} To predict which reactive-$n$ strategies are
+partner strategies, we must first characterize which nice reactive-$n$
+strategies are Nash equilibria. Determining whether a given strategy,
+$\mathbf{p}$, is a Nash equilibrium is not straightforward. In principle, this
+would involve comparing the payoff of $\mathbf{p}$ to the payoff of all possible
+mutant strategies. However, in this work, we demonstrate otherwise.
+Specifically, we show that if a player adopts a reactive strategy, it is only
+necessary to consider mutant strategies that are self-reactive-$n$. In other
+words, we show the following result (see Appendix for proof),
 
 \begin{lemma}\label{lemma:self_reactive_sufficiency}
   Let $\mathbf{p}$ be a reactive$-n$ strategy for player $1$. Then, for any
@@ -342,8 +298,7 @@ In the case of $n=3$ there are are $2^8 = 256$ possible self-reactive strategies
 As opposed to memory-3 strategies where there are $2^8 \times 2^8 = 65536$. Thus,
 the number of strategies we need to check against is reduced by a factor of 256.
 
-\subsection{Partner Strategies Amongst Reactive-2 and Reactive-3 Strategies}
-
+\textbf{Partner Strategies Amongst Reactive-2 and Reactive-3 Strategies.}
 Previous studies have characterized subsets of partner strategies for $n = 2$,
 and while we also focus on characterizing a subset, our contribution extends to
 the complete set of reactive-$2$ strategies. Furthermore, we extend the analysis
@@ -404,8 +359,7 @@ presented in [Akin, 2016]. In the Appendix, we demonstrate how one of the
 central results from Akin's work can be generalized.
 
 
-\subsection{Partner Strategies Amongst Reactive Counting Strategies}
-
+\textbf{Partner Strategies Amongst Reactive Counting Strategies}
 A special case of reactive strategies is reactive counting strategies. These are
 strategies that respond to the co-player's actions, but they do not distinguish
 between when cooperations/defections occurred; they solely consider the count of
@@ -476,8 +430,7 @@ forgiveness which is measure by a higher probability of cooperation given a
 defection, decreases as the number of defections by the co-player increase.
 
 
-\subsection{Evolutionary Dynamics}
-
+\textbf{Evolutionary Dynamics.}
 Based our previous equilibrium analysis, we know what conditions a reactive
 strategy must satisfy to be a partner strategy. The next step is to determine
 whether these strategies are likely to evolve through an evolutionary process.
@@ -511,36 +464,26 @@ $b/c$ ratios.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{figures/evolutionary_results.pdf}
-  \caption{\textbf{Evolving strategies for $n=1, n=2$ and $n=3$.} In the previous sections we
-  characterized partners strategies for reactive-2 and reactive-3, and we
-  have also discussed the case of reactive counting strategies. Here we want to
-  assess whether partner strategies are strategies that evolve, thus are beneficial to
-  adopt in an evolutionary setting. We ran simulations based on Imhof and Nowak.
-  For a single run of the evolutionary process, we record the cooperating
-  probabilities of the resident at each elementary time step.
-  \textbf{A. Reactive Strategies.} We ran 10 independent simulations for each
-  set of strategies and recorded the most abundant strategy for each run. The
-  abundant strategy is the resident that was fixed for the most time steps. For
-  the simulations we used \(b=1 \text{ and } c=.5\). For $n$ equal to 1 and
-  2, \(T= 10 ^ 7\) and for $n=3$ then \(T= 2 \times10 ^ 7\).
-  \textbf{B. Reactive Counting Strategies}. In the top panel we show the most abundant
-  strategies of the evolutionary process when the population can use any
-  counting two-bit reactive strategy ($r_0, r_1, r_2$). The abundant
-  strategies are the residents that were fixed for the most time steps.
-  The most abundant strategies fall within the region of the partner strategies.
-  In the bottom panel we look at the evolving cooperation rate closer. The
-  average cooperation is calculated by considering the cooperation rate within
-  the resident population. For a given $\beta$ value we vary the cost $c \in [0, 1]$
-  whilst we have fixed $b=1$. Three curves are shown, these are for different values
-  of selection strength, $\beta \in {10^-1, 10^0, 10^1}$.
-  \textbf{Abundance of partner strategies.}
-  We ran simulations based on Imhof and Nowak, varying the cost ($c$) and
-  strength of selection ($\beta$). The cooperation benefit ($b$) is fixed at a
-  value of 1. The results demonstrate that partner strategies evolve notably
-  under strong selection ($\beta=1$) and lower cost conditions. Furthermore, the abundance
-  of partner strategies is consistently higher when individuals have access to
-  greater memory. The bottom panel displays how these partner strategies lead to
-  increased levels of cooperation.}\label{fig:evolutionary_results}
+  \caption{\textbf{Evolutionary Dynamics in the Space of Reactive Strategies.}
+  In the preceding sections, we characterized partner strategies for reactive$-2$
+  and reactive$-3$. Additionally, we discussed the case of reactive counting
+  strategies. Now, our focus is on assessing whether partner strategies can evolve
+  in an evolutionary context. We ran simulations based on the methodology of Imhof
+  and Nowak~\cite{imhof:royal:2010}. In a single run of the evolutionary process,
+  we recorded the cooperation probabilities of the resident at each elementary
+  time step.
+  \textbf{a-b. Most Abundant Reactive Strategies.} We performed 10 independent
+  simulations for each set of strategies and documented the most abundant strategy
+  for each run. The most abundant strategy is the resident that remained fixed for
+  the most time steps. For these simulations, we used \(b=1 \text{ and } c=.5\).
+  For $n$ equal to 1 and 2, \(T= 10 ^ 7\) and for $n=3$ then \(T= 2 \times10 ^
+  7\).
+  \textbf{c-d. Abundance of Partner Strategies.}
+  We ran the evolutionary process once more, this time varying the cost ($c$) and
+  the strength of selection ($\beta$). The cooperation benefit ($b$) remained
+  fixed at a value of 1. In these simulations, our interest lies in observing how
+  frequently partner strategies become the resident strategy and in assessing the
+  effects of longer memory.}\label{fig:evolutionary_results}
 \end{figure}
 
 
