@@ -98,7 +98,7 @@ by humans, there is conflicting evidence. Some studies suggest that many human
 strategies align with those based solely on the most recent
 interaction~\cite{engle:ET:2006, dal:AER:2011, camera:GEB:2012, bruttel:TD:2012}.
 Nonetheless, there is also evidence of strategies that
-take into account more than just the previous round~\cite{fudenberg:AER:2012}.
+take into account more than just the previous round~\cite{fudenberg:AER:2012, romero:EER:2018}.
 
 Theoretical models have primarily focused on memory-1
 strategies~\cite{nowak:Nature:1993, nowak:Nature:1992, glynatsi:scientific:2020, press:PNAS:2012,
@@ -381,7 +381,7 @@ generosity decreases.
 
 \begin{figure}[htbp!]
   \centering
-  \includegraphics[width=.9\textwidth]{figures/conceptual_figure_results.pdf}
+  \includegraphics[width=\textwidth]{figures/conceptual_figure_results.pdf}
   \caption{\textbf{Representation of Theoretical Results.} \textbf{A.} We have
 proven that if a player is using a reactive strategy $\mathbf{p}$, then the
 co-player using a memory-$n$ strategy can switch to a self-reactive-$n$ strategy
@@ -389,8 +389,9 @@ without affecting the resulting payoffs. Namely, consider the case where player
 1 uses the reactive-1 strategy $\mathbf{p} = (0.8, 0.5)$ and player 2 uses the
 memory-1 strategy $\mathbf{m} = (0.1, 0.6, 0.2, 0.3)$. A memory-1 strategy is
 defined by the vector $\mathbf{m} = (m_{CC}, m_{CD}, m_{DC}, m_{DD})$. Based on
-these strategies, we can determine the long-term outcome, which indicates how
-often players are observed in any of the possible last-round outcomes. 
+these strategies, the players interact in the repeated game. We can determine
+the long-term outcome, which indicates how often players are observed in any of
+the possible last-round outcomes.
 \textbf{B.} Using
 these outcomes and player 2's memory-1 strategy, we can compute an associated
 self-reactive strategy. The self-reactive strategy now consists of two
@@ -489,8 +490,9 @@ concentrating on reactive strategies. Reactive strategies are a set that
 observes only the previous turns of the co-player. They have been studied in the
 past in theoretical work, with famous strategies such as Tit for Tat and
 Generous Tit for Tat~\cite{nowak:Nature:1993}. Experimental research has even
-suggested that these strategies are adopted by humans. However, prior work on
-reactive strategies has also been limited to the case of memory one.
+suggested that these strategies are adopted by humans~\cite{engle:ET:2006,
+bruttel:TD:2012}. However, prior work on reactive strategies has also been
+limited to the case of memory one.
 
 We focus on a set of Nash equilibria, which are the partner strategies. Partner
 strategies not only ensure that their co-player has no reason to deviate but
