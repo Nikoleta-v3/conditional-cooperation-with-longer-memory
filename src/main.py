@@ -13,7 +13,7 @@ def calculate_M(player, opponent, analytical):
     """
     Returns a Markov transition matrix for a game of memory one strategies.
     """
-    if analytical == True:
+    if analytical == False:
         return np.array(
             [
                 [
@@ -162,9 +162,9 @@ def transition_matrix(p, q, bits, analytical=False):
 
     ones = [[one[i : i + 2] for i in np.arange(0, len(one), 2)] for one in ones]
 
-    twos = [[two[i : i + 2] for i in np.arange(0, len(two), 2)] for two in twos]
+    # twos = [[two[i : i + 2] for i in np.arange(0, len(two), 2)] for two in twos]
 
-    ones = [[one[i : i + 2] for i in np.arange(0, len(one), 2)] for one in ones]
+    # ones = [[one[i : i + 2] for i in np.arange(0, len(one), 2)] for one in ones]
 
     if analytical == True:
         M = sym.zeros(shape, shape)

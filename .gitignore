@@ -3,6 +3,8 @@
 .ipynb_checkpoints/
 __pycache__/
 c_1.sh
+*.gz
+*.xml
 *.aux
 *.log
 *.maf
@@ -11,8 +13,12 @@ c_1.sh
 *.out
 *.bbl
 *.blg
+*.fdb_latexmk
+*.fls
 reactive.nb
 stationary.asv
+
+figures/static/*pdf
 
 data/*
 matlab_data/*

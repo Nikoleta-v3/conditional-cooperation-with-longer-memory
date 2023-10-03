@@ -1,0 +1,25 @@
+
+\documentclass[tikz]{standalone}
+
+\definecolor{solarizedBlue}{HTML}{268BD2}
+\definecolor{solarizedGreen}{HTML}{8DC73E}
+\definecolor{solarizedViolet}{HTML}{6C71C4}
+\definecolor{solarizedMagenta}{HTML}{D33682}
+
+\usetikzlibrary{positioning, fit, calc,matrix, arrows,scopes}
+
+\begin{document}
+\tikzset{man/.pic={
+    \node[circle,fill,minimum size=10mm] (head) {};
+    \node[rounded corners=4pt,minimum height=1.1cm,minimum width=0.8cm,fill,below = 2pt of head] (body) {};
+    \draw[line width=2mm,round cap-round cap] ([shift={(4pt,-2pt)}]body.north east) --++(-90:6mm);
+    \draw[line width=2mm,round cap-round cap] ([shift={(-4pt,-2pt)}]body.north west)--++(-90:6mm);
+    }}
+\begin{tikzpicture}
+
+\pic[black] at (0, 0) (myman) {man};
+\node[align=center] (0) at (2, .5) {\includegraphics[width=.2\textwidth]{self_reactive_n.png}};
+\node at (0, -2) (myman) {\textcolor{black}{self-reactive$-n$}};
+
+\end{tikzpicture}
+\end{document}
