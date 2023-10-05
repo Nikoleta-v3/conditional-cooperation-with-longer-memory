@@ -640,12 +640,12 @@ A nice reactive-two strategy $\mathbf{p}$, is a partner strategy if and only if,
 the strategy entries satisfy the conditions:
 
 \begin{equation*}
-  \begin{array}{rl}
-    (P - T)\, p_{DD} & < P - R, \\ [0.2cm]
-    \quad (T - P) \, (p_{CD} + p_{DC}) + (R - S)\,p_{DD} & < 3 R + S - 2\,P, \\ [0.2cm]
-    (T - P)\, p_{CD} + (R - S)\, (p_{CD} + p_{DD}) & < 4\,R - 2\,S - P - T, \\ [0.2cm]
-    (R - S)\,(p_{CD} + p_{DC}) & < 3 R - 2 S - T, \\ [0.2cm]
-    \left(R - S\right)\, p_{CD} + \left(T - P\right)\,p_{DC} & < 2 R - S - P
+  \begin{array}{ccc}
+    (T - P)\, p_{DD} & < & R - P, \\ [0.2cm]
+    (R - S)\, (p_{CD} + p_{DC}) & < & 3 R - 2 S - T, \\ [0.2cm]
+    (T - P)\, p_{DC}  + (R - S)\, p_{CD} & < & 2 R - S - P, \\ [0.2cm]
+    (T - P)\, (p_{CD} + p_{DC}) + (R - S)\, p_{DD}  & < & 3 R + S - 2\,P, \\ [0.2cm]
+    (T - P)\, p_{CD}  + (R - S)\, (p_{CD} + p_{DD}) & < & 4\,R - 2\,S - P - T.
 \end{array}
 \end{equation*}
 \end{corollary}
@@ -658,24 +658,24 @@ the strategy entries satisfy the conditions:
 
 \begin{equation*}
   \begin{array}{ccc}
-    p_{DDD} \left(R - S\right) + \left(T - P\right) \left(p_{CDD} + p_{DCD} + p_{DDC}\right) & < & 4 R - 3 P  - S \\ [0.2cm]
-    p_{CDC} \left(T - P\right) + p_{DCD} \left(R - S\right) & < & 2 R - P  - S \\ [0.2cm]
-    - P \left(p_{DDD} - 1\right) + T p_{DDD} & < & R \\ [0.2cm] 
-    \left(T - P\right) \left(p_{CCD} + p_{CDD} + p_{DDC}\right) + \left(R - S\right) \left(p_{CDC} + p_{DCC} + p_{DCD} + p_{DDD}\right) & < & 8 R - 3 P - 4 S - T \\ [0.2cm]
-    p_{DCC} \left(T - P\right) + \left(R - S\right) \left(p_{CCD} + p_{CDC}\right) & < & 3 R - P - 2 S \\ [0.2cm]
-    \left(T - P\right) \left(p_{CCD} + p_{DCC} + p_{DDC}\right) + \left(R - S\right) \left(p_{CDC} + p_{CDD} + p_{DCD}\right) & < & 6 R - 3 P - 3 S \\ [0.2cm]
-    \left(T - P\right) \left(p_{CCD} + p_{DDC}\right) + \left(R - S\right) \left(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}\right) & < & 7 R - 2 P - 4 S - T \\ [0.2cm]
-    \left(T - P\right) \left(p_{CCD} + p_{CDD} + p_{DCC}\right) + \left(R - S\right) \left(p_{DDC} + p_{DDD}\right) & < & 5 R - 3 P - 2 S \\ [0.2cm]
-    p_{CDD} \left(R - S\right) + \left(T - P\right) \left(p_{DCD} + p_{DDC}\right) & < & 3 R - 2 P - S \\ [0.2cm] 
-    p_{CCD} \left(T - P\right) + \left(R - S\right) \left(p_{CDD} + p_{DCC} + p_{DDC}\right) & < & 5 R - P - 3 S - T \\ [0.2cm]
-    \left(T - P\right) \left(p_{CCD} + p_{DCC}\right) + \left(R - S\right) \left(p_{CDD} + p_{DDC}\right) & < & 4 R - 2 P - 2 S \\ [0.2cm]
-    \left(T - P\right) \left(p_{CDC} + p_{DCD}\right) + \left(R - S\right) \left(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}\right) & < & 7 R - 2 P - 4 S - T \\ [0.2cm]
-    \left(T - P\right) \left(p_{CDC} + p_{CDD} + p_{DCD}\right) + \left(R - S\right) \left(p_{CCD} + p_{DCC} + p_{DDC} + p_{DDD}\right) & < & 8 R - 3 P - 4 S - T \\ [0.2cm]
-    \left(T - P\right) \left(p_{CDC} + p_{DCC} + p_{DCD}\right) + \left(R - S\right) \left(p_{CCD} + p_{CDD} + p_{DDC}\right) & < & 6 R - 3 P - 3 S \\ [0.2cm]
-    \left(T - P\right) \left(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}\right) + \left(R - S\right) \left(p_{CDC} + p_{DCD} + p_{DDD}\right) & < & 7 R - 4 P - 3 S \\ [0.2cm]
-    \left(R - S\right) \left(p_{CCD} + p_{CDC} + p_{DCC}\right) & < & 4 R - 3 S - T \\ [0.2cm]
-    \left(T - P\right) \left(p_{CCD} + p_{CDD}\right) + \left(R - S\right) \left(p_{DCC} + p_{DDC} + p_{DDD}\right) & < & 6 R - 2 P - 3 S - T \\ [0.2cm]
-    \left(T - P\right) \left(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}\right) + \left(R - S\right) \left(p_{CCD} + p_{DDC} + p_{DDD}\right) & < & 7 R - 4 P - 3 S \\ [0.2cm]
+    (T - P)\, (p_{CDD} + p_{DCD} + p_{DDC}) + (R - S)\, p_{DDD}  & < & 4 R - 3 P  - S \\ [0.2cm]
+    (T - P)\, p_{CDC}  + (R - S)\, p_{DCD}  & < & 2 R - P  - S \\ [0.2cm]
+    (T - P)\, p_{DDD} & < & R - P\\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{DCC} + p_{DCD} + p_{DDD}) & < & 8 R - 3 P - 4 S - T \\ [0.2cm]
+    (T - P)\, p_{DCC}  + (R - S)\,(p_{CCD} + p_{CDC}) & < & 3 R - P - 2 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DCC} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{CDD} + p_{DCD}) & < & 6 R - 3 P - 3 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) & < & 7 R - 2 P - 4 S - T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DCC}) + (R - S)\,(p_{DDC} + p_{DDD}) & < & 5 R - 3 P - 2 S \\ [0.2cm]
+    (T - P)\,(p_{DCD} + p_{DDC}) + (R - S)\, p_{CDD}  & < & 3 R - 2 P - S \\ [0.2cm] 
+    (T - P)\, p_{CCD} + (R - S)\,(p_{CDD} + p_{DCC} + p_{DDC}) & < & 5 R - P - 3 S - T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DCC}) + (R - S)\,(p_{CDD} + p_{DDC}) & < & 4 R - 2 P - 2 S \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) & < & 7 R - 2 P - 4 S - T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{CDD} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{DCC} + p_{DDC} + p_{DDD}) & < & 8 R - 3 P - 4 S - T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{DCC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{CDD} + p_{DDC}) & < & 6 R - 3 P - 3 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{DCD} + p_{DDD}) & < & 7 R - 4 P - 3 S \\ [0.2cm]
+    (R - S)\,(p_{CCD} + p_{CDC} + p_{DCC}) & < & 4 R - 3 S - T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD}) + (R - S)\,(p_{DCC} + p_{DDC} + p_{DDD}) & < & 6 R - 2 P - 3 S - T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{DDC} + p_{DDD}) & < & 7 R - 4 P - 3 S \\ [0.2cm]
     \end{array}
 \end{equation*}
 \end{corollary}
@@ -1097,12 +1097,12 @@ This gives the following payoff expressions:
 Setting the above expressions to $\leq R$ gives the following conditions,
 
 \begin{equation*}
-  \begin{array}{cl}
-  (P - T)\, p_{DD} & < P - R, \\ [0.4cm]
-  \quad (T - P) \, (p_{CD} + p_{DC}) + (R - S)\,p_{DD} & < 3 R + S - 2\,P, \\[0.4cm]
-  (T - P)\, p_{CD} + (R - S)\, (p_{CD} + p_{DC}) & < 4\,R - 2\,S - P - T, \\[0.4cm]
-  \qquad \left(R - S\right)\, p_{CD} + \left(T - P\right)\,p_{DC} & < 2 R - S - P, \\[0.4cm]
-  (R - S)\,(p_{CD} + p_{DC}) & < 3 R - 2 S - T.
+  \begin{array}{ccc}
+    (T - P)\, p_{DD} & < & R - P, \\ [0.2cm]
+    (R - S)\, (p_{CD} + p_{DC}) & < & 3 R - 2 S - T, \\ [0.2cm]
+    (T - P)\, p_{DC}  + (R - S)\, p_{CD} & < & 2 R - S - P, \\ [0.2cm]
+    (T - P)\, (p_{CD} + p_{DC}) + (R - S)\, p_{DD}  & < & 3 R + S - 2\,P, \\ [0.2cm]
+    (T - P)\, p_{CD}  + (R - S)\, (p_{CD} + p_{DD}) & < & 4\,R - 2\,S - P - T.
 \end{array}
 \end{equation*}
 
@@ -1156,24 +1156,24 @@ Setting the above expressions to $\leq R$ gives the following conditions,
 
 \begin{equation*}
   \begin{array}{ccc}
-    p_{DDD} \left(R - S\right) + \left(T - P\right) \left(p_{CDD} + p_{DCD} + p_{DDC}\right) & < & 4 R - 3 P  - S \\
-    p_{CDC} \left(T - P\right) + p_{DCD} \left(R - S\right) & < & 2 R - P  - S \\
-    - P \left(p_{DDD} - 1\right) + T p_{DDD} & < & R \\ 
-    \left(T - P\right) \left(p_{CCD} + p_{CDD} + p_{DDC}\right) + \left(R - S\right) \left(p_{CDC} + p_{DCC} + p_{DCD} + p_{DDD}\right) & < & 8 R - 3 P - 4 S - T \\
-    p_{DCC} \left(T - P\right) + \left(R - S\right) \left(p_{CCD} + p_{CDC}\right) & < & 3 R - P - 2 S \\
-    \left(T - P\right) \left(p_{CCD} + p_{DCC} + p_{DDC}\right) + \left(R - S\right) \left(p_{CDC} + p_{CDD} + p_{DCD}\right) & < & 6 R - 3 P - 3 S \\
-    \left(T - P\right) \left(p_{CCD} + p_{DDC}\right) + \left(R - S\right) \left(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}\right) & < & 7 R - 2 P - 4 S - T \\
-    \left(T - P\right) \left(p_{CCD} + p_{CDD} + p_{DCC}\right) + \left(R - S\right) \left(p_{DDC} + p_{DDD}\right) & < & 5 R - 3 P - 2 S \\
-    p_{CDD} \left(R - S\right) + \left(T - P\right) \left(p_{DCD} + p_{DDC}\right) & < & 3 R - 2 P - S \\ 
-    p_{CCD} \left(T - P\right) + \left(R - S\right) \left(p_{CDD} + p_{DCC} + p_{DDC}\right) & < & 5 R - P - 3 S - T \\
-    \left(T - P\right) \left(p_{CCD} + p_{DCC}\right) + \left(R - S\right) \left(p_{CDD} + p_{DDC}\right) & < & 4 R - 2 P - 2 S \\
-    \left(T - P\right) \left(p_{CDC} + p_{DCD}\right) + \left(R - S\right) \left(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}\right) & < & 7 R - 2 P - 4 S - T \\
-    \left(T - P\right) \left(p_{CDC} + p_{CDD} + p_{DCD}\right) + \left(R - S\right) \left(p_{CCD} + p_{DCC} + p_{DDC} + p_{DDD}\right) & < & 8 R - 3 P - 4 S - T \\
-    \left(T - P\right) \left(p_{CDC} + p_{DCC} + p_{DCD}\right) + \left(R - S\right) \left(p_{CCD} + p_{CDD} + p_{DDC}\right) & < & 6 R - 3 P - 3 S \\
-    \left(T - P\right) \left(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}\right) + \left(R - S\right) \left(p_{CDC} + p_{DCD} + p_{DDD}\right) & < & 7 R - 4 P - 3 S \\
-    \left(R - S\right) \left(p_{CCD} + p_{CDC} + p_{DCC}\right) & < & 4 R - 3 S - T \\
-    \left(T - P\right) \left(p_{CCD} + p_{CDD}\right) + \left(R - S\right) \left(p_{DCC} + p_{DDC} + p_{DDD}\right) & < & 6 R - 2 P - 3 S - T \\
-    \left(T - P\right) \left(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}\right) + \left(R - S\right) \left(p_{CCD} + p_{DDC} + p_{DDD}\right) & < & 7 R - 4 P - 3 S \\
+    (T - P)\, (p_{CDD} + p_{DCD} + p_{DDC}) + (R - S)\, p_{DDD}  & < & 4 R - 3 P  - S \\ [0.2cm]
+    (T - P)\, p_{CDC}  + (R - S)\, p_{DCD}  & < & 2 R - P  - S \\ [0.2cm]
+    (T - P)\, p_{DDD} & < & R - P\\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{DCC} + p_{DCD} + p_{DDD}) & < & 8 R - 3 P - 4 S - T \\ [0.2cm]
+    (T - P)\, p_{DCC}  + (R - S)\,(p_{CCD} + p_{CDC}) & < & 3 R - P - 2 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DCC} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{CDD} + p_{DCD}) & < & 6 R - 3 P - 3 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) & < & 7 R - 2 P - 4 S - T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DCC}) + (R - S)\,(p_{DDC} + p_{DDD}) & < & 5 R - 3 P - 2 S \\ [0.2cm]
+    (T - P)\,(p_{DCD} + p_{DDC}) + (R - S)\, p_{CDD}  & < & 3 R - 2 P - S \\ [0.2cm] 
+    (T - P)\, p_{CCD} + (R - S)\,(p_{CDD} + p_{DCC} + p_{DDC}) & < & 5 R - P - 3 S - T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DCC}) + (R - S)\,(p_{CDD} + p_{DDC}) & < & 4 R - 2 P - 2 S \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) & < & 7 R - 2 P - 4 S - T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{CDD} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{DCC} + p_{DDC} + p_{DDD}) & < & 8 R - 3 P - 4 S - T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{DCC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{CDD} + p_{DDC}) & < & 6 R - 3 P - 3 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{DCD} + p_{DDD}) & < & 7 R - 4 P - 3 S \\ [0.2cm]
+    (R - S)\,(p_{CCD} + p_{CDC} + p_{DCC}) & < & 4 R - 3 S - T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD}) + (R - S)\,(p_{DCC} + p_{DDC} + p_{DDD}) & < & 6 R - 2 P - 3 S - T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{DDC} + p_{DDD}) & < & 7 R - 4 P - 3 S
     \end{array}
 \end{equation*}
 
