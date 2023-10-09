@@ -62,7 +62,7 @@ b	&0
 Here $b$ and $c$ denote the benefit and the cost of cooperation, respectively. 
 We assume $b\!>\!c\!>\!0$ throughout.
 Therefore, payoff matrix~\eqref{Eq:DonationGame} is a special case of the
-prisoner's dilemma with payoff matrix,
+Prisoner's Dilemma with payoff matrix,
 
 \begin{equation} \label{Eq:PrisonerDilemma}
     \left(
@@ -77,58 +77,60 @@ where $T > R > S > P$ and $2 R > T + S$. Here, $R$ is the reward payoff of mutua
 cooperation, $T$ is the temptation to defect payoff, $S$ is the sucker's payoff,
 and $P$ is the punishment payoff for mutual defection.
 
-We assume the repeated game is played infinitely many rounds, and that the
-players' decisions only depend on the outcome of the previous $n$ rounds. To
-this end, an {\it $n$-history for player $i \in \{1, 2\}$} is a string
-$h^i=(a^i_{-n},\ldots,a^i_{-1})\!\in\!\{C,D\}^n$ where an entry $a^i_{-k}$
-corresponds to player $i$'s action $k$ rounds ago. Let $H^i$ denote the space of
-all $n$-histories for player $i$. Set $H^i$ contains $|H^i|=2^{n}$ elements. A
-pair $h\!=\!(h^1,h^2)$ is called an {\it $n$-history of the game}. We use
-$H=H^1\times H^2$ to denote the space of all such histories which contains
-$|H|=2^{2n}$ elements.
+We assume that in each round, the players' decisions depend only on the outcome
+of the previous $n$ rounds. To this end, an $n$-history for player $i \in {1,
+2}$ is a string $h^i = (a^i_{-n}, \ldots, a^i_{-1}) \in {C, D}^n$, where an
+entry $a^i_{-k}$ corresponds to player $i$'s action $k$ rounds ago. Let $H^i$
+denote the space of all $n$-histories for player $i$. Set $H^i$ contains $|H^i|
+= 2^n$ elements. Note that we use the notation $-i$ to denote the co-player;
+thus, $h^{-i}$ denotes the $n$-history of the co-player, and $H^{-i}$ denotes
+the space of all $n$-histories of the co-player.
 
-A {\it memory-$n$} strategy is a vector $\mathbf{m}=(m_h)_{h\in
-H}\in[0,1]^{2n}$. Each entry $m_h$ corresponds to the player's cooperation
-probability in the next round, depending on the outcome of the previous $n$
-rounds. One special case of memory$-n$ strategies are the round$-k-$repeat
-strategies for some $1\!\le\!k\!\le\!n$. Player $1$ uses a {\it round-$k$-repeat
-strategy} $\mathbf{m}^{k-\text{Rep}}$ if in any given round, the player chooses
-the same action as $k$ rounds ago. That is, if the game's $n$-history is such
-that,
+A pair $h\!=\!(h^1,h^2)$ is called an {\it $n$-history of the game}. We use
+$H=H^1\times H^2$ to denote the space of all such histories which contains
+$|H|=2^{2n}$ elements. A {\it memory-$n$} strategy is a vector
+$\mathbf{m}=(m_h)_{h\in H}\in[0,1]^{2n}$. Each entry $m_h$ corresponds to the
+player's cooperation probability in the next round, depending on the outcome of
+the previous $n$ rounds. One special case of memory$-n$ strategies are the
+round$-k-$repeat strategies for some $1\!\le\!k\!\le\!n$. A {\it
+round-$k$-repeat strategy} $\mathbf{m}^{k-\text{Rep}}$ if in any given round,
+the player chooses the same action as $k$ rounds ago. That is, if the game's
+$n$-history is such that,
 
 $$
 \begin{cases}
-  m^{k-\text{Rep}}_h\!=\!1, \text{ if } a^1_{-k}\!=\!C\\[1em]
-  m^{k-\text{Rep}}_h\!=\!0, \text{ if } a^1_{-k}\!=\!D.
+  m^{k-\text{Rep}}_h\!=\!1, \text{ if } a^i_{-k}\!=\!C\\[1em]
+  m^{k-\text{Rep}}_h\!=\!0, \text{ if } a^i_{-k}\!=\!D.
 \end{cases}
 $$
 
 Two additional special cases of memory$-n$ strategies that we will be discussing in
 this work are, reactive$-n$ and self-reactive-$n$ strategies. A {\it
-reactive$-n$ strategy} for player 1 is a vector
-$\mathbf{p}=(p_h)_{h\in H^2} \in [0, 1]^{n}$. Each entry $p_h$ corresponds to
+reactive$-n$ strategy} is a vector
+$\mathbf{p}=(p_h^{-i})_{h^{-i}\in H^{-i}} \in [0, 1]^{n}$. Each entry $p_h$ corresponds to
 the player's cooperation probability in the next round, based on the co-player's
 actions in the previous $n$ rounds. Therefore, reactive-$n$ strategies
 exclusively rely on the co-player's $n$-history, independent of the focal
 player's own actions. On the other hand, {\it self-reactive-$n$}
 strategies only consider the focal player's own $n$-history, and ignore the
-co-player's. Formally, a self-reactive-$n$ strategy for player 1 is a vector
-$\mathbf{\tilde{p}} = (\tilde{p}_h)_{h \in H^1} \in [0, 1] ^ {n}$. Each entry
+co-player's. Formally, a self-reactive-$n$ strategy is a vector
+$\mathbf{\tilde{p}} = (\tilde{p}_h^{i})_{h^{i} \in H^i} \in [0, 1] ^ {n}$. Each entry
 $\tilde{p}_h$ corresponds to the player's cooperation probability in the next,
 depending on the player's own actions in the previous $n$ rounds.
 From hereon, we will use the notations $\mathbf{m}, \mathbf{p}, \text{ and }
 \mathbf{\tilde{p}}$ to denote memory-$n$, reactive-$n$, and self-reactive-$n$
 strategies.
 
-Let players 1 and 2 use memory$-n$ strategies $\mathbf{m^{1}}$ and
-$\mathbf{m^{2}}$. Then one can represent the interaction as a Markov chain with
-possible states $h \in H$. Assume that the present round is given by \(h =
-(h^{1}, h^{2})\), the probability that one round later \(\tilde{h}\) is observed
-is given by the product,
+We model the interaction between the two players as a Markov chain. Let players
+1 and 2 use memory-$n$ strategies $\mathbf{m^{1}}$ and $\mathbf{m^{2}}$. Their
+interaction can be represented as a Markov chain with possible states denoted by
+$h \in H$. Assuming that the current round is given by \(h = (h^{1}, h^{2})\),
+the probability that, one round later, \(\tilde{h}\) is observed is given by the
+product,
 
-$$
+\begin{equation}\label{eq:transition_probs}
   M_{h, \tilde{h}} = \prod_{i=1}^{2} x^{i}
-$$
+\end{equation}
 
 where,
 
@@ -141,30 +143,21 @@ x^i =
 \end{cases}
 $$
 
-Let $\mathbf{v}=(v_h)_{h\in H}$ be an invariant distribution of this Markov
-chain for which $\mathbf{v} = \mathbf{v} \cdot M$.
-
-% Previously, the work of~\citep{akin:EGADS:2016} characterized all partner strategies in the
-% case of memory-one strategies. For higher memory values ($n > 1$), a few works
-% (\citep{hilbe:PNAS:2017}) have managed to characterize subsets of memory$-n$ partner
-% strategies. This difficulty arises from the fact that as memory increases,
-% obtaining analytical results becomes more challenging. In this work, we focus on
-% reactive strategies instead of memory$-n$ strategies. Reactive strategies, a
-% subset of memory$-n$ strategies, are formally introduced in Section~\ref{section:reactive_strategies}. We
-% characterize all reactive partner strategies for $n = 2$ and $n = 3$, and present a
-% series of results starting from Section~\ref{section:self_reactive_sufficiency}. In the following section, we will
-% discuss a series of results for the case of memory$-n$.
+We create a transition matrix, denoted as $M$, with a size of $2^{2n} \times
+2^{2n}$ by assigning numbers to the set of possible n-histories and organizing
+the probabilities as defined in Eq.~\eqref{eq:transition_probs}. Let
+$\mathbf{v} = (v_h)_{h\in H}$ denote the probability distribution over the
+states of the Markov chain. Thus, the entries $v_h$ indicate the proportion of
+rounds in which the game is in state $h$. \(\{\mathbf{v}^{t}, t = 1, 2, ...\}\)
+with \(\mathbf{v}^{t}\) represents the distribution over the states in the
+\(t^{\text{th}}\) round of the game. A distribution $\mathbf{v}$ is called a
+stationary distribution if $\mathbf{v} = \mathbf{v} \cdot M$.
 
 \subsection{An Extension of Akin's Lemma}
 
-The work of~\citep{akin:EGADS:2016} focuses on memory-one strategies. In the
-case of $n=1$, a memory-one strategy is represented by the vector
-\(\mathbf{m}=(m_{CC}, m_{CD}, m_{DC}, m_{DD})\). Let player $1$ use the
-memory-one strategy $\mathbf{m}$ when interacting with player $2$. This leads to
-a sequence of distributions \(\{\mathbf{v}^{t}, t = 1, 2, ...\}\) with
-\(\mathbf{v}^{t}\) representing the distribution over the states in the
-\(t^{\text{th}}\) round of the game. Let $\mathbf{v} = (v_{CC}, v_{CD}, v_{DC}, v_{DD})$ be an associated
-stationary distribution of the interaction. In his work Akin shows that,
+In the case of $n=1$, a memory-1 strategy is represented by the vector
+\(\mathbf{m}=(m_{CC}, m_{CD}, m_{DC}, m_{DD})\). In his work~\cite{akin:EGADS:2016}
+Akin shows that,
 
 \begin{align}
   \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{t=1}^{n} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1-\text{Rep}}) & = 0, \text{ and therefore } \mathbf{v} \cdot (\mathbf{m} - \mathbf{m}^{1-\text{Rep}}) = 0.
@@ -187,13 +180,14 @@ satisfies the following relationship,
 \begin{equation} \label{Eq:AkinsLemma}
 \mathbf{v} \cdot (\mathbf{m}-\mathbf{m}^{k-\text{Rep}}) \!=\! \sum_{h\in H} v_h (m_h-m_h^{k-\text{Rep}}) = 0.
 \end{equation}
-
 \end{lemma}
 
 \begin{proof}
-Let the probability that player $1$ cooperated in the \(n^{\text{th}}\) round be
-denoted as \(v_{\text{C}}^{n}\). Let \(v_{\text{C}}^{n}\) be defined as the
-probability that player $1$ played \(C\), \(k \, (1\leq k\leq n)\) rounds ago. Then,
+Let player 1 use a memory-1 strategy $\mathbf{m}$ and player 2 an arbitrary
+memory-$n$ strategy. The probability that player $1$ cooperated in the
+\(n^{\text{th}}\) round be denoted as \(v_{\text{C}}^{n}\). Let
+\(v_{\text{C}}^{n}\) be defined as the probability that player $1$ played \(C\),
+\(k \, (1\leq k\leq n)\) rounds ago. Then,
 
 $$
 v_{\text{C}}^{n} = \sum_{h \in H} y_{h}, \quad \text{ where } \quad y_h = 
@@ -209,57 +203,67 @@ $$
 v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m}^{k - \text{Rep}}.
 $$
 
-The probability that player $1$ cooperates in the \((n + 1)^{th}\) round,
+Let $k$ be fixed to $k=1$ then,
+
+$$
+v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m}^{1 - \text{Rep}}.
+$$
+
+Moreover, the probability that player $1$ cooperates in the \((n + 1)^{th}\) round,
 denoted by \(v_{\text{C}}^{n + 1}\) = \(\mathbf{v}^{n} \cdot \mathbf{m}\). Hence,
 
 \begin{equation*}
-  v_{\text{C}}^{n + 1} - v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m} - \mathbf{v}^n \cdot \mathbf{m}^{k - \text{Rep}}
-  =  \mathbf{v}^{n} \cdot (\mathbf{m} - \mathbf{m}^{k - \text{Rep}}).
+  v_{\text{C}}^{n + 1} - v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m} - \mathbf{v}^n \cdot \mathbf{m}^{1 - \text{Rep}}
+  =  \mathbf{v}^{n} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}).
 \end{equation*}
 
 This implies,
 
 \begin{equation}
-\sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{k - \text{Rep}}) = \sum^{n}_{t=1} v_{\text{C}}^{t + 1} - v_{\text{C}}^{t} \quad \Rightarrow \quad \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{k - \text{Rep}}) =  v_{\text{C}}^{n + 1} - v_{\text{C}}^{1}.
+\sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) = \sum^{n}_{t=1} v_{\text{C}}^{t + 1} - v_{\text{C}}^{t} \quad \Rightarrow \quad \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) =  v_{\text{C}}^{n + 1} - v_{\text{C}}^{1}.
 \end{equation}
 
 As the right side has absolute value at most 1,
 
 \begin{equation}
-\lim_{n \rightarrow \infty} \frac{1}{n} \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{k - \text{Rep}}) = 0.
+\lim_{n \rightarrow \infty} \frac{1}{n} \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) = 0.
 \end{equation}
+
+Repeat for $1 < k \leq n$.
+
 \end{proof}
 
-The intuition for this result is that $\mathbf{v}\cdot \mathbf{m}$ and all
-$\mathbf{v}\cdot \mathbf{m}^{k-\text{Rep}}$ are just different, but equivalent,
-expressions for player $1$'s average cooperation rate. More specifically,
+The intuition behind this result is that $\mathbf{v}\cdot \mathbf{m}$ and all
+$\mathbf{v}\cdot \mathbf{m}^{k-\text{Rep}}$ are simply different but equivalent
+expressions for player $1$'s average cooperation rate. To be more specific,
 \(\mathbf{m}^{1-\text{Rep}} = \mathbf{m}^{2-\text{Rep}} = \dots =
-\mathbf{m}^{n-\text{Rep}}\) correspond to the intuition that it does not matter
-which of the past $n$ rounds we use to define cooperation rate.
-
+\mathbf{m}^{n-\text{Rep}}\) correspond to the idea that it doesn't matter which
+of the past $n$ rounds we use to define the cooperation rate.
 
 \subsection{Payoffs and Further Definitions}
 
-The invariant distribution $\mathbf{v}$ can also be used to define the long term
-payoffs of the players'. Let $\mathbf{S}^k = (S_h^k)_{h\in H}$ denote the vector
-that returns for each $h$ the one-shot payoff that player $1$ obtained $k$
-rounds ago,
+Here, we are defining the long-term payoffs. Initially, we establish the payoffs
+of the players in a single round. Let $a^i_{-k}$ and $a^{-i}{-k}$ denote the
+actions of the player and the co-player in the $k$-th round, respectively. Then,
+$\mathbf{S}^i_k = (S^k_h)_{h\in H}$ represents the vector that returns, for each
+$h$, the one-shot payoff obtained $k$ rounds ago.
 
 \begin{equation}
     S_h^k = \left\{
     \begin{array}{cl}
-    b-c	&\text{if}~ a_{-k}^1=C~\text{and}~ a_{-k}^2=C\\
-    -c	&\text{if}~ a_{-k}^1=C~\text{and}~ a_{-k}^2=D\\
-    b	&\text{if}~ a_{-k}^1=D~\text{and}~ a_{-k}^2=C\\
-    0	&\text{if}~ a_{-k}^1=D~\text{and}~ a_{-k}^2=D
+    b-c	&\text{if}~ a_{-k}^i=C~\text{and}~ a_{-k}^{-i}=C\\
+    -c	&\text{if}~ a_{-k}^i=C~\text{and}~ a_{-k}^{-i}=D\\
+    b	&\text{if}~ a_{-k}^i=D~\text{and}~ a_{-k}^{-i}=C\\
+    0	&\text{if}~ a_{-k}^i=D~\text{and}~ a_{-k}^{-i}=D
     \end{array}
     \right.
 \end{equation}
 
-Then we can define player $1$'s repeated-game payoff $s_{\mathbf{m^{1}},\mathbf{m^{2}}}$ as
+Then we can define player $i$'s repeated-game payoff
+$s_{\mathbf{m^{i}},\mathbf{m^{-i}}}$ as
 
 \begin{equation} \label{Eq:Payoff}
-s_{\mathbf{m^{1}},\mathbf{m^{2}}}  = \mathbf{v}\cdot \mathbf{S}^1 = \mathbf{v}\cdot \mathbf{S}^2 = \ldots = \mathbf{v} \cdot \mathbf{S}^n.
+s_{\mathbf{m^{i}},\mathbf{m^{-i}}}  = \mathbf{v}\cdot \mathbf{S}^1 = \mathbf{v}\cdot \mathbf{S}^2 = \ldots = \mathbf{v} \cdot \mathbf{S}^n.
 \end{equation}
 
 The equalities $\mathbf{v}\cdot \mathbf{S}^1 = \ldots = \mathbf{v} \cdot
@@ -268,18 +272,17 @@ past $n$ rounds we use to define average payoffs. This is an immediate result of
 Lemma~\ref{lemma:AkinGeneralised}. The payoffs of the players depend on both
 players' cooperations, and since their cooperation can be defined as having
 occurred in any of the last $n$ turns, the payoffs can also be expressed
-analogously. The payoff $s_{\mathbf{m^{2}},\mathbf{m^{1}}}$ of player $2$ can be
-defined in a similar manner.
+analogously.
 
 Let's provide definitions for some additional terms that will be used in this
 manuscript.
 
 \begin{definition}[Nash Strategies]
-A strategy $\mathbf{m}$ for player $1$, is a \textit{Nash
+A strategy $\mathbf{m^{i}}$, is a \textit{Nash
 strategy} if,
 
 \begin{equation}\label{Eq:Nash}
-    s_{\mathbf{m'},\mathbf{m}} \leq s_{\mathbf{m},\mathbf{m}} \;\forall \; \mathbf{m'}.
+    s_{\mathbf{m^{-i}},\mathbf{m}} \leq s_{\mathbf{m^{i}},\mathbf{m^{i}}} \;\forall \; \mathbf{m^{-i}}.
 \end{equation}
 \end{definition}
 
@@ -300,37 +303,38 @@ themselves~\citep{Hilbe:GEB:2015}. All partner
 strategies are Nash strategies, but not all Nash strategies are partner
 strategies.
 
-To check whether a strategy \(\mathbf{m}\) is Nash, one has to check
-Eq.~\eqref{Eq:Nash} against all possible memory-$n$ strategies. However the
-works of~\citep{mcavoy:PRSA:2019, Mcavoy:PNAS:2022} have shown that for $n=1$ it
-is sufficient to check against all pure memory-one strategies. Here we
-generalize this result to any $n$.
+% To check whether a strategy \(\mathbf{m}\) is Nash, one has to check
+% Eq.~\eqref{Eq:Nash} against all possible memory-$n$ strategies. However the
+% works of~\citep{mcavoy:PRSA:2019, Mcavoy:PNAS:2022} have shown that for $n=1$ it
+% is sufficient to check against all pure memory-one strategies. Here we
+% generalize this result to any $n$.
 
-\begin{lemma}[Monotinic Payoffs]\label{lemma:monotonic_payoffs}
-$\dots$
-\end{lemma}
+% \begin{lemma}[Monotinic Payoffs]\label{lemma:monotonic_payoffs}
+% $\dots$
+% \end{lemma}
 
-\begin{lemma}[Sufficiency of Pure Strategies]\label{lemma:sufficiency_pure_strategies}
-$\dots$
-\end{lemma}
+% \begin{lemma}[Sufficiency of Pure Strategies]\label{lemma:sufficiency_pure_strategies}
+% $\dots$
+% \end{lemma}
 
-\section{Tit For Tat and Generous Tit For Tat}
+\section{Tit For Tat and Generous Tit For Tat across All Memory Length}
 
-Based on Lemma~\ref{lemma:AkinGeneralised}, we can derive a theory of
-zero-determinant strategies analogous to the case of memory-one strategies. In
-the following, we say a memory-$n$ strategy $\mathbf{m^1}$ is a zero-determinant
+Building upon Lemma~\ref{lemma:AkinGeneralised}, we can develop a theory of
+zero-determinant strategies within the class of memory-$n$ strategies. In
+the following, we say a memory-$n$ strategy $\mathbf{m}$ is a zero-determinant
 strategy if there are $k_1$, $k_2$, $k_3$ and $\alpha$, $\beta$, $\gamma$ such
-that $\mathbf{m^1}$ can be written as
+that $\mathbf{m^{i}}$ can be written as
 
 \begin{equation} \label{Eq:DefZD}
-\mathbf{m^1} = \alpha \mathbf{S}^{k_1} + \beta \mathbf{\tilde{S}}^{k_2} + \gamma \mathbf{1} + \mathbf{m}^{k_3-\text{Rep}},  
+\mathbf{m^{i}} = \alpha \mathbf{S}^i_{k_1} + \beta \mathbf{S}^{-i}_{k_2} + \gamma \mathbf{1} + \mathbf{m}^{k_3-\text{Rep}},  
 \end{equation} 
 where $\mathbf{1}$ is the vector for which every entry is 1. By Akin's Lemma and the definition of payoffs,
 \begin{equation} \label{Eq:PayoffZD}
-0 = \mathbf{v} \cdot  (\mathbf{m^1} - \mathbf{m}^{k_3-\text{Rep}}) = \mathbf{v} \cdot (\alpha \mathbf{S}^{k_1} + \beta \mathbf{\tilde{S}}^{k_2} + \gamma \mathbf{1} ) = \alpha s_{\mathbf{m^1}, \mathbf{m^2}} + \beta s_{\mathbf{m^2}, \mathbf{m^1}} + \gamma. 
+0 = \mathbf{v} \cdot  (\mathbf{m^{i}} - \mathbf{m}^{k_3-\text{Rep}}) = \mathbf{v} \cdot (\alpha \mathbf{S}^{i}_{k_1} + \beta \mathbf{S}^{-i}_{k_2} + \gamma \mathbf{1} ) = \alpha s_{\mathbf{m^{i}}, \mathbf{m^{-i}}} + \beta s_{\mathbf{m^{-i}}, \mathbf{m^{i}}} + \gamma. 
 \end{equation}
 
-That is, payoffs satisfy a linear relationship. 
+That is, payoffs satisfy a linear relationship. Thus, $\mathbf{m^{i}}$
+is a zero-determinant strategy.
 
 One interesting special case arises if $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and $\alpha
 = -\beta =1/(b\!+\!c)$ and $\gamma=0$. In that case, the formula
@@ -339,8 +343,8 @@ One interesting special case arises if $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and $\alpha
 \begin{equation}
 m_h = \left\{
 \begin{array}{ll}
-1	&\text{if}~~a^2_{-k}=C\\
-0	&\text{if}~~a^2_{-k}=D
+1	&\text{if}~~a^{-i}_{-k}=C\\
+0	&\text{if}~~a^{-i}_{-k}=D
 \end{array}
 \right.
 \end{equation}
@@ -348,8 +352,8 @@ m_h = \left\{
 That is, this strategy implements Tit-for-Tat (for $k\!=\!1$) or delayed
 versions thereof (for $k\!>\!1$). These strategies are partners strategies that
 also satisfy a stronger relationship. By Eq.~\eqref{Eq:PayoffZD}, the enforced
-payoff relationship is $s_{\mathbf{m^1}, \mathbf{m^2}}\!=\! s_{\mathbf{m^2},
-\mathbf{m^1}}$.
+payoff relationship is $s_{\mathbf{m^{i}}, \mathbf{m^{-i}}}\!=\!
+s_{\mathbf{m^{-i}}, \mathbf{m^{i}}}$.
 
 Another interesting special case arises if  $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and
 $\alpha\!=\!0$, $\beta\!=\!-1/b$, $\gamma\!=\!1\!-\!c/b$. In that case
@@ -358,63 +362,18 @@ Eq.~\eqref{Eq:DefZD} yields the strategy
 \begin{equation}
 m_h = \left\{
 \begin{array}{ll}
-1	&\text{if}~~a^2_{-k}=C\\
-1-c/b	&\text{if}~~a^2_{-k}=D
+1	&\text{if}~~a^{-i}_{-k}=C\\
+1-c/b	&\text{if}~~a^{-i}_{-k}=D
 \end{array}
 \right.
 \end{equation}
 
 That is, the generated strategy is GTFT (if $k\!=\!1$), or delayed versions
 thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced payoff
-relationship is $s_{\mathbf{m^2}, \mathbf{m^1}}\!=\!b\!-\!c$. In particular, these
+relationship is $s_{\mathbf{m^{-i}}, \mathbf{m^{i}}}\!=\!b\!-\!c$. In particular, these
 strategies are partner strategies.\\
 
-\section{Reactive Partner Strategies}\label{section:reactive_strategies}
-
-We assume in the following, that $1$ adopts reactive$-n$ strategy $\mathbf{p}$,
-and player $2$ adopts an arbitrary memory-$n$ strategy $\mathbf{m}$. We define
-the following marginal distributions with respect to the possible $n$-histories
-of player~$2$,
-
-\begin{equation}\label{Eq:marginal_distributions}
-\displaystyle v^2_{h} = \sum_{h^1\in H^1} v_{(h^1, h)}.
-\end{equation}
-
-These entries describe how often we observe player $2$ to choose actions $h^2$,
-in $n$ consecutive rounds (irrespective of the actions of player $1$). Note
-that,
-
-\begin{equation}\label{eq:normalization_marginal_distributions}
-  \displaystyle \sum_{h \in H^2} v^2_{h} = 1.
-\end{equation}
-
-Let $\mathbf{p^{k - \text{Rep}}}$ be a reactive round-$k$-repeat strategy. Then
-the cooperation rate of player $2$, denoted as $\rho_\mathbf{m}$, is given by,
-
-\begin{equation}\label{Eq:coplayer_cooperation_expr}
-  \rho_\mathbf{m} = \sum_{h \in H^{2}} v^q_{h} \cdot p^{1 - \text{Rep}}_{h} \; = \; \sum_{h \in H^{2}} v^q_{h} \cdot p^{2 - \text{Rep}}_{h} \; = \; \dots \; = \sum_{h \in H^{2}} v^q_{h} \cdot p^{n - \text{Rep}}_{h}.
-\end{equation}
-
-The cooperating rate of player $1$ can also be expressed in terms of $v^2_{h}$ as,
-
-\begin{equation} \label{Eq:rhop_alln}
-  \begin{array}{lll}
-    \rho_\mathbf{p} &= &\displaystyle \sum_{h \in H^2} v^2_{h} \cdot p_{h}.
-  \end{array}
-\end{equation}
-
-Because we consider simple donation games, we note that these two quantities,
-$\rho_\mathbf{m}  ~~and~~ \rho_\mathbf{p},$ are
-sufficient to define the payoffs of the two players,
-
-\begin{equation} \label{Eq:payoff}
-  \begin{array}{lll}
-  s_{\mathbf{p}, \mathbf{m}}  =  b\, \rho_\mathbf{m} - c\, \rho_\mathbf{p}\\
-  s_{\mathbf{m}, \mathbf{q}} = b\, \rho_\mathbf{p} - c\, \rho_\mathbf{m}.
-  \end{array}
-\end{equation}
-
-\subsection{Sufficiency of Self reactive strategies}\label{section:self_reactive_sufficiency}
+\section{Sufficiency of Self reactive strategies}\label{section:self_reactive_sufficiency}
 
 \cite{press:PNAS:2012} discussed the case where one player uses a memory-one
 strategy and the other player employs a longer memory strategy. They
@@ -436,35 +395,89 @@ considering the history not shared with the reactive player.
 $\dots$
 \end{proof}
 
-Lemma~\ref{lemma:sufficiency_pure_strategies} states that for a memory-$n$
-strategy to be Nash, then condition~\eqref{Eq:Nash} has to hold against all pure
-memory-$n$ strategies. This also applies to the case where the player adopts a
-reactive-$n$ strategy. However, for the case of a reactive player here we show a
-stronger result. More specifically, combining
-Lemma~\ref{lemma:sufficiency_pure_strategies} and
-Lemma~\ref{lemma:self_reactive_sufficiency} leads to the focal result,
+\section{Reactive Strategies}\label{section:reactive_strategies}
 
-\begin{lemma}\label{lemma:nash_against_pure_self_reactive}
-A reactive-$n$ strategy $\mathbf{p}$ for player $1$, is a \textit{Nash strategy} if,
+In this section, we introduce some additional notation that will become
+important when discussing and proving the results in the following sections.
+Henceforth, we assume that player $1$ adopts a reactive-$n$ strategy
+$\mathbf{p}$, and player $2$ adopts a self-reactive-$n$ strategy
+$\mathbf{\tilde{p}}$. We define the following marginal distributions with
+respect to the possible $n$-histories of player $2$:
 
-\begin{equation}\label{Eq:NashReactive}
-    s_{\mathbf{\tilde{p}}, \mathbf{p}} \leq s_{\mathbf{p},\mathbf{p}} \;\forall \; \tilde{p} \in \tilde{P}.
+\begin{equation}\label{Eq:marginal_distributions}
+\displaystyle v^2_{h^2} = \sum_{h^1\in H^1} v_{(h^1, h^2)}.
 \end{equation}
 
-where,
+These entries describe how often we observe player $2$ to choose actions $h^2$,
+in $n$ consecutive rounds (irrespective of the actions of player $1$). Note
+that,
 
-$$\tilde{P} = \{(\tilde{p}_h): \tilde{p}_h \in \{0, 1\} \; \forall \; h \in H^2\}.$$
+\begin{equation}\label{eq:normalization_marginal_distributions}
+  \displaystyle \sum_{h \in H^2} v^2_{h} = 1.
+\end{equation}
 
-Thus, $\tilde{P}$ is the set of all pure self-reactive-$n$ strategies.
-\end{lemma}
+Let $\mathbf{p^{k - \text{Rep}}}$ be a reactive round-$k$-repeat strategy. Then
+the cooperation rate of player $2$, denoted as $\rho_\mathbf{\tilde{p}}$, and based
+on Lemma~\ref{lemma:AkinGeneralised} is given by,
 
-Lemma~\ref{lemma:nash_against_pure_self_reactive} implies that the space
-of strategies we need to check against is even more constrained in the
-case of reactive strategies. This has a huge implication on the computational
-complexity of finding Nash strategies. In particular, the number of strategies
-one has to check against is reduced from $2^{2^{2n}}$ to $2^{2n}$.
+\begin{equation}\label{Eq:coplayer_cooperation_expr}
+  \rho_\mathbf{\tilde{p}} = \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{1 - \text{Rep}}_{h} \; = \; \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{2 - \text{Rep}}_{h} \; = \; \dots \; = \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{n - \text{Rep}}_{h}.
+\end{equation}
 
-Another result of Lemma~\ref{lemma:self_reactive_sufficiency} is that we can
+Player's 1 cooperation rate can also be defined in a similar manner. However,
+here we define the cooperation rate of player $1$ as,
+
+\begin{equation} \label{Eq:rhop_alln}
+  \begin{array}{lll}
+    \rho_\mathbf{p} &= &\displaystyle \sum_{h^2 \in H^2} v^2_{h^2} \cdot p_{h^2}.
+  \end{array}
+\end{equation}
+
+In the case of the simple donation games, it is sufficient to define the payoffs
+of the two players based on their cooperation rates. More specifically, we can
+define the payoffs of the two players as,
+
+\begin{equation} \label{Eq:payoff}
+  \begin{array}{lll}
+  s_{\mathbf{p}, \mathbf{\tilde{p}}}  =  b\, \rho_\mathbf{\tilde{p}} - c\, \rho_\mathbf{p}\\
+  s_{\mathbf{\tilde{p}}, \mathbf{q}} = b\, \rho_\mathbf{p} - c\, \rho_\mathbf{\tilde{p}}.
+  \end{array}
+\end{equation}
+
+In the case of the general Prisoner Dilemma, the payoffs of player 2 against
+the reactive co-player 1 is defined as,
+
+\begin{equation*}\label{eq:PD_long_term_payoff}
+  s_{\mathbf{\tilde{p}}, \mathbf{p}} = a_R \cdot R + a_S \cdot S + a_T \cdot T + a_P \cdot P, ~~where~~
+\end{equation*}
+
+\begin{equation*}
+  \begin{array}{ll}
+  a_R = & \displaystyle \sum_{h^2 \in H^2} u^2_{h^2} \cdot p_{h^2} \cdot \tilde{p}_{h^2}, \\ [0.2cm]
+  a_S = & \displaystyle \sum_{h^2 \in H^2} u^2_{h^2} \cdot (1 - p_{h^2}) \cdot \tilde{p}_{h^2}, \\ [0.2cm]
+  a_T = & \displaystyle \sum_{h^2 \in H^2} u^2_{h^2} \cdot p_{h^2} \cdot (1 - \tilde{p}_{h^2}), \\ [0.2cm]
+  a_P = &  \displaystyle \sum_{h^2 \in H^2} u^2_{h^2} \cdot (1 - p_{h^2}) \cdot (1 - \tilde{p}_{h^2}).
+\end{array}
+\end{equation*}
+
+The payoff of player 1 is defined equivalently.
+
+
+\section{Identifying Nash Equilibria for Reactive Strategies}\label{section:reactive_nash_strategies}
+
+To predict which reactive-$n$ strategies are partner strategies, we must
+characterize which nice reactive-$n$ strategies are Nash equilibria. Determining
+whether a given strategy, $\mathbf{p}$, is a Nash equilibrium is not
+straightforward.
+In principle, this would involve comparing the payoff of $\mathbf{p}$ to the
+payoff of all possible other strategies; however, due to the result
+of~\cite{press:PNAS:2012}, we know that we only have to compare against
+memory-$n$ strategies. However, we restrict the search space even further.
+Namely, in Lemma~\ref{lemma:self_reactive_sufficiency} we have shown that if a
+player adopts a reactive strategy, it is only necessary to consider mutant
+strategies that are self-reactive-$n$.
+
+An immediate result of Lemma~\ref{lemma:self_reactive_sufficiency} is that we can
 retrieve the marginal distributions of the co-player's actions
 (Eq~\eqref{Eq:marginal_distributions}) without having to consider the transition
 matrix $M$. For now, one has to calculate the transition matrix \(M\) for two
@@ -497,6 +510,30 @@ This results that the payoffs of the players can now be calculated more
 efficiently.
 
 
+
+\begin{lemma}\label{lemma:nash_against_pure_self_reactive}
+A reactive-$n$ strategy $\mathbf{p}$ for player $1$, is a \textit{Nash strategy} if,
+and only if, no pure self-reactive-$n$ strategy can achieve a higher payoff
+against itself.
+
+\begin{equation}\label{Eq:NashReactive}
+    s_{\mathbf{\tilde{p}}, \mathbf{p}} \leq s_{\mathbf{p},\mathbf{p}} \;\forall \; \tilde{p} \in \tilde{P}.
+\end{equation}
+
+where,
+
+$$\tilde{P} = \{(\tilde{p}_h): \tilde{p}_h \in \{0, 1\} \; \forall \; h \in H^2\}.$$
+
+Thus, $\tilde{P}$ is the set of all pure self-reactive-$n$ strategies.
+\end{lemma}
+
+Lemma~\ref{lemma:nash_against_pure_self_reactive} implies that the space
+of strategies we need to check against is even more constrained in the
+case of reactive strategies. This has a huge implication on the computational
+complexity of finding Nash strategies. In particular, the number of strategies
+one has to check against is reduced from $2^{2^{2n}}$ to $2^{2n}$.
+
+\section{Reactive Partner Strategies}
 
 \subsection{Reactive-Two Partner Strategies}\label{section:reactive_two_partner_strategies}
 
@@ -605,35 +642,12 @@ is a partner strategy if and only if:
 
 \end{corollary}
 
-\section{Prisoner's Dilemma}
+\subsection{General Prisoner's Dilemma}
 
 So far we have focused on a special case of the Prisoner's Dilemma, the donation
 game. In this section we show that the results of Sections~\ref{section:reactive_two_partner_strategies}
 and~\ref{section:reactive_three_partner_strategies} can be generalized
-for the iterated Prisoner's Dilemma.
-
-We assume that player $1$ uses a reactive-$n$ strategy \(\mathbf{p}\), and that
-the co-player uses a self-reactive strategy \(\mathbf{\tilde{p}}\). The interaction
-can be model as a Markov proceed with a stationary distribution \(\mathbf{v}\)
-as we have already discussed. The long-term payoff of player $2$ is now given
-by,
-
-\begin{equation*}\label{eq:PD_long_term_payoff}
-  \mathbf{s_{\mathbf{\tilde{p}}, \mathbf{p}}} = a_R \cdot R + a_S \cdot S + a_T \cdot T + a_P \cdot P, ~~where~~
-\end{equation*}
-
-\begin{equation*}
-  \begin{array}{ll}
-  a_R = & \displaystyle \sum_{h \in H^2} u^2_h \cdot p_h \cdot \tilde{p}_h, \\ [0.2cm]
-  a_S = & \displaystyle \sum_{h \in H^2} u^2_h \cdot (1 - p_h) \cdot \tilde{p}_h, \\ [0.2cm]
-  a_T = & \displaystyle \sum_{h \in H^2} u^2_h \cdot p_h \cdot (1 - \tilde{p}_h), \\ [0.2cm]
-  a_P = &  \displaystyle \sum_{h \in H^2} u^2_h \cdot (1 - p_h) \cdot (1 - \tilde{p}_h).
-\end{array}
-\end{equation*}
-
-The payoff for player $2$ can be expressed analogously.
-
-For the case of reactive-two strategies.
+for the iterated Prisoner's Dilemma. For the case of reactive-two strategies.
 
 \begin{corollary}\label{corollary:reactive_two_partner_strategies_PD}
 A nice reactive-two strategy $\mathbf{p}$, is a partner strategy if and only if,
@@ -766,7 +780,7 @@ Suppose player $1$ adopts a nice reactive-two strategy
 $\mathbf{p}\!=\!(1, p_{CD}, p_{DC}, p_{DD})$. For $\mathbf{p}$ to be a Nash
 strategy,
 
-\begin{equation}\label{Eq:NashReactive}
+\begin{equation}
   s_{\mathbf{\tilde{p}}, \mathbf{p}} \leq (b - c),
 \end{equation}
 
@@ -1017,9 +1031,11 @@ More specifically, the co-player's cooperation rate is,
   \rho_{\mathbf{\tilde{p}}} = \sum_{i=0}^{n} \frac{i}{n} \cdot w_{i}.
 \end{equation}
 
-We will also define a set of $i-$ repeat strategies. Assume the set of self
-reactive strategies $A = \{\mathbf{A^{0}}, \mathbf{A^{1}}, \dots,
-\mathbf{A^{n}} \}$, where.
+We will also define a set of self-reactive $i-$ repeat strategies. That is
+strategies that repeat sequences where the sequence has a total of $i$
+cooperation. These strategies start by playing their sequence and their after
+repeat their $a^{i}_{-n}$ action. We denote this set of strategies as $A =
+\{\mathbf{A^{0}}, \mathbf{A^{1}}, \dots, \mathbf{A^{n}} \}$.
 
 The payoff of an alternating self-reactive-$n$ against a counting-reactive$-n$
 $\mathbf{r}$ is given by,
