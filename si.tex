@@ -395,96 +395,16 @@ considering the history not shared with the reactive player.
 $\dots$
 \end{proof}
 
-\section{Reactive Strategies}\label{section:reactive_strategies}
-
-In this section, we introduce some additional notation that will become
-important when discussing and proving the results in the following sections.
-Henceforth, we assume that player $1$ adopts a reactive-$n$ strategy
+From here on, we assume that player $1$ adopts a reactive-$n$ strategy
 $\mathbf{p}$, and player $2$ adopts a self-reactive-$n$ strategy
-$\mathbf{\tilde{p}}$. We define the following marginal distributions with
-respect to the possible $n$-histories of player $2$:
-
-\begin{equation}\label{Eq:marginal_distributions}
-\displaystyle v^2_{h^2} = \sum_{h^1\in H^1} v_{(h^1, h^2)}.
-\end{equation}
-
-These entries describe how often we observe player $2$ to choose actions $h^2$,
-in $n$ consecutive rounds (irrespective of the actions of player $1$). Note
-that,
-
-\begin{equation}\label{eq:normalization_marginal_distributions}
-  \displaystyle \sum_{h \in H^2} v^2_{h} = 1.
-\end{equation}
-
-Let $\mathbf{p^{k - \text{Rep}}}$ be a reactive round-$k$-repeat strategy. Then
-the cooperation rate of player $2$, denoted as $\rho_\mathbf{\tilde{p}}$, and based
-on Lemma~\ref{lemma:AkinGeneralised} is given by,
-
-\begin{equation}\label{Eq:coplayer_cooperation_expr}
-  \rho_\mathbf{\tilde{p}} = \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{1 - \text{Rep}}_{h} \; = \; \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{2 - \text{Rep}}_{h} \; = \; \dots \; = \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{n - \text{Rep}}_{h}.
-\end{equation}
-
-Player's 1 cooperation rate can also be defined in a similar manner. However,
-here we define the cooperation rate of player $1$ as,
-
-\begin{equation} \label{Eq:rhop_alln}
-  \begin{array}{lll}
-    \rho_\mathbf{p} &= &\displaystyle \sum_{h^2 \in H^2} v^2_{h^2} \cdot p_{h^2}.
-  \end{array}
-\end{equation}
-
-In the case of the simple donation games, it is sufficient to define the payoffs
-of the two players based on their cooperation rates. More specifically, we can
-define the payoffs of the two players as,
-
-\begin{equation} \label{Eq:payoff}
-  \begin{array}{lll}
-  s_{\mathbf{p}, \mathbf{\tilde{p}}}  =  b\, \rho_\mathbf{\tilde{p}} - c\, \rho_\mathbf{p}\\
-  s_{\mathbf{\tilde{p}}, \mathbf{q}} = b\, \rho_\mathbf{p} - c\, \rho_\mathbf{\tilde{p}}.
-  \end{array}
-\end{equation}
-
-In the case of the general Prisoner Dilemma, the payoffs of player 2 against
-the reactive co-player 1 is defined as,
-
-\begin{equation*}\label{eq:PD_long_term_payoff}
-  s_{\mathbf{\tilde{p}}, \mathbf{p}} = a_R \cdot R + a_S \cdot S + a_T \cdot T + a_P \cdot P, ~~where~~
-\end{equation*}
-
-\begin{equation*}
-  \begin{array}{ll}
-  a_R = & \displaystyle \sum_{h^2 \in H^2} u^2_{h^2} \cdot p_{h^2} \cdot \tilde{p}_{h^2}, \\ [0.2cm]
-  a_S = & \displaystyle \sum_{h^2 \in H^2} u^2_{h^2} \cdot (1 - p_{h^2}) \cdot \tilde{p}_{h^2}, \\ [0.2cm]
-  a_T = & \displaystyle \sum_{h^2 \in H^2} u^2_{h^2} \cdot p_{h^2} \cdot (1 - \tilde{p}_{h^2}), \\ [0.2cm]
-  a_P = &  \displaystyle \sum_{h^2 \in H^2} u^2_{h^2} \cdot (1 - p_{h^2}) \cdot (1 - \tilde{p}_{h^2}).
-\end{array}
-\end{equation*}
-
-The payoff of player 1 is defined equivalently.
-
-
-\section{Identifying Nash Equilibria for Reactive Strategies}\label{section:reactive_nash_strategies}
-
-To predict which reactive-$n$ strategies are partner strategies, we must
-characterize which nice reactive-$n$ strategies are Nash equilibria. Determining
-whether a given strategy, $\mathbf{p}$, is a Nash equilibrium is not
-straightforward.
-In principle, this would involve comparing the payoff of $\mathbf{p}$ to the
-payoff of all possible other strategies; however, due to the result
-of~\cite{press:PNAS:2012}, we know that we only have to compare against
-memory-$n$ strategies. However, we restrict the search space even further.
-Namely, in Lemma~\ref{lemma:self_reactive_sufficiency} we have shown that if a
-player adopts a reactive strategy, it is only necessary to consider mutant
-strategies that are self-reactive-$n$.
-
-An immediate result of Lemma~\ref{lemma:self_reactive_sufficiency} is that we can
-retrieve the marginal distributions of the co-player's actions
-(Eq~\eqref{Eq:marginal_distributions}) without having to consider the transition
-matrix $M$. For now, one has to calculate the transition matrix \(M\) for two
-given players and calculate the stationary distribution of this $2^{2n} \times
-2^{2n}$ matrix. However, since the co-player is playing a self-reactive strategy
-then the co-player's action only rely on his/her actions, and thus one can model
-this as a Markov process with states $h^2 \in H^2$ and a transition matrix
+$\mathbf{\tilde{p}}$. An immediate result of
+Lemma~\ref{lemma:self_reactive_sufficiency} is that we can calculate payoffs of
+the players more efficiently. In particular, so far to estimate payoffs one
+needs to to calculate the transition matrix \(M\) for two given players and
+calculate the stationary distribution of this $2^{2n} \times 2^{2n}$ matrix.
+However, since the co-player is playing a self-reactive strategy then the
+co-player's action only rely on his/her actions, and thus one can model this as
+a Markov process with states $h^2 \in H^2$ and a transition matrix
 \(\tilde{M}\). Let \(h^2=((a^2_{-n},\ldots,a^2_{-1}))\) be the state in the
 current round. The probability that in the next turn
 \(\tilde{h}^2=((\tilde{a}^2_{-n},\ldots,\tilde{a}^2_{-1}))\) is observed is
@@ -499,16 +419,104 @@ $$
 \end{cases}
 $$
 
-The stationary distribution of this Markov chain denoted as $\mathbf{\tilde{v}}$
-has the property that,
+Let $\mathbf{\tilde{v}}$ be a stationary distribution of the
+Markov chain $\tilde{M}$. The payoff of player $2$ is given by,
+
+\begin{equation}
+  \sum_{h^2 \in H^2} \tilde{v}_{h^2} \cdot \tilde{S}^{h^2}_k
+\end{equation}
+
+\begin{equation}
+  \tilde{S}_{h^2}^k = \left\{
+  \begin{array}{cl}
+  b\, p_{h^2} -c	&\text{if}~ a_{-k}^i=C~\text{and}~ a_{-k}^{-i}=C\\
+  b\, p_{h^2} -c	&\text{if}~ a_{-k}^i=C~\text{and}~ a_{-k}^{-i}=D\\
+  b\, p_{h^2}	&\text{if}~ a_{-k}^i=D~\text{and}~ a_{-k}^{-i}=C\\
+  b\, p_{h^2}	&\text{if}~ a_{-k}^i=D~\text{and}~ a_{-k}^{-i}=D
+  \end{array}
+  \right.
+\end{equation}
+
+Let's consider an example in the case of $n=1$ to demonstrate the result. Assume
+that player 1 is playing the reactive-1 strategy $\mathbf{p}=(\frac{1}{2},
+\frac{1}{3}, \frac{1}{2}, \frac{1}{3})$ and player 2 is playing the
+self-reactive-1 strategy $\mathbf{\tilde{p}} = (\frac{1}{4}, \frac{1}{4},
+\frac{1}{2}, \frac{1}{2})$. The transition matrix $M$ is given by,
 
 $$
-\tilde{u}_h = u^2_{h}.
+M = \left[\begin{matrix}
+  \frac{1}{8} & \frac{3}{8} & \frac{1}{8} & \frac{3}{8} \\
+  \frac{1}{6} & \frac{1}{6} & \frac{1}{3} & \frac{1}{3} \\
+  \frac{1}{8} & \frac{3}{8} & \frac{1}{8} & \frac{3}{8} \\
+  \frac{1}{6} & \frac{1}{6} & \frac{1}{3} & \frac{1}{3}
+\end{matrix}\right]
 $$
+
+the stationary distribution is given by
+$\mathbf{v} = (\frac{4}{25}, \frac{6}{25}, \frac{6}{25}, \frac{9}{25})$,
+and the payoff of player 2 is given by, $\mathbf{v} \cdot (b - c, -c, b, 0)
+= \frac{2}{5}\, (b - c)$. Now we repeat the exercise using $\tilde{M}$ and Eq.
+.
+
+$$
+\tilde{M} = \left[\begin{matrix}
+  \frac{1}{4} & \frac{3}{4} & 0 & 0 \\
+  0 & 0 & \frac{1}{4} & \frac{3}{4} \\
+  \frac{1}{2} & \frac{1}{2} & 0 & 0 \\
+  0 & 0 & \frac{1}{2} & \frac{1}{2}
+\end{matrix}\right].
+$$
+
+The stationary distribution is given by $\mathbf{\tilde{v}} = (\frac{4}{25},
+\frac{6}{25}, \frac{6}{25}, \frac{9}{25})$ and based on Eq. the payoff of player
+2,
+
+\begin{align*}
+s_{\mathbf{\tilde{p}}, \mathbf{p}} = & \frac{4}{25} \, (b\, \frac{1}{2} - c) + \frac{6}{25} \, (b\, \frac{1}{3} - c) + \frac{6}{25}\, b\, \frac{1}{2} + \frac{9}{25}\, b\, \frac{1}{3} \\
+                                   = & \frac{2}{5}\, (b - c).
+\end{align*}
+
 
 This results that the payoffs of the players can now be calculated more
-efficiently.
+efficiently. Note that in the case of the general Prisoner Dilemma, the payoffs
+are given by,
 
+\begin{equation*}\label{eq:PD_long_term_payoff}
+  s_{\mathbf{\tilde{p}}, \mathbf{p}} = a_R \cdot R + a_S \cdot S + a_T \cdot T + a_P \cdot P, ~~where~~
+\end{equation*}
+
+\begin{equation*}
+  \begin{array}{ll}
+  a_R = & \displaystyle \sum_{h^2 \in H^2} \tilde{u}_{h^2} \cdot p_{h^2} \cdot \tilde{p}_{h^2}, \\ [0.2cm]
+  a_S = & \displaystyle \sum_{h^2 \in H^2} \tilde{u}_{h^2} \cdot (1 - p_{h^2}) \cdot \tilde{p}_{h^2}, \\ [0.2cm]
+  a_T = & \displaystyle \sum_{h^2 \in H^2} \tilde{u}_{h^2} \cdot p_{h^2} \cdot (1 - \tilde{p}_{h^2}), \\ [0.2cm]
+  a_P = &  \displaystyle \sum_{h^2 \in H^2} \tilde{u}_{h^2} \cdot (1 - p_{h^2}) \cdot (1 - \tilde{p}_{h^2}).
+\end{array}
+\end{equation*}
+
+\section{Identifying Nash Equilibria for Reactive Strategies}\label{section:reactive_nash_strategies}
+
+To predict which reactive-$n$ strategies are partner strategies, we must
+characterize which nice reactive-$n$ strategies are Nash equilibria. Determining
+whether a given strategy, $\mathbf{p}$, is a Nash equilibrium is not
+straightforward. In principle, this would involve comparing the payoff of
+$\mathbf{p}$ to the payoff of all possible other strategies; however, due to the
+result of~\cite{press:PNAS:2012}, we know that we only have to compare against
+memory-$n$ strategies. However, we restrict the search space even further.
+Namely, in Lemma~\ref{lemma:self_reactive_sufficiency} we have shown that if a
+player adopts a reactive strategy, it is only necessary to consider mutant
+strategies that are self-reactive-$n$.
+
+A result from Press and Dyson is that, the payoffs can be expressed as
+$M' = (\tilde{M} - I)$ where we replace the last column by $\tilde{S}_{h^2}^k$
+the determinant of this matrix we will denote it as,
+$D(\tilde{p}, p, \tilde{S}_{h^2}^k)$ then,
+
+$$
+s_{\mathbf{\tilde{p}}, \mathbf{p}} = \frac{D(\tilde{p}, p, \tilde{S}_{h^2}^k)}{D(\tilde{p}, p, 1)}.
+$$
+
+There is one things about the matrix $\tilde{M}$ and so on.
 
 
 \begin{lemma}\label{lemma:nash_against_pure_self_reactive}
@@ -693,10 +701,105 @@ the strategy entries satisfy the conditions:
     \end{array}
 \end{equation*}
 \end{corollary}
+ 
+\section{Further Notation}
+
+In this section, we introduce some additional notation that will become
+important when discussing and proving the results in the following sections.
+Henceforth, we assume that player $1$ adopts a reactive-$n$ strategy
+$\mathbf{p}$, and player $2$ adopts a self-reactive-$n$ strategy
+$\mathbf{\tilde{p}}$. We define the following marginal distributions with
+respect to the possible $n$-histories of player $2$:
+
+\begin{equation}\label{Eq:marginal_distributions}
+\displaystyle v^2_{h^2} = \sum_{h^1\in H^1} v_{(h^1, h^2)}.
+\end{equation}
+
+These entries describe how often we observe player $2$ to choose actions $h^2$,
+in $n$ consecutive rounds (irrespective of the actions of player $1$). Note
+that,
+
+\begin{equation}\label{eq:normalization_marginal_distributions}
+  \displaystyle \sum_{h \in H^2} v^2_{h} = 1.
+\end{equation}
+
+Let $\mathbf{p^{k - \text{Rep}}}$ be a reactive round-$k$-repeat strategy. Then
+the cooperation rate of player $2$, denoted as $\rho_\mathbf{\tilde{p}}$, and based
+on Lemma~\ref{lemma:AkinGeneralised} is given by,
+
+\begin{equation}\label{Eq:coplayer_cooperation_expr}
+  \rho_\mathbf{\tilde{p}} = \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{1 - \text{Rep}}_{h} \; = \; \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{2 - \text{Rep}}_{h} \; = \; \dots \; = \sum_{h^2 \in H^{2}} v^{2}_{h^2} \cdot p^{n - \text{Rep}}_{h}.
+\end{equation}
+
+Player's 1 cooperation rate can also be defined in a similar manner. However,
+here we define the cooperation rate of player $1$ as,
+
+\begin{equation} \label{Eq:rhop_alln}
+  \begin{array}{lll}
+    \rho_\mathbf{p} &= &\displaystyle \sum_{h^2 \in H^2} v^2_{h^2} \cdot p_{h^2}.
+  \end{array}
+\end{equation}
+
+In the case of the simple donation games, it is sufficient to define the payoffs
+of the two players based on their cooperation rates. More specifically, we can
+define the payoffs of the two players as,
+
+\begin{equation} \label{Eq:payoff}
+  \begin{array}{lll}
+  s_{\mathbf{p}, \mathbf{\tilde{p}}}  =  b\, \rho_\mathbf{\tilde{p}} - c\, \rho_\mathbf{p}\\
+  s_{\mathbf{\tilde{p}}, \mathbf{q}} = b\, \rho_\mathbf{p} - c\, \rho_\mathbf{\tilde{p}}.
+  \end{array}
+\end{equation}
 
 \appendix
 
 \section{Proofs for Theorem~\ref{theorem:reactive_two_partner_strategies}}\label{appendix:proofs_reactive_two_partner_strategies}
+
+\subsection{Approach based on Self-Reactive Sufficiency Lemma}
+
+Suppose player $1$ adopts a nice reactive-two strategy
+$\mathbf{p}\!=\!(1, p_{CD}, p_{DC}, p_{DD})$. For $\mathbf{p}$ to be a Nash
+strategy,
+
+\begin{equation}
+  s_{\mathbf{\tilde{p}}, \mathbf{p}} \leq (b - c),
+\end{equation}
+
+must hold against all \(\mathbf{\tilde{p}} \in \tilde{P}\), where \(\tilde{P}\) is the
+set of all pure self-reactive-two strategies. In the case of $n=2$, the set
+contains 16 strategies.
+
+\begin{proof}
+Suppose player $1$ plays a nice reactive-two strategy $\mathbf{p} = (1, p_{CD},
+p_{DC}, p_{DD})$, and suppose the co-player $2$ plays a pure self-reactive-two
+strategy $\mathbf{\tilde{p}}$. The possible payoffs for
+$\mathbf{\tilde{p}} \in \{\mathbf{\tilde{p}}^{0}, \dots, \mathbf{\tilde{p}}^{16}\}$
+are:
+
+\begin{equation*}\label{Eq:PayoffExpressionsReactiveTwo}
+  \begin{array}{lclc}
+    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & b \cdot p_{DD} & ~~for~~ i \in & \{0, 2, 4, 6, 8, 10, 12, 14\} \\ [1em]
+    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD})}{3} - \frac{1}{3} \cdot c  &  ~~for~~ i \in & \{1, 9\} \\ [1em]
+    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD} + 1)}{4} - \frac{1}{2} \cdot c  & ~~for~~ i \in & \{3\} \\ [1em]
+    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC})}{2} - \frac{1}{2} \cdot c  & ~~for~~ i \in & \{4, 5, 12, 13\} \\ [1em]
+    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + 1)}{3} - \frac{2}{3} \cdot c  &  ~~for~~ i \in & \{6, 7\}\\ [1em]
+    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & b - c  & ~~for~~ i \in & \{8, 9, 10, 11, 12, 13, 14, 15\}
+  \end{array}
+\end{equation*}
+
+Setting the payoff expressions of $s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}}$ to
+smaller or equal to $(b - c)$ we get the following unique conditions,
+
+\begin{align} 
+  p_{DD} & \leq 1 - \frac{c}{b} \label{Eq:Condition2Reactive1} \\
+  \frac{p_{CD} + p_{DC}}{2} & \leq 1 - \frac{1}{2}  \cdot \frac{c}{b} \label{Eq:Condition2Reactive2} \\
+  \frac{p_{CD} + p_{DC} + p_{DD}}{3} & \leq 1 - \frac{2}{3} \cdot \frac{c}{b} \label{Eq:Condition2Reactive3}
+\end{align}
+
+Notice that only conditions \eqref{Eq:Condition2Reactive1} and
+\eqref{Eq:Condition2Reactive2} are necessary.
+
+\end{proof}
 
 \subsection{Approach based on Akin's Generalised Lemma}
 
@@ -774,51 +877,6 @@ Thus, Eq.~\eqref{Eq:NashConditionDonationGame} reassures that $\mathbf{p}$
 is Nash strategy, and given that $p_{CC} = 1$, it is a partner strategy.
 \end{proof}
 
-\subsection{Approach based on Self-Reactive Sufficiency Lemma}
-
-Suppose player $1$ adopts a nice reactive-two strategy
-$\mathbf{p}\!=\!(1, p_{CD}, p_{DC}, p_{DD})$. For $\mathbf{p}$ to be a Nash
-strategy,
-
-\begin{equation}
-  s_{\mathbf{\tilde{p}}, \mathbf{p}} \leq (b - c),
-\end{equation}
-
-must hold against all \(\mathbf{\tilde{p}} \in \tilde{P}\), where \(\tilde{P}\) is the
-set of all pure self-reactive-two strategies. In the case of $n=2$, the set
-contains 16 strategies.
-
-\begin{proof}
-Suppose player $1$ plays a nice reactive-two strategy $\mathbf{p} = (1, p_{CD},
-p_{DC}, p_{DD})$, and suppose the co-player $2$ plays a pure self-reactive-two
-strategy $\mathbf{\tilde{p}}$. The possible payoffs for
-$\mathbf{\tilde{p}} \in \{\mathbf{\tilde{p}}^{0}, \dots, \mathbf{\tilde{p}}^{16}\}$
-are:
-
-\begin{equation*}\label{Eq:PayoffExpressionsReactiveTwo}
-  \begin{array}{lclc}
-    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & b \cdot p_{DD} & ~~for~~ i \in & \{0, 2, 4, 6, 8, 10, 12, 14\} \\ [1em]
-    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD})}{3} - \frac{1}{3} \cdot c  &  ~~for~~ i \in & \{1, 9\} \\ [1em]
-    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + p_{DD} + 1)}{4} - \frac{1}{2} \cdot c  & ~~for~~ i \in & \{3\} \\ [1em]
-    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC})}{2} - \frac{1}{2} \cdot c  & ~~for~~ i \in & \{4, 5, 12, 13\} \\ [1em]
-    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & \frac{b \cdot (p_{CD} + p_{DC} + 1)}{3} - \frac{2}{3} \cdot c  &  ~~for~~ i \in & \{6, 7\}\\ [1em]
-    s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}} = & b - c  & ~~for~~ i \in & \{8, 9, 10, 11, 12, 13, 14, 15\}
-  \end{array}
-\end{equation*}
-
-Setting the payoff expressions of $s_{\mathbf{\tilde{p}}^{i}, \mathbf{p}}$ to
-smaller or equal to $(b - c)$ we get the following unique conditions,
-
-\begin{align} 
-  p_{DD} & \leq 1 - \frac{c}{b} \label{Eq:Condition2Reactive1} \\
-  \frac{p_{CD} + p_{DC}}{2} & \leq 1 - \frac{1}{2}  \cdot \frac{c}{b} \label{Eq:Condition2Reactive2} \\
-  \frac{p_{CD} + p_{DC} + p_{DD}}{3} & \leq 1 - \frac{2}{3} \cdot \frac{c}{b} \label{Eq:Condition2Reactive3}
-\end{align}
-
-Notice that only conditions \eqref{Eq:Condition2Reactive1} and
-\eqref{Eq:Condition2Reactive2} are necessary.
-
-\end{proof}
 
 \section{Proofs for Theorem~\ref{theorem:reactive_three_partner_strategies}}\label{appendix:proofs_reactive_three_partner_strategies}
 
