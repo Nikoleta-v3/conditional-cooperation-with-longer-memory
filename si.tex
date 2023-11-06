@@ -612,7 +612,7 @@ and~\ref{appendix:proofs_for_theorems_generalized_akin}.
 
 %% PARTNER STRATEGIES: Reactive-2 Donation Game %%
 
-\subsection{reactive-2 Partner Strategies}\label{section:reactive_two_partner_strategies}
+\subsection{Reactive-2 Partner Strategies}\label{section:reactive_two_partner_strategies}
 
 In this section, we focus on the case of $n=2$. reactive-2 strategies are denoted as a vector
 $\mathbf{p}=(p_{CC}, p_{CD}, p_{DC}, p_{DD})$ where $p_{CC}$ is the
@@ -622,12 +622,12 @@ co-player cooperated in the second to last turn and defected in the last, and so
 forth. A nice reactive-2 strategy is represented by the vector $\mathbf{p}=(1,
 p_{CD}, p_{DC}, p_{DD})$.
 
-\begin{theorem}[``reactive-2 Partner Strategies'']\label{theorem:reactive_two_partner_strategies}
-A nice reactive-2 strategy $\mathbf{p}$, is a partner strategy if and only if,
+\begin{theorem}[``Reactive-2 Partner Strategies'']\label{theorem:reactive_two_partner_strategies}
+A reactive-2 strategy $\mathbf{p}$, is a partner strategy if and only if,
 the strategy entries satisfy the conditions:
 
 \begin{equation}\label{eq:two_bit_conditions}
-  \displaystyle p_{DD} < 1\!-\! \frac{c}{b}  ~~and~~ \displaystyle \frac{p_{CD} + p_{DC}}{2} < 1- \frac{1}{2} \cdot \frac{c}{b}.
+  p_{CC} = 1, \qquad \displaystyle \frac{p_{CD} + p_{DC}}{2} < 1 - \frac{1}{2} \cdot \frac{c}{b} \quad ~~and~~ \quad \displaystyle p_{DD} \leq 1\!-\! \frac{c}{b}.
 \end{equation}
 \end{theorem}
 
@@ -636,7 +636,7 @@ and~\ref{appendix:reactive_two_akin_generalized}.
 
 %% PARTNER STRATEGIES: Reactive-3 Donation Game %%
 
-\subsection{reactive-3 Partner Strategies}\label{section:reactive_three_partner_strategies}
+\subsection{Reactive-3 Partner Strategies}\label{section:reactive_three_partner_strategies}
 
 In this section, we focus on the case of $n=3$. reactive-3 strategies are
 denoted as a vector 
@@ -649,17 +649,18 @@ cooperating given that the co-player cooperated in the third and second to last
 rounds and defected in the last, and so forth. A nice reactive-3 strategy
 has $p_{CCC} = 1$.
 
-\begin{theorem}[``reactive-3 Partner Strategies'']\label{theorem:reactive_three_partner_strategies}
-A nice reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if,
+\begin{theorem}[``Reactive-3 Partner Strategies'']\label{theorem:reactive_three_partner_strategies}
+A reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if,
 the strategy entries satisfy the conditions:
 
 \begin{align}\label{eq:three_bit_conditions}
   \begin{split}
-  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} & < 1\!-\! \frac{1}{3} \cdot \frac{c}{b} \\
-  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} & < 1\!-\! \frac{2}{3} \cdot \frac{c}{b} \\
-  p_{DDD} & < 1\!-\! \frac{c}{b} \\
-  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & < 1\!-\! \frac{1}{2} \cdot \frac{c}{b}  \\
-  \frac{p_{CDC} + p_{DCD}}{2} & < 1\!-\! \frac{1}{2} \cdot \frac{c}{b}
+  p_{CCC} & = 1 \\
+  \frac{p_{CDC} + p_{DCD}}{2} & \leq 1 - \frac{1}{2} \cdot \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} & \leq 1 - \frac{1}{3} \cdot \frac{c}{b} \\
+  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} & \leq 1 - \frac{2}{3} \cdot \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & \leq 1 - \frac{1}{2} \cdot \frac{c}{b}  \\
+  p_{DDD} & \leq 1\!-\! \frac{c}{b}
   \end{split}
 \end{align}
 \end{theorem}
@@ -686,10 +687,10 @@ $p_{DD} = r_0$ in conditions~\eqref{eq:two_bit_conditions}. This gives us the
 following result.
 
 \begin{corollary}
-A nice reactive-2 counting strategy $\mathbf{r} = (1, r_1, r_0)$ is a partner strategy if and only if,
+A reactive-2 counting strategy $\mathbf{r} = (r_2, r_1, r_0)$ is a partner strategy if and only if,
 
 \begin{equation}\label{eq:counting_two_bit_conditions}
-  \displaystyle r_1 < 1-\frac{1}{2} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
+  \displaystyle r_2 = 1, \qquad r_1 < 1-\frac{1}{2} \cdot \frac{c}{b} \qquad ~~and~~ \qquad r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
 \end{corollary}
 
@@ -700,21 +701,21 @@ r_2, p_{DCD} = p_{DDC} = p_{CDD} = r_1$ and $p_{DDD} = r_0$ in
 conditions~\eqref{eq:three_bit_conditions}. This gives us the following result.
 
 \begin{corollary}
-A nice reactive-3 counting strategy $\mathbf{r} = (1, r_2, r_1, r_0)$ is a partner strategy if and only if,
+A reactive-3 counting strategy $\mathbf{r} = (r_3, r_2, r_1, r_0)$ is a partner strategy if and only if,
 
 \begin{equation}\label{eq:counting_three_bit_conditions}
-  \displaystyle r_2 < 1- \frac{1}{3} \cdot \frac{c}{b}, \quad r_1 < 1- \frac{2}{3} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
+  \displaystyle r_3 = 1 \qquad r_2 < 1- \frac{1}{3} \cdot \frac{c}{b}, \quad r_1 < 1- \frac{2}{3} \cdot \frac{c}{b} \qquad ~~and~~ \qquad r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
 \end{corollary}
 
 In the case of counting reactive strategies, we generalize to the case of $n$.
 
 \begin{theorem}[``Reactive-Counting Partner Strategies'']\label{theorem:reactive_counting_partner_strategies}
-A nice reactive-$n$ counting strategy $\mathbf{r}=(r_i)_{i \in \{n, n-1, \dots, 0\}}$,
+A reactive-$n$ counting strategy $\mathbf{r}=(r_i)_{i \in \{n, n-1, \dots, 0\}}$,
 is a partner strategy if and only if:
 
 \begin{equation}
-  r_{n - k} < 1 - \frac{k}{n} \cdot \frac{c}{b}, \text{ for } k \in \{1, 2, \dots, n\}.
+  r_n = 1 \qquad ~~and~~ \qquad r_{n - k} < 1 - \frac{k}{n} \cdot \frac{c}{b}, \text{ for } k \in \{1, 2, \dots, n\}.
 \end{equation}
 
 For proof see Appendix section~\ref{appendix:reactive_counting_n_akin_generalized}.
@@ -733,11 +734,12 @@ for the iterated Prisoner's Dilemma. For the case of reactive-2 strategies.
 %% PARTNER STRATEGIES: Reactive-2 Prisoner's Dilemma %%
 
 \begin{theorem}\label{theorem:reactive_two_partner_strategies_PD}
-A nice reactive-2 strategy $\mathbf{p}$, is a partner strategy if and only if,
+A reactive-2 strategy $\mathbf{p}$, is a partner strategy if and only if,
 the strategy entries satisfy the conditions:
 
 \begin{equation*}
   \begin{array}{ccc}
+    p_{CC} & = & 1, \\ [0.2cm]
     (T - P)\, p_{DD} & < & R - P, \\ [0.2cm]
     (R - S)\, (p_{CD} + p_{DC}) & < & 3 R - 2 S - T, \\ [0.2cm]
     (T - P)\, p_{DC}  + (R - S)\, p_{CD} & < & 2 R - S - P, \\ [0.2cm]
@@ -754,11 +756,12 @@ For proof see Appendix section~\ref{appendix:reactive_two_pure_self_reactive_pd}
 For the case of reactive-3 strategies.
 
 \begin{theorem}\label{theorem:reactive_three_partner_strategies_PD}
-A nice reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if,
+A reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if,
 the strategy entries satisfy the conditions:
 
 \begin{equation*}
   \begin{array}{ccc}
+    p_{CCC} & = & 1, \\ [0.2cm]
     (T - P)\, (p_{CDD} + p_{DCD} + p_{DDC}) + (R - S)\, p_{DDD}  & < & 4 R - 3 P  - S \\ [0.2cm]
     (T - P)\, p_{CDC}  + (R - S)\, p_{DCD}  & < & 2 R - P  - S \\ [0.2cm]
     (T - P)\, p_{DDD} & < & R - P\\ [0.2cm]
@@ -799,9 +802,9 @@ Suppose player $1$ adopts a nice reactive-2 strategy
 $\mathbf{p}\!=\!(1, p_{CD}, p_{DC}, p_{DD})$. For $\mathbf{p}$ to be a Nash
 strategy,
 
-\begin{equation}
+\begin{equation*}
   s_{\mathbf{\tilde{p}}, \mathbf{p}} \leq (b - c),
-\end{equation}
+\end{equation*}
 
 must hold against all \(\mathbf{\tilde{p}} \in \tilde{P}\), where \(\tilde{P}\) is the
 set of all pure self-reactive-2 strategies. In the case of $n=2$, the set
@@ -1318,11 +1321,11 @@ With this, we have all the required tools to prove the following theorem.
 \begin{proof}
 ($\Rightarrow$) As discussed previously, a strategy can only be a Nash equilibrium if the payoff of the co-player does not exceed $(b - c)$. Therefore, for $\mathbf{p}$ to be a Nash equilibrium against each strategy in set $A$ (for $i \in [0, n]$),
 
-\begin{align}\label{eq:NashConditionDonationGameCounting}
+\begin{align*}
   s_{\mathbf{A^{i}}, \mathbf{r}} \leq b - c \\
   b \cdot r_i - \frac{i}{n} \cdot c \leq   b - c \\
   r_i \leq 1 - \frac{i}{n} \cdot \frac{c}{b}.
-\end{align}
+\end{align*}
 
 Now, suppose player $2$ has some strategy $\mathbf{m}$ and player $1$ has a reactive-counting strategy such that $s_{\mathbf{m}, \mathbf{p}} > b - c$. It follows that
 
@@ -1337,11 +1340,11 @@ Now, suppose player $2$ has some strategy $\mathbf{m}$ and player $1$ has a reac
 
 This condition holds only if
 
-\begin{align}
+\begin{align*}
   \Big(b\; r_{n - k} - c\, \frac{n - k}{n} - (b - c)\Big) < 0 \Rightarrow \\ 
   b \, (r_{n - k} - 1) + (1 - \frac{n - k}{n})\, c < 0 \Rightarrow \\ 
   r_{n - k} < 1 - \frac{n}{k} 
-\end{align}
+\end{align*}
 
 \end{proof}
 
