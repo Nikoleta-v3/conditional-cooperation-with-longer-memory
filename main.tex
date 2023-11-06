@@ -12,9 +12,7 @@
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage[ruled,vlined]{algorithm2e}
-
-% \usepackage{natbib} \bibliographystyle{abbrvnat}
-\bibliographystyle{unsrt}
+\usepackage[sort&compress,comma,round,numbers]{natbib}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -45,28 +43,18 @@
 
 \begin{abstract}
 
-We focus on repeated games and the strategies employed by players within this
-context. Traditional theoretical models assume that players' strategies are
-limited to remembering only the preceding turn. As players remember more
-rounds, the dimension of the strategy space increases exponentially, making it
-challenging to derive analytical results. Here, we explore strategies that
-remember beyond the last round by concentrating on a specific set of
-strategies that react solely to the co-player's actions in the previous $n$
-rounds—these are referred to as reactive-$n$ strategies. We mathematically
-characterize all partner strategies, which are sets of strategies that ensure
-mutual cooperation without exploitation, among reactive-2 and reactive-3
-strategies. Additionally, we examine a specific subset of reactive strategies
-known as reactive counting strategies, which only consider the count of
-cooperations in the last $n$ turns. For counting strategies, we
-characterize partner strategies for all memory lengths. Furthermore, we evaluate
-the evolutionary properties of partner strategies in the context of higher
-memory. Our findings suggest that partner reactive strategies evolve more
-prominently with increased memory, despite the greater number of available
-strategies. As memory increases and more partner strategies evolve, the
-cooperation rates within the population also increase. However, in the case of
-counting strategies, the benefits of added memory are relatively small; partner
-strategies are not selected more often, and the cooperation rate within the
-population remains unchanged.
+Repeated games enable evolution of cooperation if players use conditional
+strategies that depend on previous interactions. A well known strategy set is
+given by reactive strategies, which respond to the co-player's previous move.
+Here we extend reactive strategies to longer memories. A reactive-$n$ strategy
+takes into account the sequence of the $n$ last moves of the co-player. A
+reactive-counting-$n$ strategy takes into account how often the co-player has
+cooperated during the last $n$ round. We characterize all partner strategies among
+reactive-2 and reactive-3 strategies as well as among reactive-counting-$n$
+strategies. Partner strategies are those that ensure mutual cooperation without
+exploitation. We perform evolutionary simulations and find that longer memory
+increases the average cooperation rate for reactive-$n$ strategies but not for
+reactive counting strategies.
 
 \end{abstract}
 
@@ -118,7 +106,7 @@ value independent of the co-player's strategy~\cite{hilbe:PNAS:2013}, and
 partner strategies, which ensure mutual cooperation without
 exploitation~\cite{hilbe:Nature:2018}.
 
-Efforts have been undertaken to expand these findings into strategy sets with
+There have been efforts to expand these findings into strategy sets with
 greater memory. In the study by~\cite{ueda:RSOP:2021}, they explore
 zero-determinant strategies within the context of
 memory-two strategies. Meanwhile,~\cite{hilbe:PNAS:2017} delve into cooperative
@@ -280,13 +268,13 @@ payoff to $2^4 = 16$ possible self-reactive strategies, and in the case of $n =
 
 \textbf{Partner Strategies Amongst Reactive-2 and Reactive-3 Strategies.}
 Using the self-reactive sufficiency result we can characterize partner
-strategies amongst the reactive-2 and reactive-3 strategies. A nice reactive-2
-strategy can be defined as the vector $\mathbf{p} = (1, p_{CD}, p_{DC},
+strategies amongst the reactive-2 and reactive-3 strategies. A reactive-2
+strategy can be defined as the vector $\mathbf{p} = (p_{CC}, p_{CD}, p_{DC},
 p_{DD})$, and it is a partner strategy if and only if, the strategy entries
 satisfy the conditions,
 
 \begin{equation}\label{eq:two_bit_conditions}
-  \displaystyle p_{DD} \leq 1\!-\! \frac{c}{b}  \quad ~~and~~ \quad \displaystyle \frac{p_{CD} + p_{DC}}{2} < \frac{1}{2} \cdot \frac{c}{b}.
+  p_{CC} = 1, \qquad \displaystyle \frac{p_{CD} + p_{DC}}{2} < 1 - \frac{1}{2} \cdot \frac{c}{b} \quad ~~and~~ \quad \displaystyle p_{DD} \leq 1\!-\! \frac{c}{b}.
 \end{equation}
 
 Hence, for a strategy to be a Nash equilibrium, it must ensure that the strategy
@@ -298,17 +286,17 @@ the space of all nice reactive-2 strategies
 (Fig.~\ref{fig:conceptual_figure_results}C).
 
 A reactive-3 strategy is defined by the vector $\mathbf{p} = (p_{CCC}, p_{CCD},
-p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{DDD})$. A nice reactive-3
-strategy is Nash, and subsequently a partner strategy, if and only if the
-strategy entries satisfy the conditions,
+p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{DDD})$, and it is a partner strategy,
+if and only if the strategy entries satisfy the conditions,
 
 \begin{align}\label{eq:three_bit_conditions}
   \begin{split}
-  p_{DDD} & \leq 1\!-\! \frac{c}{b} \\
-  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} & \leq \frac{2}{3} \cdot \frac{c}{b} \\
-  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} & \leq \frac{1}{3} \cdot \frac{c}{b} \\
-  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & \leq \frac{1}{2} \cdot \frac{c}{b}  \\
-  \frac{p_{CDC} + p_{DCD}}{2} & \leq \frac{1}{2} \cdot \frac{c}{b}
+  p_{CCC} & = 1 \\
+  \frac{p_{CDC} + p_{DCD}}{2} & \leq 1 - \frac{1}{2} \cdot \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} & \leq 1 - \frac{1}{3} \cdot \frac{c}{b} \\
+  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} & \leq 1 - \frac{2}{3} \cdot \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & \leq 1 - \frac{1}{2} \cdot \frac{c}{b}  \\
+  p_{DDD} & \leq 1\!-\! \frac{c}{b}
   \end{split}
 \end{align}
 
@@ -354,7 +342,7 @@ $p_{DD} = r_0$ in conditions~\eqref{eq:two_bit_conditions} which gives us the
 following conditions,
 
 \begin{equation}\label{eq:counting_two_bit_conditions}
-  \displaystyle r_1 < 1-\frac{1}{2} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
+  r_2 = 1, \quad \displaystyle r_1 < 1-\frac{1}{2} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
 
 Similarly, a reactive-3 counting strategy is denoted by the vector
@@ -365,7 +353,7 @@ conditions~\eqref{eq:three_bit_conditions}. This gives us the following
 conditions,
 
 \begin{equation}\label{eq:counting_three_bit_conditions}
-  \displaystyle r_2 < 1- \frac{1}{3} \cdot \frac{c}{b}, \quad r_1 < 1- \frac{2}{3} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
+  r_3 = 1, \quad \displaystyle r_2 < 1- \frac{1}{3} \cdot \frac{c}{b}, \quad r_1 < 1- \frac{2}{3} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
 \end{equation}
 
 Counting strategies are a subset of reactive strategies, and as such, they exist
@@ -377,7 +365,14 @@ generosity (the probability of cooperating after a defection, thus being
 generous with your co-player) exhibited by a strategy after a $k$ number of
 defections in the last $n$ rounds must be less than $1 - k/n$ of the
 cost-benefit ratio. As the total number of defections increases, the strategy's
-generosity decreases.
+generosity decreases. And, precisely, this is the result we prove (see
+Supplementary Information). In the case of reactive-counting strategies, we
+characterize partner strategies for all memory lengths. A reactive-counting
+strategy is a partner if and only if,
+
+\begin{equation}
+  r_n = 1 ~~and~~ r_{n - k} < 1 - \frac{k}{n} \cdot \frac{c}{b}, \text{ for } k \in \{1, 2, \dots, n\}.
+\end{equation}
 
 \begin{figure}[htbp!]
   \centering
@@ -459,7 +454,7 @@ value in increasing memory size, from an evolutionary perspective.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\textwidth]{figures/evolutionary_results.pdf}
+  \includegraphics[width=\textwidth]{figures/abundant_strategies.pdf}
   \caption{\textbf{Evolutionary Dynamics in the Space of Reactive Strategies.}
   In the previous section, we characterized partner strategies for
   reactive$-2$ and reactive$-3$. Additionally, we discussed the case of reactive
@@ -560,8 +555,11 @@ step another mutant strategy is introduced to the  population. We iterate this
 elementary population updating process for a large number of mutant strategies
 and we record the resident strategies at each time step.
 
-~\\
+{\setlength{\bibsep}{0\baselineskip}
+\bibliographystyle{naturemag}
 \bibliography{bibliography.bib}
+}
+
 
 
 

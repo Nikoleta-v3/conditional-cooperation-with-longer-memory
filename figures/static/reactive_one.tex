@@ -1,5 +1,7 @@
 
 \documentclass[tikz]{standalone}
+\usepackage{fontspec}
+\setmainfont{Arial}
 
 \definecolor{solarizedBlue}{HTML}{268BD2}
 \definecolor{solarizedGreen}{HTML}{8DC73E}
@@ -18,7 +20,7 @@
 \begin{tikzpicture}
 
 \pic[black] at (0, 0) (myman) {man};
-\node[align=center] (0) at (2, .5) {\includegraphics[width=.2\textwidth]{reactive_one.png}};
+\node[align=center] (0) at (1.6, .5) {\includegraphics[width=.2\textwidth]{reactive_one.png}};
 \node at (0, -2) (myman) {\textcolor{black}{reactive-1}};
 
 \end{tikzpicture}
