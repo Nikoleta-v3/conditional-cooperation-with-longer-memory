@@ -1,18 +1,32 @@
-\documentclass{article}
-
-\usepackage{minitoc}
+\documentclass[11pt]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{times}
+\usepackage{amsmath,amsthm,amssymb,setspace,enumitem,epsfig,titlesec,verbatim,array,eurosym,multirow}
+\usepackage[sort&compress,numbers]{natbib}
+\usepackage[footnotesize,bf]{caption}
+\usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
+\usepackage{standalone}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{hyperref}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{blkarray}
+\usepackage[ruled,vlined]{algorithm2e}
+\smallskip % Erlaubt kleine Abstaende zwischen Paragraphen, falls es dem Seitenlayout hilft
+\renewcommand{\baselinestretch}{1.3}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+
+
+\usepackage{minitoc}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage{blkarray}
-\usepackage{amsthm, amssymb, amsmath}
-\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage{multicol}
-\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{standalone}
 
 \usepackage{natbib}
 \bibliographystyle{abbrvnat}
@@ -24,31 +38,33 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{Prop}{Proposition}
+%\newtheorem{Prop}{Proposition}
 \newtheorem{corollary}{Corollary}[theorem]
-
-\usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
-\pagestyle{plain}
-\setlength{\parindent}{0em}
-\setlength{\parskip}{1em}
-
-\renewcommand{\baselinestretch}{1}
-
-\usepackage{standalone}
-
 \newtheorem{proposition}{Proposition}
 
-\title{Reactive strategies with longer memory}
+
+\titleformat{\section}{\sffamily \fontsize{12}{14}\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\sffamily\fontsize{11.5}{11.5}\bfseries}{\thesubsection}{0.5em}{}
+\renewcommand{\baselinestretch}{1.1}
+
+
+
+
+\title{{\sffamily \LARGE Supporting Information}\\ {\bfseries \sffamily \LARGE Reactive strategies with longer memory}\\[-0.3cm]}
 
 \author{Nikoleta E. Glynatsi, Ethan Akin, Martin Nowak, Christian Hilbe}
-\date{}
+\date{\empty}
 
 \begin{document}
 
 \maketitle
 
+
+\noindent
 This document provides further details on our methodology and analytical
-results. Section~\ref{section:model} summarizes the model. In particular, we
+results. 
+\begin{comment}
+Section~\ref{section:model} summarizes the model. In particular, we
 provide further details on how we approximate the play of players using
 different strategies and how we calculate long-term payoffs for strategies with
 memory higher than $1$. In Section~\ref{section:tft_and_gtft}, we analytically
@@ -65,6 +81,7 @@ characterize partner strategies among reactive-$n$ strategies. In
 subsection~\ref{section:general_prisoners_dilemma}, we demonstrate how our
 findings extend to the general Prisoner's Dilemma. The proofs of the results in
 this section are presented in the Appendices.
+\end{comment}
 
 
 %%%%%%%%%
@@ -73,35 +90,49 @@ this section are presented in the Appendices.
 
 \section{Model}\label{section:model}
 
-We consider infinitely repeated games among two players, player 1 and player 2.
-Each round, they engage in the donation game (choosing to cooperate ($C$) or
-defect ($D$)) with a payoff matrix.
+\subsection{The repeated prisoner's dilemma}
 
-
-\begin{align} \label{Eq:DonationGame}
-  \bordermatrix{%
-    & C & D \cr
-    C &\ b - c &\ -c\  \cr
-    D &\ b &\ 0\ \cr
-  }
-\end{align}
-
-Here $b$ and $c$ denote the benefit and the cost of cooperation, respectively. 
-We assume $b\!>\!c\!>\!0$ throughout.
-Therefore, payoff matrix~\eqref{Eq:DonationGame} is a special case of the
-Prisoner's Dilemma with payoff matrix,
-
+We consider the infinitely repeated prisoner's dilemma among two players, player~1 and player~2.
+Each round, players can either cooperate~($C$) or defect~($D$). 
+The resulting payoffs are given by the matrix 
 \begin{align}\label{Eq:PrisonerDilemma}
   \bordermatrix{%
     & C & D \cr
     C &\ R &\ S\  \cr
     D &\ T &\ P\ \cr
-  }
+  }.
 \end{align}
+Here, $R$ is the reward payoff of mutual cooperation, $T$ is the temptation to defect, $S$ is the sucker's payoff, and $P$ is the punishment payoff for mutual defection. For the game to be a prisoner's dilemma, we require
+\begin{equation} \label{Eq:ConditionsPD}
+ T > R > S > P ~~~~\text{and}~~~~ 2 R > T \!+\! S. 
+\end{equation}
+That is, mutual cooperation is the best outcome to maximize the players' total payoffs yet each player's dominant action is to defect. 
+For some of our results, we focus on a special case of the prisoner's dilemma that only depends on two parameters, the donation game. 
+For this game, the payoff matrix takes the form
+\begin{align} \label{Eq:DonationGame}
+  \bordermatrix{%
+    & C & D \cr
+    C &\ b - c &\ -c\  \cr
+    D &\ b &\ 0\ \cr
+  }.
+\end{align}
+Here $b$ and $c$ correspond to the benefit and the cost of cooperation, respectively. 
+For this game to satisfy the conditions~\eqref{Eq:ConditionsPD} of a prisoner's dilemma, we assume $b\!>\!c\!>\!0$ throughout.
 
-where $T > R > S > P$ and $2 R > T + S$. Here, $R$ is the reward payoff of mutual
-cooperation, $T$ is the temptation to defect payoff, $S$ is the sucker's payoff,
-and $P$ is the punishment payoff for mutual defection.
+We assume players interact in this game for infinitely many rounds, and that future payoffs are not discounted. 
+A strategy $\sigma^i$ for player $i$ thus needs to tell the player what to in any given round, depending on the outcome of all previous rounds. 
+Given the player's strategies $\sigma^1$ and $\sigma^2$, one can compute each player $i$'s expected payoff $\pi^i_{\sigma^1,\sigma^2}(t)$ in round $t$. 
+For the entire repeated game, we define the players' payoffs as the average payoff per round, 
+\begin{equation} \label{Eq:RGpayoff}
+\pi^i(\sigma^1,\sigma^2) = \lim_{\tau \to \infty}~ \frac{1}{\tau} ~\sum_{t=0}^{\tau-1} \pi_{\sigma^1,\sigma^2}^i(t).
+\end{equation}
+For general strategies, the above limit may not always exist. 
+Problems may arise, for example, if one of the players cooperates in the first round, defects in the two subsequent rounds, cooperates in the four rounds thereafter, etc. 
+However, in the following, we focus on strategies with finite memory. 
+For those strategies, the existence of the limit~\eqref{Eq:RGpayoff} is guaranteed~\citep{sigmund2010}. 
+
+
+\subsection{Strategies with finite memory} 
 
 We assume that, in each round, players' decisions depend only on the outcome of
 the previous \(n\) rounds. An \(n\)-history for player \(i \in \{1, 2\}\) is
