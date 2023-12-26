@@ -14,7 +14,7 @@
 \usepackage{blkarray}
 \usepackage[ruled,vlined]{algorithm2e}
 \smallskip % Erlaubt kleine Abstaende zwischen Paragraphen, falls es dem Seitenlayout hilft
-\renewcommand{\baselinestretch}{1.3}
+\renewcommand{\baselinestretch}{1.2}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 
@@ -33,7 +33,17 @@
 
 \newcommand{\nikoleta}[1]{\textcolor{orange}{\textbf{NG}: #1}}
 
-\theoremstyle{definition}
+\newtheoremstyle{plainCl1}% name
+{9pt}%      Space above, empty = 'usual value'
+{9pt}%      Space below
+{\it}% 	   Body font
+{}%         Indent amount (empty = no indent, \parindent = para indent)
+{\bfseries}% Thm head font
+{}%        Punctuation after thm head
+{\newline}% Space after thm head: \newline = linebreak
+{}%         Thm head spec
+
+\theoremstyle{plainCl1}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -42,15 +52,16 @@
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{proposition}{Proposition}
 
-
-\titleformat{\section}{\sffamily \fontsize{12}{14}\bfseries}{\thesection}{0.5em}{}
-\titleformat{\subsection}{\sffamily\fontsize{11.5}{11.5}\bfseries}{\thesubsection}{0.5em}{}
-\renewcommand{\baselinestretch}{1.1}
+\def\wsls{\texttt{WSLS}}
 
 
+\titleformat{\section}{\sffamily \fontsize{12}{14}\bfseries}{\thesection}{0.4em}{}
+\titleformat{\subsection}{\sffamily\fontsize{11}{11}\bfseries}{\thesubsection}{0.4em}{}
 
 
-\title{{\sffamily \LARGE Supporting Information}\\ {\bfseries \sffamily \LARGE Reactive strategies with longer memory}\\[-0.3cm]}
+
+
+\title{{\sffamily \Large Supporting Information}\\ {\bfseries \sffamily \LARGE Reactive strategies with longer memory}\\[-0.3cm]}
 
 \author{Nikoleta E. Glynatsi, Ethan Akin, Martin Nowak, Christian Hilbe}
 \date{\empty}
@@ -61,9 +72,9 @@
 
 
 \noindent
-This document provides further details on our methodology and analytical
-results. 
 \begin{comment}
+This document provides further details on our methodology and analytical
+results.
 Section~\ref{section:model} summarizes the model. In particular, we
 provide further details on how we approximate the play of players using
 different strategies and how we calculate long-term payoffs for strategies with
@@ -92,6 +103,8 @@ this section are presented in the Appendices.
 
 \subsection{The repeated prisoner's dilemma}
 
+%% MODEL: Explaining the prisoner's dilemma and the one-shot game %%
+
 We consider the infinitely repeated prisoner's dilemma among two players, player~1 and player~2.
 Each round, players can either cooperate~($C$) or defect~($D$). 
 The resulting payoffs are given by the matrix 
@@ -119,241 +132,228 @@ For this game, the payoff matrix takes the form
 Here $b$ and $c$ correspond to the benefit and the cost of cooperation, respectively. 
 For this game to satisfy the conditions~\eqref{Eq:ConditionsPD} of a prisoner's dilemma, we assume $b\!>\!c\!>\!0$ throughout.
 
+%% MODEL: Providing a general formula for repeated game payoffs %% 
+
 We assume players interact in this game for infinitely many rounds, and that future payoffs are not discounted. 
 A strategy $\sigma^i$ for player $i$ thus needs to tell the player what to in any given round, depending on the outcome of all previous rounds. 
 Given the player's strategies $\sigma^1$ and $\sigma^2$, one can compute each player $i$'s expected payoff $\pi^i_{\sigma^1,\sigma^2}(t)$ in round $t$. 
 For the entire repeated game, we define the players' payoffs as the average payoff per round, 
 \begin{equation} \label{Eq:RGpayoff}
-\pi^i(\sigma^1,\sigma^2) = \lim_{\tau \to \infty}~ \frac{1}{\tau} ~\sum_{t=0}^{\tau-1} \pi_{\sigma^1,\sigma^2}^i(t).
+\pi^i(\sigma^1,\sigma^2) = \lim_{\tau \to \infty}~ \frac{1}{\tau} ~\sum_{t=1}^{\tau} \pi_{\sigma^1,\sigma^2}^i(t).
 \end{equation}
 For general strategies, the above limit may not always exist. 
 Problems may arise, for example, if one of the players cooperates in the first round, defects in the two subsequent rounds, cooperates in the four rounds thereafter, etc. 
 However, in the following, we focus on strategies with finite memory. 
-For those strategies, the existence of the limit~\eqref{Eq:RGpayoff} is guaranteed~\citep{sigmund2010}. 
+When both players adopt such a strategy, the existence of the limit~\eqref{Eq:RGpayoff} is guaranteed~\citep{sigmund2010}. \\
 
 
-\subsection{Strategies with finite memory} 
+\subsection{Finite-memory strategies} 
 
-We assume that, in each round, players' decisions depend only on the outcome of
-the previous \(n\) rounds. An \(n\)-history for player \(i \in \{1, 2\}\) is
-represented as \(h^i = (a^i_{-n}, \ldots, a^i_{-1}) \in \{C, D\}^n\), where
-\(a^i_{-k}\) corresponds to player \(i\)'s action \(k\) rounds ago. We denote
-the space of all \(n\)-histories for player \(i\) as \(H^i\), which contains
-\(|H^i| = 2^n\) elements. Note that we use the notation \(-i\) to denote the
-co-player; for example, \(h^{-i}\) represents the \(n\)-history of the
-co-player.
+%% MODEL: Introducing the notion of an n-history %% 
 
-A pair \(h = (h^1, h^2)\) is referred to as an \(n\)-history of the game. We use
-\(H = H^1 \times H^2\) to denote the space of all such histories, which contains
-\(|H| = 2^{2n}\) elements.
+\noindent
+{\bfseries Some important strategy sets.} 
+For this study, we focus on those strategies where a player's decision in any round is independent of events that happened more than $n$ rounds ago.
+To define these strategies formally, we introduce some notation. 
+An \(n\)-{\it history for player} \(i \!\in\! \{1, 2\}\) is a string \(\mathbf{h^i} \!=\! (a^i_{-n}, \ldots, a^i_{-1})\! \in \!\{C, D\}^n\). 
+We interpret the string's entry \(a^i_{-k}\) as player \(i\)'s action \(k\) rounds ago. 
+We denote the space of all \(n\)-histories for player \(i\) as \(H^i\). 
+This space contains \(|H^i| \!=\! 2^n\) elements. 
+A pair \(\mathbf{h} \!=\! (\mathbf{h^1}, \mathbf{h^2})\) is called an {\it \(n\)-history of the game}. 
+We use \(H \!=\! H^1 \!\times\! H^2\) to denote the space of all such histories, which contains \(|H| \!=\! 2^{2n}\) elements. 
 
-%% MODEL: Definition of several strategy sets %%
+%% MODEL: Defining Memory-n strategies %% 
 
-{\bf Memory-\(n\) strategies.} Memory-\(n\) strategies are represented by a
-vector \(\mathbf{m} = (m_h)_{h\in H} \in [0,1]^{2n}\). Each entry \(m_h\)
-corresponds to the player's cooperation probability in the next round, depending
-on the outcome of the previous \(n\) rounds.
-
-The interaction between two players using memory-\(n\) strategies,
-\(\mathbf{m^{1}}\) and \(\mathbf{m^{2}}\), can be modeled as a Markov chain with
-\(H\) possible states. Given that the current round is \(h = (h^{1}, h^{2})\),
-the probability that, one round later, \(\tilde{h}\) is observed is given by the
-product:
-
-\begin{equation}\label{Eq:TransitionMatrix}
-M_{h, \tilde{h}} = \prod_{i=1}^{2} x^{i}
+Based on this notation, we define a {\it memory-$n$ strategy}  for player $i$ as a tuple \(\mathbf{m} \!=\! (m_\mathbf{h})_{\mathbf{h}\in H} \!\in\! [0,1]^{2^{2n}}\). 
+Here, each input $\mathbf{h}\!=\!(h^i,h^{-i})$ refers to a possible $n$-history, where now $\mathbf{h^i}$ and $\mathbf{h^{-i}}$ refer to the $n$-histories of the focal player and the co-player, respectively. 
+The corresponding output $m_\mathbf{h}$ is then the focal player's cooperation probability in the next round, contingent on  the outcome of the previous \(n\) rounds. We refer to the set of all memory-$n$ strategies as 
+\begin{equation}
+\mathcal{M}_n:=\Big\{ \mathbf{m}\!=\!(m_\mathbf{h})_{\mathbf{h}\in H} \in [0,1]^{2^{2n}} ~\Big|~ \mathbf{h}\!\in\! H\Big\}.
 \end{equation}
+This definition leaves the strategy's actions during the first $n$ rounds unspecified, for which no complete $n$-history is yet available. 
+However, because we consider infinitely repeated games without discounting, these first $n$ rounds are irrelevant for the long-run dynamics of almost all pairs of memory-$n$ strategies, as we show further below. 
+In the following, we only specify a strategy's move during the first $n$ rounds when necessary. 
 
-where:
+%% MODEL: Memory-1 strategies %% 
 
-\[
-x^i = 
-\begin{cases}
-  m^{i}_{h} & \text{ if } \tilde{\alpha}^i_{-1} = C \text{ and } \tilde{\alpha}^i_{-t} = \alpha^i_{-t + 1} \text{ for all other } \tilde{\alpha}^i_{-t}\\
-  1 - m^{i}_{h} & \text{ if } \tilde{\alpha}^i_{-1} = D \text{ and } \tilde{\alpha}^i_{-t} = \alpha^i_{-t + 1} \text{ for all other } \tilde{\alpha}^i_{-t}\\
-  0 & \text{ if } \tilde{\alpha}^i_{-t} \neq  \alpha^i_{-t + 1} \text{ for some } 2 \leq t \leq n.
-\end{cases}
-\]
+Among all memory-$n$ spaces $\mathcal{M}_n$, the space with $n\!=\!1$ is the one most frequently studied. 
+The corresponding memory-1 strategies take the form $\mathbf{m}\!=\!(m_{CC}, m_{CD}, m_{DC}, m_{DD})$, where the first index refers to the focal player's last action (1-history) and the second index refers to the co-player's last action. 
+Perhaps the most well-known memory-1 strategy is Win-Stay Lose-Shift~\citep{nowak:Nature:1993}, $\mathbf{m}\!=\!(1,0,0,1)$. 
 
-A transition matrix \(M\) of size \(2^{2n} \times 2^{2n}\) is constructed to
-represent these probabilities.
+%% MODEL: Reactive strategies %%
 
-Let \(\mathbf{v} = (v_h)_{h\in H}\) denote the probability distribution over the
-states of the Markov chain. The interaction between the two players leads to a
-sequence of distributions \(\{\mathbf{v}^{t}, k = 1, 2, ...\}\) with
-\(\mathbf{v}^{t}\) representing the distribution over the states in the
-\(t^{\text{th}}\) round of the game. A distribution \(\mathbf{v}\) is considered
-a stationary distribution if \(\mathbf{v} = \mathbf{v} \cdot M\).
+For our following analysis, two particular subsets of memory-$n$ strategies will play an important role. 
+The first subset is the set of {\it reactive-$n$ strategies}, 
+\begin{equation}
+\mathcal{R}_n:=\Big\{ \mathbf{m}\!\in\!\mathcal{M}_n ~\Big|~ m_{(\mathbf{h^i},\mathbf{h^{-i}})}\!=\!m_{(\mathbf{\tilde{h}^i},\mathbf{h^{-i}})}~~\text{for all}~\mathbf{h^i}, \mathbf{\tilde{h}^i}\!\in\!H^i~\text{and}~\mathbf{h^{-i}}\!\in\!H^{-i}\Big\}.
+\end{equation}
+That is, such reactive-$n$ strategies are independent of the focal player's own $n$-history. 
+This space of reactive-$n$ strategies can be naturally identified with the space of all $n$-dimensional vectors $\mathbf{p}\!=\!(p_{\mathbf{h^{-i}}})_{\mathbf{h^{-i}}\in H^{-i}} \!\in\! [0, 1]^{2^n}$. Here, each entry $p_{\mathbf{h^{-i}}}$ corresponds to the player's cooperation
+probability in the next round based on the co-player's actions in the previous
+$n$ rounds. 
+Again, the most studied case of reactive-$n$ strategies is the case of $n\!=\!1$, for which $\mathbf{p}\!=\!(p_C,p_D)$.
+Examples of well-known reactive-1 strategies include Tit-for-Tat~\citep{axelrod:AAAS:1981}, $\mathbf{p}\!=\!(1,0)$, and Generous Tit-for-Tat~\citep{nowak:Nature:1992}, $\mathbf{p}\!=\!(1,p^*_D)$, where $p^*_D\!:=\!\min\big\{1\!-\!(T\!-\!R)/(R\!-\!S),~(R\!-\!P)/(T\!-\!P)\big\}$. 
 
-{\bf Reactive-$n$ strategies.}
-In this work, we will discuss special cases of memory-$n$ strategies,
-including reactive-$n$ and self-reactive-$n$ strategies. A {\it reactive-$n$
-strategy} is represented by a vector $\mathbf{p}=(p_{h^{-i}})_{h^{-i}\in H^{-i}}
-\in [0, 1]^{n}$. Each entry $p_{h^{-i}}$ corresponds to the player's cooperation
-probability in the next round, based on the co-player's actions in the previous
-$n$ rounds. Reactive-$n$ strategies rely exclusively on the co-player's
-$n$-history, independent of the focal player's own actions.
+%% MODEL: Self-reactive strategies %%
 
-{\bf Self-reactive-$n$ strategies.}
-The final set of strategies we will discuss
-in this work are self-reactive-$n$ strategies. A {\it self-reactive-$n$ strategy}
-only considers the focal player's own $n$-history, ignoring the co-player's
-history. Formally, a self-reactive-$n$ strategy is represented by a vector
-$\mathbf{\tilde{p}} = (\tilde{p}_{h^{i}})_{h^{i} \in H^i} \in [0, 1] ^ {n}$.
-Each entry $\tilde{p}_{h^{i}}$ corresponds to the player's cooperation
-probability in the next round, depending solely on the player's own actions in
+The other important subspace of memory-$n$ strategies is the set of self-reactive strategies, 
+\begin{equation}
+\mathcal{S}_n:=\Big\{ \mathbf{m}\!\in\!\mathcal{M}_n ~\Big|~ m_{(\mathbf{h^i},\mathbf{h^{-i}})}\!=\!m_{(\mathbf{h^i},\mathbf{\tilde h^{-i}})}~~\text{for all}~\mathbf{h^i}\!\in\!H^i~\text{and}~\mathbf{h^{-i}},\mathbf{\tilde h^{-i}}\!\in\!H^{-i}\Big\}.
+\end{equation}
+That is, such strategies only depend on the focal player's own decisions during the last $n$ rounds, whereas they are independent of the co-player's last decisions. 
+Again, we can identify these self-reactive strategies with an $n$-dimensional vector, $\mathbf{\tilde{p}} = (\tilde{p}_\mathbf{h^{i}})_{\mathbf{h^{i}} \in H^i} \in [0, 1] ^ {2^n}$.
+Each entry $\tilde{p}_{\mathbf{h^{i}}}$ corresponds to the player's cooperation
+probability in the next round, contingent on the player's own actions in
 the previous $n$ rounds.
-
-{\bf Round$-k-$repeat strategies.}
-One special case of strategies is the round-$k$-repeat strategies for some $1\le
-k\le n$. A {\it round-$k$-repeat strategy} is a strategy where, in any given round,
-the player chooses the same action as they did in the round that occurred $k$
-rounds ago. For example, in the case of memory-$n$ strategies, a
-round-$k$-repeat strategy is denoted as $\mathbf{m}^{k-\text{Rep}}$ if the
-game's $n$-history is such that,
-
+A special subset of self-reactive strategies is given by the round-$k$-repeat strategies, for some $1\le
+k\le n$. 
+In any given round, a player with a {\it round-$k$-repeat strategy} $\mathbf{\tilde p}^{k-\text{Rep}}$ chooses the same action as she did $k$ rounds ago. 
+Formally, the entries of $\mathbf{\tilde p}^{k-\text{Rep}}$ are defined by
 $$
-\begin{cases}
-  m^{k-\text{Rep}}_h\!=\!1, \text{ if } a^i_{-k}\!=\!C\\[1em]
-  m^{k-\text{Rep}}_h\!=\!0, \text{ if } a^i_{-k}\!=\!D.
-\end{cases}
+p^{k-\text{Rep}}_\mathbf{h^i} =
+\left\{
+\begin{array}{l}
+1~~ \text{ if } a^i_{-k}\!=\!C\\[0.1cm]
+0~~ \text{ if } a^i_{-k}\!=\!D.
+\end{array}
+\right.
 $$
-
 From this point forward, we will use the notations $\mathbf{m}$, $\mathbf{p}$,
 and $\mathbf{\tilde{p}}$ to denote memory-$n$, reactive-$n$, and
 self-reactive-$n$ strategies, respectively.
-Moreover, we will use the notations $\mathbf{m}^{k-\text{Rep}}$,
-$\mathbf{p}^{k-\text{Rep}}$, and $\mathbf{\tilde{p}}^{k-\text{Rep}}$ to denote
-memory-$n$, reactive-$n$, and self-reactive-$n$ round-$k$-repeat strategy,
-respectively.
+When it is convenient to represent the self-reactive repeat strategies as elements of the memory-$n$ strategy space, we write $\mathbf{m}^{k-\text{Rep}}\!\in\![0,1]^{2^{2n}}$ instead of $\mathbf{\tilde p}^{k-\text{Rep}}\!\in\![0,1]^{2^n}$.\\
 
-%% MODEL: Akin's Generalized Lemma %%
-%% This is presented here because we need it to define payoffs %%
 
-{\bf An Extension of Akin's Lemma}
-In the case of $n=1$, a memory-1 strategy is represented by the vector
-\(\mathbf{m}=(m_{CC}, m_{CD}, m_{DC}, m_{DD})\). In his work~\cite{akin:EGADS:2016}
-Akin shows that,
+%% MODEL: Markov chain approach %% 
+\noindent
+{\bf Representing games among memory-$n$ players as a Markov chain.}
+The interaction between two players using memory-\(n\) strategies,
+\(\mathbf{m^{1}}\) and \(\mathbf{m^{2}}\), can be modeled as a Markov chain. 
+The states of the Markov chain are given by the possible $n$-histories $\mathbf{h}\!\in\!H$. 
+To compute the transition probabilities from one state to another within a single round, suppose that the players currently have the $n$-history \(\mathbf{h}\!=\!(\mathbf{h^1}, \mathbf{h^2})\) in memory.
+Then the transition probability $M_{\mathbf{h},\mathbf{\tilde h}}$ that the state after one round is $\mathbf{\tilde h}\!=\!(\mathbf{\tilde h^1},\mathbf{\tilde h^2})$ is given by the product
+\begin{equation}\label{Eq:TransitionMatrix}
+M_{\mathbf{h}, \mathbf{\tilde h}} = x^1 \cdot x^2
+\end{equation}
+where
+\begin{equation}
+x^i = \left\{
+\begin{array}{ll}
+  m^{i}_{(\mathbf{h^i},\mathbf{h^{-i}})} & \text{ if } \tilde{a}^i_{-1} \!=\! C, ~~\text{ and }~~ \tilde a^i_{-t} \!=\! a^i_{-t + 1} ~~\text{ for}~~t\!\in\!\{2,\ldots,n\}\\[0.1cm]
+  1 \!-\! m^{i}_{(\mathbf{h^i},\mathbf{h^{-i}})} & \text{ if } \tilde{a}^i_{-1} \!=\! D, ~~\text{ and }~~ \tilde a^i_{-t} \!=\! a^i_{-t + 1} ~~\text{ for}~~t\!\in\!\{2,\ldots,n\}\\[0.1cm]
+  0 & \text{ if } \tilde a^i_{-t} \neq  a^i_{-t + 1}~~\text{ for some}~~t\!\in\!\{2,\ldots,n\}.
+\end{array}
+\right.
+\end{equation}
+The resulting  \(2^{2n} \times 2^{2n}\) transition matrix $M\!=\!(M_{\mathbf{h},\mathbf{\tilde h}})$ fully describes the dynamics among the two players after the first $n$ rounds. 
+More specifically, if $\mathbf{v}(t) \!=\! \big(\,v_\mathbf{h}(t)\,\big)_{\mathbf{h}\in H}$ is the probability distribution of observing state~$\mathbf{h}$ after round $t\!\ge\!n$, the respective probability distribution after round $t\!+\!1$ is given by $\mathbf{v}(t\!+\!1) \!=\! \mathbf{v}(t)\cdot M$. 
+The long-run dynamics is particularly simple to describe when the matrix $M$ is primitive (which happens, for example, when all conditional cooperation probabilities $m^i_\mathbf{h}$ are strictly between zero and one). 
+In that case, it follows by the theorem of Perron and Frobenius that $\mathbf{v}(t)$ converges to some $\mathbf{v}$ as $t\to \infty$. 
+In particular, it also follows that the respective means converge, 
+\begin{equation} \label{Eq:TimeAverage}
+\mathbf{v} = \lim_{\tau\to\infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \mathbf{v}(t).  
+\end{equation}
+This respective limiting distribution can be computed as the unique solution of the system $\mathbf{v} \!=\! \mathbf{v}M$ with the additional constraint that the entries of $\mathbf{v}$ need to sum up to one. 
 
-\begin{align*}
-  \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{t=1}^{n} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1-\text{Rep}}) & = 0, \text{ and therefore } \mathbf{v} \cdot (\mathbf{m} - \mathbf{m}^{1-\text{Rep}}) = 0.
-\end{align*}
+But even when $M$ is not ergodic, $\mathbf{v}(t)$ still converges to an invariant distribution $\mathbf{v}$ that satisfies $\mathbf{v} \!=\! \mathbf{v}M$.
+However, in that case, the system  $\mathbf{v} \!=\! \mathbf{v}M$ no longer has a unique solution. 
+Instead, the limiting distribution $\mathbf{v}$ depends on the very first $n$-history after the first $n$ rounds, $\mathbf{v}(n)$, which in turn depends on the players' moves during the first $n$ rounds.\\ 
 
-With the same method as in \citep{akin:EGADS:2016}, one can derive a generalized
-version of his result. Namely the generalized version is given by
-Lemma~\ref{lemma:AkinGeneralised}.
+%% MODEL: Payoffs among memory-n players %%
 
-\begin{lemma}[Generalized Akin Lemma]\label{lemma:AkinGeneralised}
-Let player $1$ use a memory-$n$ strategy, and let player $2$ use any arbitrary
-strategy. The interaction between the two players leads to a sequence of
-distributions \(\{\mathbf{v}^{t}, k = 1, 2, ...\}\) with \(\mathbf{v}^{t}\)
-representing the distribution over the states in the \(t^{\text{th}}\) round of
-the game. Let $\mathbf{v}$ be an associated stationary distribution of the
-interaction.
-Then for each $k$ with $1\!\le\!k\!\le\!n$, the invariant distribution $\mathbf{v}$
-satisfies the following relationship,
-
-\begin{equation*}
-\mathbf{v} \cdot (\mathbf{m}-\mathbf{m}^{k-\text{Rep}}) \!=\! \sum_{h\in H} v_h (m_h-m_h^{k-\text{Rep}}) = 0.
-\end{equation*}
-\end{lemma}
-
-\begin{proof}
-Let player 1 use a memory-1 strategy $\mathbf{m}$ and player 2 an arbitrary
-memory-$n$ strategy. The probability that player $1$ cooperated in the
-\(n^{\text{th}}\) round be denoted as \(v_{\text{C}}^{n}\). Let
-\(v_{\text{C}}^{n}\) be defined as the probability that player $1$ played \(C\),
-\(k \, (1\leq k\leq n)\) rounds ago. Then,
-
-$$
-v_{\text{C}}^{n} = \sum_{h \in H} y_{h}, \quad \text{ where } \quad y_h = 
-\begin{cases}
- u_{h} & \text{ if } \alpha^1_{-k} = C \\
-     0 & \text{ if } \alpha^1_{-k} = D.
-\end{cases}
-$$
-
-Equivalently,
-
-$$
-v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m}^{k - \text{Rep}}.
-$$
-
-Let $k$ be fixed to $k=1$ then,
-
-$$
-v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m}^{1 - \text{Rep}}.
-$$
-
-Moreover, the probability that player $1$ cooperates in the \((n + 1)^{th}\) round,
-denoted by \(v_{\text{C}}^{n + 1}\) = \(\mathbf{v}^{n} \cdot \mathbf{m}\). Hence,
-
-\begin{equation*}
-  v_{\text{C}}^{n + 1} - v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m} - \mathbf{v}^n \cdot \mathbf{m}^{1 - \text{Rep}}
-  =  \mathbf{v}^{n} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}).
-\end{equation*}
-
-This implies,
-
-\begin{equation*}
-\sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) = \sum^{n}_{t=1} v_{\text{C}}^{t + 1} - v_{\text{C}}^{t} \quad \Rightarrow \quad \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) =  v_{\text{C}}^{n + 1} - v_{\text{C}}^{1}.
-\end{equation*}
-
-As the right side has absolute value at most 1,
-
-\begin{equation*}
-\lim_{n \rightarrow \infty} \frac{1}{n} \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) = 0.
-\end{equation*}
-
-Repeat for $1 < k \leq n$.
-
-\end{proof}
-
-The intuition behind this result is that $\mathbf{v}\cdot \mathbf{m}$ and all
-$\mathbf{v}\cdot \mathbf{m}^{k-\text{Rep}}$ are simply different but equivalent
-expressions for player $1$'s average cooperation rate. To be more specific,
-\(\mathbf{m}^{1-\text{Rep}} = \mathbf{m}^{2-\text{Rep}} = \dots =
-\mathbf{m}^{n-\text{Rep}}\) correspond to the idea that it doesn't matter which
-of the past $n$ rounds we use to define the cooperation rate.
-
-%% MODEL: Payoffs %%
-
-{\bf Payoffs.}
-Here, we define the long-term payoffs of players. Initially, we establish
-the payoffs of the players in a single round. Let $a^i_{-k}$ and $a^{-i}_{-k}$
-denote the actions of the player and the co-player in the $k$-th round,
-respectively. Then, $\mathbf{S}^i_k = (S^k_h)_{h\in H}$ represents the vector
-that returns, for each $h$, the one-shot payoff obtained $k$ rounds ago.
-
-\begin{equation*}
-    S_h^k = \left\{
+\noindent
+{\bf A formula for the payoffs among memory-$n$ players.} Based on the above considerations, we can derive an explicit formula for the payoffs according to Eq.~\eqref{Eq:RGpayoff} when players use memory-$n$ strategies $\mathbf{m^1}$ and $\mathbf{m^2}$. 
+To this end, we introduce a $2^{2n}$-dimensional vector $\mathbf{g^i}(k)\!=\!\big(\,g^i_\mathbf{h}(k)\,\big)_{\mathbf{h}\in H}$, which captures player $i$'s payoffs $k\!\le\!n$ rounds ago, according to the $n$-history $\mathbf{h}$, 
+\begin{equation}
+    g_\mathbf{h}^i(k) = \left\{
     \begin{array}{cl}
-    b-c	&\text{if}~ a_{-k}^i=C~\text{and}~ a_{-k}^{-i}=C\\
-    -c	&\text{if}~ a_{-k}^i=C~\text{and}~ a_{-k}^{-i}=D\\
-    b	&\text{if}~ a_{-k}^i=D~\text{and}~ a_{-k}^{-i}=C\\
-    0	&\text{if}~ a_{-k}^i=D~\text{and}~ a_{-k}^{-i}=D
+    R	&\text{if}~ a_{-k}^i\!=\!C~~\text{and}~~a_{-k}^{-i}\!=\!C\\[0.1cm]
+    S	&\text{if}~ a_{-k}^i\!=\!C~~\text{and}~~ a_{-k}^{-i}\!=\!D\\[0.1cm]
+    T	&\text{if}~ a_{-k}^i\!=\!D~~\text{and}~~ a_{-k}^{-i}\!=\!C\\[0.1cm]
+    P	&\text{if}~ a_{-k}^i\!=\!D~~\text{and}~~ a_{-k}^{-i}\!=\!D.
     \end{array}
     \right.
-\end{equation*}
-
-Then we can define player $i$'s repeated-game payoff
-$s_{\mathbf{m^{i}},\mathbf{m^{-i}}}$ as
-
-\begin{equation} \label{Eq:Payoff}
-s_{\mathbf{m^{i}},\mathbf{m^{-i}}}  = \mathbf{v}\cdot \mathbf{S}^1 = \mathbf{v}\cdot \mathbf{S}^2 = \ldots = \mathbf{v} \cdot \mathbf{S}^n.
 \end{equation}
+Now, if the probability distribution that captures the state of the system after round $t\!\ge\!n$ is given by $\mathbf{v}(t)$, we can write player $i$'s expected payoff in round $t$ as
+\begin{equation} \label{Eq:ExpPayRound}
+\pi^i_{\mathbf{m^1},\mathbf{m^2}}(t) = \big\langle \,\mathbf{v}(t),\, \mathbf{g^i}(1)\,\big\rangle = \sum_{\mathbf{h}\in H} v_\mathbf{h}(t) \cdot g^i_\mathbf{h}(1). 
+\end{equation}
+As a result, we obtain for the players' average payoff across all rounds
+\begin{equation} \label{Eq:PayoffMemoryn}
+\begin{array}{rcl}
+\pi^i(\mathbf{m^1},\mathbf{m^2}) 
+&\stackrel{\mbox{\small \eqref{Eq:RGpayoff}}}{=}  
+&\displaystyle \lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=1}^{\tau} \pi^i_{\mathbf{m^1},\mathbf{m^2}}(t)
+~=~
+\lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \pi^i_{\mathbf{m^1},\mathbf{m^2}}(t)\\[0.5cm]
+&\stackrel{\mbox{\small \eqref{Eq:ExpPayRound}}}{=}  
+&\displaystyle \lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=n}^{n+\tau-1}\big\langle \,\mathbf{v}(t),\, \mathbf{g^i}(1)\,\big\rangle
+~=~
+\Big\langle \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \mathbf{v}(t)\, , \, \mathbf{g^i}(t)\,\Big\rangle\\[0.5cm]
+&\stackrel{\mbox{\small \eqref{Eq:TimeAverage}}}{=}  
+&\big\langle\, \mathbf{v}, \mathbf{g^i}(1)\,\big\rangle .
+\end{array}
+\end{equation}
+That is, given we know the invariant distribution $\mathbf{v}$ that captures the game's long-run dynamics, it is straightforward to compute payoffs by taking the scalar product with the vector $\mathbf{g^i}(1)$.
+With a similar approach as in Eq.~\eqref{Eq:PayoffMemoryn}, one can also show
+\begin{equation}
+\big\langle\, \mathbf{v}, \mathbf{g^i}(1)\,\big\rangle  
+~=~ \big\langle\, \mathbf{v}, \mathbf{g^i}(2)\,\big\rangle
+~=~ \ldots
+~=~ \big\langle\, \mathbf{v}, \mathbf{g^i}(n)\,\big\rangle.
+\end{equation}
+That is, to compute player $i$'s expected payoff, it does not matter whether one refers to the last round of an $n$-history or to an earlier round of an $n$-history. All rounds $k$ with $1\!\le\! k\! \le \! n$ are equivalent.\\
 
-The equalities $\mathbf{v}\cdot \mathbf{S}^1 = \ldots = \mathbf{v} \cdot
-\mathbf{S}^n$ correspond to the intuition that it does not matter which of the
-past $n$ rounds we use to define average payoffs. This is an immediate result of
-Lemma~\ref{lemma:AkinGeneralised}. The payoffs of the players depend on both
-players' cooperations, and since their cooperation can be defined as having
-occurred in any of the last $n$ turns, the payoffs can also be expressed
-analogously.
 
-%% MODEL: Definitions %%
+%% MODEL: Generalizing Akin's Lemma %%
 
-{\bf Further Definitions.} Let's provide definitions for some additional terms
+\noindent
+{\bf An Extension of Akin's Lemma.}
+The Markov chain approach allows us to analyze games when both players adopt memory-$n$ strategies. 
+But even if there is only one player who adopts a memory-$n$ strategy (and the other player's strategy is arbitrary), one can still  derive certain constraints on the game's long-run dynamics. 
+One such constraint was first described by Akin~\citep{akin:EGADS:2016}: 
+if player~1 adopts a memory-1 strategy $\mathbf{m}$ against an arbitrary opponent, and if the time average $\mathbf{v}$ of the resulting game as defined by Eq.~\eqref{Eq:TimeAverage} exists, then
+\begin{equation}
+\big\langle\, \mathbf{v}\, , \mathbf{m}-\mathbf{m}^{1-\text{Rep}}\,\big\rangle = 0. 
+\end{equation}
+That is, the limiting distribution $\mathbf{v}$ needs to be orthogonal to the vector $\mathbf{m}-\mathbf{m}^{1-\text{Rep}}$. 
+This result has been termed {\it Akin's lemma}~\citep{hilbe:PNAS:2014b}. 
+With similar methods as in Ref.~\citep{akin:EGADS:2016}, one can generalize it to the context of memory-$n$ strategies. 
+
+%% MODEL:  Akin's Lemma %%
+
+\begin{lemma}[A generalized version of Akin's Lemma]\label{lemma:AkinGeneralised}
+Let player $1$ use a memory-$n$ strategy, and let player~$2$ use any arbitrary
+strategy. For the resulting game, let $\mathbf{v}(t)\!=\!\big( v_\mathbf{h}(t) \big)_{\mathbf{h}\in H}$ denote the probability distribution of observing each possible $n$-history $\mathbf{h}\!\in\! H$ after some given round $t\!\ge\!n$. Moreover, suppose the respective time average $\mathbf{v}$ according to Eq.~\eqref{Eq:TimeAverage} exists. Then for each $k$ with $1\!\le\!k\!\le\!n$, we obtain
+\begin{equation} \label{Eq:Akin}
+\big\langle\, \mathbf{v}\, , \mathbf{m}-\mathbf{m}^{k-\text{Rep}}\,\big\rangle = 0. 
+\end{equation}
+\end{lemma}
+
+%% MODEL: Interpreting Akin's Lemma %% 
+
+~\\
+\noindent
+All proofs are presented in the Appendix. Here we provide an intuition:
+The expression $\langle \mathbf{v}, \mathbf{m} \rangle \!=\! \sum_\mathbf{h} v_\mathbf{h}m_\mathbf{h}$ may be interpreted as player 1's average cooperation rate across the repeated game.
+To compute that average cooperation rate, one first draws an $n$-history $\mathbf{h}$ (with probability $v_\mathbf{h}$), and then one computes how likely player~1 would cooperate in the subsequent round (with probability $m_\mathbf{h}$). 
+Alternatively, one could compute the average cooperation rate by drawing an $n$-history $\mathbf{h}$ and then checking how likely player~1 was to cooperate $k$ rounds ago, according that $n$-history. 
+That second interpretation leads to the expression $\langle \mathbf{v}, \mathbf{m}^{k-\text{Rep}} \rangle$. 
+According to Eq.~\eqref{Eq:Akin}, both interpretations are equivalent. 
+
+
+
+\newpage
+
+%%%%%%%%%%
+%% RESULTS %%
+%%%%%%%%%%
+
+\section{Characterizing the partner strategies among the reactive-$n$ strategies}
+
+\subsection{Partner strategies}
+
+ Let's provide definitions for some additional terms
 that will be used in this manuscript.
 
 \begin{definition}[Nash Strategies]
@@ -817,11 +817,67 @@ the strategy entries satisfy the conditions:
 
 For proof see Appendix section~\ref{appendix:reactive_three_pure_self_reactive_pd}.
 
+
+\clearpage
+\newpage
+
 \appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RESULTS: PROOFS BASED ON PURE-SELF-REACTIVE %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{proof}[Proof of Lemma~\ref{lemma:AkinGeneralised}]
+Let player 1 use a memory-1 strategy $\mathbf{m}$ and player 2 an arbitrary
+memory-$n$ strategy. The probability that player $1$ cooperated in the
+\(n^{\text{th}}\) round be denoted as \(v_{\text{C}}^{n}\). Let
+\(v_{\text{C}}^{n}\) be defined as the probability that player $1$ played \(C\),
+\(k \, (1\leq k\leq n)\) rounds ago. Then,
+
+$$
+v_{\text{C}}^{n} = \sum_{h \in H} y_{h}, \quad \text{ where } \quad y_h = 
+\begin{cases}
+ u_{h} & \text{ if } \alpha^1_{-k} = C \\
+     0 & \text{ if } \alpha^1_{-k} = D.
+\end{cases}
+$$
+
+Equivalently,
+
+$$
+v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m}^{k - \text{Rep}}.
+$$
+
+Let $k$ be fixed to $k=1$ then,
+
+$$
+v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m}^{1 - \text{Rep}}.
+$$
+
+Moreover, the probability that player $1$ cooperates in the \((n + 1)^{th}\) round,
+denoted by \(v_{\text{C}}^{n + 1}\) = \(\mathbf{v}^{n} \cdot \mathbf{m}\). Hence,
+
+\begin{equation*}
+  v_{\text{C}}^{n + 1} - v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m} - \mathbf{v}^n \cdot \mathbf{m}^{1 - \text{Rep}}
+  =  \mathbf{v}^{n} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}).
+\end{equation*}
+
+This implies,
+
+\begin{equation*}
+\sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) = \sum^{n}_{t=1} v_{\text{C}}^{t + 1} - v_{\text{C}}^{t} \quad \Rightarrow \quad \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) =  v_{\text{C}}^{n + 1} - v_{\text{C}}^{1}.
+\end{equation*}
+
+As the right side has absolute value at most 1,
+
+\begin{equation*}
+\lim_{n \rightarrow \infty} \frac{1}{n} \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) = 0.
+\end{equation*}
+
+Repeat for $1 < k \leq n$.
+
+\end{proof}
+
 
 \section{Proofs for Theorems Based on Pure Self-reactive Strategies Result}\label{appendix:proofs_for_theorems_pure_self_reactive}
 
