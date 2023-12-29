@@ -16,19 +16,22 @@
 
 
 \begin{algorithm}[H]
-\setstretch{1.35}
-  \SetKwInOut{Input}{input}
-  \Input{$\mathbf{p}, n$}
-   $L(\mathbf{p}) \gets \left\{\mathbf{\tilde{p}} \in \{0, 1\}^{2 ^ n} ~\big|~ 
-   s_{\mathbf{\tilde{p},\mathbf{p}}} \geq s_{\mathbf{p}, \mathbf{p}} \right\}$\;
-  \uIf{$ L(\mathbf{p}) = \emptyset $}{
-    isNash $\leftarrow$ True \;
-  }
-  \Else{
-    isNash $\leftarrow$ False \;
-  }
-  \Return (\(\mathbf{p}\), isNash) \;
-  \caption{Nash Evaluation for reactive$-n$ strategies.}
-\end{algorithm}
+    \setstretch{1.35}
+      \SetKwInOut{Input}{input}
+      \Input{$\mathbf{p}, n$}
+      pure\_self\_reactive\_strategies $\gets \left\{ \mathbf{\tilde{p}} ~\big|~ \mathbf{\tilde{p}} \in \{0, 1\}^{2 ^ n} \right\}$ \;
+      isNash $\gets$ True \; 
+      \For{$\mathbf{\tilde{p}} \in$ pure\_self\_reactive\_strategies}{
+      \uIf{$ \pi(\mathbf{p}, \mathbf{p}) \leq \pi(\mathbf{\tilde{p}}, \mathbf{p})$}{
+        condition $\gets$ False \;
+      }
+      \Else{
+        condition $\gets$ True \;
+      }
+      isNash $\gets$ isNash AND condition\;
+      }
+      \Return (\(\mathbf{p}\), isNash) \;
+      \caption{Nash Evaluation for a reactive$-n$ strategy.}
+    \end{algorithm}
 
 \end{document}
