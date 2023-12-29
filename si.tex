@@ -41,9 +41,9 @@
 {}%         Thm head spec
 
 \theoremstyle{plainCl1}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
 \newtheorem{proposition}{Proposition}
 
 \newtheoremstyle{plainCl2}% name
@@ -57,11 +57,15 @@
 {}%         Thm head spec
 
 \theoremstyle{plainCl2}
-\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition}{Definition}
 
 \def\wsls{\texttt{WSLS}}
 \def\tft{\texttt{TFT}}
 \def\gtft{\texttt{GTFT}}
+\def\allc{\texttt{ALLC}}
+\def\alld{\texttt{ALLD}}
+\def\alt{\texttt{Alternator}}
+
 
 
 \titleformat{\section}{\sffamily \fontsize{12}{15}\bfseries}{\thesection}{0.4em}{}
@@ -211,7 +215,10 @@ The probably best-known example of a reactive-1 strategy is Tit-for-Tat, \tft~\c
 Hence, its memory-1 representation is $\mathbf{m}\!=\!(1,0,1,0)$, whereas its reduced representation is $\mathbf{p}\!=\!(1,0)$. 
 Another example is the strategy Generous Tit-for-Tat, \gtft~\citep{nowak:Nature:1992,molander:jcr:1985}.
 \gtft{} occasionally cooperates even if the co-player defected. 
-For that strategy, the memory-1 representation is $\mathbf{m}\!=\!(1,p^*_D,1,p^*_D)$, and the reduced representation is $\mathbf{p}\!=\!(1,p^*_D)$, where $p^*_D\!:=\!\min\big\{1\!-\!(T\!-\!R)/(R\!-\!S),~(R\!-\!P)/(T\!-\!P)\big\}$. 
+For that strategy, the memory-1 representation is $\mathbf{m}\!=\!(1,p^*_D,1,p^*_D)$, and the reduced representation is $\mathbf{p}\!=\!(1,p^*_D)$, where 
+\begin{equation} \label{Eq:ConditionGTFT}
+p^*_D\!:=\!\min\big\{1\!-\!(T\!-\!R)/(R\!-\!S),~(R\!-\!P)/(T\!-\!P)\big\}.
+\end{equation} 
 In the special case that payoffs are given by the donation game, this condition simplifies to $p^*_D\!=\!1-c/b$.\\
 
 %% MODEL: Self-reactive strategies %%
@@ -250,7 +257,7 @@ If all cooperation probabilities are strictly between zero and one, we say the s
 When it is convenient to represent the self-reactive repeat strategies as elements of the memory-$n$ strategy space, we write $\mathbf{m}^{k-\text{Rep}}\!\in\![0,1]^{2^{2n}}$ instead of $\mathbf{\tilde p}^{k-\text{Rep}}\!\in\![0,1]^{2^n}$.
 
 
-\subsection{Computing the payoffs of finite-memory strategies}
+\subsection{Computing the payoffs of finite-memory strategies} \label{Sec:PayoffComputation}
 
 %% MODEL: Markov chain approach %% 
 
@@ -381,7 +388,7 @@ According to Eq.~\eqref{Eq:Akin}, both interpretations are equivalent.\\
 
 \subsection{Partner strategies}
 
-In this study, we are interested in identifying those strategies that can sustain full cooperation in a Nash equilibrium. 
+In this study, we are interested in identifying strategies that can sustain full cooperation in a Nash equilibrium. 
 Strategies with these properties have been termed as being of {\it Nash type} by Akin~\citep{akin:EGADS:2016}, or as {\it partner strategies} by Hilbe {\it et al}~\citep{Hilbe:GEB:2015}. 
 In the following, we formally define them. 
 
@@ -408,8 +415,8 @@ Second, if a memory-$n$ strategy $\mathbf{m}\!=\!(m_\mathbf{h})_{\mathbf{h}\in H
 
 Third, in general it is a difficult task to verify that any given strategy $\sigma$ is a Nash equilibrium. 
 After all, one needs to verify that it yields the highest payoff according to Eq.~\eqref{Eq:NashCondition} among all (uncountably) many alternative strategies $\sigma'$. 
-Fortunately, the situation is simpler if the strategy under consideration is a memory-$n$ strategy. 
-In that case, it follows from Press and Dyson~\cite{press:PNAS:2012} and Levinsky {\it et al}~\citep{Levinsky:IJGT:2020} that one only needs to compare the strategy to all other memory-$n$ strategies. 
+Fortunately, the situation is somewhat simpler if the strategy under consideration is a memory-$n$ strategy. 
+In that case, it follows from an argument by Press and Dyson~\cite{press:PNAS:2012}  that one only needs to compare the strategy to all other memory-$n$ strategies. 
 However, this still leaves us with uncountably many strategies to check. 
 In fact, it is one aim of this paper to show that for reactive-$n$ strategies, it suffices to check finitely many alternative strategies. 
 
@@ -494,182 +501,158 @@ Hence, they are partner strategies.
 %% RESULTS: SELF-REACTIVE  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{An algorithm to check whether a reactive-$n$ strategy is a partner}
+\subsection{An algorithm to check whether a reactive-$n$ strategy is a Nash equilibrium}
 
 %% SELF-REACTIVE: Self-reactive strategies sufficiency %%
-{\bf Sufficiency of Self Reactive Strategies.}
-Press and Dyson \cite{press:PNAS:2012} discussed the case where one player uses a memory-1
+{\bf Sufficiency of pure self-reactive strategies.}
+After discussing these particular cases, we would like to derive a general algorithm that allows us to verify whether a given reactive-$n$ strategy is a Nash equilibrium. 
+In principle, this requires us to check the payoff of any other strategy (including strategies that have a much longer memory length than $n$). Fortunately, however, some simplifications are possible when we use an insight by Press and Dyson \cite{press:PNAS:2012}.
+They discussed the case where one player uses a memory-1
 strategy and the other player employs a longer memory strategy. They
 demonstrated that the payoff of the player with the longer memory is exactly the
 same as if the player had employed a specific shorter-memory strategy,
 disregarding any history beyond what is shared with the short-memory player.
-Here we show a result that follows a similar intuition: if there is a part of
-history that one player does not observe, then the co-player gains nothing by
-considering the history not shared with the reactive player.
+Here we show a result that follows a similar intuition. 
+If there is a part of the game's history that one player does not take into account, then the co-player gains nothing by
+considering that part of the history. 
 
-\begin{lemma}\label{lemma:self_reactive_sufficiency}
-  Let $\mathbf{p}$ be a reactive$-n$ strategy for player $1$. Then, for any
-  memory$-n$ strategy $\mathbf{m}$ used by player $2$, player $1$'s score is
-  exactly the same as if $2$ had played a specific self-reactive memory-$n$
-  strategy $\mathbf{\tilde{p}}$.
+\begin{lemma}[Against reactive strategies, any feasible payoff can be generated with self-reactive strategies] \label{lemma:self_reactive_sufficiency}
+ Let $\mathbf{p}\!\in\!\mathcal{R}_n$ be a reactive strategy for player $1$. 
+ Moreover, suppose player~2 adopts some strategy $\sigma$ such that for the resulting game, the time average $\mathbf{v}$ according to Eq.~\eqref{Eq:TimeAverage} exists. 
+ Then there is a self-reactive-$n$ strategy~$\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that $\pi^i(\mathbf{p},\sigma)\! = \!\pi^i(\mathbf{p},\mathbf{\tilde{p}})$ for $i\!\in\!\{1,2\}$.
 \end{lemma}
 
-\begin{proof}
-$\dots$
-\end{proof}
+\noindent
+If we are to verify that some given reactive-$\mathbf{n}$ strategy $\mathbf{p}$ is a Nash equilibrium, Lemma~\ref{lemma:self_reactive_sufficiency} simplifies our task considerably. 
+Instead of checking condition~\eqref{Eq:NashCondition} for all possible strategies $\sigma'$, we only need to check it for all self-reactive strategies $\mathbf{\tilde{p}}\!\in\! \mathcal{S}_n$. 
+Any payoff that could be obtained with some general strategy can already be obtained with a self-reactive strategy. 
+The following result simplifies our task even further. 
 
-\nikoleta{pip install christian\_hilbe}
+\begin{proposition}[To any reactive strategy, there is a best response among the pure self-reactive strategies]
+\label{lemma:nash_against_pure_self_reactive} 
+For any reactive strategy $\mathbf{p}\!\in\!\mathcal{R}_n$ there is some pure self-reactive strategy $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that 
+ \begin{equation} \label{Eq:BRSelfReactive}
+\pi^1(\mathbf{\tilde p},\mathbf{p}) \!\ge\! \pi^1(\sigma',\mathbf{p}) ~~\text{for all other strategies}~\sigma'~\text{for which}~ \pi^1(\sigma',\mathbf{p})~\text{exists}. 
+\end{equation}
+\end{proposition}
 
-\nikoleta{Could you please try to come up with the proof?}
+\noindent
+This result implies that we only need to check finitely many other strategies if we are to verify that some given reactive-$n$ strategy is a Nash equilibrium. 
 
-Several results arise from Lemma~\ref{lemma:self_reactive_sufficiency}. For
-example, assume that player 1 is using a reactive-$n$ strategy, and player 2 is
-using a memory-$n$ strategy. If we wanted to verify that player 1's strategy is
-Nash, we would have to show that condition~\eqref{Eq:Nash} holds for all
-memory-$n$ mutant strategies. However, now we can only consider
-self-reactive-$n$ mutant strategies for player 2.
+\begin{corollary}[An algorithm to check whether a reactive-$n$ strategy is a Nash equilibrum]
+\label{Cor:NashCondition}
+A reactive strategy $\mathbf{p}\!\in\!\mathcal{R}_n$ is a Nash equilibrium if and only if $\pi^1(\mathbf{p},\mathbf{p}) \!\ge\! \pi^1(\mathbf{\tilde p},\mathbf{p})$ for all pure self-reactive strategies $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$. 
+\end{corollary}
 
-From here on, when we are considering the case where player 1 is using a
-reactive-$n$ strategy, we will assume that player 2 is using a self-reactive-$n$
-strategy.
+\noindent
+In particular, to verify that some given reactive-$n$ strategy is a Nash equilibrium, one needs to check at most $2^n$ possible deviations.\\
+
+
 
 %% SELF-REACTIVE: Calculating Payoff using a smaller transition matrix %%
 
+\noindent
 {\bf A more efficient way to calculate payoffs.}
-Assume that player 1 is playing a reactive-$n$ strategy $\mathbf{p}$ and the
-co-player is playing an arbitrary strategy $\mathbf{\tilde{p}}$. To calculate
-the long-term payoffs of the two players, we need to compute the stationary
-distribution of the Markov chain $M$ and then calculate the payoffs using
-Eq.~\eqref{Eq:Payoff}.
-However, since the co-player is playing a self-reactive strategy, their actions
-only rely on their own actions. This can be modeled as a Markov process with
-$H^2$ states and a transition matrix \(\tilde{M}\). Let
-\(h^2=((a^2_{-n},\ldots,a^2_{-1}))\) be the state in the current round. The
-probability that in the next turn
-\(\tilde{h}^2=((\tilde{a}^2_{-n},\ldots,\tilde{a}^2_{-1}))\) is observed is
-given by,
-
-\begin{equation}\label{Eq:TransitionMatrixSelfReactive}
-\tilde{M}_{h^2, \tilde{h}^2} = 
+For the remainder of this section, we thus assume that player~1 uses a self-reactive-$n$ strategy $\mathbf{\tilde p}\!=\!(\tilde p_\mathbf{h^i})_{\mathbf{h^i}\in H^i}$, whereas player~2 uses a self-reactive-$n$ strategy $\mathbf{p}\!=\!(p_\mathbf{h^{-i}})_{\mathbf{h^{-i}}\in H^{-i}}$. 
+Our algorithm to compute payoffs for the two players in Section~\ref{Sec:PayoffComputation} would require us to interpret the two strategies as memory-$n$ strategies. 
+We would thus compute a left eigenvector of a $2^{2n}\!\times\!2^{2n}$ transition matrix. 
+in the following, however, we show that for games between reactive and self-reactive players, it suffices to consider a $2^n\!\times\!2^n$ transition matrix.
+This efficiency gain is possible because both players only consider player 1's past actions.  
+Instead of taking the space of all of the game's $n$-histories $H\!=\!H^1\!\times\! H^2$  as the state space, we can thus take the space~$H^1$. 
+Let \(h^1=(a^1_{-n},\ldots,a^1_{-1})\) be the state in the current round. 
+Then we obtain the following probability that state after one round is  \(\tilde{h}^1=(\tilde{a}^1_{-n},\ldots,\tilde{a}^1_{-1})\),\begin{equation}\label{Eq:TransitionMatrixSelfReactive}
+\tilde{M}_{\mathbf{h^1},\mathbf{ \tilde{h}^1}} = 
 \begin{cases}
-  \tilde{p}_{h^2} & \text{ if } \tilde{\alpha}^2_{-1} = C \text{ and } \tilde{\alpha}^2_{-t} = \alpha^2_{-t + 1} \text{ for all other } \tilde{\alpha}^2_{-t}\\
-  1 - \tilde{p}_{h^2} & \text{ if } \tilde{\alpha}^2_{-1} = D \text{ and } \tilde{\alpha}^2_{-t} = \alpha^2_{-t + 1} \text{ for all other } \tilde{\alpha}^2_{-t}\\
-  0 & \text{ if } \tilde{\alpha}^2_{-t} \neq  \alpha^2_{-t + 1} \text{ for some } 2 \leq t \leq n,
+  \tilde{p}_\mathbf{h^1} & \text{ if } \tilde{a}^1_{-1}\! =\! C,~\text{ and }~\tilde{a}^1_{-t} \!=\! a^1_{-t + 1}~\text{ for all } t\!\in\!\{2,\ldots,n\}\\
+  1 - \tilde{p}_\mathbf{h^1} & \text{ if } \tilde{a}^1_{-1}\!=\! D,~\text{ and } \tilde{a}^1_{-t} \!=\! a^1_{-t + 1}~\text{ for all } t\!\in\!\{2,\ldots,n\}\\
+  0 & \text{ if } \tilde{a}^1_{-t} \!\neq\!  a^1_{-t + 1}~ \text{ for some } t\!\in\!\{2,\ldots,n\}.
 \end{cases}
 \end{equation}
-
-and let $\mathbf{\tilde{v}}$ be a stationary distribution of the Markov chain
-$\tilde{M}$. Now player 1's payoff ($s_{\mathbf{\tilde{p}}, \mathbf{p}}$)
-for the general Prisoner's Dilemma is given by,
-
-\begin{equation*}\label{eq:PD_long_term_payoff}
-  s_{\mathbf{\tilde{p}}, \mathbf{p}} = a_R \cdot R + a_S \cdot S + a_T \cdot T + a_P \cdot P, ~~where~~
-\end{equation*}
-
-\begin{equation*}
-  \begin{array}{ll}
-  a_R = & \displaystyle \sum_{h^2 \in H^2} \tilde{u}_{h^2} \cdot p_{h^2} \cdot \tilde{p}_{h^2}, \\ [0.2cm]
-  a_S = & \displaystyle \sum_{h^2 \in H^2} \tilde{u}_{h^2} \cdot (1 - p_{h^2}) \cdot \tilde{p}_{h^2}, \\ [0.2cm]
-  a_T = & \displaystyle \sum_{h^2 \in H^2} \tilde{u}_{h^2} \cdot p_{h^2} \cdot (1 - \tilde{p}_{h^2}), \\ [0.2cm]
-  a_P = &  \displaystyle \sum_{h^2 \in H^2} \tilde{u}_{h^2} \cdot (1 - p_{h^2}) \cdot (1 - \tilde{p}_{h^2}).
+Let $\mathbf{\tilde{v}}\!=\!(\tilde{v}_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$ be the limiting distribution of the resulting game (which only in exceptional cases depends on player~1's behavior during the first $n$ rounds). Then the players' payoffs are given by
+\begin{equation}\label{eq:PD_long_term_payoff}
+\begin{array}{l}
+\displaystyle \pi^1(\mathbf{\tilde p},\mathbf{p}) \!=\!\!\!\! \sum_{\mathbf{h^1}\in H^1} {\tilde v}_\mathbf{h^1} \Big(
+\mathbf{\tilde p}_\mathbf{h^1} \mathbf{p}_\mathbf{h^1}\!\cdot\!R +
+\mathbf{\tilde p}_\mathbf{h^1} (1\!-\!\mathbf{p}_\mathbf{h^1})\!\cdot\!S +  
+(1\!-\!\mathbf{\tilde p}_\mathbf{h^1}) \mathbf{p}_\mathbf{h^1}\!\cdot\!T +
+(1\!-\!\mathbf{\tilde p}_\mathbf{h^1}) (1\!-\!\mathbf{p}_\mathbf{h^1})\!\cdot\!P 
+\Big),\\[0.6cm]
+\displaystyle \pi^2(\mathbf{\tilde p},\mathbf{p}) \!=\!\!\!\! \sum_{\mathbf{h^1}\in H^1} {\tilde v}_\mathbf{h^1} \Big(
+\mathbf{\tilde p}_\mathbf{h^1} \mathbf{p}_\mathbf{h^1}\!\cdot\!R +
+\mathbf{\tilde p}_\mathbf{h^1} (1\!-\!\mathbf{p}_\mathbf{h^1})\!\cdot\!T +  
+(1\!-\!\mathbf{\tilde p}_\mathbf{h^1}) \mathbf{p}_\mathbf{h^1}\!\cdot\!S +
+(1\!-\!\mathbf{\tilde p}_\mathbf{h^1}) (1\!-\!\mathbf{p}_\mathbf{h^1})\!\cdot\!P 
+\Big).
 \end{array}
-\end{equation*}
+ \end{equation}
 
-Player 2's payoff is calculated in a similar way. In the case of the simple
-donation games, it is sufficient to define the payoffs of the two players based
-on their cooperation rates. More specifically, we can define the payoffs of the
-two players as,
-
-\begin{equation}\label{Eq:payoff}
-  \begin{array}{lll}
-  s_{\mathbf{p}, \mathbf{\tilde{p}}}  =  b\, \rho_\mathbf{\tilde{p}} - c\, \rho_\mathbf{p}\\
-  s_{\mathbf{\tilde{p}}, \mathbf{q}} = b\, \rho_\mathbf{p} - c\, \rho_\mathbf{\tilde{p}}.
-  \end{array}
-\end{equation}
-
-where, 
-
-\begin{align*}
-  \rho_\mathbf{\tilde{p}} = & \, \mathbf{\tilde{v}} \cdot \mathbf{\tilde{p}}^{1 - \text{Rep}}, ~~and~~ \\
-  \rho_\mathbf{p} = & \sum_{h^2 \in H^2} \tilde{v}^{h^2} \cdot p_{h^2}.
-\end{align*}
 
 %% SELF-REACTIVE: An example %%
+\noindent
+{\bf Example: Payoffs and best responses with one-round memory.}
+To illustrate the above results, we consider the case of $n\!=\!1$. 
+Assume player~1's self-reactive strategy is $\mathbf{\tilde p^1} = (\tilde p_C^1, \tilde p_D^1)$, 
+whereas player~2's reactive strategy is $\mathbf{p^2} = (p^2_C, p^2_D)$. 
+If we use the algorithm in Section~\ref{Sec:PayoffComputation}, we first formally represent these strategies as memory-1 strategies, $\mathbf{m^1} = (\tilde p_C^1, \tilde p_C^1,  \tilde p_D^1,  \tilde p_D^1)$ and $\mathbf{m^2} = (p_C^2, p_D^2,  p_C^2,  p_D^2)$.
+The respective transition matrix according to Eq.~\eqref{Eq:TransitionMatrix} is
+\begin{equation} \label{Eq:TransitionM1}
+M=\left(
+\begin{array}{cccc}
+\tilde p^1_C p^2_C	&\tilde p^1_C(1\!-\!p^2_C)	&(1\!-\!\tilde p^1_C)p^2_C	&(1\!-\!\tilde p^1_C)(1\!-\!p^2_C)\\
+\tilde p^1_C p^2_C	&\tilde p^1_C(1\!-\!p^2_C)	&(1\!-\!\tilde p^1_C)p^2_C	&(1\!-\!\tilde p^1_C)(1\!-\!p^2_C)\\
+\tilde p^1_D p^2_D	&\tilde p^1_D(1\!-\!p^2_D)	&(1\!-\!\tilde p^1_D)p^2_D	&(1\!-\!\tilde p^1_D)(1\!-\!p^2_D)\\
+\tilde p^1_D p^2_D	&\tilde p^1_D(1\!-\!p^2_D)	&(1\!-\!\tilde p^1_D)p^2_D	&(1\!-\!\tilde p^1_D)(1\!-\!p^2_D)
+\end{array}
+\right).
+\end{equation}
+Assuming player~1's strategy is different from the 1-round repeat strategy, $\mathbf{\tilde p^1} \!\neq\! (1,0)$, this transition matrix has a unique invariant distribution,
+{\begin{center}
+\scalebox{1}{\centering $
+\mathbf{v} \!=\! \left(
+\frac{\tilde p^1_D\big(\tilde p^1_C(p^2_C-p^2_D)+p^2_D\big)}{1-({\tilde p^1_C} - {\tilde p^1_D})} , 
+\frac{\tilde p^1_D\big(1-\tilde p^1_C(p^2_C-p^2_D)-p^2_D\big)}{1-({\tilde p^1_C} - {\tilde p^1_D})} , 
+\frac{(1-{\tilde p^1_C})\big(\tilde p^1_D(p^2_C-p^2_D)+p^2_D\big)}{1-({\tilde p^1_C} - {\tilde p^1_D})} ,
+\frac{(1-{\tilde p^1_C})\big(1-\tilde p^1_D(p^2_C-p^2_D)-p^2_D\big)}{1-({\tilde p^1_C} - {\tilde p^1_D})} 
+\right).
+$}
+\end{center}}
+\noindent
+According to Eq.~\eqref{Eq:ExpPayRound}, Player~1's payoff is the scalar product 
+\begin{equation} \label{Eq:PayExample}
+\pi^1(\mathbf{\tilde p^1},\mathbf{p^2})=\big\langle\mathbf{v}\, , (R,S,T,P)\big\rangle.
+\end{equation} 
+Following~Corollary~\ref{Cor:NashCondition}, we can use these observations to characterize under which conditions the reactive strategy $\mathbf{p^2}\!=\!(1,p^2_D)$ is a partner. 
+To this end, we compute player~1's payoff for all pure self-reactive strategies $\mathbf{\tilde p^1}\!=\!(\tilde p^1_C, \tilde p^1_D)$. 
+These are \allc{} $=\! (1,1)$, \alld{} $=\!(0,0)$, and \alt{} $=\!(0,1)$; we can ignore the 1-round repeat strategy (1,0), because depending on the strategy's first round-behavior it is either equivalent to \allc{} or to \alld{}. The payoffs of these three strategies are
+\begin{equation}
+\begin{array}{rcl}
+\pi^1(\allc,\mathbf{p^2}) &= &R,\\[0.2cm]
+\pi^1(\alld,\mathbf{p^2}) &= &p^2_D \!\cdot \!T +(1\!-\!p^2_D) \!\cdot\!P\\[0.2cm]
+\pi^1(\alt,\mathbf{p^2})	&=	& p^2_D/2\!\cdot\!R + (1\!-\!p^2_D)/2\!\cdot\!S + 1/2\!\cdot\! T.
+\end{array}
+\end{equation}
+We conclude that player 2's reactive strategy $\mathbf{p^2}$ is a Nash equilibrium (and hence a partner) if none of these three payoffs exceeds the mutual cooperation payoff $R$. This requirement yields the condition
+\begin{equation}
+p^2_D \le \min\big\{1\!-\!(T\!-\!R)/(R\!-\!S),~(R\!-\!P)/(T\!-\!P)\big\}.
+\end{equation}
+That is, $\mathbf{p^2}$ is a partner if and only if its generosity $p^2_D$ does not exceed the generosity of \gtft, see Eq.~\eqref{Eq:ConditionGTFT}. 
 
-{\bf Example.}
-Let's consider an example in the case of $n=1$ to demonstrate the result. Assume
-that player 1 is playing the reactive-1 strategy $\mathbf{p} =
-\left(\frac{1}{2}, \frac{1}{3}, \frac{1}{2}, \frac{1}{3}\right)$, and player 2
-is playing the self-reactive-1 strategy $\mathbf{\tilde{p}} = \left(\frac{1}{4},
-\frac{1}{4}, \frac{1}{2}, \frac{1}{2}\right).$ We construct the transition
-matrix $M$ based on Eq.~\eqref{Eq:TransitionMatrix} as follows:
+Instead of computing the $4\times4$ matrix $M$ in \eqref{Eq:TransitionM1}, we could also consider the simplified $2\!\times\!2$ transition matrix~\eqref{Eq:TransitionMatrixSelfReactive}. Here, the two possible states are $\mathbf{h^1}\!\in\!\{C,D\}$, and hence the matrix is
+\begin{equation}
+\tilde{M} = \left(
+\begin{array}{cc}
+\tilde{p}^1_C	&1\!-\!\tilde p^1_C\\
+\tilde p^1_D	&1\!-\!\tilde p^1_D
+\end{array}
+\right). 
+\end{equation}
+Again, for $\mathbf{\tilde p^1} \!\neq\! (1,0)$, this transition matrix has a unique invariant distribution,
+\begin{equation}
+\mathbf{\tilde v} = (\tilde v_C, \tilde v_D) = \left( \frac{\tilde p^1_D}{1-({\tilde p^1_C} - {\tilde p^1_D})}, \frac{1\!-\!\tilde p^1_C}{1-({\tilde p^1_C} - {\tilde p^1_D})} \right).
+\end{equation}
+If we take this invariant distribution and compute player 1's payoff according to Eq.~\eqref{eq:PD_long_term_payoff}, we recover the same expression as in Eq.~\eqref{Eq:PayExample}, as expected.
 
-$$
-M = \begin{bmatrix}
-  \frac{1}{8} & \frac{3}{8} & \frac{1}{8} & \frac{3}{8} \\[6pt]
-  \frac{1}{6} & \frac{1}{6} & \frac{1}{3} & \frac{1}{3} \\[6pt]
-  \frac{1}{8} & \frac{3}{8} & \frac{1}{8} & \frac{3}{8} \\[6pt]
-  \frac{1}{6} & \frac{1}{6} & \frac{1}{3} & \frac{1}{3}
-\end{bmatrix}
-$$
 
-The stationary distribution is given by $\mathbf{v} = \left(\frac{4}{25},
-\frac{6}{25}, \frac{6}{25}, \frac{9}{25}\right).$ The payoffs for players 1 and
-2, based on Eq.~\eqref{Eq:Payoff}, are equal and are equal to
-$s_{\mathbf{p}, \mathbf{\tilde{p}}} = s_{\mathbf{\tilde{p}}, \mathbf{q}} =
-\frac{2}{5}(b - c).$
-
-Now, we repeat the exercise, but this time we construct the transition matrix
-$\tilde{M}$ based on Eq.~\eqref{Eq:TransitionMatrixSelfReactive}:
-
-$$
-\tilde{M} = 
-\begin{bmatrix}
-  \frac{1}{4} & \frac{3}{4}\\[6pt]
-  \frac{1}{2} & \frac{1}{2}
-\end{bmatrix}
-$$
-
-The stationary distribution is given by $\mathbf{\tilde{v}} = \left(\frac{2}{5},
-\frac{3}{5}\right)$, and the cooperation rates $\rho_\mathbf{\tilde{p}} =
-\frac{2}{5}$ and $\rho_\mathbf{p} = \frac{2}{5} \times \frac{1}{2} + \frac{3}{5}
-\times \frac{1}{3} = \frac{2}{5}$. Thus, based on Equation~\eqref{Eq:Payoff},
-the payoffs are $s_{\mathbf{p}, \mathbf{\tilde{p}}} = s_{\mathbf{\tilde{p}},
-\mathbf{q}} = \frac{2}{5}(b - c)$.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% RESULTS: AN ALGORITHM FOR NASH  %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{An algorithm for Nash Equilibria amongst Reactive Strategies}\label{section:algorithm_for_nash}
-
-To predict which reactive-$n$ strategies are partner strategies, we must
-characterize which nice reactive-$n$ strategies are Nash equilibria. Determining
-whether a given strategy, $\mathbf{p}$, is a Nash equilibrium is not
-straightforward. In principle, this would involve comparing the payoff of
-$\mathbf{p}$ to the payoff of all possible self-reactive strategies, and there
-are infinitely many self-reactive strategies. However, here we demonstrate that
-we can reduce the space of mutant strategies to a finite set.
-
-Initially, we will demonstrate that the payoff of a self-reactive strategy
-against a reactive strategy is linear in the self-reactive strategy entries.
-Secondly, we will show that because the payoff is linear, the best response
-self-reactive strategy to the reactive strategy is a pure self-reactive
-strategy.
-
-\begin{lemma}\label{lemma:nash_against_pure_self_reactive} 
-A reactive-$n$ strategy $\mathbf{p}$ for player $1$, is a \textit{Nash strategy}
-if, and only if, no pure self-reactive-$n$ strategy can achieve a higher payoff
-against itself.
-\end{lemma}
-
-Lemma~\ref{lemma:nash_against_pure_self_reactive} implies that the space of
-strategies we need to check against is even more constrained in the case of
-reactive strategies. This has a huge implication on the computational complexity
-of finding Nash strategies.
-
-\nikoleta{Christian could you please take over this section? We have already
-discussed the proofs.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RESULTS: PARTNER STRATEGIES %%
