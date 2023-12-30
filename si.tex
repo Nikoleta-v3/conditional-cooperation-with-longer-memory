@@ -502,6 +502,7 @@ Hence, they are partner strategies.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{An algorithm to check whether a reactive-$n$ strategy is a Nash equilibrium}
+\label{Sec:Algorithm}
 
 %% SELF-REACTIVE: Self-reactive strategies sufficiency %%
 {\bf Sufficiency of pure self-reactive strategies.}
@@ -528,13 +529,13 @@ Instead of checking condition~\eqref{Eq:NashCondition} for all possible strategi
 Any payoff that could be obtained with some general strategy can already be obtained with a self-reactive strategy. 
 The following result simplifies our task even further. 
 
-\begin{proposition}[To any reactive strategy, there is a best response among the pure self-reactive strategies]
+\begin{theorem}[To any reactive strategy, there is a best response among the pure self-reactive strategies]
 \label{lemma:nash_against_pure_self_reactive} 
 For any reactive strategy $\mathbf{p}\!\in\!\mathcal{R}_n$ there is some pure self-reactive strategy $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that 
  \begin{equation} \label{Eq:BRSelfReactive}
 \pi^1(\mathbf{\tilde p},\mathbf{p}) \!\ge\! \pi^1(\sigma',\mathbf{p}) ~~\text{for all other strategies}~\sigma'~\text{for which}~ \pi^1(\sigma',\mathbf{p})~\text{exists}. 
 \end{equation}
-\end{proposition}
+\end{theorem}
 
 \noindent
 This result implies that we only need to check finitely many other strategies if we are to verify that some given reactive-$n$ strategy is a Nash equilibrium. 
@@ -590,9 +591,8 @@ Let $\mathbf{\tilde{v}}\!=\!(\tilde{v}_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$ be t
 %% SELF-REACTIVE: An example %%
 \noindent
 {\bf Example: Payoffs and best responses with one-round memory.}
-To illustrate the above results, we consider the case of $n\!=\!1$. 
-Assume player~1's self-reactive strategy is $\mathbf{\tilde p^1} = (\tilde p_C^1, \tilde p_D^1)$, 
-whereas player~2's reactive strategy is $\mathbf{p^2} = (p^2_C, p^2_D)$. 
+To illustrate the above results, we consider the case $n\!=\!1$. 
+Assume player~1's self-reactive strategy is $\mathbf{\tilde p^1} \!=\! (\tilde p_C^1, \tilde p_D^1)$ and player~2's reactive strategy is $\mathbf{p^2} \!=\! (p^2_C, p^2_D)$. 
 If we use the algorithm in Section~\ref{Sec:PayoffComputation}, we first formally represent these strategies as memory-1 strategies, $\mathbf{m^1} = (\tilde p_C^1, \tilde p_C^1,  \tilde p_D^1,  \tilde p_D^1)$ and $\mathbf{m^2} = (p_C^2, p_D^2,  p_C^2,  p_D^2)$.
 The respective transition matrix according to Eq.~\eqref{Eq:TransitionMatrix} is
 \begin{equation} \label{Eq:TransitionM1}
@@ -605,7 +605,7 @@ M=\left(
 \end{array}
 \right).
 \end{equation}
-Assuming player~1's strategy is different from the 1-round repeat strategy, $\mathbf{\tilde p^1} \!\neq\! (1,0)$, this transition matrix has a unique invariant distribution,
+Assuming player~1's strategy is different from the one-round repeat strategy, $\mathbf{\tilde p^1} \!\neq\! (1,0)$, this transition matrix has a unique invariant distribution,
 {\begin{center}
 \scalebox{1}{\centering $
 \mathbf{v} \!=\! \left(
@@ -621,9 +621,9 @@ According to Eq.~\eqref{Eq:ExpPayRound}, Player~1's payoff is the scalar product
 \begin{equation} \label{Eq:PayExample}
 \pi^1(\mathbf{\tilde p^1},\mathbf{p^2})=\big\langle\mathbf{v}\, , (R,S,T,P)\big\rangle.
 \end{equation} 
-Following~Corollary~\ref{Cor:NashCondition}, we can use these observations to characterize under which conditions the reactive strategy $\mathbf{p^2}\!=\!(1,p^2_D)$ is a partner. 
+Following~Corollary~\ref{Cor:NashCondition}, we can use these observations to characterize under which conditions a nice reactive strategy $\mathbf{p^2}\!=\!(1,p^2_D)$ is a partner. 
 To this end, we compute player~1's payoff for all pure self-reactive strategies $\mathbf{\tilde p^1}\!=\!(\tilde p^1_C, \tilde p^1_D)$. 
-These are \allc{} $=\! (1,1)$, \alld{} $=\!(0,0)$, and \alt{} $=\!(0,1)$; we can ignore the 1-round repeat strategy (1,0), because depending on the strategy's first round-behavior it is either equivalent to \allc{} or to \alld{}. The payoffs of these three strategies are
+These are \allc{} $=\! (1,1)$, \alld{} $=\!(0,0)$, and \alt{} $=\!(0,1)$; we can ignore the one-round repeat strategy (1,0), because depending on the strategy's first round-behavior it is either equivalent to \allc{} or to \alld{}. The payoffs of these three strategies are
 \begin{equation}
 \begin{array}{rcl}
 \pi^1(\allc,\mathbf{p^2}) &= &R,\\[0.2cm]
@@ -635,7 +635,7 @@ We conclude that player 2's reactive strategy $\mathbf{p^2}$ is a Nash equilibri
 \begin{equation}
 p^2_D \le \min\big\{1\!-\!(T\!-\!R)/(R\!-\!S),~(R\!-\!P)/(T\!-\!P)\big\}.
 \end{equation}
-That is, $\mathbf{p^2}$ is a partner if and only if its generosity $p^2_D$ does not exceed the generosity of \gtft, see Eq.~\eqref{Eq:ConditionGTFT}. 
+That is, as one may expect $\mathbf{p^2}$ is a partner if and only if its generosity $p^2_D$ does not exceed the generosity of \gtft, see Eq.~\eqref{Eq:ConditionGTFT}. 
 
 Instead of computing the $4\times4$ matrix $M$ in \eqref{Eq:TransitionM1}, we could also consider the simplified $2\!\times\!2$ transition matrix~\eqref{Eq:TransitionMatrixSelfReactive}. Here, the two possible states are $\mathbf{h^1}\!\in\!\{C,D\}$, and hence the matrix is
 \begin{equation}
@@ -658,59 +658,62 @@ If we take this invariant distribution and compute player 1's payoff according t
 %% RESULTS: PARTNER STRATEGIES %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Reactive Partner Strategies}\label{section:reactive_strategies}
+\subsection{Reactive partner strategies in the donation game}\label{section:reactive_strategies}
 
-In this section, we will characterize the reactive-$n$ partner strategies. We
-will present a series of results, mainly proven based on
-Lemma~\ref{lemma:nash_against_pure_self_reactive}. Interestingly, several of our
-results can also be demonstrated through an independent proof relying on the
-generalization of Akin (Lemma~\ref{lemma:AkinGeneralised}). We will provide both
-proofs in Appendices~\ref{appendix:proofs_for_theorems_pure_self_reactive}
-and~\ref{appendix:proofs_for_theorems_generalized_akin}.
+Just as in the previous example with $n\!=\!1$, we can use the results of the previous section to characterize the partner strategies for reactive-2 and reactive 3-strategies. 
+For simplicity, we first consider the case of the donation game. Results for the general prisoner's dilemma follow in the next section.\\ 
 
 %% PARTNER STRATEGIES: Reactive-2 Donation Game %%
+\noindent
+{\bf Reactive-2 partner strategies.}
+We first consider the case $n\!=\!2$. 
+The resulting reactive-2 strategies can be represented as a vector
+$\mathbf{p}=(p_{CC}, p_{CD}, p_{DC}, p_{DD})$. 
+The entries $p_\mathbf{h^{-i}}$ are the player's cooperation probability, depending on the co-player's actions in the previous two rounds, $\mathbf{h^{-i}}\!=\!(a^{-i}_{-2},a^{-i}_{-1})$. 
+For the strategy to be nice, we require $p_{CC}\!=\!1$. 
+Based on Corollary~\ref{Cor:NashCondition}, we obtain the following characterization of partners. 
 
-\subsection{Reactive-2 Partner Strategies}\label{section:reactive_two_partner_strategies}
-
-In this section, we focus on the case of $n=2$. reactive-2 strategies are denoted as a vector
-$\mathbf{p}=(p_{CC}, p_{CD}, p_{DC}, p_{DD})$ where $p_{CC}$ is the
-probability of cooperating in this turn when the co-player cooperated in the
-last 2 turns, $p_{CD}$ is the probability of cooperating given that the
-co-player cooperated in the second to last turn and defected in the last, and so
-forth. A nice reactive-2 strategy is represented by the vector $\mathbf{p}=(1,
-p_{CD}, p_{DC}, p_{DD})$.
-
-\begin{theorem}[``Reactive-2 Partner Strategies'']\label{theorem:reactive_two_partner_strategies}
-A reactive-2 strategy $\mathbf{p}$, is a partner strategy if and only if,
-the strategy entries satisfy the conditions:
-
+\begin{theorem}[Reactive-2 partner strategies]\label{theorem:reactive_two_partner_strategies}
+A nice reactive-2 strategy $\mathbf{p}$, is a partner strategy if and only if its entries satisfy the conditions
 \begin{equation}\label{eq:two_bit_conditions}
-  p_{CC} = 1, \qquad \displaystyle \frac{p_{CD} + p_{DC}}{2} < 1 - \frac{1}{2} \cdot \frac{c}{b} \quad ~~and~~ \quad \displaystyle p_{DD} \leq 1\!-\! \frac{c}{b}.
+  p_{CC} \!=\! 1, \qquad \displaystyle \frac{p_{CD} \!+\! p_{DC}}{2} \!\le\! 1 \!-\! \frac{1}{2} \cdot \frac{c}{b}, \qquad p_{DD} \le 1\!-\! \frac{c}{b}.
 \end{equation}
 \end{theorem}
 
-For proofs see Appendix sections~\ref{appendix:reactive_two_pure_self_reactive}
-and~\ref{appendix:reactive_two_akin_generalized}.
+\noindent
+The resulting conditions can be interpreted as follows: For each time a co-player has defected during the past two rounds, the reactive player's cooperation probability needs to decrease by $c/(2b)$. 
+This reduced cooperation probability is sufficient to incentivize the co-player to cooperate. 
+Interestingly, for the strategy to be a partner, the middle condition in \eqref{eq:two_bit_conditions} suggests that the exact timing of a co-player's defection is irrelevant. 
+As long as {\it on average}, the respective cooperation probabilities $p_{CD}$ and $p_{DC}$ are below the required threshold $1\!-\!c/(2b)$, the strategy is a Nash equilibrium. 
+
+The conditions for a partner become even more simple if we consider {\it reactive-$n$ counting strategies}. To define these strategies, let $|\mathbf{h^{-i}}|$ denote the number of $C$'s in a given $n$-history of the co-player. We say a reactive-$n$ strategy $\mathbf{p}\!=\!(p_{h^{-i}})_{\mathbf{h^{-i}\in H^{-i}}}$ is a counting strategy if 
+\begin{equation}
+|\mathbf{h}^{-i}|\! =\! |\mathbf{\tilde h^{-i}}| \quad \Rightarrow \quad p_\mathbf{h^{-i}} = p_\mathbf{\tilde h^{-i}}
+\end{equation} 
+That is, the reactive player's cooperation probability only depends on the number of cooperative acts during the past $n$ rounds and not on its timing. 
+Such reactive-$n$ counting strategies can be written as $n\!+\!1$-dimensional vectors $\mathbf{r}\!=\!(r_k)_{k\in\{n,\ldots,1\}}$, where $r_i$ is the player's cooperation probability if the co-player cooperated $k$ times during the past $n$ rounds. In particular, for reactive-2 counting strategies, we associate $r_2\!=\!p_{CC}$, $r_1\!=\!p_{CD}\!=\!p_{DC}$, and $r_0\!=\!p_{DD}$. 
+The following characterization of partners among the reactive-2 counting strategies then follows immediately from Theorem~\ref{theorem:reactive_two_partner_strategies}. 
+
+\begin{corollary}[Partners among the reactive-2 counting strategies]
+\label{Cor:PartnersCountingTwo} 
+A nice reactive-2 counting strategy $\mathbf{r} = (r_2, r_1, r_0)$ is a partner strategy if and only if
+\begin{equation}\label{eq:counting_two_bit_conditions}
+ r_2 \!=\! 1, \qquad r_1 \!\le\! 1\!-\!\frac{1}{2} \cdot \frac{c}{b}, \qquad r_0 \!\le\! 1\!-\! \frac{c}{b}.
+\end{equation}
+\end{corollary}
+ ~\\
+
 
 %% PARTNER STRATEGIES: Reactive-3 Donation Game %%
+\noindent
+{\bf Reactive-3 Partner Strategies}.
+Now we focus on the case of $n=3$. Reactive-3 strategies can be represented as a vector 
+$\mathbf{p}=(p_{CCC}, p_{CCD}, p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{DDD})$.
+Again, each entry $p_\mathbf{h^{-i}}$ refers to the player's cooperation probability, depending on the co-player's previous three actions, $\mathbf{h^{-i}}\!=\!(a^{-i}_{-3}, a^{-i}_{-2}, a^{-i}_{-1})$.
+For the respective partner strategies, we obtain the following characterization. 
 
-\subsection{Reactive-3 Partner Strategies}\label{section:reactive_three_partner_strategies}
-
-In this section, we focus on the case of $n=3$. reactive-3 strategies are
-denoted as a vector 
-
-$$\mathbf{p}=(p_{CCC}, p_{CCD}, p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{DDD})$$
-
-where $p_{CCC}$ is the probability of cooperating in round $t$ when the
-co-player cooperates in the last 3 rounds, $p_{CCD}$ is the probability of
-cooperating given that the co-player cooperated in the third and second to last
-rounds and defected in the last, and so forth. A nice reactive-3 strategy
-has $p_{CCC} = 1$.
-
-\begin{theorem}[``Reactive-3 Partner Strategies'']\label{theorem:reactive_three_partner_strategies}
-A reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if,
-the strategy entries satisfy the conditions:
-
+\begin{theorem}[Reactive-3 partner strategies]\label{theorem:reactive_three_partner_strategies}
+A nice reactive-3 strategy $\mathbf{p}$ is a partner strategy if and only if its entries satisfy the conditions
 \begin{align}\label{eq:three_bit_conditions}
   \begin{split}
   p_{CCC} & = 1 \\
@@ -723,130 +726,110 @@ the strategy entries satisfy the conditions:
 \end{align}
 \end{theorem}
 
-For proofs see Appendix sections~\ref{appendix:reactive_three_pure_self_reactive}
-and~\ref{appendix:reactive_three_akin_generalized}.
+\noindent
+As before, the average of certain cooperation probabilities need to be below specific thresholds. 
+However, compared to the case of $n\!=\!2$, the respective conditions are now somewhat more difficult to interpret. 
+These conditions again become more straightforward to interpret if we further restrict attention to reactive-3 counting strategies. 
 
-%% PARTNER STRATEGIES: Reactive-Counting Donation Game %%
-
-\subsection{Reactive Counting Strategies}
-
-A special case of reactive strategies is reactive counting strategies. These are
-strategies that respond to the co-player's actions, but they do not distinguish
-between when cooperations/defections occurred; they solely consider the count of
-cooperations in the last $n$ turns. A reactive-$n$ counting strategy is represented
-by a vector $\mathbf{r}=(r_i)_{i \in \{n, n -1, \dots, 0\}}$, where the entry \(r_i\)
-indicates the probability of cooperating given that the co-player cooperated
-\(i\) times in the last \(n\) turns.
-
-Reactive-2 counting strategies are denoted by the vector $\mathbf{r}=(r_2,
-r_1, r_0)$. We can characterise partner strategies among the reactive-2
-counting strategies by setting $r_2 = 1$, and $p_{CD} = p_{DC} = r_1$ and
-$p_{DD} = r_0$ in conditions~\eqref{eq:two_bit_conditions}. This gives us the
-following result.
-
-\begin{corollary}
-A reactive-2 counting strategy $\mathbf{r} = (r_2, r_1, r_0)$ is a partner strategy if and only if,
-
-\begin{equation}\label{eq:counting_two_bit_conditions}
-  \displaystyle r_2 = 1, \qquad r_1 < 1-\frac{1}{2} \cdot \frac{c}{b} \qquad ~~and~~ \qquad r_0 < 1\!-\! \frac{c}{b}.
-\end{equation}
-\end{corollary}
-
-Reactive-3 counting strategies are denoted by the vector $\mathbf{r}=(r_3,
-r_2, r_1, r_0)$. We can characterise partner strategies among reactive-3
-counting strategies by setting $r_3 = 1$, and $p_{CCD} = p_{CDC} = p_{DCC} =
-r_2, p_{DCD} = p_{DDC} = p_{CDD} = r_1$ and $p_{DDD} = r_0$ in
-conditions~\eqref{eq:three_bit_conditions}. This gives us the following result.
-
-\begin{corollary}
-A reactive-3 counting strategy $\mathbf{r} = (r_3, r_2, r_1, r_0)$ is a partner strategy if and only if,
-
+\begin{corollary}[Partners among the reactive-3 counting strategies]
+\label{Cor:PartnersCountingThree}
+A reactive-3 counting strategy $\mathbf{r} \!=\! (r_3, r_2, r_1, r_0)$ is a partner strategy if and only if
 \begin{equation}\label{eq:counting_three_bit_conditions}
-  \displaystyle r_3 = 1 \qquad r_2 < 1- \frac{1}{3} \cdot \frac{c}{b}, \quad r_1 < 1- \frac{2}{3} \cdot \frac{c}{b} \qquad ~~and~~ \qquad r_0 < 1\!-\! \frac{c}{b}.
+  \displaystyle r_3 \!=\! 1 \qquad r_2 \le 1\!-\! \frac{1}{3} \cdot \frac{c}{b}, \qquad r_1 \le 1\!-\! \frac{2}{3} \cdot \frac{c}{b}, \qquad  r_0 \le 1\!-\! \frac{c}{b}.
 \end{equation}
 \end{corollary}
 
-In the case of counting reactive strategies, we generalize to the case of $n$.
+\noindent
+As in the case of $n\!=\!2$ we observe here that with each additional defection of the opponent in memory, the focal player reduces its conditional cooperation probability by a constant, in this case $c/(3b)$.\\
 
-\begin{theorem}[``Reactive-Counting Partner Strategies'']\label{theorem:reactive_counting_partner_strategies}
-A reactive-$n$ counting strategy $\mathbf{r}=(r_i)_{i \in \{n, n-1, \dots, 0\}}$,
-is a partner strategy if and only if:
+\noindent
+{\bf Partners among the memory-$n$ counting strategies.}
+Using the same methods as before, one can in principle also characterize the partners among the reactive-4 or the reactive-5 strategies. However, the  respective conditions quickly become unwieldy. 
+In case of the counting strategies, however, the simple pattern in Corollaries~\ref{Cor:PartnersCountingTwo} and~\ref{Cor:PartnersCountingThree} does generalize to arbitrary memory lengths. 
 
+\begin{theorem}[Partners among the reactive-$n$ counting strategies]\label{theorem:reactive_counting_partner_strategies}
+A nice reactive-$n$ counting strategy $\mathbf{r}\!=\!(r_i)_{i \in \{n, n-1, \dots, 0\}}$,
+is a partner strategy if and only if
 \begin{equation}
-  r_n = 1 \qquad ~~and~~ \qquad r_{n - k} < 1 - \frac{k}{n} \cdot \frac{c}{b}, \text{ for } k \in \{1, 2, \dots, n\}.
+  r_n \!=\! 1 \qquad ~~and~~ \qquad r_{n - k} \le 1 \!-\! \frac{k}{n} \cdot \frac{c}{b} ~~~\text{\normalfont for }~ k \in \{1, 2, \dots, n\}.
 \end{equation}
-
-For proof see Appendix section~\ref{appendix:reactive_counting_n_akin_generalized}.
-
 \end{theorem}
+~
 
 %% PARTNER STRATEGIES: Prisoner's Dilemma %%
 
-\subsection{General Prisoner's Dilemma}\label{section:general_prisoners_dilemma}
+\subsection{Reactive partner strategies in the general prisoner's dilemma}\label{section:general_prisoners_dilemma}
 
-So far we have focused on a special case of the Prisoner's Dilemma, the donation
-game. In this section we show that the results of Sections~\ref{section:reactive_two_partner_strategies}
-and~\ref{section:reactive_three_partner_strategies} can be generalized
-for the iterated Prisoner's Dilemma. For the case of reactive-2 strategies.
+In the previous section, we have characterized the reactive partner strategies for a special case of the prisoner's dilemma, the donation game. 
+In the following, we apply the same methods based on Section~\ref{Sec:Algorithm} to analyze the general prisoner's dilemma. 
+For  the case of reactive-2 strategies, we obtain the following characterization. 
 
 %% PARTNER STRATEGIES: Reactive-2 Prisoner's Dilemma %%
 
-\begin{theorem}\label{theorem:reactive_two_partner_strategies_PD}
-A reactive-2 strategy $\mathbf{p}$, is a partner strategy if and only if,
-the strategy entries satisfy the conditions:
-
-\begin{equation*}
-  \begin{array}{ccc}
-    p_{CC} & = & 1, \\ [0.2cm]
-    (T - P)\, p_{DD} & < & R - P, \\ [0.2cm]
-    (R - S)\, (p_{CD} + p_{DC}) & < & 3 R - 2 S - T, \\ [0.2cm]
-    (T - P)\, p_{DC}  + (R - S)\, p_{CD} & < & 2 R - S - P, \\ [0.2cm]
-    (T - P)\, (p_{CD} + p_{DC}) + (R - S)\, p_{DD}  & < & 3 R + S - 2\,P, \\ [0.2cm]
-    (T - P)\, p_{CD}  + (R - S)\, (p_{CD} + p_{DD}) & < & 4\,R - 2\,S - P - T.
+\begin{theorem}[Partners among the reactive-2 strategies in the prisoner's dilemma]
+\label{theorem:reactive_two_partner_strategies_PD}
+A nice reactive-2 strategy $\mathbf{p}$ is a partner strategy if and only if its entries satisfy the conditions
+\begin{equation}
+  \begin{array}{rcl}
+    p_{CC} & = & 1, \\
+    (T - P)\, p_{DD} & \le & R - P, \\ 
+    (R - S)\, (p_{CD} + p_{DC}) & \le & 3 R - 2 S - T, \\
+    (T - P)\, p_{DC}  + (R - S)\, p_{CD} & \le & 2 R - S - P, \\ 
+    (T - P)\, (p_{CD} + p_{DC}) + (R - S)\, p_{DD}  & \le & 3 R + S - 2\,P, \\
+    (T - P)\, p_{CD}  + (R - S)\, (p_{CD} + p_{DD}) & \le & 4\,R - 2\,S - P - T.
 \end{array}
-\end{equation*}
+\end{equation}
 \end{theorem}
 
-For proof see Appendix section~\ref{appendix:reactive_two_pure_self_reactive_pd}.
+\noindent
+Compared to the donation games, there are now more conditions that need to be met, and the conditions are somewhat more difficult to interpret. Reassuringly, however, the conditions simplify to the conditions~\eqref{eq:two_bit_conditions} in the special case that the payoff values satisfy $R\!=\!b\!-\!c$, $S\!=\!-c$, $T\!=\!b$, and $P\!=\!0$. 
+For the case of reactive-3 strategies, the characterization is as follows. 
+
 
 %% PARTNER STRATEGIES: Reactive-3 Prisoner's Dilemma %%
 
-For the case of reactive-3 strategies.
-
 \begin{theorem}\label{theorem:reactive_three_partner_strategies_PD}
-A reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if,
-the strategy entries satisfy the conditions:
-
-\begin{equation*}
-  \begin{array}{ccc}
-    p_{CCC} & = & 1, \\ [0.2cm]
-    (T - P)\, (p_{CDD} + p_{DCD} + p_{DDC}) + (R - S)\, p_{DDD}  & < & 4 R - 3 P  - S \\ [0.2cm]
-    (T - P)\, p_{CDC}  + (R - S)\, p_{DCD}  & < & 2 R - P  - S \\ [0.2cm]
-    (T - P)\, p_{DDD} & < & R - P\\ [0.2cm]
-    (T - P)\,(p_{CCD} + p_{CDD} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{DCC} + p_{DCD} + p_{DDD}) & < & 8 R - 3 P - 4 S - T \\ [0.2cm]
-    (T - P)\, p_{DCC}  + (R - S)\,(p_{CCD} + p_{CDC}) & < & 3 R - P - 2 S \\ [0.2cm]
-    (T - P)\,(p_{CCD} + p_{DCC} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{CDD} + p_{DCD}) & < & 6 R - 3 P - 3 S \\ [0.2cm]
-    (T - P)\,(p_{CCD} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) & < & 7 R - 2 P - 4 S - T \\ [0.2cm]
-    (T - P)\,(p_{CCD} + p_{CDD} + p_{DCC}) + (R - S)\,(p_{DDC} + p_{DDD}) & < & 5 R - 3 P - 2 S \\ [0.2cm]
-    (T - P)\,(p_{DCD} + p_{DDC}) + (R - S)\, p_{CDD}  & < & 3 R - 2 P - S \\ [0.2cm] 
-    (T - P)\, p_{CCD} + (R - S)\,(p_{CDD} + p_{DCC} + p_{DDC}) & < & 5 R - P - 3 S - T \\ [0.2cm]
-    (T - P)\,(p_{CCD} + p_{DCC}) + (R - S)\,(p_{CDD} + p_{DDC}) & < & 4 R - 2 P - 2 S \\ [0.2cm]
-    (T - P)\,(p_{CDC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) & < & 7 R - 2 P - 4 S - T \\ [0.2cm]
-    (T - P)\,(p_{CDC} + p_{CDD} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{DCC} + p_{DDC} + p_{DDD}) & < & 8 R - 3 P - 4 S - T \\ [0.2cm]
-    (T - P)\,(p_{CDC} + p_{DCC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{CDD} + p_{DDC}) & < & 6 R - 3 P - 3 S \\ [0.2cm]
-    (T - P)\,(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{DCD} + p_{DDD}) & < & 7 R - 4 P - 3 S \\ [0.2cm]
-    (R - S)\,(p_{CCD} + p_{CDC} + p_{DCC}) & < & 4 R - 3 S - T \\ [0.2cm]
-    (T - P)\,(p_{CCD} + p_{CDD}) + (R - S)\,(p_{DCC} + p_{DDC} + p_{DDD}) & < & 6 R - 2 P - 3 S - T \\ [0.2cm]
-    (T - P)\,(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{DDC} + p_{DDD}) & < & 7 R - 4 P - 3 S \\ [0.2cm]
-    \end{array}
-\end{equation*}
+A nice reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if its entries satisfy the conditions in Table~\ref{Tab:PartnerReactiveThreePD}. 
 \end{theorem}
 
-For proof see Appendix section~\ref{appendix:reactive_three_pure_self_reactive_pd}.
+\noindent
+Given the complexity of the conditions in Table~\ref{Tab:PartnerReactiveThreePD}, we do not pursue deriving conditions for $n\!\ge\!2$, even though the same methods are generally applicable. 
 
+
+\begin{table}[t!]
+\fbox{
+\parbox{16cm}{
+\begin{equation*} \small
+  \begin{array}{rcl}
+    p_{CCC} & = & 1, \\ [0.2cm]
+    (T - P)\, (p_{CDD} + p_{DCD} + p_{DDC}) + (R - S)\, p_{DDD}  & \le & 4 R \!-\! 3 P \! - \!S \\ [0.2cm]
+    (T - P)\, p_{CDC}  + (R - S)\, p_{DCD}  & < & 2 R \!-\! P  \!-\! S \\ [0.2cm]
+    (T - P)\, p_{DDD} & \le & R \!-\! P\\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{DCC} + p_{DCD} + p_{DDD}) & \le & 8 R\! -\! 3 P\! -\! 4 S \!-\! T \\ [0.2cm]
+    (T - P)\, p_{DCC}  + (R - S)\,(p_{CCD} + p_{CDC}) & \le & 3 R \!-\! P \!-\! 2 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DCC} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{CDD} + p_{DCD}) & \le & 6 R \!-\! 3 P \!-\! 3 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) & \le & 7 R \!-\! 2 P \!-\! 4 S \!-\! T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DCC}) + (R - S)\,(p_{DDC} + p_{DDD}) & \le & 5 R \!-\! 3 P \!-\! 2 S \\ [0.2cm]
+    (T - P)\,(p_{DCD} + p_{DDC}) + (R - S)\, p_{CDD}  & \le & 3 R \!-\! 2 P \!-\! S \\ [0.2cm] 
+    (T - P)\, p_{CCD} + (R - S)\,(p_{CDD} + p_{DCC} + p_{DDC}) & \le & 5 R \!-\! P \!-\! 3 S \!-\! T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{DCC}) + (R - S)\,(p_{CDD} + p_{DDC}) & \le & 4 R \!-\! 2 P \!-\! 2 S \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) & \le & 7 R \!-\! 2 P \!-\! 4 S \!-\! T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{CDD} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{DCC} + p_{DDC} + p_{DDD}) & \le & 8 R \!-\! 3 P\! -\! 4 S \!-\! T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{DCC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{CDD} + p_{DDC}) & \le & 6 R \!-\! 3 P \!-\! 3 S \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}) + (R - S)\,(p_{CDC} + p_{DCD} + p_{DDD}) & \le & 7 R \!-\! 4 P \!-\! 3 S \\ [0.2cm]
+    (R - S)\,(p_{CCD} + p_{CDC} + p_{DCC}) & \le & 4 R \!-\! 3 S \!-\! T \\ [0.2cm]
+    (T - P)\,(p_{CCD} + p_{CDD}) + (R - S)\,(p_{DCC} + p_{DDC} + p_{DDD}) & \le & 6 R \!-\! 2 P \!-\! 3 S \!-\! T \\ [0.2cm]
+    (T - P)\,(p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD}) + (R - S)\,(p_{CCD} + p_{DDC} + p_{DDD}) & \le & 7 R \!-\! 4 P \!-\! 3 S \\ [0.2cm]
+ \end{array}
+ \end{equation*}
+ }}
+ \caption{Necessary and sufficient conditions for a nice reactive-3 strategy to be a partner in the  prisoner's dilemma.}
+ \label{Tab:PartnerReactiveThreePD}
+ \end{table}
 
 \clearpage
-\newpage
+
+
 
 \appendix
 
@@ -904,6 +887,26 @@ As the right side has absolute value at most 1,
 Repeat for $1 < k \leq n$.
 
 \end{proof}
+
+~
+
+\noindent
+\begin{proof}[Sketch of the proof of Theorem~\ref{lemma:nash_against_pure_self_reactive}]
+By Lemma~\ref{lemma:self_reactive_sufficiency}, we know there exists a best response to $\mathbf{p}$ within the self-reactive $n$ strategies. It thus remains to show that this best response $\mathbf{\tilde p}$ can be chosen to be pure. 
+The proof follows from a series of auxiliary results:\\
+
+\noindent
+{\bf Auxiliary result 1:}
+Let $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that its transition matrix $\tilde M$ according to Eq.~\eqref{Eq:TransitionM1} has a unique invariant distribution $\mathbf{\tilde v} \!=\! (\tilde v_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$. Moreover, for a given history $\mathbf{h'}\!\in\!H^1$, let $\tilde M_\mathbf{h'}$ be the $(2^n\!-\!1)\!\times\!(2^n\!-\!1)$ matrix one obtains from $\tilde M$ after subtracting the $2^n\!\times\!2^n$ identity matrix, and then deleting the row and the column associated to $\mathbf{h'}$. Then $(\tilde{v}_\mathbf{h'})_{\mathbf{h'}\in H^i}$ is up to a normalization factor equal to  $\big(\det(\tilde M_{\mathbf{h'}})\big)_{\mathbf{h'}\in H^i}$.\\
+
+\noindent
+{\bf Auxiliary result 2:}
+On its domain, the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ is a rational function, and both its numerator and denominator can be chosen to be affine linear in each entry $\tilde p_\mathbf{h^i} $, for all $\mathbf{h^i}\!\in\!H^i$.\\
+
+\noindent
+{\bf Auxiliary result 3:} Suppose $g,h:[0,1]^{2^n}\!\rightarrow\! \mathbb{R}$ and suppose both $g(\mathbf{x})$ and $h(\mathbf{x})$ are affine linear in each component of $\mathbf{x}=(x_1,\ldots,x_{2^n})$. If the rational function $f\!:=\!g/h$ is continuous on $[0,1]^{2^n}$ then it has a maximum in one of the corners. That is, there is some $\mathbf{x^*}\!\in\!\{0,1\}^{2^n}$ such that $f(\mathbf{x^*}) \ge f(\mathbf{x})$ for all $\mathbf{x}\!\in\![0,1]^{2^n}$.
+\end{proof}
+
 
 
 \section{Proofs for Theorems Based on Pure Self-reactive Strategies Result}\label{appendix:proofs_for_theorems_pure_self_reactive}
