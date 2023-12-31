@@ -523,6 +523,13 @@ considering that part of the history.
  Then there is a self-reactive-$n$ strategy~$\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that $\pi^i(\mathbf{p},\sigma)\! = \!\pi^i(\mathbf{p},\mathbf{\tilde{p}})$ for $i\!\in\!\{1,2\}$.
 \end{lemma}
 
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=\textwidth]{figures/sufficiency_of_self_reactive_numerical_example_n_2.pdf}
+    \caption{Parameters: $b=3, c=1$ and $\mathbf{p}=(0.37, 0.89, 0.95, 0.23)$}
+    \label{fig:enter-label}
+\end{figure}
+
 \noindent
 If we are to verify that some given reactive-$\mathbf{n}$ strategy $\mathbf{p}$ is a Nash equilibrium, Lemma~\ref{lemma:self_reactive_sufficiency} simplifies our task considerably. 
 Instead of checking condition~\eqref{Eq:NashCondition} for all possible strategies $\sigma'$, we only need to check it for all self-reactive strategies $\mathbf{\tilde{p}}\!\in\! \mathcal{S}_n$. 
@@ -546,8 +553,23 @@ A reactive strategy $\mathbf{p}\!\in\!\mathcal{R}_n$ is a Nash equilibrium if an
 \end{corollary}
 
 \noindent
-In particular, to verify that some given reactive-$n$ strategy is a Nash equilibrium, one needs to check at most $2^n$ possible deviations.\\
+Corollary \ref{Cor:NashCondition} gives us a straightforward procedure to check whether a given reactive strategy $\mathbf{p}$ is a Nash equilibrium (for a depiction, see Algorithm~\ref{Alg:Nash}). To verify that $\mathbf{p}$ is a Nash equilibrium, we merely need to compare its payoff against itself to the payoff of a deviation towards one of the $2^n$ pure self-reactive strategies.\\
 
+\begin{algorithm}[t!]
+   \setstretch{1.35}
+      \SetKwInOut{Input}{input}
+      \Input{$\mathbf{p}, n$}
+      pure\_self\_reactive\_strategies $\gets \left\{ \mathbf{\tilde{p}} ~\big|~ \mathbf{\tilde{p}} \in \{0, 1\}^{2 ^ n} \right\}$ \;
+      isNash $\gets$ True \; 
+      \For{$\mathbf{\tilde{p}} \in$ pure\_self\_reactive\_strategies}{
+      \uIf{$ \pi^1(\mathbf{p}, \mathbf{p}) < \pi^1(\mathbf{\tilde{p}}, \mathbf{p})$}{
+        isNash $\gets$ False \;
+      }
+      }
+      \Return (\(\mathbf{p}\), isNash) \;
+  \caption{An algorithm to verify whether a given reactive strategy~$\mathbf{p}$ is a Nash equilibrium.}
+  \label{Alg:Nash}
+\end{algorithm}
 
 
 %% SELF-REACTIVE: Calculating Payoff using a smaller transition matrix %%
