@@ -24,3 +24,10 @@ data/*
 matlab_data/*
 checks/*
 *csv
+
+# Folder for CH to keep track of the history
+oldfiles/
+
+# CH's Mathematica calculations
+mathematica/
+
