@@ -17,9 +17,6 @@
 \renewcommand{\baselinestretch}{1.15}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
-
-
-
 \usepackage{minitoc}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -29,6 +26,7 @@
 \usepackage{standalone}
 
 \newcommand{\nikoleta}[1]{\textcolor{orange}{\textbf{NG}: #1}}
+\newcommand{\christian}[1]{\textcolor{blue}{\textbf{CH}: #1}}
 
 \newtheoremstyle{plainCl1}% name
 {12pt}%      Space above, empty = 'usual value'
@@ -46,6 +44,7 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{proposition}{Proposition}
 
+
 \newtheoremstyle{plainCl2}% name
 {12pt}%      Space above, empty = 'usual value'
 {12pt}%      Space below
@@ -58,6 +57,8 @@
 
 \theoremstyle{plainCl2}
 \newtheorem*{definition}{Definition}
+
+
 
 \def\wsls{\texttt{WSLS}}
 \def\tft{\texttt{TFT}}
@@ -74,7 +75,7 @@
 
 
 
-\title{~\\[-1.5cm]{\sffamily \Large Supporting Information}\\ {\bfseries \sffamily \LARGE Reactive strategies with longer memory}\\[-0.3cm]}
+\title{~\\[-1.5cm]{\sffamily \Large Supporting Information}\\ {\bfseries \sffamily \Large Reactive strategies with longer memory}\\[-0.3cm]}
 
 %% Perhaps: Better title (Conditional cooperation with longer memory) %% 
 
@@ -85,29 +86,23 @@
 
 \maketitle
 
+~\\
+\noindent
+
+\tableofcontents
+ \clearpage \newpage
+
+
 
 \noindent
-\begin{comment}
-This document provides further details on our methodology and analytical
+This document provides further details on our methodology and our analytical
 results.
-Section~\ref{section:model} summarizes the model. In particular, we
-provide further details on how we approximate the play of players using
-different strategies and how we calculate long-term payoffs for strategies with
-memory higher than $1$. In Section~\ref{section:tft_and_gtft}, we analytically
-show that well-known strategies like Tit For Tat and Generous Tit For Tat, of
-all memory lengths, as well as their delayed versions, are partner strategies.
-In Section~\ref{section:self_reactive_sufficiency}, we derive the analytical
-result that when facing a player with a reactive$-n$ strategy, the play of
-memory$-n$ strategy can be approximated by a self-reactive-$n$ strategy. In the
-next section (Section~\ref{section:algorithm_for_nash}), we present an immediate
-application of this result, resulting in an efficient way to identify Nash
-equilibria in reactive strategies. In Section~\ref{section:reactive_strategies},
-we present all the results discussed in the main paper. Specifically, we
-characterize partner strategies among reactive-$n$ strategies. In
-subsection~\ref{section:general_prisoners_dilemma}, we demonstrate how our
-findings extend to the general Prisoner's Dilemma. The proofs of the results in
-this section are presented in the Appendices.
-\end{comment}
+Section~\ref{section:model} summarizes the model. 
+In particular, we introduce all relevant strategy spaces, 
+and we show how to compute long-term payoffs for strategies with more than one-round memory. 
+Section~\ref{section:results} contains our key results. 
+Here, we define partner strategies, we present an algorithm that allows us to verify whether a given reactive-$n$ strategy is a partner, and we apply this algorithm to fully characterize the reactive-$n$ partner strategies for $n\!=\!2$ and $n\!=\!3$.
+All proofs are presented in the Appendix in Section~\ref{section:appendix}.
 
 
 %%%%%%%%%
@@ -285,7 +280,7 @@ More specifically, suppose $\mathbf{v}(t) \!=\! \big(\,v_\mathbf{h}(t)\,\big)_{\
 Then the respective probability distribution after round $t\!+\!1$ is given by $\mathbf{v}(t\!+\!1) \!=\! \mathbf{v}(t)\cdot M$. 
 The long-run dynamics is particularly simple to describe when the matrix $M$ is primitive (which happens, for example, when the two strategies are $m^i_\mathbf{h}$ are strictly stochastic). 
 In that case, it follows by the theorem of Perron and Frobenius that $\mathbf{v}(t)$ converges to some $\mathbf{v}$ as $t\to \infty$. 
-As a result, also the respective time average exists and converges, 
+As a result, also the respective time average exists and converges to $\mathbf{v}$,
 \begin{equation} \label{Eq:TimeAverage}
 \mathbf{v} = \lim_{\tau\to\infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \mathbf{v}(t).  
 \end{equation}
@@ -385,6 +380,7 @@ According to Eq.~\eqref{Eq:Akin}, both interpretations are equivalent.\\
 %%%%%%%%%%
 
 \section{Characterizing the partner strategies among the reactive-$n$ strategies}
+\label{section:results}
 
 \subsection{Partner strategies}
 
@@ -526,18 +522,21 @@ considering that part of the history.
 \begin{figure}[t!]
     \centering
     \includegraphics[width=\textwidth]{figures/sufficiency_of_self_reactive_numerical_example_n_2.pdf}
-    \caption{Parameters: $b=3, c=1$ and $\mathbf{p}=(0.37, 0.89, 0.95, 0.23)$}
-    \label{fig:enter-label}
+    \caption{{\bf Feasible payoffs against a reactive-2 strategy.} We consider a player with a fixed reactive-2 strategy $\mathbf{p}\!=\!(0.37, 0.89, 0.95, 0.23)$. The player interacts either many other players who randomly adopt either some random memory-2 strategy (left), a reactive-2 strategy (middle), or a self-reactive-2 strategy (right panel). The panels show the resulting payoffs to the two players as red dots, for a donation game with  $b\!=\!3$ and $c\!=\!1$.
+We observe that the memory-2 strategies and the self-reactive-2 strategies lead to the same region of feasible payoffs against $\mathbf{p}$, in line with Lemma~\ref{lemma:self_reactive_sufficiency}. In contrast, if $\mathbf{p}$'s opponent is restricted to reactive-2 strategies, the set of feasible payoffs is strictly smaller. 
+}
+    \label{fig:SelfReactiveSufficiency}
 \end{figure}
 
 \noindent
+For an illustration of this result, see Figure~\ref{fig:SelfReactiveSufficiency}. 
 If we are to verify that some given reactive-$\mathbf{n}$ strategy $\mathbf{p}$ is a Nash equilibrium, Lemma~\ref{lemma:self_reactive_sufficiency} simplifies our task considerably. 
 Instead of checking condition~\eqref{Eq:NashCondition} for all possible strategies $\sigma'$, we only need to check it for all self-reactive strategies $\mathbf{\tilde{p}}\!\in\! \mathcal{S}_n$. 
 Any payoff that could be obtained with some general strategy can already be obtained with a self-reactive strategy. 
 The following result simplifies our task even further. 
 
 \begin{theorem}[To any reactive strategy, there is a best response among the pure self-reactive strategies]
-\label{lemma:nash_against_pure_self_reactive} 
+\label{theorem:nash_against_pure_self_reactive} 
 For any reactive strategy $\mathbf{p}\!\in\!\mathcal{R}_n$ there is some pure self-reactive strategy $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that 
  \begin{equation} \label{Eq:BRSelfReactive}
 \pi^1(\mathbf{\tilde p},\mathbf{p}) \!\ge\! \pi^1(\sigma',\mathbf{p}) ~~\text{for all other strategies}~\sigma'~\text{for which}~ \pi^1(\sigma',\mathbf{p})~\text{exists}. 
@@ -695,7 +694,7 @@ The entries $p_\mathbf{h^{-i}}$ are the player's cooperation probability, depend
 For the strategy to be nice, we require $p_{CC}\!=\!1$. 
 Based on Corollary~\ref{Cor:NashCondition}, we obtain the following characterization of partners. 
 
-\begin{theorem}[Reactive-2 partner strategies]\label{theorem:reactive_two_partner_strategies}
+\begin{theorem}[Reactive-2 partner strategies in the donation game]\label{theorem:reactive_two_partner_strategies}
 A nice reactive-2 strategy $\mathbf{p}$, is a partner strategy if and only if its entries satisfy the conditions
 \begin{equation}\label{eq:two_bit_conditions}
   p_{CC} \!=\! 1, \qquad \displaystyle \frac{p_{CD} \!+\! p_{DC}}{2} \!\le\! 1 \!-\! \frac{1}{2} \cdot \frac{c}{b}, \qquad p_{DD} \le 1\!-\! \frac{c}{b}.
@@ -734,7 +733,7 @@ $\mathbf{p}=(p_{CCC}, p_{CCD}, p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{D
 Again, each entry $p_\mathbf{h^{-i}}$ refers to the player's cooperation probability, depending on the co-player's previous three actions, $\mathbf{h^{-i}}\!=\!(a^{-i}_{-3}, a^{-i}_{-2}, a^{-i}_{-1})$.
 For the respective partner strategies, we obtain the following characterization. 
 
-\begin{theorem}[Reactive-3 partner strategies]\label{theorem:reactive_three_partner_strategies}
+\begin{theorem}[Reactive-3 partner strategies in the donation game]\label{theorem:reactive_three_partner_strategies}
 A nice reactive-3 strategy $\mathbf{p}$ is a partner strategy if and only if its entries satisfy the conditions
 \begin{align}\label{eq:three_bit_conditions}
   \begin{split}
@@ -788,7 +787,7 @@ For  the case of reactive-2 strategies, we obtain the following characterization
 
 %% PARTNER STRATEGIES: Reactive-2 Prisoner's Dilemma %%
 
-\begin{theorem}[Partners among the reactive-2 strategies in the prisoner's dilemma]
+\begin{theorem}Reactive-2 partner strategies in the prisoner's dilemma]
 \label{theorem:reactive_two_partner_strategies_PD}
 A nice reactive-2 strategy $\mathbf{p}$ is a partner strategy if and only if its entries satisfy the conditions
 \begin{equation}
@@ -810,12 +809,12 @@ For the case of reactive-3 strategies, the characterization is as follows.
 
 %% PARTNER STRATEGIES: Reactive-3 Prisoner's Dilemma %%
 
-\begin{theorem}\label{theorem:reactive_three_partner_strategies_PD}
+\begin{theorem}\label{theorem:reactive_three_partner_strategies_PD}[Reactive-3 partner strategies in the prisoner's dilemma]
 A nice reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if its entries satisfy the conditions in Table~\ref{Tab:PartnerReactiveThreePD}. 
 \end{theorem}
 
 \noindent
-Given the complexity of the conditions in Table~\ref{Tab:PartnerReactiveThreePD}, we do not pursue deriving conditions for $n\!\ge\!2$, even though the same methods are generally applicable. 
+Given the complexity of the conditions in Table~\ref{Tab:PartnerReactiveThreePD}, we do not pursue deriving conditions for $n\!\ge\!2$, even though the same methods remain to be applicable. \\
 
 
 \begin{table}[t!]
@@ -849,17 +848,26 @@ Given the complexity of the conditions in Table~\ref{Tab:PartnerReactiveThreePD}
  \label{Tab:PartnerReactiveThreePD}
  \end{table}
 
-\clearpage
 
 
 
-\appendix
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% RESULTS: PROOFS BASED ON PURE-SELF-REACTIVE %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{proof}[Proof of Lemma~\ref{lemma:AkinGeneralised}]
+%%%%%%%%%%%%%%%%
+%%  APPENDIX: PROOFS  %%
+%%%%%%%%%%%%%%%%
+
+
+\section{Appendix: Proofs}
+\label{section:appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% APPENDIX: Proof of Akin's Lemma %% 
+%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Proof of Lemma~\ref{lemma:AkinGeneralised}: Akin's lemma}
+
+\begin{proof}
 Let player 1 use a memory-1 strategy $\mathbf{m}$ and player 2 an arbitrary
 memory-$n$ strategy. The probability that player $1$ cooperated in the
 \(n^{\text{th}}\) round be denoted as \(v_{\text{C}}^{n}\). Let
@@ -910,45 +918,50 @@ Repeat for $1 < k \leq n$.
 
 \end{proof}
 
-~
 
-\noindent
-\begin{proof}[Sketch of the proof of Theorem~\ref{lemma:nash_against_pure_self_reactive}]
-By Lemma~\ref{lemma:self_reactive_sufficiency}, we know there exists a best response to $\mathbf{p}$ within the self-reactive $n$ strategies. It thus remains to show that this best response $\mathbf{\tilde p}$ can be chosen to be pure. 
-The proof follows from a series of auxiliary results:\\
 
-\noindent
-{\bf Auxiliary result 1:}
-Let $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that its transition matrix $\tilde M$ according to Eq.~\eqref{Eq:TransitionM1} has a unique invariant distribution $\mathbf{\tilde v} \!=\! (\tilde v_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$. Moreover, for a given history $\mathbf{h'}\!\in\!H^1$, let $\tilde M_\mathbf{h'}$ be the $(2^n\!-\!1)\!\times\!(2^n\!-\!1)$ matrix one obtains from $\tilde M$ after subtracting the $2^n\!\times\!2^n$ identity matrix, and then deleting the row and the column associated to $\mathbf{h'}$. Then $(\tilde{v}_\mathbf{h'})_{\mathbf{h'}\in H^i}$ is up to a normalization factor equal to  $\big(\det(\tilde M_{\mathbf{h'}})\big)_{\mathbf{h'}\in H^i}$.\\
 
-\noindent
-{\bf Auxiliary result 2:}
-On its domain, the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ is a rational function, and both its numerator and denominator can be chosen to be affine linear in each entry $\tilde p_\mathbf{h^i} $, for all $\mathbf{h^i}\!\in\!H^i$.\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX: Proof of  Self-Reactive Sufficiency %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\noindent
-{\bf Auxiliary result 3:} Suppose $g,h:[0,1]^{2^n}\!\rightarrow\! \mathbb{R}$ and suppose both $g(\mathbf{x})$ and $h(\mathbf{x})$ are affine linear in each component of $\mathbf{x}=(x_1,\ldots,x_{2^n})$. If the rational function $f\!:=\!g/h$ is continuous on $[0,1]^{2^n}$ then it has a maximum in one of the corners. That is, there is some $\mathbf{x^*}\!\in\!\{0,1\}^{2^n}$ such that $f(\mathbf{x^*}) \ge f(\mathbf{x})$ for all $\mathbf{x}\!\in\![0,1]^{2^n}$.
+\subsection{Proof of Lemma~\ref{lemma:self_reactive_sufficiency}: Sufficiency of testing self-reactive strategies}
+
+\begin{proof}
+\christian{To be added.}
 \end{proof}
 
 
 
-\section{Proofs for Theorems Based on Pure Self-reactive Strategies Result}\label{appendix:proofs_for_theorems_pure_self_reactive}
 
-%% PROOF PURE SELF-REACTIVE: Reactive-2 Donation Game %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX: Proof of pure self-reactive Sufficiency %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Proof of Theorem~\ref{theorem:reactive_two_partner_strategies}}\label{appendix:reactive_two_pure_self_reactive}
+\subsection{Proof of Theorem~\ref{theorem:nash_against_pure_self_reactive} : Sufficiency of pure self-reactive strategies}
 
-Suppose player $1$ adopts a nice reactive-2 strategy
-$\mathbf{p}\!=\!(1, p_{CD}, p_{DC}, p_{DD})$. For $\mathbf{p}$ to be a Nash
-strategy,
+\noindent
+\christian{
+\begin{proof}[Sketch of the proof of Theorem~\ref{theorem:nash_against_pure_self_reactive}]
+By Lemma~\ref{lemma:self_reactive_sufficiency}, we know there exists a best response to $\mathbf{p}$ within the self-reactive $n$ strategies. It thus remains to show that this best response $\mathbf{\tilde p}$ can be chosen to be pure. 
+The proof follows from a series of auxiliary results:\\[0.5cm]
+\noindent
+{\bf Auxiliary result 1:}
+Let $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that its transition matrix $\tilde M$ according to Eq.~\eqref{Eq:TransitionM1} has a unique invariant distribution $\mathbf{\tilde v} \!=\! (\tilde v_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$. Moreover, for a given history $\mathbf{h'}\!\in\!H^1$, let $\tilde M_\mathbf{h'}$ be the $(2^n\!-\!1)\!\times\!(2^n\!-\!1)$ matrix one obtains from $\tilde M$ after subtracting the $2^n\!\times\!2^n$ identity matrix, and then deleting the row and the column associated to $\mathbf{h'}$. Then $(\tilde{v}_\mathbf{h'})_{\mathbf{h'}\in H^i}$ is up to a normalization factor equal to  $\big(\det(\tilde M_{\mathbf{h'}})\big)_{\mathbf{h'}\in H^i}$.\\[0.5cm]
+\noindent
+{\bf Auxiliary result 2:}
+On its domain, the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ is a rational function, and both its numerator and denominator can be chosen to be affine linear in each entry $\tilde p_\mathbf{h^i} $, for all $\mathbf{h^i}\!\in\!H^i$.\\[0.5cm]
+\noindent
+{\bf Auxiliary result 3:} Suppose $g,h:[0,1]^{2^n}\!\rightarrow\! \mathbb{R}$ and suppose both $g(\mathbf{x})$ and $h(\mathbf{x})$ are affine linear in each component of $\mathbf{x}=(x_1,\ldots,x_{2^n})$. If the rational function $f\!:=\!g/h$ is continuous on $[0,1]^{2^n}$ then it has a maximum in one of the corners. That is, there is some $\mathbf{x^*}\!\in\!\{0,1\}^{2^n}$ such that $f(\mathbf{x^*}) \ge f(\mathbf{x})$ for all $\mathbf{x}\!\in\![0,1]^{2^n}$.
+\end{proof}
+}
 
-\begin{equation*}
-  s_{\mathbf{\tilde{p}}, \mathbf{p}} \leq (b - c),
-\end{equation*}
 
-must hold against all \(\mathbf{\tilde{p}} \in \tilde{P}\), where \(\tilde{P}\) is the
-set of all pure self-reactive-2 strategies. In the case of $n=2$, the set
-contains 16 strategies.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX:  Reactive-2 partners, donation game  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Proof of Theorem~\ref{theorem:reactive_two_partner_strategies}: Reactive-2 partner strategies in the donation game}
 \begin{proof}
 Suppose player $1$ plays a nice reactive-2 strategy $\mathbf{p} = (1, p_{CD},
 p_{DC}, p_{DD})$, and suppose the co-player $2$ plays a pure self-reactive-2
@@ -981,9 +994,13 @@ Notice that only conditions \eqref{Eq:Condition2Reactive1} and
 
 \end{proof}
 
-%% PROOF PURE SELF-REACTIVE: Reactive-3 Donation Game %%
 
-\subsection{Proof of Theorem~\ref{theorem:reactive_three_partner_strategies}}\label{appendix:reactive_three_pure_self_reactive}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX:  Reactive-3 partners, donation game  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Proof of Theorem~\ref{theorem:reactive_three_partner_strategies}: Reactive-3 partner strategies in the donation game}\label{appendix:reactive_three_pure_self_reactive}
 
 Consider all the pure self-reactive-3 strategies. There is
 a total of 256 such strategies. The payoff expression for each of
@@ -1047,9 +1064,119 @@ be derived from the sums of conditions in Eq.~\eqref{eq:NashConditionsN3PartOne}
 and~\eqref{eq:NashConditionsN3PartTwo}.
 \end{proof}
 
-%% PROOF PURE SELF-REACTIVE: Reactive-2 Prisoner's Dilemma %%
 
-\subsection{Proof of Theorem~\ref{theorem:reactive_two_partner_strategies_PD}}\label{appendix:reactive_two_pure_self_reactive_pd}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX:  Reactive-n counting partners  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Proof of Theorem~\ref{theorem:reactive_counting_partner_strategies}: Reactive-$n$ counting strategies in the donation game}
+
+To prove Theorem~\ref{theorem:reactive_counting_partner_strategies}, we need
+to introduce some additional notation. We introduce the vector $\mathbf{w} =
+(w_i)_{i \in \{0, 1, \dots, n\}}$, where the entry $w_i$ represents the
+probability that, in the long-term outcome, the co-player cooperates $i$ times.
+
+An element of $\mathbf{w}$ is the sum of one or more of the marginal
+distributions $u^2_{h^2}$ for $h^2 \in H^2$. Specifically, let,
+
+$$
+H^2_{i} = \{h^2 : |a_{C}(h^2)| = i \quad \forall \quad h^2 \in H^2\},
+$$
+
+where
+
+$$
+a_{C}(h^2) = \{a^2_{-t} : a^2_{-t} = C \quad \forall \quad a^2_{-t} \in h^2\}.
+$$
+
+Then we define $w_i$ as
+
+$$
+w_{i} = \sum_{h \in H^2_{i}} v_{h}.
+$$
+
+Please note that
+
+\begin{equation}\label{Eq:normalization_counting}
+  \sum_{i=0}^{r} w_i = 1.
+\end{equation}
+
+The cooperation rate of the reactive player is given by
+
+\begin{equation}\label{Eq:player_cooperation_counting}
+  \rho_{\mathbf{p}} = \sum_{i=0}^{n} r_{i} \cdot w_{i}.
+\end{equation}
+
+The co-player can use any self-reactive-$n$ strategy, and thus the co-player
+differentiates between when the last cooperation/defection occurred. However, we
+can still express the co-player's cooperation rate as a function of $w_{i}$.
+More specifically, the co-player's cooperation rate is
+
+\begin{equation}\label{Eq:coplayer_cooperation_counting}
+  \rho_{\mathbf{\tilde{p}}} = \sum_{i=0}^{n} \frac{i}{n} \cdot w_{i}.
+\end{equation}
+
+We will also define the self-reactive counting $k$-round repeat strategies.
+These strategies start by playing a sequence of cooperation in the first $n$
+moves until they reach a total of $i$ cooperations, after which they defect for
+$n-i$ rounds. Thereafter, they repeat their $a^{i}_{-n}$ move.
+We denote this set of strategies as $A =\{\mathbf{A^{0}},
+\mathbf{A^{1}}, \dots, \mathbf{A^{n}} \}$.
+
+The payoff of an alternating self-reactive-$n$ against a counting-reactive-$n$ $\mathbf{r}$ is given by
+
+\begin{equation}\label{Eq:alternating_strategies_payoff}
+  s_{\mathbf{A^{i}}, \mathbf{r}} = b \cdot r_i - \frac{i}{n} \cdot c ~~for~~ i \in [0, n].
+\end{equation}
+
+The intuition behind Eq.~\eqref{Eq:alternating_strategies_payoff} is that, in
+the long term, the strategies end up in a state where $\mathbf{A^{i}}$ has
+cooperated $i$ times in the last $n$ turns. Thus, the co-player will cooperate
+and provide the benefit $b$ with a probability $r_i$, while in return, the
+alternating strategy has cooperated $\frac{i}{n}$ times and pays the cost.
+
+With this, we have all the required tools to prove the following theorem.
+
+\begin{proof}
+($\Rightarrow$) As discussed previously, a strategy can only be a Nash equilibrium if the payoff of the co-player does not exceed $(b - c)$. Therefore, for $\mathbf{p}$ to be a Nash equilibrium against each strategy in set $A$ (for $i \in [0, n]$),
+
+\begin{align*}
+  s_{\mathbf{A^{i}}, \mathbf{r}} \leq b - c \\
+  b \cdot r_i - \frac{i}{n} \cdot c \leq   b - c \\
+  r_i \leq 1 - \frac{i}{n} \cdot \frac{c}{b}.
+\end{align*}
+
+Now, suppose player $2$ has some strategy $\mathbf{m}$ and player $1$ has a reactive-counting strategy such that $s_{\mathbf{m}, \mathbf{p}} > b - c$. It follows that
+
+\begin{equation}
+\begin{array}{rcl}
+0 &\le & s_{\mathbf{m}, \mathbf{p}}-(b - c)\\[0.2cm]
+&\stackrel{Eq.~\eqref{Eq:payoff}}{=} & b\rho_\mathbf{p} - c\rho_\mathbf{m} - (b - c)\\[0.2cm]
+&\stackrel{Eqs.~\eqref{Eq:normalization_counting}, \eqref{Eq:player_cooperation_counting}, \eqref{Eq:coplayer_cooperation_counting}}{=} & b\; \sum_{k=0}^{n} r_{n - k} \cdot u_{n - k} - c\, \sum_{k=0}^{n} \frac{n - k}{n} \cdot u_{n - k} - (b - c)\; \sum_{k=0}^{n} u_{n - k}\\[0.2cm]
+& &  u_{n} \Big(b\, (r_n - 1) \Big) +  \sum_{k=1}^{n} u_{n - k} \Big(b\; \sum_{k=1}^{n} r_{n - k} - c\, \sum_{k=0}^{n - 1} \frac{n - k}{n} - (b - c)\Big)
+\end{array}
+\end{equation}
+
+This condition holds only if
+
+\begin{align*}
+  \Big(b\; r_{n - k} - c\, \frac{n - k}{n} - (b - c)\Big) < 0 \Rightarrow \\ 
+  b \, (r_{n - k} - 1) + (1 - \frac{n - k}{n})\, c < 0 \Rightarrow \\ 
+  r_{n - k} < 1 - \frac{n}{k} 
+\end{align*}
+
+\end{proof}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX:  Reactive-2 partners, prisoner's dilemma  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Proof of Theorem~\ref{theorem:reactive_two_partner_strategies_PD}: Reactive-2 partner strategies in the prisoner's dilemma}\label{appendix:reactive_two_pure_self_reactive_pd}
 
 There are 16 pure-self reactive strategies in $n=2$. We use calculate the
 explicit payoff expressions for each pure self-reactive strategy against a nice
@@ -1079,9 +1206,13 @@ Setting the above expressions to $\leq R$ gives the following conditions,
 \end{array}
 \end{equation*}
 
-%% PROOF PURE SELF-REACTIVE: Reactive-3 Prisoner's Dilemma %%
 
-\subsection{Proof of Theorem~\ref{theorem:reactive_three_partner_strategies_PD}}\label{appendix:reactive_three_pure_self_reactive_pd}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX:  Reactive-2 partners, prisoner's dilemma  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Proof of Theorem~\ref{theorem:reactive_three_partner_strategies_PD}: Reactive-3 partner strategies in the prisoner's dilemma}
 
 Previously as in the previous subsection we calculate the explicit payoff
 expressions for each \(\mathbf{\tilde{p}} \in \tilde{P}\) against a nice
@@ -1153,7 +1284,35 @@ Setting the above expressions to $\leq R$ gives the following conditions,
 \end{equation*}
 
 
+\clearpage
+\newpage
+
+\section{Supplementary References} ~\\[-2.8cm]
+\renewcommand\refname{ }
+{\setlength{\bibsep}{0\baselineskip}
+\bibliographystyle{naturemag}
+\bibliography{bibliography}
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ADDITIONAL CONTENT %%
 %% RESULTS: PROOFS BASED ON GENERALIZED AKIN %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1385,113 +1544,3 @@ Thus, conditions Eq.~\eqref{Eq:NashConditionDonationGameN3} reassure that
 $\mathbf{p}$ is Nash strategy, and given that $p_{CC} = 1$, it is a partner
 strategy.
 \end{proof}
-
-%% PROOF AKIN GENERALIZED: Counting-n Donation Game %%
-
-\section{Proof of Theorem~\ref{theorem:reactive_counting_partner_strategies}}\label{appendix:reactive_counting_n_akin_generalized}
-
-
-To prove Theorem~\ref{theorem:reactive_counting_partner_strategies}, we need
-to introduce some additional notation. We introduce the vector $\mathbf{w} =
-(w_i)_{i \in \{0, 1, \dots, n\}}$, where the entry $w_i$ represents the
-probability that, in the long-term outcome, the co-player cooperates $i$ times.
-
-An element of $\mathbf{w}$ is the sum of one or more of the marginal
-distributions $u^2_{h^2}$ for $h^2 \in H^2$. Specifically, let,
-
-$$
-H^2_{i} = \{h^2 : |a_{C}(h^2)| = i \quad \forall \quad h^2 \in H^2\},
-$$
-
-where
-
-$$
-a_{C}(h^2) = \{a^2_{-t} : a^2_{-t} = C \quad \forall \quad a^2_{-t} \in h^2\}.
-$$
-
-Then we define $w_i$ as
-
-$$
-w_{i} = \sum_{h \in H^2_{i}} v_{h}.
-$$
-
-Please note that
-
-\begin{equation}\label{Eq:normalization_counting}
-  \sum_{i=0}^{r} w_i = 1.
-\end{equation}
-
-The cooperation rate of the reactive player is given by
-
-\begin{equation}\label{Eq:player_cooperation_counting}
-  \rho_{\mathbf{p}} = \sum_{i=0}^{n} r_{i} \cdot w_{i}.
-\end{equation}
-
-The co-player can use any self-reactive-$n$ strategy, and thus the co-player
-differentiates between when the last cooperation/defection occurred. However, we
-can still express the co-player's cooperation rate as a function of $w_{i}$.
-More specifically, the co-player's cooperation rate is
-
-\begin{equation}\label{Eq:coplayer_cooperation_counting}
-  \rho_{\mathbf{\tilde{p}}} = \sum_{i=0}^{n} \frac{i}{n} \cdot w_{i}.
-\end{equation}
-
-We will also define the self-reactive counting $k$-round repeat strategies.
-These strategies start by playing a sequence of cooperation in the first $n$
-moves until they reach a total of $i$ cooperations, after which they defect for
-$n-i$ rounds. Thereafter, they repeat their $a^{i}_{-n}$ move.
-We denote this set of strategies as $A =\{\mathbf{A^{0}},
-\mathbf{A^{1}}, \dots, \mathbf{A^{n}} \}$.
-
-The payoff of an alternating self-reactive-$n$ against a counting-reactive-$n$ $\mathbf{r}$ is given by
-
-\begin{equation}\label{Eq:alternating_strategies_payoff}
-  s_{\mathbf{A^{i}}, \mathbf{r}} = b \cdot r_i - \frac{i}{n} \cdot c ~~for~~ i \in [0, n].
-\end{equation}
-
-The intuition behind Eq.~\eqref{Eq:alternating_strategies_payoff} is that, in
-the long term, the strategies end up in a state where $\mathbf{A^{i}}$ has
-cooperated $i$ times in the last $n$ turns. Thus, the co-player will cooperate
-and provide the benefit $b$ with a probability $r_i$, while in return, the
-alternating strategy has cooperated $\frac{i}{n}$ times and pays the cost.
-
-With this, we have all the required tools to prove the following theorem.
-
-\begin{proof}
-($\Rightarrow$) As discussed previously, a strategy can only be a Nash equilibrium if the payoff of the co-player does not exceed $(b - c)$. Therefore, for $\mathbf{p}$ to be a Nash equilibrium against each strategy in set $A$ (for $i \in [0, n]$),
-
-\begin{align*}
-  s_{\mathbf{A^{i}}, \mathbf{r}} \leq b - c \\
-  b \cdot r_i - \frac{i}{n} \cdot c \leq   b - c \\
-  r_i \leq 1 - \frac{i}{n} \cdot \frac{c}{b}.
-\end{align*}
-
-Now, suppose player $2$ has some strategy $\mathbf{m}$ and player $1$ has a reactive-counting strategy such that $s_{\mathbf{m}, \mathbf{p}} > b - c$. It follows that
-
-\begin{equation}
-\begin{array}{rcl}
-0 &\le & s_{\mathbf{m}, \mathbf{p}}-(b - c)\\[0.2cm]
-&\stackrel{Eq.~\eqref{Eq:payoff}}{=} & b\rho_\mathbf{p} - c\rho_\mathbf{m} - (b - c)\\[0.2cm]
-&\stackrel{Eqs.~\eqref{Eq:normalization_counting}, \eqref{Eq:player_cooperation_counting}, \eqref{Eq:coplayer_cooperation_counting}}{=} & b\; \sum_{k=0}^{n} r_{n - k} \cdot u_{n - k} - c\, \sum_{k=0}^{n} \frac{n - k}{n} \cdot u_{n - k} - (b - c)\; \sum_{k=0}^{n} u_{n - k}\\[0.2cm]
-& &  u_{n} \Big(b\, (r_n - 1) \Big) +  \sum_{k=1}^{n} u_{n - k} \Big(b\; \sum_{k=1}^{n} r_{n - k} - c\, \sum_{k=0}^{n - 1} \frac{n - k}{n} - (b - c)\Big)
-\end{array}
-\end{equation}
-
-This condition holds only if
-
-\begin{align*}
-  \Big(b\; r_{n - k} - c\, \frac{n - k}{n} - (b - c)\Big) < 0 \Rightarrow \\ 
-  b \, (r_{n - k} - 1) + (1 - \frac{n - k}{n})\, c < 0 \Rightarrow \\ 
-  r_{n - k} < 1 - \frac{n}{k} 
-\end{align*}
-
-\end{proof}
-
-~\\
-{
-{\setlength{\bibsep}{0\baselineskip}
-\bibliographystyle{naturemag}
-\bibliography{bibliography}
-}
-
-\end{document}
