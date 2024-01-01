@@ -86,7 +86,7 @@
 
 \maketitle
 
-~\\
+~
 \noindent
 
 \tableofcontents
@@ -183,9 +183,10 @@ In the following, we therefore only specify a strategy's move during the first $
 
 %% MODEL: Memory-1 strategies %% 
 
-Among all memory-$n$ spaces $\mathcal{M}_n$, the space with $n\!=\!1$ is the one most frequently studied. 
-Memory-1 strategies take the form $\mathbf{m}\!=\!(m_{CC}, m_{CD}, m_{DC}, m_{DD})$, where the first index refers to the focal player's last action (1-history) and the second index refers to the co-player's last action. 
-As one example of a well-known memory-1 strategy, we mention Win-Stay Lose-Shift~\citep{nowak:Nature:1993}, $\mathbf{m}\!=\!(1,0,0,1)$. However, there are many others~\citep{hilbe:Nature:2018}.\\
+Among all memory-$n$ spaces $\mathcal{M}_n$, the one with $n\!=\!1$ is the most frequently studied. 
+Memory-1 strategies take the form $\mathbf{m}\!=\!(m_{CC}, m_{CD}, m_{DC}, m_{DD})$. 
+The first index refers to the focal player's last action (1-history) and the second index refers to the co-player's last action. 
+As an example of a well-known memory-1 strategy, we mention Win-Stay Lose-Shift~\citep{nowak:Nature:1993}, $\mathbf{m}\!=\!(1,0,0,1)$. However, there are many others~\citep{hilbe:Nature:2018}.\\
 
 %% MODEL: Reactive strategies %%
 
@@ -205,7 +206,7 @@ probability in the next round based on the co-player's actions in the previous
 $n$ rounds. 
 Again, the most studied case of reactive-$n$ strategies is when $n\!=\!1$.
 Here, the reduced representation according to Eq.~\eqref{Eq:ReactiveSimple} takes the form $\mathbf{p}\!=\!(p_C,p_D)$.
-The probably best-known example of a reactive-1 strategy is Tit-for-Tat, \tft~\citep{axelrod:AAAS:1981}. 
+Probably the best-known example of a reactive-1 strategy is Tit-for-Tat, \tft~\citep{axelrod:AAAS:1981}. 
 \tft{} cooperates if and only if the co-player cooperated in the previous round. 
 Hence, its memory-1 representation is $\mathbf{m}\!=\!(1,0,1,0)$, whereas its reduced representation is $\mathbf{p}\!=\!(1,0)$. 
 Another example is the strategy Generous Tit-for-Tat, \gtft~\citep{nowak:Nature:1992,molander:jcr:1985}.
@@ -406,10 +407,9 @@ That is, we require $\pi^1(\sigma,\sigma)$ to exist and
 
 \noindent
 Several remarks are in order. First, we note that when two players with nice strategies interact, they both cooperate in every round. Partner strategies thus sustain mutual cooperation in a Nash equilibrium. 
-
-Second, if a memory-$n$ strategy $\mathbf{m}\!=\!(m_\mathbf{h})_{\mathbf{h}\in H}$ is to be nice, it needs to cooperate after $n$ rounds of mutual cooperation. In other words, if $\mathbf{h_C} \!=\! (\mathbf{h^i_C},\mathbf{h^{-i}_C})$ is the $n$-history that consists of mutual cooperation for the past $n$ rounds, then the strategy needs to respond by cooperating with certainty, $m_\mathbf{h_C}\!=\!1$.  Similarly, a nice reactive-$n$ strategy needs to satisfy $p_\mathbf{h^{-i}_C}\!=\!1$. 
-
-Third, in general it is a difficult task to verify that any given strategy $\sigma$ is a Nash equilibrium. 
+Second, if a memory-$n$ strategy $\mathbf{m}\!=\!(m_\mathbf{h})_{\mathbf{h}\in H}$ is to be nice, it needs to cooperate after $n$ rounds of mutual cooperation. In other words, if $\mathbf{h_C} \!=\! (\mathbf{h^i_C},\mathbf{h^{-i}_C})$ is the $n$-history that consists of mutual cooperation for the past $n$ rounds, then the strategy needs to respond by cooperating with certainty, $m_\mathbf{h_C}\!=\!1$.  Similarly, a nice reactive-$n$ strategy needs to satisfy $p_\mathbf{h^{-i}_C}\!=\!1$.
+Third, we note that our definition of Nash equilibria only requires that players cannot profitably deviate towards strategies {\it for which a payoff can be defined}. If the strategy $\sigma$ is a memory-$n$ strategy, in the following we make the slightly looser requirement that the strategy is a best response among all $\sigma'$ for which the limit~\eqref{Eq:TimeAverage} exists. 
+Fourth, in general it is a difficult task to verify that any given strategy $\sigma$ is a Nash equilibrium. 
 After all, one needs to verify that it yields the highest payoff according to Eq.~\eqref{Eq:NashCondition} among all (uncountably) many alternative strategies $\sigma'$. 
 Fortunately, the situation is somewhat simpler if the strategy under consideration is a memory-$n$ strategy. 
 In that case, it follows from an argument by Press and Dyson~\cite{press:PNAS:2012}  that one only needs to compare the strategy to all other memory-$n$ strategies. 
@@ -447,7 +447,7 @@ In this expression, $\mathbf{g}^i(k)$ is the vector that returns player $i$'s pa
 &\alpha \, \pi^i(\mathbf{m^i},\sigma^{-i}) + \beta \, \pi^{-i}(\mathbf{m^i},\sigma^{-i}) + \gamma.
 \end{array}
 \end{equation}
-That is, a player with a zero-determinant strategy enforces a linear relationship between the player's payoffs, irrespective of the co-player's strategy. 
+That is, a player with a zero-determinant strategy enforces a linear relationship between the players' payoffs, irrespective of the co-player's strategy. 
 Remarkably, the parameters $\alpha$, $\beta$, and $\gamma$ of that linear relationship are entirely under player $i$'s control.\\
 
 \noindent
@@ -456,7 +456,7 @@ One interesting special case arises if $k_1\!=\!k_2\!=\!k_3\!=:\!k$ and $\alpha
 \!=\! -\beta \!=\!1/(T\!-\!S)$, $\gamma \!=\! 0$. In that case, formula
 \eqref{Eq:DefZD} yields the strategy with entries
 \begin{equation*}
-m_h = \left\{
+m_\mathbf{h} = \left\{
 \begin{array}{ll}
 1	&\text{if}~~a^{-i}_{-k}=C\\[0.2cm]
 0	&\text{if}~~a^{-i}_{-k}=D
@@ -490,7 +490,7 @@ That is, the generated strategy is \gtft{} (if $k\!=\!1$), or a delayed version
 thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced payoff
 relationship is $\pi^{-i}(\mathbf{m^{i}}, \sigma^{-i})\!=\!b\!-\!c$. 
 That is, the co-player always obtains the mutual cooperation payoff, irrespective of the co-player's strategy. 
-In particular, all these versions of \gtft{} are nice and they are Nash equilibria. 
+In particular, all these versions of \gtft{} are nice and they are Nash equilibria (independent of how the strategy acts during the first $n$ rounds). 
 Hence, they are partner strategies.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -529,17 +529,17 @@ We observe that the memory-2 strategies and the self-reactive-2 strategies lead 
 \end{figure}
 
 \noindent
-For an illustration of this result, see Figure~\ref{fig:SelfReactiveSufficiency}. 
+For an illustration of this result, see Figure~\ref{fig:SelfReactiveSufficiency}. It shows that against a reactive-2 player, any payoff that can be achieved with a memory-2 strategy can already be achieved with a self-reactive-2 strategy. 
+
 If we are to verify that some given reactive-$\mathbf{n}$ strategy $\mathbf{p}$ is a Nash equilibrium, Lemma~\ref{lemma:self_reactive_sufficiency} simplifies our task considerably. 
 Instead of checking condition~\eqref{Eq:NashCondition} for all possible strategies $\sigma'$, we only need to check it for all self-reactive strategies $\mathbf{\tilde{p}}\!\in\! \mathcal{S}_n$. 
-Any payoff that could be obtained with some general strategy can already be obtained with a self-reactive strategy. 
 The following result simplifies our task even further. 
 
 \begin{theorem}[To any reactive strategy, there is a best response among the pure self-reactive strategies]
 \label{theorem:nash_against_pure_self_reactive} 
 For any reactive strategy $\mathbf{p}\!\in\!\mathcal{R}_n$ there is some pure self-reactive strategy $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that 
  \begin{equation} \label{Eq:BRSelfReactive}
-\pi^1(\mathbf{\tilde p},\mathbf{p}) \!\ge\! \pi^1(\sigma',\mathbf{p}) ~~\text{for all other strategies}~\sigma'~\text{for which}~ \pi^1(\sigma',\mathbf{p})~\text{exists}. 
+\pi^1(\mathbf{\tilde p},\mathbf{p}) \!\ge\! \pi^1(\sigma',\mathbf{p}) ~~\text{for all other strategies}~\sigma'~\text{for which the limit \eqref{Eq:TimeAverage} exists}. 
 \end{equation}
 \end{theorem}
 
@@ -575,14 +575,14 @@ Corollary \ref{Cor:NashCondition} gives us a straightforward procedure to check 
 
 \noindent
 {\bf A more efficient way to calculate payoffs.}
-For the remainder of this section, we thus assume that player~1 uses a self-reactive-$n$ strategy $\mathbf{\tilde p}\!=\!(\tilde p_\mathbf{h^i})_{\mathbf{h^i}\in H^i}$, whereas player~2 uses a self-reactive-$n$ strategy $\mathbf{p}\!=\!(p_\mathbf{h^{-i}})_{\mathbf{h^{-i}}\in H^{-i}}$. 
+For the remainder of this section, we thus assume that player~1 uses a self-reactive-$n$ strategy $\mathbf{\tilde p}\!=\!(\tilde p_\mathbf{h^i})_{\mathbf{h^i}\in H^i}$, whereas player~2 uses a reactive-$n$ strategy $\mathbf{p}\!=\!(p_\mathbf{h^{-i}})_{\mathbf{h^{-i}}\in H^{-i}}$. 
 Our algorithm to compute payoffs for the two players in Section~\ref{Sec:PayoffComputation} would require us to interpret the two strategies as memory-$n$ strategies. 
 We would thus compute a left eigenvector of a $2^{2n}\!\times\!2^{2n}$ transition matrix. 
-in the following, however, we show that for games between reactive and self-reactive players, it suffices to consider a $2^n\!\times\!2^n$ transition matrix.
+In the following, however, we show that for games between reactive and self-reactive players, it suffices to consider a $2^n\!\times\!2^n$ transition matrix.
 This efficiency gain is possible because both players only consider player 1's past actions.  
 Instead of taking the space of all of the game's $n$-histories $H\!=\!H^1\!\times\! H^2$  as the state space, we can thus take the space~$H^1$. 
 Let \(h^1=(a^1_{-n},\ldots,a^1_{-1})\) be the state in the current round. 
-Then we obtain the following probability that state after one round is  \(\tilde{h}^1=(\tilde{a}^1_{-n},\ldots,\tilde{a}^1_{-1})\),\begin{equation}\label{Eq:TransitionMatrixSelfReactive}
+Then we obtain the following probability that the state after one round is  \(\tilde{h}^1=(\tilde{a}^1_{-n},\ldots,\tilde{a}^1_{-1})\),\begin{equation}\label{Eq:TransitionMatrixSelfReactive}
 \tilde{M}_{\mathbf{h^1},\mathbf{ \tilde{h}^1}} = 
 \begin{cases}
   \tilde{p}_\mathbf{h^1} & \text{ if } \tilde{a}^1_{-1}\! =\! C,~\text{ and }~\tilde{a}^1_{-t} \!=\! a^1_{-t + 1}~\text{ for all } t\!\in\!\{2,\ldots,n\}\\
@@ -590,7 +590,7 @@ Then we obtain the following probability that state after one round is  \(\tilde
   0 & \text{ if } \tilde{a}^1_{-t} \!\neq\!  a^1_{-t + 1}~ \text{ for some } t\!\in\!\{2,\ldots,n\}.
 \end{cases}
 \end{equation}
-Let $\mathbf{\tilde{v}}\!=\!(\tilde{v}_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$ be the limiting distribution of the resulting game (which only in exceptional cases depends on player~1's behavior during the first $n$ rounds). Then the players' payoffs are given by
+Similar to the vector $\mathbf{v}$ for matrix $M$, let $\mathbf{\tilde{v}}\!=\!(\tilde{v}_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$ be the limiting distribution of the dynamics defined by $\tilde M$ (which only in exceptional cases depends on player~1's behavior during the first $n$ rounds). Then the players' payoffs are given by
 \begin{equation}\label{eq:PD_long_term_payoff}
 \begin{array}{l}
 \displaystyle \pi^1(\mathbf{\tilde p},\mathbf{p}) \!=\!\!\!\! \sum_{\mathbf{h^1}\in H^1} {\tilde v}_\mathbf{h^1} \Big(
@@ -711,7 +711,7 @@ The conditions for a partner become even more simple if we consider {\it reactiv
 \begin{equation}
 |\mathbf{h}^{-i}|\! =\! |\mathbf{\tilde h^{-i}}| \quad \Rightarrow \quad p_\mathbf{h^{-i}} = p_\mathbf{\tilde h^{-i}}
 \end{equation} 
-That is, the reactive player's cooperation probability only depends on the number of cooperative acts during the past $n$ rounds and not on its timing. 
+That is, the reactive player's cooperation probability only depends on the number of cooperative acts during the past $n$ rounds and not on their timing. 
 Such reactive-$n$ counting strategies can be written as $n\!+\!1$-dimensional vectors $\mathbf{r}\!=\!(r_k)_{k\in\{n,\ldots,1\}}$, where $r_i$ is the player's cooperation probability if the co-player cooperated $k$ times during the past $n$ rounds. In particular, for reactive-2 counting strategies, we associate $r_2\!=\!p_{CC}$, $r_1\!=\!p_{CD}\!=\!p_{DC}$, and $r_0\!=\!p_{DD}$. 
 The following characterization of partners among the reactive-2 counting strategies then follows immediately from Theorem~\ref{theorem:reactive_two_partner_strategies}. 
 
@@ -728,7 +728,7 @@ A nice reactive-2 counting strategy $\mathbf{r} = (r_2, r_1, r_0)$ is a partner 
 %% PARTNER STRATEGIES: Reactive-3 Donation Game %%
 \noindent
 {\bf Reactive-3 Partner Strategies}.
-Now we focus on the case of $n=3$. Reactive-3 strategies can be represented as a vector 
+Next, we focus on the case $n\!=\!3$. Reactive-3 strategies can be represented as a vector 
 $\mathbf{p}=(p_{CCC}, p_{CCD}, p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{DDD})$.
 Again, each entry $p_\mathbf{h^{-i}}$ refers to the player's cooperation probability, depending on the co-player's previous three actions, $\mathbf{h^{-i}}\!=\!(a^{-i}_{-3}, a^{-i}_{-2}, a^{-i}_{-1})$.
 For the respective partner strategies, we obtain the following characterization. 
@@ -749,12 +749,12 @@ A nice reactive-3 strategy $\mathbf{p}$ is a partner strategy if and only if its
 
 \noindent
 As before, the average of certain cooperation probabilities need to be below specific thresholds. 
-However, compared to the case of $n\!=\!2$, the respective conditions are now somewhat more difficult to interpret. 
-These conditions again become more straightforward to interpret if we further restrict attention to reactive-3 counting strategies. 
+However, compared to the case $n\!=\!2$, the respective conditions are now somewhat more difficult to interpret. 
+The conditions again become more straightforward if we further restrict attention to reactive-3 counting strategies. 
 
 \begin{corollary}[Partners among the reactive-3 counting strategies]
 \label{Cor:PartnersCountingThree}
-A reactive-3 counting strategy $\mathbf{r} \!=\! (r_3, r_2, r_1, r_0)$ is a partner strategy if and only if
+A nice reactive-3 counting strategy $\mathbf{r} \!=\! (r_3, r_2, r_1, r_0)$ is a partner strategy if and only if
 \begin{equation}\label{eq:counting_three_bit_conditions}
   \displaystyle r_3 \!=\! 1 \qquad r_2 \le 1\!-\! \frac{1}{3} \cdot \frac{c}{b}, \qquad r_1 \le 1\!-\! \frac{2}{3} \cdot \frac{c}{b}, \qquad  r_0 \le 1\!-\! \frac{c}{b}.
 \end{equation}
@@ -787,7 +787,7 @@ For  the case of reactive-2 strategies, we obtain the following characterization
 
 %% PARTNER STRATEGIES: Reactive-2 Prisoner's Dilemma %%
 
-\begin{theorem}Reactive-2 partner strategies in the prisoner's dilemma]
+\begin{theorem}[Reactive-2 partner strategies in the prisoner's dilemma]
 \label{theorem:reactive_two_partner_strategies_PD}
 A nice reactive-2 strategy $\mathbf{p}$ is a partner strategy if and only if its entries satisfy the conditions
 \begin{equation}
@@ -809,12 +809,13 @@ For the case of reactive-3 strategies, the characterization is as follows.
 
 %% PARTNER STRATEGIES: Reactive-3 Prisoner's Dilemma %%
 
-\begin{theorem}\label{theorem:reactive_three_partner_strategies_PD}[Reactive-3 partner strategies in the prisoner's dilemma]
-A nice reactive-3 strategy $\mathbf{p}$, is a partner strategy if and only if its entries satisfy the conditions in Table~\ref{Tab:PartnerReactiveThreePD}. 
+\begin{theorem}[Reactive-3 partner strategies in the prisoner's dilemma]
+\label{theorem:reactive_three_partner_strategies_PD}
+A nice reactive-3 strategy $\mathbf{p}$ is a partner strategy if and only if its entries satisfy the conditions in Table~\ref{Tab:PartnerReactiveThreePD}. 
 \end{theorem}
 
 \noindent
-Given the complexity of the conditions in Table~\ref{Tab:PartnerReactiveThreePD}, we do not pursue deriving conditions for $n\!\ge\!2$, even though the same methods remain to be applicable. \\
+Given the large number of conditions in Table~\ref{Tab:PartnerReactiveThreePD}, we do not pursue a similar characterization for $n\!>\!3$, even though the same methods remain applicable. \\
 
 
 \begin{table}[t!]
@@ -850,7 +851,8 @@ Given the complexity of the conditions in Table~\ref{Tab:PartnerReactiveThreePD}
 
 
 
-
+\clearpage
+\newpage
 
 
 %%%%%%%%%%%%%%%%
@@ -868,54 +870,54 @@ Given the complexity of the conditions in Table~\ref{Tab:PartnerReactiveThreePD}
 \subsection{Proof of Lemma~\ref{lemma:AkinGeneralised}: Akin's lemma}
 
 \begin{proof}
-Let player 1 use a memory-1 strategy $\mathbf{m}$ and player 2 an arbitrary
-memory-$n$ strategy. The probability that player $1$ cooperated in the
-\(n^{\text{th}}\) round be denoted as \(v_{\text{C}}^{n}\). Let
-\(v_{\text{C}}^{n}\) be defined as the probability that player $1$ played \(C\),
-\(k \, (1\leq k\leq n)\) rounds ago. Then,
-
-$$
-v_{\text{C}}^{n} = \sum_{h \in H} y_{h}, \quad \text{ where } \quad y_h = 
-\begin{cases}
- u_{h} & \text{ if } \alpha^1_{-k} = C \\
-     0 & \text{ if } \alpha^1_{-k} = D.
-\end{cases}
-$$
-
-Equivalently,
-
-$$
-v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m}^{k - \text{Rep}}.
-$$
-
-Let $k$ be fixed to $k=1$ then,
-
-$$
-v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m}^{1 - \text{Rep}}.
-$$
-
-Moreover, the probability that player $1$ cooperates in the \((n + 1)^{th}\) round,
-denoted by \(v_{\text{C}}^{n + 1}\) = \(\mathbf{v}^{n} \cdot \mathbf{m}\). Hence,
-
+The proof is based on a similar argument as the proof of Eq.~\eqref{Eq:EquivalencePayoff}, showing that different ways of calculating payoffs are equivalent. 
+Let us first introduce some notation. 
+Let $\mathbf{m^1}$ be the memory-$n$ strategy of player~1. 
+For $t\!\ge\!n$ and the given strategy of player~2, let $\mathbf{v}(t)\!=\!(v_\mathbf{h})_{\mathbf{h}\in H}$ be the probability that player~1 observes the $n$-history $\mathbf{h}$ after players have made their $t$-th decision. 
+By assumption, we can compute the limiting distribution
+\begin{equation} \label{Eq:TimeAverageAppendix}
+\mathbf{v} = \lim_{\tau\to\infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \mathbf{v}(t).  
+\end{equation}
+Moreover, let $\rho^i(t)$ be player~i's cooperation probability in round $t$. 
+For $t\!\ge\!n\!+\!1$, we obtain 
+\begin{equation} \label{Eq:Rhoi}
+\rho^1(t) = \big\langle \mathbf{v}(t\!-\!1) , \mathbf{m^1}\big\rangle = \big\langle \mathbf{v}(t\!+\!k\!-\!1), \mathbf{m^{k-\text{Rep}}}\big\rangle.
+\end{equation}
+That is, we either need to know how likely each $n$-history occurred at time $t\!-\!1$, and then we compute how likely player~1 is to cooperate in the next round, based on player 1's strategy. 
+Or, we need to know how likely each $n$-history occurred after round $t\!+\!k\!-\!1$; and then we compute the correct probability by assuming player~1 cooperates in the next round if and only if the player cooperated $k$ rounds before. 
+Eq.~\eqref{Eq:Rhoi}~gives us two different ways to compute player~1's average payoff across all rounds,
+\begin{equation}
+\rho^1 := \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=1}^\tau \rho^1(t).
+\end{equation}
+The first way is to take
 \begin{equation*}
-  v_{\text{C}}^{n + 1} - v_{\text{C}}^{n} = \mathbf{v}^{n} \cdot \mathbf{m} - \mathbf{v}^n \cdot \mathbf{m}^{1 - \text{Rep}}
-  =  \mathbf{v}^{n} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}).
+\begin{array}{rcl}
+\rho^1 &= &\displaystyle 
+\lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=1}^\tau \rho^i(t) 
+= \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \rho^i(t)\\[0.5cm]
+&= &\displaystyle 
+\lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1}  \big\langle \mathbf{v}(t\!-\!1) , \mathbf{m^1}\big\rangle 
+=  \big\langle  \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \mathbf{v}(t\!-\!1) , \mathbf{m^1}\big\rangle
+= \big\langle \mathbf{v},\mathbf{m^1} \big\rangle.
+\end{array}
 \end{equation*}
-
-This implies,
-
+In particular, because $\big\langle \mathbf{v},\mathbf{m^1} \big\rangle$ is well-defined, so is the limiting time average~$\rho^1$. The second way is to take
 \begin{equation*}
-\sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) = \sum^{n}_{t=1} v_{\text{C}}^{t + 1} - v_{\text{C}}^{t} \quad \Rightarrow \quad \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) =  v_{\text{C}}^{n + 1} - v_{\text{C}}^{1}.
+\begin{array}{rcl}
+\rho^1 &= &\displaystyle 
+\lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=1}^\tau \rho^i(t) 
+= \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n+k-1}^{n+k+\tau-2} \rho^i(t)\\[0.5cm]
+&= &\displaystyle 
+\lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n+k-1}^{n+k+\tau-2}  \big\langle \mathbf{v}(t\!-\!1) ,  \mathbf{m^{k-\text{Rep}}}\big\rangle 
+=  \big\langle  \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n+k-1}^{n+k+\tau-2} \mathbf{v}(t\!-\!1) ,  \mathbf{m^{k-\text{Rep}}}\big\rangle
+= \big\langle \mathbf{v},  \mathbf{m^{k-\text{Rep}}} \big\rangle.
+\end{array}
 \end{equation*}
-
-As the right side has absolute value at most 1,
-
-\begin{equation*}
-\lim_{n \rightarrow \infty} \frac{1}{n} \sum^{n}_{t=1} \mathbf{v}^{t} \cdot (\mathbf{m} - \mathbf{m}^{1 - \text{Rep}}) = 0.
-\end{equation*}
-
-Repeat for $1 < k \leq n$.
-
+We conclude
+$
+0 = \rho^1 \!-\! \rho^1 = \big\langle \mathbf{v},\mathbf{m^1} \big\rangle\!-\!\big\langle \mathbf{v},  \mathbf{m^{k-\text{Rep}}} \big\rangle\ = \big\langle \mathbf{v}, \mathbf{m^1}\!-\!\mathbf{m^{k-\text{Rep}}} \big\rangle.
+$
+\\ \christian{Check the limits of the sums}
 \end{proof}
 
 
