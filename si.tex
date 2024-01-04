@@ -171,7 +171,7 @@ We use \(H \!=\! H^1 \!\times\! H^2\) to denote the space of all such histories,
 
 %% MODEL: Defining Memory-n strategies %% 
 \noindent
-{\bfseries Memory-$n$ strategies.} Based on this notation, a {\it memory-$n$ strategy}  for player $i$ as a tuple \(\mathbf{m} \!=\! (m_\mathbf{h})_{\mathbf{h}\in H}$. 
+{\bfseries Memory-$n$ strategies.} Based on this notation, a {\it memory-$n$ strategy}  for player $i$ as a tuple \(\mathbf{m} \!=\! (m_\mathbf{h})_{\mathbf{h}\in H}\). 
 Each input $\mathbf{h}\!=\!(h^i,h^{-i})$ refers to a possible $n$-history, where now $\mathbf{h^i}$ and $\mathbf{h^{-i}}$ refer to the $n$-histories of the focal player and the co-player, respectively. 
 The corresponding output $m_\mathbf{h}\!\in\![0,1]$ is the focal player's cooperation probability in the next round, contingent on  the outcome of the previous \(n\) rounds. We refer to the set of all memory-$n$ strategies as 
 \begin{equation}
@@ -327,6 +327,8 @@ As a result, we obtain for the player's average payoff across all rounds
 &\big\langle\, \mathbf{v}, \mathbf{g^i}(1)\,\big\rangle .
 \end{array}
 \end{equation}
+\nikoleta{$g^{i}(1)$?} \\
+
 That is, given we know the invariant distribution $\mathbf{v}$ that captures the game's long-run dynamics, it is straightforward to compute payoffs by taking the scalar product with the vector $\mathbf{g^i}(1)$.
 With a similar approach as in Eq.~\eqref{Eq:PayoffMemoryn}, one can also show
 \begin{equation} \label{Eq:EquivalencePayoff}
@@ -522,7 +524,7 @@ considering that part of the history.
 \begin{figure}[t!]
     \centering
     \includegraphics[width=\textwidth]{figures/sufficiency_of_self_reactive_numerical_example_n_2.pdf}
-    \caption{{\bf Feasible payoffs against a reactive-2 strategy.} We consider a player with a fixed reactive-2 strategy $\mathbf{p}\!=\!(0.37, 0.89, 0.95, 0.23)$. The player interacts either many other players who randomly adopt either some random memory-2 strategy (left), a reactive-2 strategy (middle), or a self-reactive-2 strategy (right panel). The panels show the resulting payoffs to the two players as red dots, for a donation game with  $b\!=\!3$ and $c\!=\!1$.
+    \caption{{\bf Feasible payoffs against a reactive-2 strategy.} We consider a player with a fixed reactive-2 strategy $\mathbf{p}\!=\!(0.37, 0.89, 0.95, 0.23)$. The player interacts with many other players who randomly adopt either some random memory-2 strategy (left), a reactive-2 strategy (middle), or a self-reactive-2 strategy (right panel). The panels show the resulting payoffs to the two players as red dots, for a donation game with  $b\!=\!3$ and $c\!=\!1$.
 We observe that the memory-2 strategies and the self-reactive-2 strategies lead to the same region of feasible payoffs against $\mathbf{p}$, in line with Lemma~\ref{lemma:self_reactive_sufficiency}. In contrast, if $\mathbf{p}$'s opponent is restricted to reactive-2 strategies, the set of feasible payoffs is strictly smaller. 
 }
     \label{fig:SelfReactiveSufficiency}
@@ -531,7 +533,7 @@ We observe that the memory-2 strategies and the self-reactive-2 strategies lead 
 \noindent
 For an illustration of this result, see Figure~\ref{fig:SelfReactiveSufficiency}. It shows that against a reactive-2 player, any payoff that can be achieved with a memory-2 strategy can already be achieved with a self-reactive-2 strategy. 
 
-If we are to verify that some given reactive-$\mathbf{n}$ strategy $\mathbf{p}$ is a Nash equilibrium, Lemma~\ref{lemma:self_reactive_sufficiency} simplifies our task considerably. 
+If we are to verify that some given reactive-$n$ strategy $\mathbf{p}$ is a Nash equilibrium, Lemma~\ref{lemma:self_reactive_sufficiency} simplifies our task considerably. 
 Instead of checking condition~\eqref{Eq:NashCondition} for all possible strategies $\sigma'$, we only need to check it for all self-reactive strategies $\mathbf{\tilde{p}}\!\in\! \mathcal{S}_n$. 
 The following result simplifies our task even further. 
 
@@ -764,7 +766,7 @@ A nice reactive-3 counting strategy $\mathbf{r} \!=\! (r_3, r_2, r_1, r_0)$ is a
 As in the case of $n\!=\!2$ we observe here that with each additional defection of the opponent in memory, the focal player reduces its conditional cooperation probability by a constant, in this case $c/(3b)$.\\
 
 \noindent
-{\bf Partners among the memory-$n$ counting strategies.}
+{\bf Partners among the reactive-$n$ counting strategies.}
 Using the same methods as before, one can in principle also characterize the partners among the reactive-4 or the reactive-5 strategies. However, the  respective conditions quickly become unwieldy. 
 In case of the counting strategies, however, the simple pattern in Corollaries~\ref{Cor:PartnersCountingTwo} and~\ref{Cor:PartnersCountingThree} does generalize to arbitrary memory lengths. 
 

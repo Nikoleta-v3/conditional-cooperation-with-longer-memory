@@ -15,6 +15,7 @@ c_1.sh
 *.blg
 *.fdb_latexmk
 *.fls
+*.toc
 reactive.nb
 stationary.asv
 
