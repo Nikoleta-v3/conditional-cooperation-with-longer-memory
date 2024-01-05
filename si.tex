@@ -171,7 +171,7 @@ We use \(H \!=\! H^1 \!\times\! H^2\) to denote the space of all such histories,
 
 %% MODEL: Defining Memory-n strategies %% 
 \noindent
-{\bfseries Memory-$n$ strategies.} Based on this notation, a {\it memory-$n$ strategy}  for player $i$ as a tuple \(\mathbf{m} \!=\! (m_\mathbf{h})_{\mathbf{h}\in H}$. 
+{\bfseries Memory-$n$ strategies.} Based on this notation, a {\it memory-$n$ strategy}  for player $i$ as a tuple \(\mathbf{m} \!=\! (m_\mathbf{h})_{\mathbf{h}\in H}\). 
 Each input $\mathbf{h}\!=\!(h^i,h^{-i})$ refers to a possible $n$-history, where now $\mathbf{h^i}$ and $\mathbf{h^{-i}}$ refer to the $n$-histories of the focal player and the co-player, respectively. 
 The corresponding output $m_\mathbf{h}\!\in\![0,1]$ is the focal player's cooperation probability in the next round, contingent on  the outcome of the previous \(n\) rounds. We refer to the set of all memory-$n$ strategies as 
 \begin{equation}
@@ -322,7 +322,7 @@ As a result, we obtain for the player's average payoff across all rounds
 &\stackrel{\mbox{\small \eqref{Eq:ExpPayRound}}}{=}  
 &\displaystyle \lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=n}^{n+\tau-1}\big\langle \,\mathbf{v}(t),\, \mathbf{g^i}(1)\,\big\rangle
 ~=~
-\Big\langle \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \mathbf{v}(t)\, , \, \mathbf{g^i}(t)\,\Big\rangle\\[0.5cm]
+\Big\langle \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \mathbf{v}(t)\, , \, \mathbf{g^i}(1)\,\Big\rangle\\[0.5cm]
 &\stackrel{\mbox{\small \eqref{Eq:TimeAverage}}}{=}  
 &\big\langle\, \mathbf{v}, \mathbf{g^i}(1)\,\big\rangle .
 \end{array}
@@ -522,7 +522,7 @@ considering that part of the history.
 \begin{figure}[t!]
     \centering
     \includegraphics[width=\textwidth]{figures/sufficiency_of_self_reactive_numerical_example_n_2.pdf}
-    \caption{{\bf Feasible payoffs against a reactive-2 strategy.} We consider a player with a fixed reactive-2 strategy $\mathbf{p}\!=\!(0.37, 0.89, 0.95, 0.23)$. The player interacts either many other players who randomly adopt either some random memory-2 strategy (left), a reactive-2 strategy (middle), or a self-reactive-2 strategy (right panel). The panels show the resulting payoffs to the two players as red dots, for a donation game with  $b\!=\!3$ and $c\!=\!1$.
+    \caption{{\bf Feasible payoffs against a reactive-2 strategy.} We consider a player with a fixed reactive-2 strategy $\mathbf{p}\!=\!(0.37, 0.89, 0.95, 0.23)$. The player interacts with many other players who randomly adopt either some random memory-2 strategy (left), a reactive-2 strategy (middle), or a self-reactive-2 strategy (right panel). The panels show the resulting payoffs to the two players as red dots, for a donation game with  $b\!=\!3$ and $c\!=\!1$.
 We observe that the memory-2 strategies and the self-reactive-2 strategies lead to the same region of feasible payoffs against $\mathbf{p}$, in line with Lemma~\ref{lemma:self_reactive_sufficiency}. In contrast, if $\mathbf{p}$'s opponent is restricted to reactive-2 strategies, the set of feasible payoffs is strictly smaller. 
 }
     \label{fig:SelfReactiveSufficiency}
@@ -531,7 +531,7 @@ We observe that the memory-2 strategies and the self-reactive-2 strategies lead 
 \noindent
 For an illustration of this result, see Figure~\ref{fig:SelfReactiveSufficiency}. It shows that against a reactive-2 player, any payoff that can be achieved with a memory-2 strategy can already be achieved with a self-reactive-2 strategy. 
 
-If we are to verify that some given reactive-$\mathbf{n}$ strategy $\mathbf{p}$ is a Nash equilibrium, Lemma~\ref{lemma:self_reactive_sufficiency} simplifies our task considerably. 
+If we are to verify that some given reactive-$n$ strategy $\mathbf{p}$ is a Nash equilibrium, Lemma~\ref{lemma:self_reactive_sufficiency} simplifies our task considerably. 
 Instead of checking condition~\eqref{Eq:NashCondition} for all possible strategies $\sigma'$, we only need to check it for all self-reactive strategies $\mathbf{\tilde{p}}\!\in\! \mathcal{S}_n$. 
 The following result simplifies our task even further. 
 
@@ -764,7 +764,7 @@ A nice reactive-3 counting strategy $\mathbf{r} \!=\! (r_3, r_2, r_1, r_0)$ is a
 As in the case of $n\!=\!2$ we observe here that with each additional defection of the opponent in memory, the focal player reduces its conditional cooperation probability by a constant, in this case $c/(3b)$.\\
 
 \noindent
-{\bf Partners among the memory-$n$ counting strategies.}
+{\bf Partners among the reactive-$n$ counting strategies.}
 Using the same methods as before, one can in principle also characterize the partners among the reactive-4 or the reactive-5 strategies. However, the  respective conditions quickly become unwieldy. 
 In case of the counting strategies, however, the simple pattern in Corollaries~\ref{Cor:PartnersCountingTwo} and~\ref{Cor:PartnersCountingThree} does generalize to arbitrary memory lengths. 
 
@@ -1000,7 +1000,7 @@ On its domain, the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ is a ra
 
 \subsection{Proof of Theorem~\ref{theorem:reactive_two_partner_strategies}: Reactive-2 partner strategies in the donation game}
 \begin{proof}
-Given that player~1 uses a nice reactive-2 strategy $\mathbf{p} = (1, p_{CD},p_{DC}, p_{DD})$,, the claim is true if and only if it is true for all deviation towards the sixteen pure self-reactive-2 strategies $\mathbf{\tilde{p}}\!\in\!\{0,1\}^{16}$. 
+Given that player~1 uses a nice reactive-2 strategy $\mathbf{p} = (1, p_{CD},p_{DC}, p_{DD})$, the claim is true if and only if it is true for all deviation towards the sixteen pure self-reactive-2 strategies $\mathbf{\tilde{p}}\!\in\!\{0,1\}^{16}$. 
 In the following, we enumerate these sixteen strategies, $\{\mathbf{\tilde{p}_0}, \dots, \mathbf{\tilde{p}_{15}}\}$, 
 by interpreting them as binary numbers, 
 \begin{equation}
@@ -1161,13 +1161,13 @@ Before we go into the details of the proof, we first start with two useful obser
 
 \begin{enumerate}
 \item Assume player~1 adopts a given self-reactive strategy $\mathbf{\tilde p}$ and player~2 adopts the reactive-$n$ strategy $\mathbf{r}\!=\!(r_k)_{k\in\{n,\ldots,0\}}$. For the resulting game, suppose $\mathbf{v}$ is the limiting distribution according to Eq.~\eqref{Eq:TimeAverage}. 
-Then it is useful to express $\mathbf{v}$ in terms of what the counting player can remember. To this end, let $H^1_k$ be the set of $n$-histories according to which player-1 has cooperated exactly $k$ times,
+Then it is useful to express $\mathbf{v}$ in terms of what the counting player can remember. To this end, let $H^1_k$ be the set of $n$-histories according to which player 1 has cooperated exactly $k$ times,
 \begin{equation}
 H^1_k = \Big\{ \mathbf{h^1} \!\in\! H^1~\Big|~|\mathbf{h^1}|\!=\!k~\Big\}.
 \end{equation}
 Accordingly, let $\mathbf{u}\!=\!(u_k)_{k\in\{0,\ldots,n\}}$ be the distribution that summarizes how often, on average, player~1 cooperates $j$ times during $n$ consecutive rounds, 
 \begin{equation}
-u^1_k = \sum_{\mathbf{h^1} \in H^1_k} v_\mathbf{h}.
+u^1_k = \sum_{\mathbf{h^1} \in H^1_k} v_\mathbf{h^1}.
 \end{equation}
 In particular, the entries of $\mathbf{u}$ are normalized, 
 \begin{equation} \label{Eq:uNormalized}
@@ -1191,7 +1191,7 @@ t-1\!\!\mod n < k.
 That is, such a player cooperates in the first $k$ rounds, then defects for $n\!-\!k$ rounds, then cooperates for another $k$ rounds, only to defect in the $n\!-\!k$ subsequent rounds, etc. 
 Such strategies are interesting for two reasons. 
 First, they all can be interpreted as a round-$n$ repeat strategy $\mathbf{\tilde p^{n-\text{Rep}}}$, as defined by~\eqref{Eq:Repeat}.
-During the initial $n$ rounds, they act according to Eq.~\eqref{Eq:SimplePeriodic}; thereafter, they simply repeat whatever they have done $n$ rounds ago. 
+During the initial $n$ rounds, they cooperate according to Eq.~\eqref{Eq:SimplePeriodic}; thereafter, they simply repeat whatever they have done $n$ rounds ago. 
 Second, players with  strategy $\sigma_{k}$ always act in such a way that according to any resulting $n$-history, they have cooperated exactly $k$ times during the last $n$ rounds. As a result, if player~1 adopts such a strategy in a donation game against a player with a reactive-$n$ counting strategy~$\mathbf{r}$, then player 1's average payoff is 
 \begin{equation} \label{Eq:PaySimplePeriodic}
 \pi^1(\sigma_{k},\mathbf{r}) = r_k\,b - \frac{k}{n}\,c.
