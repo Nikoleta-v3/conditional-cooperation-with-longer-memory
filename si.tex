@@ -1002,7 +1002,7 @@ On its domain, the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ is a ra
 
 \subsection{Proof of Theorem~\ref{theorem:reactive_two_partner_strategies}: Reactive-2 partner strategies in the donation game}
 \begin{proof}
-Given that player~1 uses a nice reactive-2 strategy $\mathbf{p} = (1, p_{CD},p_{DC}, p_{DD})$,, the claim is true if and only if it is true for all deviation towards the sixteen pure self-reactive-2 strategies $\mathbf{\tilde{p}}\!\in\!\{0,1\}^{16}$. 
+Given that player~1 uses a nice reactive-2 strategy $\mathbf{p} = (1, p_{CD},p_{DC}, p_{DD})$, the claim is true if and only if it is true for all deviation towards the sixteen pure self-reactive-2 strategies $\mathbf{\tilde{p}}\!\in\!\{0,1\}^{16}$. 
 In the following, we enumerate these sixteen strategies, $\{\mathbf{\tilde{p}_0}, \dots, \mathbf{\tilde{p}_{15}}\}$, 
 by interpreting them as binary numbers, 
 \begin{equation}
@@ -1163,13 +1163,13 @@ Before we go into the details of the proof, we first start with two useful obser
 
 \begin{enumerate}
 \item Assume player~1 adopts a given self-reactive strategy $\mathbf{\tilde p}$ and player~2 adopts the reactive-$n$ strategy $\mathbf{r}\!=\!(r_k)_{k\in\{n,\ldots,0\}}$. For the resulting game, suppose $\mathbf{v}$ is the limiting distribution according to Eq.~\eqref{Eq:TimeAverage}. 
-Then it is useful to express $\mathbf{v}$ in terms of what the counting player can remember. To this end, let $H^1_k$ be the set of $n$-histories according to which player-1 has cooperated exactly $k$ times,
+Then it is useful to express $\mathbf{v}$ in terms of what the counting player can remember. To this end, let $H^1_k$ be the set of $n$-histories according to which player 1 has cooperated exactly $k$ times,
 \begin{equation}
 H^1_k = \Big\{ \mathbf{h^1} \!\in\! H^1~\Big|~|\mathbf{h^1}|\!=\!k~\Big\}.
 \end{equation}
 Accordingly, let $\mathbf{u}\!=\!(u_k)_{k\in\{0,\ldots,n\}}$ be the distribution that summarizes how often, on average, player~1 cooperates $j$ times during $n$ consecutive rounds, 
 \begin{equation}
-u^1_k = \sum_{\mathbf{h^1} \in H^1_k} v_\mathbf{h}.
+u^1_k = \sum_{\mathbf{h^1} \in H^1_k} v_\mathbf{h^1}.
 \end{equation}
 In particular, the entries of $\mathbf{u}$ are normalized, 
 \begin{equation} \label{Eq:uNormalized}
@@ -1193,7 +1193,7 @@ t-1\!\!\mod n < k.
 That is, such a player cooperates in the first $k$ rounds, then defects for $n\!-\!k$ rounds, then cooperates for another $k$ rounds, only to defect in the $n\!-\!k$ subsequent rounds, etc. 
 Such strategies are interesting for two reasons. 
 First, they all can be interpreted as a round-$n$ repeat strategy $\mathbf{\tilde p^{n-\text{Rep}}}$, as defined by~\eqref{Eq:Repeat}.
-During the initial $n$ rounds, they act according to Eq.~\eqref{Eq:SimplePeriodic}; thereafter, they simply repeat whatever they have done $n$ rounds ago. 
+During the initial $n$ rounds, they cooperate according to Eq.~\eqref{Eq:SimplePeriodic}; thereafter, they simply repeat whatever they have done $n$ rounds ago. 
 Second, players with  strategy $\sigma_{k}$ always act in such a way that according to any resulting $n$-history, they have cooperated exactly $k$ times during the last $n$ rounds. As a result, if player~1 adopts such a strategy in a donation game against a player with a reactive-$n$ counting strategy~$\mathbf{r}$, then player 1's average payoff is 
 \begin{equation} \label{Eq:PaySimplePeriodic}
 \pi^1(\sigma_{k},\mathbf{r}) = r_k\,b - \frac{k}{n}\,c.
