@@ -1,48 +1,67 @@
-\documentclass{article}
-
-\usepackage{minitoc}
+\documentclass[11pt]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{times}
+\usepackage{amsmath,amsthm,amssymb,setspace,enumitem,epsfig,titlesec,verbatim,array,eurosym,multirow}
+\usepackage[sort&compress,numbers]{natbib}
+\usepackage[footnotesize,bf]{caption}
+\usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
+\usepackage{standalone}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{hyperref}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{blkarray}
+\usepackage[ruled,vlined]{algorithm2e}
+\smallskip % Erlaubt kleine Abstaende zwischen Paragraphen, falls es dem Seitenlayout hilft
+\renewcommand{\baselinestretch}{1.15}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{minitoc}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage{blkarray}
-\usepackage{amsthm, amssymb, amsmath}
-\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{multirow}
-\usepackage[ruled,vlined]{algorithm2e}
-\usepackage[sort&compress,comma,round,numbers]{natbib}
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{corollary}{Corollary}[theorem]
-
-\usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
-\pagestyle{plain}
-\setlength{\parindent}{0em}
-\setlength{\parskip}{1em}
-
-\renewcommand{\baselinestretch}{1}
-
+\usepackage{multicol}
 \usepackage{standalone}
 
-\newtheorem{proposition}{Proposition}
+\newcommand{\nikoleta}[1]{\textcolor{orange}{\textbf{NG}: #1}}
+\newcommand{\christian}[1]{\textcolor{blue}{\textbf{CH}: #1}}
 
-\title{Reactive strategies with longer memory}
+\def\wsls{\texttt{WSLS}}
+\def\tft{\texttt{TFT}}
+\def\gtft{\texttt{GTFT}}
+\def\allc{\texttt{ALLC}}
+\def\alld{\texttt{ALLD}}
+\def\alt{\texttt{Alternator}}
 
-\author{Nikoleta E. Glynatsi, Ethan Akin, Martin Nowak, Christian Hilbe}
+
+
+\titleformat{\section}{\sffamily \fontsize{12}{15}\bfseries}{\thesection}{0.4em}{}
+\titleformat{\subsection}{\sffamily\fontsize{11}{15}\bfseries}{\thesubsection}{0.4em}{}
+
+
+
+
+\title{\bfseries \sffamily \Large Conditional coperation with longer memory}
+
+%% Perhaps: Better title (Conditional cooperation with longer memory) %% 
+
+\author{Nikoleta E. Glynatsi$^{1,*}$, Martin Nowak$^2$, Christian Hilbe$^1$\\[0.3cm]
+$^{\rm 1}$Max Planck Research Group on the Dynamics of Social Behavior,\\ Max Planck Institute for Evolutionary Biology, Pl\"{o}n, Germany \\
+$^{\rm 2}$Department of Mathematics,
+Department of Organismic and Evolutionary Biology,\\ Harvard University, Cambridge, USA\\
+$^*$To whom correspondence should be addressed. E-mail: glynatsi@evolbio.mpg.de
+}
 \date{}
 
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
-
+~\\[0.5cm]
+\noindent
+{\bf 
 Repeated games enable evolution of cooperation if players use conditional
 strategies that depend on previous interactions. A well known strategy set is
 given by reactive strategies, which respond to the co-player's previous move.
@@ -55,10 +74,23 @@ strategies. Partner strategies are those that ensure mutual cooperation without
 exploitation. We perform evolutionary simulations and find that longer memory
 increases the average cooperation rate for reactive-$n$ strategies but not for
 reactive counting strategies.
+}\\[1cm]
 
-\end{abstract}
 
-\section{Introduction}
+\noindent
+{\it Keywords:} Evolutionary game theory, direct reciprocity, evolution of cooperation, prisoner's dilemma
+
+
+
+\clearpage
+\newpage
+
+\noindent
+{\bf Significance statement.}
+
+~\\[1cm]
+
+\section*{Introduction}
 
 The emergence of cooperation in social interactions can be explained by the
 concept of direct reciprocity, where individuals assist each other through
@@ -145,7 +177,7 @@ memory are rather limited. Partner strategies do not see a higher selection
 frequency, and the overall cooperation rate within the population remains
 almost the same.
 
-\section{Results}
+\section*{Results}
 
 \textbf{Definitions.}
 We consider an infinitely repeated game with two players, player 1 and player 2.
@@ -197,42 +229,6 @@ first need to introduce the notion of a nice strategy. A strategy is considered
 against itself, receives the mutual cooperation payoff. Now, a {\it partner strategy}
 is a nice strategy that also satisfies the Nash equilibrium condition.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\textwidth]{figures/conceptual_figure_model.pdf}
-  \caption{\textbf{A Graphical Representation of the Strategies Set.}
-  \textbf{A.} In each turn of the repeated game, players 1 and 2 decide on an
-  action, denoted as $C$ (cooperate) or $D$ (defect), respectively. We assume,
-  that the information that a player can use in subsequent turns is limited to
-  the actions taken by both players in the current turn. \textbf{B.} Memory-$1$
-  strategies, a well-studied set of strategies, utilize the actions of both
-  players in the previous turn to make decisions. In the graphical
-  representation of memory-$1$ strategies, we use a single square to illustrate
-  this concept. \textbf{C.} This work primarily focuses on reactive-$n$
-  strategies, which take into account only the actions of the co-players.
-  \textbf{E.} For the case of $n = 1$, a reactive-$1$ strategy is represented as
-  a vector $\mathbf{p} = (p_C, p_D)$, where $p_C$ is the probability of
-  cooperating given that the co-player cooperated, and $p_D$ is the probability
-  of cooperating given that the co-player defected. In the example shown, the
-  bottom player employs a reactive-$1$ strategy. They cooperate with a
-  probability $p_C$ in the second round because the co-player cooperated in the
-  first round. In the second round, the player cooperates with a probability
-  $p_D$ since the co-player previously defected. Finally, the player defects in
-  the third round with a probability of $1 - p_C$, considering that the
-  co-player cooperated. \textbf{D.} Another set of strategies we consider is
-  that of self-reactive-$n$ strategies, which rely solely on a player's own
-  previous $n$ actions. \textbf{F.} For the case of $n = 1$, a self-reactive-$1$
-  strategy is represented as a vector $\mathbf{\tilde{p}} = (\tilde{p}_C,
-  \tilde{p}_D)$, where $\tilde{p}_C$ is the probability of cooperating given
-  that the player's last action was cooperation, and $\tilde{p}_D$ is the
-  probability of cooperating given that the player's last action was defection.
-  In the example shown, the bottom player employs a self-reactive-$1$ strategy.
-  They cooperate with a probability $\tilde{p}_D$ in the second round given that
-  they defected in the first. In the second round, the player cooperates with a
-  probability $\tilde{p}_C$ since they cooperated in the previous round.
-  Finally, the player defects in the third round with a probability of $1 -
-  \tilde{p}_C$, considering that they cooperated in the previous round.}\label{fig:conceptual_figure_model}
-\end{figure}
 
 \textbf{Self-Reactive Sufficiency.} To predict which reactive-$n$ strategies are
 partner strategies, we must characterize which nice reactive-$n$ strategies are
@@ -374,39 +370,6 @@ strategy is a partner if and only if,
   r_n = 1 ~~and~~ r_{n - k} < 1 - \frac{k}{n} \cdot \frac{c}{b}, \text{ for } k \in \{1, 2, \dots, n\}.
 \end{equation}
 
-\begin{figure}[htbp!]
-  \centering
-  \includegraphics[width=\textwidth]{figures/conceptual_figure_results.pdf}
-  \caption{\textbf{Representation of Theoretical Results.} \textbf{A.} We have
-proven that if a player is using a reactive strategy $\mathbf{p}$, then the
-co-player using a memory-$n$ strategy can switch to a self-reactive-$n$ strategy
-without affecting the resulting payoffs. Namely, consider the case where player
-1 uses the reactive-1 strategy $\mathbf{p} = (0.8, 0.5)$ and player 2 uses the
-memory-1 strategy $\mathbf{m} = (0.1, 0.6, 0.2, 0.3)$. A memory-1 strategy is
-defined by the vector $\mathbf{m} = (m_{CC}, m_{CD}, m_{DC}, m_{DD})$. Based on
-these strategies, the players interact in the repeated game. We can determine
-the long-term outcome, which indicates how often players are observed in any of
-the possible last-round outcomes.
-\textbf{B.} Using
-these outcomes and player 2's memory-1 strategy, we can compute an associated
-self-reactive strategy. The self-reactive strategy now consists of two
-cooperation probabilities, $\tilde{p}_C$ and $\tilde{p}_D$, which can be
-calculated as a weighted average of the respective memory-1 strategy's
-cooperation probabilities. The resulting reactive strategy for player 2 yields
-the same outcome distribution against player 2 as the original memory-1 strategy
-(see Supplementary Information for proof). \textbf{C.} For $c/b = 1/2$, we plot the space of
-reactive-2 partner strategies within the space of nice reactive-2 strategies. We
-can see that they form a three-dimensional polyhedron. Partner counting strategies
-are found in the overlapping region between the polyhedron and the counting
-strategies plane.
-\textbf{D.} For $R=3, T=5, P=0, S=1$, we explore the space of reactive-2 partner
-strategies. In the case of the general Prisoner's Dilemma, the entries of a
-nice reactive-2 strategy must satisfy a total of five conditions. However,
-when $R=3, T=5, P=0, S=1$, these conditions are reduced to three. Although the
-partner strategies also form a three-dimensional polyhedron, the shape differs
-from that of the donation game.}\label{fig:conceptual_figure_results}
-\end{figure}
-
 
 \textbf{Evolutionary Dynamics.}
 Based on our previous equilibrium analysis, we know the conditions that a
@@ -452,30 +415,7 @@ memory size expands. Thus, in the case of counting strategies there is no added
 value in increasing memory size, from an evolutionary perspective.
 
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\textwidth]{figures/abundant_strategies.pdf}
-  \caption{\textbf{Evolutionary Dynamics in the Space of Reactive Strategies.}
-  In the previous section, we characterized partner strategies for
-  reactive$-2$ and reactive$-3$. Additionally, we discussed the case of reactive
-  counting strategies. Now, our focus is on assessing whether partner strategies
-  can evolve in an evolutionary context. We ran simulations based on the
-  methodology of Imhof and Nowak~\cite{imhof:royal:2010}. In a single run of the
-  evolutionary process, we recorded the cooperation probabilities of the
-  resident at each elementary time step. \textbf{a-b. Most Abundant Reactive
-  Strategies.} We performed 10 independent simulations for each set of
-  strategies and documented the most abundant strategy for each run. The most
-  abundant strategy is the resident that remained fixed for the most time steps.
-  For these simulations, we used \(b=1 \text{ and } c=.5\). For $n$ equal to 1
-  and 2, \(T= 10 ^ 7\) and for $n=3$ then \(T= 2 \times10 ^ 7\).
-  \textbf{c-d. Abundance of Partner Strategies.}
-  We ran the evolutionary process once more, this time varying the cost ($c$)
-  and the strength of selection ($\beta$). The cooperation benefit ($b$)
-  remained fixed at a value of 1.}\label{fig:evolutionary_results}
-\end{figure}
-
-
-\section{Discussion}
+\section*{Discussion}
 
 Previous theoretical research has mainly focused on a single set of strategies
 in repeated games, namely, memory-1 strategies. Although several results have
@@ -525,7 +465,7 @@ strategies in higher memory spaces. Although reactive strategies are a subset of
 memory strategies, we have demonstrated that there are many results to explore
 in this case.
 
-\section{Materials and Methods}\label{section:materials_and_methods}
+\section*{Materials and Methods}\label{section:materials_and_methods}
 
 In the following paragraphs, we describe the framework of our evolutionary
 process. The framework considers a population of size \(N\) where initially all
@@ -555,12 +495,114 @@ step another mutant strategy is introduced to the  population. We iterate this
 elementary population updating process for a large number of mutant strategies
 and we record the resident strategies at each time step.
 
+\christian{Here, could we provide a link to some online repository?} 
+
 {\setlength{\bibsep}{0\baselineskip}
 \bibliographystyle{naturemag}
 \bibliography{bibliography.bib}
 }
 
 
+\clearpage
+\newpage
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/conceptual_figure_model.pdf}
+  \caption{\textbf{A Graphical Representation of the Strategies Set.}
+  \textbf{A.} In each turn of the repeated game, players 1 and 2 decide on an
+  action, denoted as $C$ (cooperate) or $D$ (defect), respectively. We assume,
+  that the information that a player can use in subsequent turns is limited to
+  the actions taken by both players in the current turn. \textbf{B.} Memory-$1$
+  strategies, a well-studied set of strategies, utilize the actions of both
+  players in the previous turn to make decisions. In the graphical
+  representation of memory-$1$ strategies, we use a single square to illustrate
+  this concept. \textbf{C.} This work primarily focuses on reactive-$n$
+  strategies, which take into account only the actions of the co-players.
+  \textbf{E.} For the case of $n = 1$, a reactive-$1$ strategy is represented as
+  a vector $\mathbf{p} = (p_C, p_D)$, where $p_C$ is the probability of
+  cooperating given that the co-player cooperated, and $p_D$ is the probability
+  of cooperating given that the co-player defected. In the example shown, the
+  bottom player employs a reactive-$1$ strategy. They cooperate with a
+  probability $p_C$ in the second round because the co-player cooperated in the
+  first round. In the second round, the player cooperates with a probability
+  $p_D$ since the co-player previously defected. Finally, the player defects in
+  the third round with a probability of $1 - p_C$, considering that the
+  co-player cooperated. \textbf{D.} Another set of strategies we consider is
+  that of self-reactive-$n$ strategies, which rely solely on a player's own
+  previous $n$ actions. \textbf{F.} For the case of $n = 1$, a self-reactive-$1$
+  strategy is represented as a vector $\mathbf{\tilde{p}} = (\tilde{p}_C,
+  \tilde{p}_D)$, where $\tilde{p}_C$ is the probability of cooperating given
+  that the player's last action was cooperation, and $\tilde{p}_D$ is the
+  probability of cooperating given that the player's last action was defection.
+  In the example shown, the bottom player employs a self-reactive-$1$ strategy.
+  They cooperate with a probability $\tilde{p}_D$ in the second round given that
+  they defected in the first. In the second round, the player cooperates with a
+  probability $\tilde{p}_C$ since they cooperated in the previous round.
+  Finally, the player defects in the third round with a probability of $1 -
+  \tilde{p}_C$, considering that they cooperated in the previous round.}\label{fig:conceptual_figure_model}
+\end{figure}
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/conceptual_figure_results.pdf}
+  \caption{\textbf{Representation of Theoretical Results.} \textbf{A.} We have
+proven that if a player is using a reactive strategy $\mathbf{p}$, then the
+co-player using a memory-$n$ strategy can switch to a self-reactive-$n$ strategy
+without affecting the resulting payoffs. Namely, consider the case where player
+1 uses the reactive-1 strategy $\mathbf{p} = (0.8, 0.5)$ and player 2 uses the
+memory-1 strategy $\mathbf{m} = (0.1, 0.6, 0.2, 0.3)$. A memory-1 strategy is
+defined by the vector $\mathbf{m} = (m_{CC}, m_{CD}, m_{DC}, m_{DD})$. Based on
+these strategies, the players interact in the repeated game. We can determine
+the long-term outcome, which indicates how often players are observed in any of
+the possible last-round outcomes.
+\textbf{B.} Using
+these outcomes and player 2's memory-1 strategy, we can compute an associated
+self-reactive strategy. The self-reactive strategy now consists of two
+cooperation probabilities, $\tilde{p}_C$ and $\tilde{p}_D$, which can be
+calculated as a weighted average of the respective memory-1 strategy's
+cooperation probabilities. The resulting reactive strategy for player 2 yields
+the same outcome distribution against player 2 as the original memory-1 strategy
+(see Supplementary Information for proof). \textbf{C.} For $c/b = 1/2$, we plot the space of
+reactive-2 partner strategies within the space of nice reactive-2 strategies. We
+can see that they form a three-dimensional polyhedron. Partner counting strategies
+are found in the overlapping region between the polyhedron and the counting
+strategies plane.
+\textbf{D.} For $R=3, T=5, P=0, S=1$, we explore the space of reactive-2 partner
+strategies. In the case of the general Prisoner's Dilemma, the entries of a
+nice reactive-2 strategy must satisfy a total of five conditions. However,
+when $R=3, T=5, P=0, S=1$, these conditions are reduced to three. Although the
+partner strategies also form a three-dimensional polyhedron, the shape differs
+from that of the donation game.}\label{fig:conceptual_figure_results}
+\end{figure}
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/abundant_strategies.pdf}
+  \caption{\textbf{Evolutionary Dynamics in the Space of Reactive Strategies.}
+  In the previous section, we characterized partner strategies for
+  reactive$-2$ and reactive$-3$. Additionally, we discussed the case of reactive
+  counting strategies. Now, our focus is on assessing whether partner strategies
+  can evolve in an evolutionary context. We ran simulations based on the
+  methodology of Imhof and Nowak~\cite{imhof:royal:2010}. In a single run of the
+  evolutionary process, we recorded the cooperation probabilities of the
+  resident at each elementary time step. \textbf{a-b. Most Abundant Reactive
+  Strategies.} We performed 10 independent simulations for each set of
+  strategies and documented the most abundant strategy for each run. The most
+  abundant strategy is the resident that remained fixed for the most time steps.
+  For these simulations, we used \(b=1 \text{ and } c=.5\). For $n$ equal to 1
+  and 2, \(T= 10 ^ 7\) and for $n=3$ then \(T= 2 \times10 ^ 7\).
+  \textbf{c-d. Abundance of Partner Strategies.}
+  We ran the evolutionary process once more, this time varying the cost ($c$)
+  and the strength of selection ($\beta$). The cooperation benefit ($b$)
+  remained fixed at a value of 1.}\label{fig:evolutionary_results}
+\end{figure}
 
 
 \end{document}
+
+
+
+
