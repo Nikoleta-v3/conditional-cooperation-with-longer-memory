@@ -32,11 +32,13 @@
 
 \def\wsls{\texttt{WSLS}}
 \def\tft{\texttt{TFT}}
+\def\tftt{\texttt{TF2T}}
+\def\ttft{\texttt{2TFT}}
 \def\gtft{\texttt{GTFT}}
 \def\allc{\texttt{ALLC}}
 \def\alld{\texttt{ALLD}}
 \def\alt{\texttt{Alternator}}
-
+\def\SI{\textbf{Supporting Information}}
 
 
 \titleformat{\section}{\sffamily \fontsize{12}{15}\bfseries}{\thesection}{0.4em}{}
@@ -157,55 +159,52 @@ To be stable, however, these strategies need to be sufficiently responsive to th
 
 \section*{Results}
 
-\textbf{Definitions.}
-We consider an infinitely repeated game with two players, player 1 and player 2.
-In each round players can choose to cooperate ($C$) or to defect ($D$). If
-both players cooperate, they receive a payoff $R$ (the reward for mutual
-cooperation), and if both players defect, they receive a payoff $P$ (the
-punishment for mutual defection). If one player cooperates, the cooperative
-player receives the sucker's payoff $S$, and the defecting player receives the
-temptation payoff $T$. We assume that the payoff are such that $T > R > P > S$
-and $2 R > T + S$. This game is known as the Prisoner's Dilemma. Here, we employ
-a specific parametrization of the Prisoner's Dilemma, where cooperation implies
-incurring a cost $c$ for the co-player to derive a benefit $b > c$.
-Consequently, the payoffs are defined as follows: \(R = b - c, S = -c, T = b, P
-= 0\). In the Supplementary Information, we show that our main results
-are applicable to the general Prisoner's Dilemma.
+\textbf{Model and notations.}
+We consider a repeated game between two players, player~1 and player~2.
+Each round, players can choose to cooperate ($C$) or to defect ($D$). 
+If both players cooperate, they receive the payoff $R$ (reward), which exceeds the (punishment) payoff~$P$ for mutual defection. 
+If only one player cooperates, the defector receives the temptation~$T$, whereas the cooperator ends up with the sucker's payoff~$S$. 
+The players' aim is to maximize their average payoff per round, across infinitely many rounds.
+We assume payoffs satisfy the typical relationships of a prisoner's dilemma, $T \!>\! R \!>\! P \!>\! S$ and $2 R \!>\! T \!+\! S$. 
+Therefore, in each round, mutual cooperation is the best outcome for the pair, but players have some incentive to defect. 
+To make results easier to interpret, it is sometimes instructive to look at a particular variant of the prisoner's dilemma, the donation game. 
+Here, cooperation means to pay a cost $c\!>\!0$ for the co-player to get a benefit $b\!>\!c$.
+The resulting payoffs are \(R \!\!=\! b\! -\! c, S \!=\! -c, T \!=\! b, P\!
+=\! 0\). 
+We use this donation game in the following to illustrate our results. 
+However, most of our findings are straightforward to extend to the general prisoner's dilemma (or to other repeated $2\!\times\!2$ games, see \SI). 
 
-We assume in the following, that the players' decisions only depend on the
-outcome of the previous $n$ rounds. To this end, an {\it $n$-history for player
-$i \in \{1, 2\}$} is a string $h^i=(a^i_{-n},\ldots,a^i_{-1})\!\in\!\{C,D\}^n$
-where an entry $a^i_{-k}$ corresponds to player $i$'s action $k$ rounds ago. Let
-$H^i$ denote the space of all $n$-histories for player $i$ where set $H^i$
-contains $|H^i|=2^{n}$ elements. A {\it reactive$-n$ strategy} for player 1 is a
-vector $\mathbf{p}=(p_h)_{h\in H^2} \in [0, 1]^{n}$. Each entry $p_h$
-corresponds to the player's cooperation probability in the next round, based on
-the co-player's actions in the previous $n$ rounds. Therefore, reactive-$n$
-strategies exclusively rely on the co-player's $n$-history, independent of the
-focal player's own actions. For \(n=1\), this definition of reactive-\(n\)
-strategies recovers the typical format of reactive-1
-strategies~\cite{baek:scientific:2016, wahl:JTB:1999, mcavoy:PRSA:2019},
-\(\mathbf{p}=(p_C, p_D)\). Another class of strategies we will be discussing in
-this work are, {\it self-reactive-$n$} strategies which only consider the focal
-player's own $n$-history, and ignore the co-player's. Formally, a
-self-reactive-$n$ strategy for player 1 is a vector $\mathbf{\tilde{p}} =
-(\tilde{p}_h)_{h \in H^1} \in [0, 1] ^ {n}$. Each entry $\tilde{p}_h$
-corresponds to the player's cooperation probability in the next, depending on
-the player's own actions in the previous $n$ rounds.
-In Fig.~\ref{fig:conceptual_figure_model}, we summarize and provide a graphical
-representation of reactive and self-reactive strategies, as well as examples of
-these classes for $n=1$. Lastly, note that we refer to a reactive or
-self-reactive strategy as pure if all the entries of the strategy are either 0
-or 1.
+We consider players who use strategies with finite memory. 
+To describe such strategies formally, it is useful to introduce some notation. 
+An {\it $n$-history for player $i\! \in\! \{1, 2\}$} is a tuple $\mathbf{h}^i\!=\!(a^i_{-n},\ldots,a^i_{-1})\!\in\!\{C,D\}^n$. 
+Each entry $a^i_{-k}$ corresponds to player $i$'s action $k$ rounds ago. 
+We use $H^i$ for the set of all such $n$-histories. 
+This set contains $|H^i|\!=\!2^{n}$ elements. 
+Based on this notation, we can define a {\it reactive}-$n$ {\it strategy} for player 1 as a vector $\mathbf{p}\!=\!(p_\mathbf{h})_{\mathbf{h}\in H^2} \!\in\! [0, 1]^{2^n}$. 
+The entries $p_\mathbf{h}$ correspond to player 1's cooperation probability in any given round, contingent on player 2's actions during the last $n$ rounds. 
+The strategy is called pure or deterministic if any entry is either zero or one. 
+We note that the above definition leaves player 1's moves during the initial $n$ rounds unspecified. 
+However, in infinitely repeated games without discounting, these initial moves tend to be inconsequential. 
+Hence, we will neglect them in the following.
 
-In a repeated game, a strategy is considered a {\it Nash strategy} if and only if the
-payoff when playing against itself is greater than or equal to any payoff that
-any other strategy can achieve against it. In this work, we focus on a set of
-Nash strategies called partner strategies. To define partner strategies, we
-first need to introduce the notion of a nice strategy. A strategy is considered
-{\it nice} if the player is never the first to defect. A nice strategy, when played
-against itself, receives the mutual cooperation payoff. Now, a {\it partner strategy}
-is a nice strategy that also satisfies the Nash equilibrium condition.
+For \(n\!=\!1\), the above definition recovers the classical format of reactive-1 strategies~\cite{sigmund2010}, \(\mathbf{p}\!=\!(p_C, p_D)\). 
+This set contains, for example, the strategies of unconditional defection, \alld~$=\!(0,0)$, and Tit-for-Tat, \tft~$=\!(1,0)$. 
+The next complexity class is the set of reactive-2 strategies, $\mathbf{p}\!=\!(p_{CC},p_{CD},p_{DC},p_{DD})$.
+In addition to \alld{} and \tft{}, this set contains, for instance, the strategies Tit-for-Two-Tat, \tftt~$=\!(1,1,1,0)$ and Two-Tit-for-Tat,~\ttft$=\!(1,0,0,0)$. 
+Similar examples exist for $n\!>\!2$. 
+
+In the following, we are particularly interested in those reactive-$n$ strategies that sustain full cooperation. 
+Such strategies ought to have two properties. 
+First, the strategy ought to be {\it nice}, meaning that it should never be the first to defect~\citep{axelrod:AAAS:1981}.
+This property ensures that two players with that strategy would fully cooperate. 
+In particular, if $\mathbf{h}_C$ is the $n$-history that consists of $n$ bits of cooperation, a nice strategy needs to respond by cooperating with certainty, $p_{\mathbf{h}_C}\!=\!1$.  
+Second, the strategy ought to form a {\it Nash equilibrium}, such that no co-player has an incentive to deviate. 
+Strategies that have both properties are called {\it partner strategies}~\citep{Hilbe:GEB:2015} or {\it partners}.
+The partners among the reactive-1 strategies are well known. 
+For example, for the donation game, partners are those strategies with $p_C\!=\!1$ and $p_D\!\le\!1\!-\!c/b$~\citep{akin:EGADS:2016}. 
+However, a general theory of partners for $n\!\ge\!2$ is lacking. 
+This is what we aim to derive in the following.\\
+ 
 
 
 \textbf{Self-Reactive Sufficiency.} To predict which reactive-$n$ strategies are
@@ -220,7 +219,13 @@ There can still be infinitely many memory-$n$ strategies one would have to check
 against. However, we restrict the search space even further. Namely, we have
 shown that if a player adopts a reactive strategy, it is only necessary to
 consider mutant strategies that are self-reactive-$n$
-(Fig.~\ref{fig:conceptual_figure_results}A-B). Our result aligns with the findings
+(Fig.~\ref{fig:conceptual_figure_results}A-B). 
+Formally, a
+self-reactive-$n$ strategy for player 1 is a vector $\mathbf{\tilde{p}} =
+(\tilde{p}_h)_{h \in H^1} \in [0, 1] ^ {n}$. Each entry $\tilde{p}_h$
+corresponds to the player's cooperation probability in the next, depending on
+the player's own actions in the previous $n$ rounds.
+Our result aligns with the findings
 of~\cite{press:PNAS:2012}. They explored a scenario where one player uses a
 memory-1 strategy while the other employs a longer memory strategy. They
 demonstrated that the payoff of the player with the longer memory is exactly the
@@ -238,8 +243,12 @@ Furthermore, we have shown that we only need to consider pure self-reactive-$n$
 strategies (see Supplementary Information for proof). Thus, in the case of $n =
 2$, we can check whether a given strategy $\mathbf{p}$ is Nash by comparing its
 payoff to $2^4 = 16$ possible self-reactive strategies, and in the case of $n =
-3$, we can check against $2^8 = 256$ possible self-reactive strategies.
+3$, we can check against $2^8 = 256$ possible self-reactive strategies.\\
 
+
+
+
+\noindent
 \textbf{Partner Strategies Amongst Reactive-2 and Reactive-3 Strategies.}
 Using the self-reactive sufficiency result we can characterize partner
 strategies amongst the reactive-2 and reactive-3 strategies. A reactive-2
