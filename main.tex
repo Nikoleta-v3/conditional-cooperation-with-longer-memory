@@ -95,7 +95,7 @@ reactive counting strategies.
 %%%%%%%%%%%%%
 
 \noindent
-{\bf Significance statement.} Humans tend to cooperate conditionally. 
+{\bf Significance statement.} People tend to cooperate conditionally. 
 We are often influenced by how cooperative others are, and we adapt our behavior accordingly. 
 To describe reciprocal cooperation, theoretical models often presume that individuals only react to their last interaction. 
 Instead, here we allow individuals to react to an opponent's $n$ previous actions, for arbitrary $n$.
@@ -277,105 +277,71 @@ By computing the payoffs of all 16 pure self-deterministic strategies $\mathbf{\
 \begin{equation}\label{eq:two_bit_conditions}
   p_{CC} = 1, \qquad  \frac{p_{CD} + p_{DC}}{2} \le 1 - \frac{1}{2} \!\cdot\! \frac{c}{b}, \qquad  p_{DD} \leq 1\!-\! \frac{c}{b}.
 \end{equation}
+The above conditions define a three-dimensional polyhedron within the space of all nice reactive-2 strategies~(\figref{fig:conceptual_figure_results}\textbf{C}).
+These conditions are straightforward to interpret. 
+The condition $p_{CC}\!=\!1$ follows from the requirement that the strategy ought to be nice. 
+As long as the co-player cooperates, the reactive-$n$ player goes along. 
+The other two conditions imply that for each defection in memory, the player's cooperation rate decreases by $c/(2b)$.
+Interestingly, in cases with a mixed $2$-history (one cooperation, one defection), the above conditions suggest that the exact timing of cooperation does not matter. 
+It is only required that the two cooperation probabilities $p_{CD}$ and $p_{DC}$ are sufficiently small {\it on average}. 
+Interestingly, the above conditions also imply that to check whether a given reactive-2 strategy is a partner, it suffices to check two deviations. 
+These deviations are the strategy that strictly alternates between cooperation and defection (yielding the first inequality), and \alld~(yielding the second inequality). 
+We note that this last implication is specific to the donation game. 
+For the general prisoner's dilemma (depicted in \figref{fig:conceptual_figure_results}\textbf{D}), there are more than two inequalities that need to be satisfied (see~\SI{}).
 
-Hence, for a strategy to be a Nash equilibrium, it must ensure that the strategy
-ALLD doesn't yield a higher payoff (achieved by $p_{DD} \leq 1 - \frac{c}{b}$),
-and the average cooperation rate after a single defection by the co-player in
-the last two rounds must be less than half the cost-benefit ratio ($c/b$). These
-conditions define partner strategies as a three-dimensional polyhedron within
-the space of all nice reactive-2 strategies
-(Fig.~\ref{fig:conceptual_figure_results}C).
-
-A reactive-3 strategy is defined by the vector $\mathbf{p} = (p_{CCC}, p_{CCD},
-p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{DDD})$, and it is a partner strategy,
-if and only if the strategy entries satisfy the conditions,
-
+Analogously, we can also characterize the partners among the reactive-3 strategies. 
+A reactive-3 strategy is defined by the vector 
+\begin{equation}
+\mathbf{p} = (p_{CCC},\, p_{CCD},\, p_{CDC},\, p_{CDD},\, p_{DCC},\, p_{DCD},\, p_{DDC},\, p_{DDD}).
+\end{equation}
+It is a partner strategy if and only if
 \begin{align}\label{eq:three_bit_conditions}
   \begin{split}
-  p_{CCC} & = 1 \\
-  \frac{p_{CDC} + p_{DCD}}{2} & \leq 1 - \frac{1}{2} \cdot \frac{c}{b} \\
-  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} & \leq 1 - \frac{1}{3} \cdot \frac{c}{b} \\
-  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} & \leq 1 - \frac{2}{3} \cdot \frac{c}{b} \\
-  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & \leq 1 - \frac{1}{2} \cdot \frac{c}{b}  \\
+  p_{CCC} & = 1 \\[0.2cm]
+  \frac{p_{CDC} + p_{DCD}}{2} & \leq 1 - \frac{1}{2} \cdot \frac{c}{b} \\[0.2cm]
+  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} & \leq 1 - \frac{1}{3} \cdot \frac{c}{b} \\[0.2cm]
+  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} & \leq 1 - \frac{2}{3} \cdot \frac{c}{b} \\[0.2cm]
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & \leq 1 - \frac{1}{2} \cdot \frac{c}{b}  \\[0.2cm]
   p_{DDD} & \leq 1\!-\! \frac{c}{b}
   \end{split}
 \end{align}
+These conditions follow a similar logic as in the previous case with $n\!=\!2$: 
+for every co-player's defection in memory, the respective cooperation probability needs to be diminished proportionally. 
+However, for $n\!=\!3$, there are now more conditions to consider. 
+These conditions become even more complex for the general prisoner's dilemma. 
+Given these complexities, we do not present conditions for reactive-$n$ partner strategies beyond $n\!=\!3$, even though the algorithm presented in the previous section still applies.\\
 
-Inherently, these conditions still exhibit some symmetry with the case of
-reactive-2. Namely, for the strategy to be Nash, ALLD should not achieve a
-higher payoff. Additionally, the average cooperation following a single
-defection must be lower than 2/3 of the cost-benefit ratio, and the average
-cooperation following two defections must be smaller than 1/3 of the
-cost-benefit ratio. However, there are two further conditions that appear not to
-align with this intuition. We hypothesize that as the memory space we allow
-increases, the number of conditions will also increase, and some of these
-conditions will deviate from the symmetry. Note that the two additional conditions ensure
-that strategies playing the sequence of actions $CCDD$ and $CD$ cannot exploit the
-strategy.
+%%%%%%%%%%%%%
+%  Counting strategies  %
+%%%%%%%%%%%%%
 
-The proofs for the above results can be found in the Supplementary Information.
-In addition to demonstrating the results using the methodology we have described
-in the paper, we can also verify them using an independent proof. This
-independent proof builds upon the framework developed by
-Akin~\cite{akin:EGADS:2016}.
+\noindent
+\textbf{Partners among the reactive-$n$ counting strategies.}
+We can more easily generalize these formulas to the case of arbitrary $n$ if we further restrict the strategy space. 
+In the following, we consider reactive-$n$ {\it counting strategies}. 
+These strategies take into account how often the co-player cooperated during the past $n$ rounds. 
+However, they do not consider in which of the past $n$ rounds the co-player cooperated. 
+In the following, we represent such strategies as a vector $\mathbf{r}\!=\!(r_i)_{i \in \{n, n -1, \dots, 0\}}$. 
+Each entry \(r_i\) indicates the player's cooperation probability if the co-player cooperated \(i\) times during the last \(n\) rounds. 
+Note that any reactive-1 strategy $\mathbf{p}\!=\!(p_{C}, p_{D})$ is a counting strategy by definition. 
+However, for larger $n$, the set of counting strategies is a strict subset of the reactive-$n$ strategies.
+For example, for $n\!=\!2$, counting strategies are those strategies that satisfy $p_{CD}\!=\!p_{DC}\!=:\!r_1$. 
+As a result, the partners among the counting strategies form a 2-dimensional plane within the 3-dimensional polyhedron of reactive-2 partner strategies (\figref{fig:conceptual_figure_results}\textbf{C,D}).
 
-In the Supplementary Information we derive the conditions for partner strategies
-for the general Prisoner's Dilemma for reactive-2 and reactive-3 strategies. In
-Fig.~\ref{fig:conceptual_figure_results}D, we plot the space of partner
-strategies for $n=2$ and for $R =3, S=0, T=5, P=1$.
-
-\textbf{Partner Strategies Amongst Reactive Counting Strategies}
-A special case of reactive strategies is reactive counting strategies. These are
-strategies that respond to the co-player's actions, but they do not distinguish
-between when cooperations occurred in the last $n$ turns; they solely consider
-the count of cooperations. A reactive-$n$ counting strategy is represented by a
-vector $\mathbf{r}=(r_i)_{i \in \{n, n -1, \dots, 0\}}$, where the entry \(r_i\)
-indicates the probability of cooperating given that the co-player cooperated
-\(i\) times in the last \(n\) turns. Note that a reactive-1 strategy
-$\mathbf{p}=(p_{C}, p_{D})$ and a counting strategy $\mathbf{r}=(r_1, r_0)$ are
-equivalent because both strategies describe the probability of cooperating after
-a single or no cooperation by the co-player through their respective entries. 
-
-A reactive-2 counting strategy is denoted by the vector $\mathbf{r}=(r_2,
-r_1, r_0)$, and we can characterise partner strategies among the reactive-2
-counting strategies by simply setting $r_2 = 1$, and $p_{CD} = p_{DC} = r_1$ and
-$p_{DD} = r_0$ in conditions~\eqref{eq:two_bit_conditions} which gives us the
-following conditions,
-
-\begin{equation}\label{eq:counting_two_bit_conditions}
-  r_2 = 1, \quad \displaystyle r_1 < 1-\frac{1}{2} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
-\end{equation}
-
-Similarly, a reactive-3 counting strategy is denoted by the vector
-$\mathbf{r}=(r_3, r_2, r_1, r_0)$, and we characterise partner strategies among
-reactive-3 counting strategies by setting $r_3 = 1$, and $p_{CCD} = p_{CDC} =
-p_{DCC} = r_2, p_{DCD} = p_{DDC} = p_{CDD} = r_1$ and $p_{DDD} = r_0$ in
-conditions~\eqref{eq:three_bit_conditions}. This gives us the following
-conditions,
-
-\begin{equation}\label{eq:counting_three_bit_conditions}
-  r_3 = 1, \quad \displaystyle r_2 < 1- \frac{1}{3} \cdot \frac{c}{b}, \quad r_1 < 1- \frac{2}{3} \cdot \frac{c}{b} ~~and~~ r_0 < 1\!-\! \frac{c}{b}.
-\end{equation}
-
-Counting strategies are a subset of reactive strategies, and as such, they exist
-within the space of reactive partner strategies. For example, in the case of
-$n=2$, the counting partner strategies form a plane within the three-dimensional
-polyhedron of reactive-2 partners (Fig.~\ref{fig:conceptual_figure_results}B).
-Counting partner strategies appear to align with the intuition that the
-generosity (the probability of cooperating after a defection, thus being
-generous with your co-player) exhibited by a strategy after a $k$ number of
-defections in the last $n$ rounds must be less than $1 - k/n$ of the
-cost-benefit ratio. As the total number of defections increases, the strategy's
-generosity decreases. And, precisely, this is the result we prove (see
-Supplementary Information). In the case of reactive-counting strategies, we
-characterize partner strategies for all memory lengths. A reactive-counting
-strategy is a partner if and only if,
-
+For the donation game among players with counting strategies, it is possible to characterize the set of partner strategies for arbitrary $n$. We find that a counting strategy $\mathbf{r}$ is a partner if and only if
 \begin{equation}
-  r_n = 1 ~~and~~ r_{n - k} < 1 - \frac{k}{n} \cdot \frac{c}{b}, \text{ for } k \in \{1, 2, \dots, n\}.
+  r_n = 1 \qquad \text{and} \qquad r_{n - k} \le 1\! -\! \frac{k}{n} \!\cdot\! \frac{c}{b}~~ \text{ for }~k \!\in\! \{1, 2, \dots, n\}.
 \end{equation}
+That is, for every defection of the opponent in memory, the maximum cooperation probability needs to be reduced by $c/(nb)$.
+It is worth to note that this result is general. 
+These strategies are Nash equilibria even if players are allowed to deviate towards strategies that do not merely count the co-player's cooperative acts, or towards strategies that take into account more than the last $n$ rounds.\\ 
 
 
+%%%%%%%%%%%%%%%
+% Evolutionary simulations  %
+%%%%%%%%%%%%%%%
+
+\noindent
 \textbf{Evolutionary Dynamics.}
 Based on our previous equilibrium analysis, we know the conditions that a
 reactive strategy must satisfy to be considered a partner strategy. The next
