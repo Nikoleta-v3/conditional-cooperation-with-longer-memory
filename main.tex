@@ -39,6 +39,7 @@
 \def\alld{\texttt{ALLD}}
 \def\alt{\texttt{Alternator}}
 \def\SI{\textbf{Supporting Information}}
+\def\methods{\textbf{Material and Methods}}
 
 
 \titleformat{\section}{\sffamily \fontsize{12}{15}\bfseries}{\thesection}{0.4em}{}
@@ -333,7 +334,7 @@ For the donation game among players with counting strategies, it is possible to 
   r_n = 1 \qquad \text{and} \qquad r_{n - k} \le 1\! -\! \frac{k}{n} \!\cdot\! \frac{c}{b}~~ \text{ for }~k \!\in\! \{1, 2, \dots, n\}.
 \end{equation}
 That is, for every defection of the opponent in memory, the maximum cooperation probability needs to be reduced by $c/(nb)$.
-It is worth to note that this result is general. 
+It is worth to highlight that this result is general. 
 These strategies are Nash equilibria even if players are allowed to deviate towards strategies that do not merely count the co-player's cooperative acts, or towards strategies that take into account more than the last $n$ rounds.\\ 
 
 
@@ -343,18 +344,22 @@ These strategies are Nash equilibria even if players are allowed to deviate towa
 
 \noindent
 \textbf{Evolutionary Dynamics.}
-Based on our previous equilibrium analysis, we know the conditions that a
-reactive strategy must satisfy to be considered a partner strategy. The next
-step is to determine whether these strategies are likely to evolve through an
-evolutionary process. Additionally, what remains unclear is the impact of
-increased memory, as well as the consequences of limiting strategies to counting
-alone. Here, we will empirically explore these questions by simulating an
-imitation process, using the framework described by Imhof and
-Nowak~\cite{imhof:royal:2010}. The setup of the framework is outlined in
-Materials and Methods~\ref{section:materials_and_methods}.
+Based on our previous equilibrium analysis, we know which strategies can sustain cooperation in principle. 
+In a next step, we determine whether these strategies are likely to evolve when strategies are not consciously chosen, but resulting from a learning process. 
+To this end, we consider a population of individuals who update their strategies based on social learnings. 
+Strategies with a high payoff are more likely to be imitated. 
+In addition, mutations occasionally introduce new strategies.
+This process is particularly easy to explore when mutations are rare~\cite{fudenberg:JET:2006,wu:JMB:2012,imhof:royal:2010,mcavoy:jet:2015}. 
+In that case, the population typically consists of a single resident strategy.  
+Once a new mutant strategy appears, this strategy fixes or goes extinct before the next mutation happens. 
+This process can be simulated efficiently because there is an explicit formula for the mutant's fixation probability~\citep{nowak:Nature:2004}. 
+We describe the exact setup of these simulations in the \methods{} section.
 
-First, we explore which strategies evolve from the evolutionary dynamics for a
-fixed set of parameters. We ran 10 independent simulations for each set of
+First, we explore which reactive-$n$ strategies evolve for a fixed set of game parameters. 
+Each case, we only vary the strategies' memory length $n$, and whether mutations can introduce all reactive-$n$ strategies or only counting strategies. 
+\figref{fig:evolutionary_results}
+
+We ran 10 independent simulations for each set of
 strategies and recorded the resident strategy at each elementary time step. Once
 a strategy has become a resident we also record the number of time steps it
 remained a resident. Thus, the number of mutants that have unsuccessfully tried
