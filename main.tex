@@ -295,9 +295,9 @@ For the general prisoner's dilemma (depicted in \figref{fig:conceptual_figure_re
 
 Analogously, we can also characterize the partners among the reactive-3 strategies. 
 A reactive-3 strategy is defined by the vector 
-\begin{equation}
+\begin{equation*}
 \mathbf{p} = (p_{CCC},\, p_{CCD},\, p_{CDC},\, p_{CDD},\, p_{DCC},\, p_{DCD},\, p_{DDC},\, p_{DDD}).
-\end{equation}
+\end{equation*}
 It is a partner strategy if and only if
 \begin{align}\label{eq:three_bit_conditions}
   \begin{split}
@@ -333,7 +333,7 @@ For example, for $n\!=\!2$, counting strategies are those strategies that satisf
 As a result, the partners among the counting strategies form a 2-dimensional plane within the 3-dimensional polyhedron of reactive-2 partner strategies (\figref{fig:conceptual_figure_results}\textbf{C,D}).
 
 For the donation game among players with counting strategies, it is possible to characterize the set of partner strategies for arbitrary $n$. We find that a counting strategy $\mathbf{r}$ is a partner if and only if
-\begin{equation}
+\begin{equation} \label{eq:counting}
   r_n = 1 \qquad \text{and} \qquad r_{n - k} \le 1\! -\! \frac{k}{n} \!\cdot\! \frac{c}{b}~~ \text{ for }~k \!\in\! \{1, 2, \dots, n\}.
 \end{equation}
 That is, for every defection of the opponent in memory, the maximum cooperation probability needs to be reduced by $c/(nb)$.
@@ -347,51 +347,40 @@ These strategies are Nash equilibria even if players are allowed to deviate towa
 
 \noindent
 \textbf{Evolutionary Dynamics.}
-Based on our previous equilibrium analysis, we know which strategies can sustain cooperation in principle. 
-In a next step, we determine whether these strategies are likely to evolve when strategies are not consciously chosen, but resulting from a learning process. 
-To this end, we consider a population of individuals who update their strategies based on social learnings. 
-Strategies with a high payoff are more likely to be imitated. 
+With our previous equilibrium analysis we have identified the strategies that can sustain cooperation in principle. 
+In a next step, we determine whether these strategies can evolve in the first place. 
+Here, we no longer presume that individuals would play equilibrium strategies. 
+Rather they initially implement some random behavior. 
+Over time, however, they adapt their strategies based on social learning.
+To model this learning process, we consider a population of individuals who update their strategies based on pairwise comparisons. 
+The efficacy of the resulting learning process is determined by a strength of selection parameter~$\beta$. 
+The larger $\beta$, the more likely individuals imitate strategies with a higher payoff. 
 In addition, mutations occasionally introduce new strategies.
-This process is particularly easy to explore when mutations are rare~\cite{fudenberg:JET:2006,wu:JMB:2012,imhof:royal:2010,mcavoy:jet:2015}. 
-In that case, the population typically consists of a single resident strategy.  
+We describe the exact setup of this learning process in the \methods{} section.
+As we explain there, the process is particularly easy to explore when mutations are rare~\cite{fudenberg:JET:2006,wu:JMB:2012,imhof:royal:2010,mcavoy:jet:2015}. 
+In that case, the population is typically homogeneous, such that all players adopt the same (resident) strategy.   
 Once a new mutant strategy appears, this strategy fixes or goes extinct before the next mutation happens. 
-This process can be simulated efficiently because there is an explicit formula for the mutant's fixation probability~\citep{nowak:Nature:2004}. 
-We describe the exact setup of these simulations in the \methods{} section.
+Evolutionary processes with rare mutations can be simulated more efficiently because there is an explicit formula for the mutant's fixation probability~\citep{nowak:Nature:2004}. 
 
+The results of these simulations are shown in \figref{fig:evolutionary_results}. 
 First, we explore which reactive-$n$ strategies evolve for a fixed set of game parameters. 
-Each case, we only vary the strategies' memory length $n$, and whether mutations can introduce all reactive-$n$ strategies or only counting strategies. 
-\figref{fig:evolutionary_results}
+Here, we only vary the strategies' memory length $n$, and whether mutations can introduce all reactive-$n$ strategies, or counting strategies only. 
+For ten independent simulations, \figref{fig:evolutionary_results}\textbf{A,B} displays the most abundant strategy for each simulation run (those are the strategies that prevent the largest number of mutants from taking over). 
+We note that all the shown strategies show behavior consistent with our characterization of partners: 
+If a co-player fully cooperated in the previous $n$ rounds, these strategies prescribe to continue with cooperation. 
+If the co-player defected, however, they cooperate with a markedly reduced cooperation probability that satisfies the constraints in Eqs.~\eqref{eq:two_bit_conditions} -- \eqref{eq:counting}. 
 
-We ran 10 independent simulations for each set of
-strategies and recorded the resident strategy at each elementary time step. Once
-a strategy has become a resident we also record the number of time steps it
-remained a resident. Thus, the number of mutants that have unsuccessfully tried
-to invade the resident population. In Fig.~\ref{fig:evolutionary_results}A and B
-we represent those strategies that repelled the highest number of mutant in each
-run. We call these strategies the {\it most abundant}.
-Fig.~\ref{fig:evolutionary_results}A shows the most abundant strategies for
-reactive strategies and Fig.~\ref{fig:evolutionary_results}B shows the most
-abundant strategies for counting strategies. In both cases the most abundant
-strategies resemble partner strategies. In the case of counting strategies, we
-can see the decreasing levels of forgiveness as the number of cooperations
-decreases.
-
-Next, we compare the evolution of partner strategies and the changing
-cooperation rates for different memory sizes while varying the selection
-strength. To this end, we ran simulations for different $b/c$ ratios.
-As we examine the impact of memory size on the evolution of partner
-strategies, several patterns emerge. Increasing memory size tends to result
-in a higher abundance of partner strategies, regardless of the selection
-strength. Notably, the highest abundance is observed for lower cost values. We
-notice that the curves representing evolving cooperation rates align with the
-prevalence of partner strategies. Thus, it is the presence of partner strategies
-that facilitates the evolution of cooperation, and as memory selects partner
-strategies more frequently, the cooperation rate also increases with memory.
-In contrast, when examining
-counting strategies, we notice that the abundance of partner strategies rise
-with the strength of selection. However, there is no corresponding increase as
-memory size expands. Thus, in the case of counting strategies there is no added
-value in increasing memory size, from an evolutionary perspective.
+In a next step, we systematically explore the impact of three key parameters: the cost-to-benefit ratio~$c/b$, the selection strength $\beta$, and the memory length~$n$. 
+In each case, we record how these parameters affect the abundance of partner strategies and the population's average cooperation rate. 
+Overall, we find that the effect of each parameter is as expected~(\figref{fig:evolutionary_results}\textbf{C,D}).  
+In particular, interactions are most cooperative when the cost-to-benefit ratio is small, such that cooperation is cheap. 
+This effect is magnified for stronger selection strengths. 
+Two results, however, are particularly noteworthy. 
+First, the curves representing evolving cooperation rates align with the prevalence of partner strategies. 
+This observation suggests that partner strategies are indeed crucial for the evolution of cooperation. 
+Second, higher memory only has a notably positive effect on cooperation for reactive-$n$ strategies. 
+In contrast, for counting strategies the effect of increasing $n$ is negligible. 
+This observation suggests that higher-memory strategies are only effective when players do not only memorize how often their co-player cooperated, but also when. 
 
 
 \section*{Discussion}
@@ -490,15 +479,16 @@ and we record the resident strategies at each time step.
   \includegraphics[width=0.75\textwidth]{figures/conceptual_figure.pdf}
   \caption{\textbf{The repeated prisoner's dilemma among players with finite memory.}
   \textbf{A,} In the repeated prisoner's dilemma, in each round two players independently decide whether to cooperate~($C$) or to defect~($D$). 
-   \textbf{B,} When players adopt memory-1 strategies, their decisions depend on the outcome of the previous round. That is, they consider both their own and the co-player's previous action. 
+   \textbf{B,} When players adopt memory-1 strategies, their decisions depend on the entire outcome of the previous round. That is, they consider both their own and the co-player's previous action. 
    \textbf{C,} When players adopt a reactive-$n$ strategy, they make their decisions based on the co-player's actions during the past $n$ rounds. 
    \textbf{D,} A self-reactive-$n$ strategy is contingent on the player's own actions during the past $n$ rounds. 
-   \textbf{E,} To illustrate these concepts, we show a game between an arbitrary player (top) and a player with a reactive-1 strategy (bottom). 
+   \textbf{E,} To illustrate these concepts, we show a game between a player with a reactive-$1$ strategy (top) and an arbitrary player (bottom). 
    Reactive-1 strategies can be represented as a vector  $\mathbf{p} \!=\! (p_C, p_D)$. 
-   The entry $p_C$ is the probability of cooperating after the co-player cooperated in the previous round.
+   The entry $p_C$ is the probability of cooperating given the co-player cooperated in the previous round.
    The entry $p_D$ is the cooperation probability after the co-player defected. 
-   \textbf{E,} Now, the bottom player adopts a self-reactive-1 strategy, $\mathbf{\tilde p}\!=\!(\tilde p_C, \tilde p_D)$. 
-   Here, the bottom player's cooperation probabilities depend on their own previous action.}\label{fig:conceptual_figure_model}
+   \textbf{E,} Now, the top player adopts a self-reactive-1 strategy, $\mathbf{\tilde p}\!=\!(\tilde p_C, \tilde p_D)$. 
+   Here, the bottom player's cooperation probabilities depend on their own previous action.
+   \christian{In panel F, I believe the first arrow should come with a $\tilde p_C$ instead of a $\tilde p_D$.}}\label{fig:conceptual_figure_model}
 \end{figure}
 
 
@@ -533,13 +523,15 @@ Here, we use the values of Axelrod~\citep{axelrod:AAAS:1981}.
   method of Imhof and Nowak~\cite{imhof:royal:2010}. 
   This method assumes rare mutations. 
   Every time a mutant strategy appears, it goes extinct or fixes before the arrival of the next mutant strategy. 
-  {\bf A,B,} We consider ten independent simulations for reactive-$n$ strategies and for reactive-$n$ counting strategies. 
+  {\bf A,B,} We run ten independent simulations for reactive-$n$ strategies and for reactive-$n$ counting strategies. 
   For each simulation, we record the most abundant strategy (the strategy that resisted most mutants). 
   The respective average cooperation probabilities are in line with the conditions for partner strategies. 
-  {\bf C,D,} With additional simulations, we explore the average abundance of partner strategies and the population's average cooperation rate for a range of different cooperation costs and selection strengths. 
-  In all cases, we only observe high cooperation rates when partner strategies evolve. 
- Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!.5\), and a selection strength parameter $\beta\!=\!1$, unless noted otherwise.     For $n$ equal to 1
-  and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.}\label{fig:evolutionary_results}
+  {\bf C,D,} With additional simulations, we explore the average abundance of partner strategies and the population's average cooperation rate. 
+For a given resident strategy to be classified as a partner by our simulation, it needs to satisfy all inequalities in the respective definition of partner strategies. 
+In addition, it needs to cooperate after full cooperation with a probability of at least 95\%.  
+For all considered parameter values, we only observe high cooperation rates when partner strategies evolve. 
+Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), and a selection strength $\beta\!=\!1$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
+  \christian{For the header on the right hand side, could we use `dependence' instead of `dependance'?}}\label{fig:evolutionary_results}
 \end{figure}
 
 
