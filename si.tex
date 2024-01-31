@@ -71,6 +71,7 @@
 
 \titleformat{\section}{\sffamily \fontsize{12}{15}\bfseries}{\thesection}{0.4em}{}
 \titleformat{\subsection}{\sffamily\fontsize{11}{15}\bfseries}{\thesubsection}{0.4em}{}
+\renewcommand{\thefigure}{S\arabic{figure}}
 
 
 
@@ -144,7 +145,7 @@ The payoff matrix of the donation game takes the form
 For this game to satisfy the conditions~\eqref{Eq:ConditionsPD} of a prisoner's dilemma, we assume $b\!>\!c\!>\!0$ throughout. 
 
 Players interact in the repeated prisoner's dilemma for infinitely many rounds, and future payoffs are not discounted. 
-A strategy $\sigma^i$ for player $i$ is a rule that tells the player what to in any given round, depending on the outcome of all previous rounds. 
+A strategy $\sigma^i$ for player $i$ is a rule that tells the player what to do in any given round, depending on the outcome of all previous rounds. 
 Given the player's strategies $\sigma^1$ and $\sigma^2$, one can compute each player $i$'s expected payoff $\pi^i_{\sigma^1,\sigma^2}(t)$ in round $t$. 
 For the entire repeated game, we define the players' payoffs as the expected payoff per round, 
 \begin{equation} \label{Eq:RGpayoff}
@@ -279,7 +280,7 @@ x^i = \left\{
 The resulting  \(2^{2n} \times 2^{2n}\) transition matrix $M\!=\!(M_{\mathbf{h},\mathbf{\tilde h}})$ fully describes the dynamics among the two players after the first $n$ rounds. 
 More specifically, suppose $\mathbf{v}(t) \!=\! \big(\,v_\mathbf{h}(t)\,\big)_{\mathbf{h}\in H}$ is the probability distribution of observing state~$\mathbf{h}$ after players made their decisions for round $t\!\ge\!n$.
 Then the respective probability distribution after round $t\!+\!1$ is given by $\mathbf{v}(t\!+\!1) \!=\! \mathbf{v}(t)\cdot M$. 
-The long-run dynamics is particularly simple to describe when the matrix $M$ is primitive (which happens, for example, when the two strategies are $m^i_\mathbf{h}$ are strictly stochastic). 
+The long-run dynamics is particularly simple to describe when the matrix $M$ is primitive (which happens, for example, when the two strategies $m^i_\mathbf{h}$ are strictly stochastic). 
 In that case, it follows by the theorem of Perron and Frobenius that $\mathbf{v}(t)$ converges to some $\mathbf{v}$ as $t\to \infty$. 
 As a result, also the respective time average exists and converges to $\mathbf{v}$,
 \begin{equation} \label{Eq:TimeAverage}
@@ -368,7 +369,7 @@ strategy. For the resulting game and all $t\!\ge\!n$, let $\mathbf{v}(t)\!=\!\bi
 All proofs are presented in the Appendix. Here we provide an intuition.
 The expression $\langle \mathbf{v}, \mathbf{m} \rangle \!=\! \sum_\mathbf{h} v_\mathbf{h}m_\mathbf{h}$ can be interpreted as player 1's average cooperation rate across all rounds of the repeated game.
 To compute that average cooperation rate, one first draws an $n$-history $\mathbf{h}$ (with probability $v_\mathbf{h}$), and then one computes how likely player~1 would cooperate in the subsequent round (with probability $m_\mathbf{h}$). 
-Alternatively, one could compute the average cooperation rate by drawing an $n$-history $\mathbf{h}$ and then checking how likely player~1 was to cooperate $k$ rounds ago, according that $n$-history. 
+Alternatively, one could compute the average cooperation rate by drawing an $n$-history $\mathbf{h}$ and then checking how likely player~1 was to cooperate $k$ rounds ago, according to that $n$-history. 
 That second interpretation leads to the expression $\langle \mathbf{v}, \mathbf{m}^{k-\text{Rep}} \rangle$. 
 According to Eq.~\eqref{Eq:Akin}, both interpretations are equivalent.\\
 
@@ -490,7 +491,8 @@ That is, the generated strategy is \gtft{} (if $k\!=\!1$), or a delayed version
 thereof (for $k\!>\!1$). By Eq.~\eqref{Eq:PayoffZD}, the enforced payoff
 relationship is $\pi^{-i}(\mathbf{m^{i}}, \sigma^{-i})\!=\!b\!-\!c$. 
 That is, the co-player always obtains the mutual cooperation payoff, irrespective of the co-player's strategy. 
-In particular, all these versions of \gtft{} are nice and they are Nash equilibria (independent of how the strategy acts during the first $n$ rounds). 
+In particular, all these versions of \gtft{} are Nash equilibria  (independent of how they act during the first $n$ rounds).
+If we additionally require them to cooperate during the first $n$ rounds, they are also nice. 
 Hence, they are partner strategies.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -501,7 +503,7 @@ Hence, they are partner strategies.
 \label{Sec:Algorithm}
 
 %% SELF-REACTIVE: Self-reactive strategies sufficiency %%
-{\bf Sufficiency of pure self-reactive strategies.}
+{\bf Sufficiency of checking pure self-reactive strategies.}
 After discussing these particular cases, we would like to derive a general algorithm that allows us to verify whether a given reactive-$n$ strategy is a Nash equilibrium. 
 In principle, this requires us to check the payoff of any other strategy (including strategies that have a much longer memory length than $n$). Fortunately, however, some simplifications are possible when we use an insight by Press and Dyson \cite{press:PNAS:2012}.
 They discussed the case where one player uses a memory-1
@@ -522,8 +524,7 @@ considering that part of the history.
 \begin{figure}[t!]
     \centering
     \includegraphics[width=\textwidth]{figures/sufficiency_of_self_reactive_numerical_example_n_2.pdf}
-    \caption{{\bf Feasible payoffs against a reactive-2 strategy.} We consider a player with a fixed reactive-2 strategy $\mathbf{p}\!=\!(0.37, 0.89, 0.95, 0.23)$. The player interacts with many other players who randomly adopt either some random memory-2 strategy (left), a reactive-2 strategy (middle), or a self-reactive-2 strategy (right panel). The panels show the resulting payoffs to the two players as red dots, for a donation game with  $b\!=\!3$ and $c\!=\!1$.
-We observe that the memory-2 strategies and the self-reactive-2 strategies lead to the same region of feasible payoffs against $\mathbf{p}$, in line with Lemma~\ref{lemma:self_reactive_sufficiency}. In contrast, if $\mathbf{p}$'s opponent is restricted to reactive-2 strategies, the set of feasible payoffs is strictly smaller. 
+    \caption{{\bf Feasible payoffs for a reactive-2 strategy.} We consider a player with reactive-2 strategy $\mathbf{p}\!=\!(0.37,0.89,0.95,0.23)$. The player interacts with many other players (referred to as `mutants') who adopt either some random memory-2 strategy (left), a random reactive-2 strategy (middle), or a random self-reactive-2 strategy (right panel). The panels show the resulting payoffs to the two players as red dots, with the $x$-axis showing the payoff of the focal player, and the $y$-axis showing the payoff of the mutants. We observe that when mutants use memory-2 strategies and self-reactive-2 strategies, we obtain the same region of feasible payoffs, in line with Lemma~\ref{lemma:self_reactive_sufficiency}. In contrast, if mutants are restricted to reactive-2 strategies, the set of feasible payoffs is strictly smaller. Here, we consider a donation game with $b\!=\!3$ and $c\!=\!1$.
 }
     \label{fig:SelfReactiveSufficiency}
 \end{figure}
@@ -656,7 +657,7 @@ We conclude that player 2's reactive strategy $\mathbf{p^2}$ is a Nash equilibri
 \begin{equation}
 p^2_D \le \min\big\{1\!-\!(T\!-\!R)/(R\!-\!S),~(R\!-\!P)/(T\!-\!P)\big\}.
 \end{equation}
-That is, as one may expect $\mathbf{p^2}$ is a partner if and only if its generosity $p^2_D$ does not exceed the generosity of \gtft, see Eq.~\eqref{Eq:ConditionGTFT}. 
+As one may expect, $\mathbf{p^2}$ is a partner if and only if its generosity $p^2_D$ does not exceed the generosity of \gtft, as defined by Eq.~\eqref{Eq:ConditionGTFT}. 
 
 Instead of computing the $4\times4$ matrix $M$ in \eqref{Eq:TransitionM1}, we could also consider the simplified $2\!\times\!2$ transition matrix~\eqref{Eq:TransitionMatrixSelfReactive}. Here, the two possible states are $\mathbf{h^1}\!\in\!\{C,D\}$, and hence the matrix is
 \begin{equation}
@@ -707,9 +708,9 @@ This reduced cooperation probability is sufficient to incentivize the co-player 
 Interestingly, for the strategy to be a partner, the middle condition in \eqref{eq:two_bit_conditions} suggests that the exact timing of a co-player's defection is irrelevant. 
 As long as {\it on average}, the respective cooperation probabilities $p_{CD}$ and $p_{DC}$ are below the required threshold $1\!-\!c/(2b)$, the strategy is a Nash equilibrium. 
 
-The conditions for a partner become even more simple if we consider {\it reactive-$n$ counting strategies}. To define these strategies, let $|\mathbf{h^{-i}}|$ denote the number of $C$'s in a given $n$-history of the co-player. We say a reactive-$n$ strategy $\mathbf{p}\!=\!(p_{h^{-i}})_{\mathbf{h^{-i}\in H^{-i}}}$ is a counting strategy if 
+The conditions for a partner become even simpler for {\it reactive-$n$ counting strategies}. To define these strategies, let $|\mathbf{h^{-i}}|$ denote the number of $C$'s in a given $n$-history of the co-player. We say a reactive-$n$ strategy $\mathbf{p}\!=\!(p_{h^{-i}})_{\mathbf{h^{-i}\in H^{-i}}}$ is a counting strategy if 
 \begin{equation}
-|\mathbf{h}^{-i}|\! =\! |\mathbf{\tilde h^{-i}}| \quad \Rightarrow \quad p_\mathbf{h^{-i}} = p_\mathbf{\tilde h^{-i}}
+|\mathbf{h}^{-i}|\! =\! |\mathbf{\tilde h^{-i}}| \quad \Rightarrow \quad p_\mathbf{h^{-i}} = p_\mathbf{\tilde h^{-i}}. 
 \end{equation} 
 That is, the reactive player's cooperation probability only depends on the number of cooperative acts during the past $n$ rounds and not on their timing. 
 Such reactive-$n$ counting strategies can be written as $n\!+\!1$-dimensional vectors $\mathbf{r}\!=\!(r_k)_{k\in\{n,\ldots,1\}}$, where $r_i$ is the player's cooperation probability if the co-player cooperated $k$ times during the past $n$ rounds. In particular, for reactive-2 counting strategies, we associate $r_2\!=\!p_{CC}$, $r_1\!=\!p_{CD}\!=\!p_{DC}$, and $r_0\!=\!p_{DD}$. 
@@ -803,7 +804,7 @@ A nice reactive-2 strategy $\mathbf{p}$ is a partner strategy if and only if its
 \end{theorem}
 
 \noindent
-Compared to the donation games, there are now more conditions that need to be met, and the conditions are somewhat more difficult to interpret. Reassuringly, however, the conditions simplify to the conditions~\eqref{eq:two_bit_conditions} in the special case that the payoff values satisfy $R\!=\!b\!-\!c$, $S\!=\!-c$, $T\!=\!b$, and $P\!=\!0$. 
+Compared to the donation game, there are now more conditions, and these conditions are somewhat more difficult to interpret. Reassuringly, however, the conditions simplify to the conditions~\eqref{eq:two_bit_conditions} in the special case that the payoff values satisfy $R\!=\!b\!-\!c$, $S\!=\!-c$, $T\!=\!b$, and $P\!=\!0$. 
 For the case of reactive-3 strategies, the characterization is as follows. 
 
 
