@@ -48,7 +48,7 @@
 
 
 
-\title{\bfseries \sffamily \Large Conditional coperation with longer memory}
+\title{\bfseries \sffamily \Large Conditional cooperation with longer memory}
 
 %% Perhaps: Better title (Conditional cooperation with longer memory) %% 
 
@@ -480,12 +480,21 @@ The larger the value of \(\beta\), the more strongly the evolutionary process fa
 payoff.
 Depending on \(\phi_{M}\), the mutant either fixes (becomes the new resident) or goes extinct. 
 Afterwards, another mutant strategy is introduced to the population. 
-We iterate this elementary population updating process for a large number of mutant strategies. 
-At each step, we record the current resident strategy and the resulting average cooperation rate. 
+We iterate this elementary population updating process for a large number of
+mutant strategies. At each step, we record the current resident strategy and the
+resulting average cooperation rate, At each step, we record the current resident
+strategy and the resulting average cooperation rate, indicating how often the
+resident strategy cooperates with itself. Additionally, we assess how many
+resident strategies qualify as partner strategies in our simulation. For a
+resident strategy to be classified as a partner, it must satisfy all
+inequalities in the respective definition of partner strategies and cooperate
+with a probability of at least 95\% after full cooperation. 
+
+
 
 \section*{Data, Materials, and Software Availability}
 
-\christian{Here, could we provide a link to some online repository such that people can access our code? Also, it would be nice to have more information on how we classified strategies as partners in the simulations.} 
+All data and code to reproduce the results of this study are available at.
 
 {\setlength{\bibsep}{0\baselineskip}
 \bibliographystyle{naturemag}
