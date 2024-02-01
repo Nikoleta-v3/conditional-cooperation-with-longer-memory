@@ -1,5 +1,5 @@
-% Script to run the evilutionary process for a given set of parameters
-function evolRun();
+% Script to run the evolutionary process for a range of seeds
+function evolRunSeeds();
 
 sdim = 4;
 starting_resident = zeros(1, sdim);
