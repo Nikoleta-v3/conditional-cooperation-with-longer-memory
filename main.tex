@@ -52,7 +52,7 @@
 
 %% Perhaps: Better title (Conditional cooperation with longer memory) %% 
 
-\author{Nikoleta E. Glynatsi$^{1,*}$, Martin Nowak$^2$, Christian Hilbe$^1$\\[0.3cm]
+\author{Nikoleta E. Glynatsi$^{1,*}$, Martin A. Nowak$^2$, Christian Hilbe$^1$\\[0.3cm]
 $^{\rm 1}$Max Planck Research Group on the Dynamics of Social Behavior,\\ Max Planck Institute for Evolutionary Biology, Pl\"{o}n, Germany \\
 $^{\rm 2}$Department of Mathematics,
 Department of Organismic and Evolutionary Biology,\\ Harvard University, Cambridge, USA\\
@@ -67,25 +67,28 @@ $^*$To whom correspondence should be addressed. E-mail: glynatsi@evolbio.mpg.de
 ~\\[0.5cm]
 \noindent
 {\bf 
-Repeated games enable evolution of cooperation if players use conditional
-strategies that depend on previous interactions. A well known strategy set is
-given by reactive strategies, which respond to the co-player's previous move.
-Here we extend reactive strategies to longer memories. A reactive-$n$ strategy
-takes into account the sequence of the $n$ last moves of the co-player. A
-reactive-$n$ counting strategy takes into account how often the co-player has
-cooperated during the last $n$ rounds. We characterize all partner strategies among
-reactive-2 and reactive-3 strategies as well as among reactive-$n$ counting
-strategies. Partner strategies are those that ensure mutual cooperation without
-exploitation. We perform evolutionary simulations and find that longer memory
-increases the average cooperation rate for reactive-$n$ strategies but not for
-reactive counting strategies.
+Direct reciprocity is a wide-spread mechanism for evolution of cooperation based
+on repeated games. In this setting, players condition their behavior on previous
+interactions. A well known approach is given by reactive strategies, which
+respond to the co-player's previous move. Here we extend reactive strategies to
+longer memories. A reactive-$n$ strategy takes into account the sequence of the
+last $n$ moves of the co-player. A reactive-$n$ counting strategy only takes
+into account how often the co-player has cooperated during the last $n$ rounds.
+We derive an algorithm to identify all partner strategies among reactive $n$
+strategies. We give explicit conditions for all partner strategies among
+reactive-2, reactive-3 strategies, and reactive-$n$ counting strategies. Partner
+strategies are those that ensure mutual cooperation without exploitation. We
+perform evolutionary simulations and find that longer memory increases the
+average cooperation rate for reactive-$n$ strategies but not for reactive
+counting strategies. This suggests that memory is not only important to record
+how often a co-player cooperated, but also when. In summary, our results reveal
+which strategies sustain cooperation under more realistic assumptions on
+people's cognitive abilities.
 }\\[1cm]
 
 
 \noindent
 {\it Keywords:} Evolutionary game theory, direct reciprocity, evolution of cooperation, prisoner's dilemma
-
-
 
 \clearpage
 \newpage
@@ -96,16 +99,17 @@ reactive counting strategies.
 %%%%%%%%%%%%%
 
 \noindent
-{\bf Significance statement.} People tend to cooperate conditionally. 
-We are often influenced by how cooperative others are, and we adapt our behavior accordingly. 
-To describe conditional cooperation, theoretical models often presume that individuals only react to their last interaction. 
-Instead, here we allow individuals to react to an opponent's $n$ previous actions, for arbitrary $n$.
-We derive an algorithm to identify all partner strategies -- strategies that sustain full cooperation in a Nash equilibrium.
-We give explicit conditions for $n\!=\!2$ and $n\!=\!3$. 
-When individuals only count how often their opponent cooperated, independent of the timing of cooperation, we characterize partner strategies for all $n$.
-%Additional simulations confirm that partner strategies are crucial for the evolution of cooperation.\\
-These results reveal which strategies sustain cooperation under more realistic assumptions on people's cognitive abilities. 
-
+{\bf Significance statement.}
+People tend to cooperate conditionally. We are influenced by whether others
+cooperate with us, and we react accordingly. Direct reciprocity is based on
+repeated interactions between two players. Nice strategies are those that are
+not the first to defect. Consequently, they never seek to exploit the other.
+Partner strategies are those nice strategies that can sustain full cooperation
+as a Nash equilibrium. If you interact with a ``nice partner'' then you maximize
+your own payoff by full cooperation. Therefore, partners resolve social
+dilemmas. Here we characterize all nice and all partner strategies among longer
+memory reactive strategies. Our results show that natural selection chooses
+partners. It pays to be nice.
 
 
 %%%%%%%%%%%%%%
