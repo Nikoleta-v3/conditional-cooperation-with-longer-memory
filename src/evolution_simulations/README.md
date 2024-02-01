@@ -39,7 +39,7 @@ Python, which is an open-source language.
 - `evolSimulation.m` ensures that the mutants are not reactive strategies but
   reactive counting strategies.
 - `stationary` and `stationaryMemoryN` are files that calculate the stationary
-  distribution between two players, for reactive and memory-$n$ strategies
+  distribution between two players, for reactive and memory-n strategies
   respectively.
 - To calculate the stationary distributions, we need the transition process of
   the Markov chain that describes the play of the two players. This depends on
