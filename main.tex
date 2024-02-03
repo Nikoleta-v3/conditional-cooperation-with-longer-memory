@@ -72,18 +72,16 @@ on repeated games. In this setting, players condition their behavior on previous
 interactions. A well known approach is given by reactive strategies, which
 respond to the co-player's previous move. Here we extend reactive strategies to
 longer memories. A reactive-$n$ strategy takes into account the sequence of the
-last $n$ moves of the co-player. A reactive-$n$ counting strategy only takes
-into account how often the co-player has cooperated during the last $n$ rounds.
-We derive an algorithm to identify all partner strategies among reactive $n$
-strategies. We give explicit conditions for all partner strategies among
-reactive-2, reactive-3 strategies, and reactive-$n$ counting strategies. Partner
-strategies are those that ensure mutual cooperation without exploitation. We
-perform evolutionary simulations and find that longer memory increases the
-average cooperation rate for reactive-$n$ strategies but not for reactive
-counting strategies. This suggests that memory is not only important to record
-how often a co-player cooperated, but also when. In summary, our results reveal
-which strategies sustain cooperation under more realistic assumptions on
-people's cognitive abilities.
+last $n$ moves of the co-player. A reactive-$n$ counting strategy only records
+how often the co-player has cooperated during the last $n$ rounds. We derive an
+algorithm to identify all partner strategies among reactive $n$ strategies. We
+give explicit conditions for all partner strategies among reactive-2, reactive-3
+strategies, and reactive-$n$ counting strategies. Partner strategies are those
+that ensure mutual cooperation without exploitation. We perform evolutionary
+simulations and find that longer memory increases the average cooperation rate
+for reactive-$n$ strategies but not for reactive counting strategies. Paying
+attention to the sequence of moves is necessary for reaping the advantages of
+longer memory.
 }\\[1cm]
 
 
@@ -293,8 +291,8 @@ As long as the co-player cooperates, the reactive-$n$ player goes along.
 The other two conditions imply that for each defection in memory, the player's cooperation rate decreases by $c/(2b)$.
 Interestingly, in cases with a mixed $2$-history (one cooperation, one defection), the above conditions suggest that the exact timing of cooperation does not matter. 
 It is only required that the two cooperation probabilities $p_{CD}$ and $p_{DC}$ are sufficiently small {\it on average}. 
-Interestingly, the above conditions also imply that to check whether a given reactive-2 strategy is a partner, it suffices to check two deviations. 
-These deviations are the strategy that strictly alternates between cooperation and defection (yielding the first inequality), and \alld~(yielding the second inequality). 
+Notably, the above conditions also imply that to check whether a given reactive-2 strategy is a partner, it suffices to check two deviations. 
+These deviations are the strategy that strictly alternates between cooperation and defection (yielding the first inequality), and \alld~(yielding the second inequality) (\figref{fig:conceptual_figure_conditions}). 
 We note that this last implication is specific to the donation game. 
 For the general prisoner's dilemma (depicted in \figref{fig:conceptual_figure_results}\textbf{D}), there are more than two inequalities that need to be satisfied (see~\SI{}).
 
@@ -314,11 +312,20 @@ It is a partner strategy if and only if
   p_{DDD} & \leq 1\!-\! \frac{c}{b}
   \end{split}
 \end{align}
-These conditions follow a similar logic as in the previous case with $n\!=\!2$: 
-for every co-player's defection in memory, the respective cooperation probability needs to be diminished proportionally. 
-However, for $n\!=\!3$, there are now more conditions to consider. 
-These conditions become even more complex for the general prisoner's dilemma. 
-Given these complexities, we do not present conditions for reactive-$n$ partner strategies beyond $n\!=\!3$, even though the algorithm presented in the previous section still applies.\\
+These conditions follow a similar logic as in the previous case with $n\!=\!2$:
+for every co-player's defection in memory, the respective cooperation
+probability needs to be diminished proportionally. These conditions
+conditions also imply that to check whether a given reactive-3 strategy is a
+partner, it suffices to check five deviations. Similarly to the previous case,
+two of these deviations include the strategy that strictly alternates between
+cooperation and defection, and \alld. The rest of the conditions arise from
+deviations towards sequence-playing self-reactive strategies, where the
+sequences are \((CCD)\), \((DCC)\), and \((DDCC)\) (\figref{fig:conceptual_figure_conditions}).
+For $n\!=\!3$, there are now more conditions to consider than in the previous
+case, and these conditions become even more complex for the general prisoner's
+dilemma. Given these complexities, we do not present conditions for reactive-$n$
+partner strategies beyond $n\!=\!3$, even though the algorithm presented in the
+previous section still applies.\\
 
 %%%%%%%%%%%%%
 %  Counting strategies  %
@@ -549,6 +556,41 @@ Counting strategies only depend on how often the co-player cooperated in the pas
 \textbf{D,} Similarly, we can also characterize the reactive-2 partner strategies for the general prisoner's dilemma. 
 Here, we use the values of Axelrod~\citep{axelrod:AAAS:1981}.
 }\label{fig:conceptual_figure_results}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/conceptual_figure_conditions.pdf}
+  \caption{
+  \textbf{Conditions for partners among reactive-$2$ and reactive-$3$ strategies.}
+  {\bf A, B,} Within the set of pure self-reactive strategies, there are certain
+  strategies where the way they behave can be described as playing a unique
+  sequence. Since their action does not depend on the co-player's history, the
+  strategy plays this sequence indefinitely. For example, in the case of \(n=2\),
+  the pure self-reactive strategy \(\mathbf{\tilde{p}}=(0, 1)\), which alternates,
+  can be described as playing the sequence \((D, C)\).
+  {\bf C,} We have proven that to characterize reactive-\(n\) partner strategies, one only
+  needs to check deviations towards self-reactive-\(n\) strategies. Thus, for a
+  nice reactive strategy \(p\) to be a partner, it is necessary that none of these
+  sequence-playing self-reactive strategies can achieve a higher payoff against
+  \(p\) than \(p\) does against itself. The conditions of partner strategies, for
+  \(n=2\), and \(n=3\), respectively for each of the sequences in panel {\bf
+  A}, are shown in panel {\bf C}. These conditions are necessary, but
+  furthermore, we have shown that these are also sufficient conditions (see
+  \SI).
+  {\bf D,} To derive the conditions, we need to consider the payoff that a sequence player
+  achieves against a reactive strategy. In the top panel of panel {\bf D}, we
+  illustrate an example for \(n=2\), against \(\mathbf{p} = (1, p_{CD}, p_{DC},
+  p_{DD})\) and the sequence \((D, C)\). In the third turn, the sequence player
+  receives a benefit \(b\) with a probability of \(p_{DC}\), and no cost since the
+  sequence player did not cooperate. In the fourth turn, the player receives
+  \(p_{DC} \cdot b - c\), and thereafter these two payoffs are repeated forever.
+  Thus, the total payoff of the sequence player with memory two is given by what
+  they receive every two turns, which is \(p_{DC} \cdot b - c\). This payoff needs
+  to be smaller or equal than what a partner strategy achieves against another
+  nice strategy, which is \(2(b\!-\!c)\).
+  In the bottom panel of panel {\bf D}, we illustrate an example for $n=3$.
+  }\label{fig:conceptual_figure_conditions}
 \end{figure}
 
 
