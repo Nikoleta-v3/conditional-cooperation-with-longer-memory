@@ -945,7 +945,7 @@ Moreover, for any $t\!\ge\!n$ and $\mathbf{h}\!\in\! H$, let $\sigma^1_\mathbf{h
 \end{equation}
 Note that for each $\mathbf{h}\!\in\! H$, the limit in the bracket on the right hand side exists, for otherwise the limits $v_\mathbf{h}$ according to Eq.~\eqref{Eq:TimeAverageProof} would not exist. Also note that if the bracket on the left hand's side is zero, the right hand side must be zero, and $\tilde p^1_\mathbf{h^1}$ can be chosen arbitrarily. Only if the bracket on the left hand side is positive, $\tilde p^1_\mathbf{h^1}$ is uniquely defined. 
 
-We are going to show: If player~1 uses $\mathbf{\tilde p^1}$ instead of $\sigma^1$, then $\mathbf{v}$ defined by Eq.~\eqref{Eq:TimeAverageProof} is an invariant distribution of the corresponding transition matrix $M$ defined by Eq.~\eqref{Eq:TransitionMatrix} (hence it is also the limiting distribution of the resulting game if the first $n$ moves are chosen accordingly). For simplicity, we show the required relationship $\mathbf{v}\!=\!\mathbf{v}M$ for one of the $2^{2^n}$ equations. For the one equation we show, we consider the history according to which everyone fully cooperates, $\mathbf{h_C}\!=\!(\mathbf{h^1_C},\mathbf{ h^2_C})$. For an arbitrary $n$-history $\mathbf{h}^i=(a^i_{-n},\ldots,a^i_{-i})$, we say the $n$-history $\mathbf{\tilde h^i}=(\tilde a^i_{-n},\ldots, \tilde a^i_{-1})$ {\it is a possible successor of $\mathbf{h}$} if $\tilde a^i_{-t} = \tilde a^i_{-t+1}$ for $t\!\in\!\{2,\ldots,n\}$. To indicate successorship, we define a function $e_{\mathbf{h},\mathbf{\tilde h}}$ that is one if $\mathbf{\tilde h}$ is a possible successor of $\mathbf{h}$, and zero otherwise. 
+We are going to show: If player~1 uses $\mathbf{\tilde p^1}$ instead of $\sigma^1$, then $\mathbf{v}$ defined by Eq.~\eqref{Eq:TimeAverageProof} is an invariant distribution of the corresponding transition matrix $M$ defined by Eq.~\eqref{Eq:TransitionMatrix} (hence it is also the limiting distribution of the resulting game if the first $n$ moves are chosen accordingly). For simplicity, we show the required relationship $\mathbf{v}\!=\!\mathbf{v}M$ for one of the $2^{2^n}$ equations. For the one equation we show, we consider the history according to which everyone fully cooperates, $\mathbf{h_C}\!=\!(\mathbf{h^1_C},\mathbf{ h^2_C})$. For an arbitrary $n$-history $\mathbf{h}^i=(a^i_{-n},\ldots,a^i_{-i})$, we say the $n$-history $\mathbf{\tilde h^i}=(\tilde a^i_{-n},\ldots, \tilde a^i_{-1})$ {\it is a possible successor of $\mathbf{h}$} if $\tilde a^i_{-t} = a^i_{-t+1}$ for $t\!\in\!\{2,\ldots,n\}$. To indicate successorship, we define a function $e_{\mathbf{h},\mathbf{\tilde h}}$ that is one if $\mathbf{\tilde h}$ is a possible successor of $\mathbf{h}$, and zero otherwise. 
 By definition of $v_\mathbf{h}(t)$, $\sigma_\mathbf{h}^1(t)$, and $p^2_\mathbf{h}(t)$, we obtain for $t\!\ge\!n$
 \begin{equation}
 v_{(\mathbf{h^1_C},\mathbf{h^2_C})} (t\!+\!1)
@@ -976,23 +976,85 @@ That is, out of the $2^{2n}$ individual equations in the linear system $\mathbf{
 %%  APPENDIX: Proof of pure self-reactive Sufficiency %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Proof of Theorem~\ref{theorem:nash_against_pure_self_reactive} : Sufficiency of pure self-reactive strategies}
+\subsection{Proof of Theorem~\ref{theorem:nash_against_pure_self_reactive}: Sufficiency of pure self-reactive strategies}
 
-\begin{proof}[Sketch of the proof of Theorem~\ref{theorem:nash_against_pure_self_reactive}]
-By Lemma~\ref{lemma:self_reactive_sufficiency}, we know there exists a best response to $\mathbf{p}$ within the self-reactive $n$ strategies. It thus remains to show that this best response $\mathbf{\tilde p}$ can be chosen to be pure. 
-The proof follows from a series of auxiliary results:\\[0.5cm]
+By Lemma~\ref{lemma:self_reactive_sufficiency}, there exists a best response to $\mathbf{p}$ within the self-reactive $n$ strategies. 
+It remains to show that this best response $\mathbf{\tilde p}$ can be chosen to be pure. 
+The proof follows from a series of auxiliary results. 
+The first such result uses an insight by Press \& Dyson~\citep{press:PNAS:2012}. 
+They showed that given the transition matrix of a game among two memory-1 players, one can compute the players' payoffs by considering determinants of certain associated matrices. 
+Herein, we apply their method to the transition matrix $\tilde M\!=\!(\tilde M_{\mathbf{h},\mathbf{h'}})$ according to Eq.~\eqref{Eq:TransitionMatrixSelfReactive} for a given self-reactive strategy $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$. 
+For some fixed $n$-history $\mathbf{h'}$, we define an associated matrix $\tilde M_\mathbf{h'}$ that one obtains from  $\tilde M$ with the following two steps:
+\begin{enumerate}
+\item Subtract the $2^n\!\times\!2^n$ identity matrix $I$ from $\tilde M$. 
+\item In the resulting matrix, replace the last column by a column that only contains zeros, except for the row corresponding to the history $\mathbf{h'}$, for which the entry is one. 
+\end{enumerate}
+These matrices $\tilde M_\mathbf{h'}$ can be used to compute the invariant distribution of the original matrix $\tilde M$ as follows.\\
+
 \noindent
 {\bf Auxiliary result 1:}
-Let $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ such that its transition matrix $\tilde M$ according to Eq.~\eqref{Eq:TransitionM1} has a unique invariant distribution $\mathbf{\tilde v} \!=\! (\tilde v_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$. Moreover, for a given history $\mathbf{h'}\!\in\!H^1$, let $\tilde M_\mathbf{h'}$ be the $(2^n\!-\!1)\!\times\!(2^n\!-\!1)$ matrix one obtains from $\tilde M$ after subtracting the $2^n\!\times\!2^n$ identity matrix, and then deleting the row and the column associated to $\mathbf{h'}$. Then $(\tilde{v}_\mathbf{h'})_{\mathbf{h'}\in H^i}$ is up to a normalization factor equal to  $\big(\det(\tilde M_{\mathbf{h'}})\big)_{\mathbf{h'}\in H^i}$.\\[0.5cm]
-\noindent
-{\bf Auxiliary result 2:}
-On its domain, the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ is a rational function, and both its numerator and denominator can be chosen to be affine linear in each entry $\tilde p_\mathbf{h^i} $, for all $\mathbf{h^i}\!\in\!H^i$.\\[0.5cm]
-\noindent
-{\bf Auxiliary result 3:} Suppose $g,h:[0,1]^{2^n}\!\rightarrow\! \mathbb{R}$ and suppose both $g(\mathbf{x})$ and $h(\mathbf{x})$ are affine linear in each component of $\mathbf{x}=(x_1,\ldots,x_{2^n})$. If the rational function $f\!:=\!g/h$ is continuous on $[0,1]^{2^n}$ then it has a maximum in one of the corners. That is, there is some $\mathbf{x^*}\!\in\!\{0,1\}^{2^n}$ such that $f(\mathbf{x^*}) \ge f(\mathbf{x})$ for all $\mathbf{x}\!\in\![0,1]^{2^n}$.
+Let $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ be such that its transition matrix $\tilde M$ according to Eq.~\eqref{Eq:TransitionMatrixSelfReactive} has a unique invariant distribution $\mathbf{\tilde v} \!=\! (\tilde v_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$. Then for all $\mathbf{h'}\!\in\!H^1$ we have
+\begin{equation} \label{Eq:PDFormula}
+\tilde v_\mathbf{h'} = \frac{ \det(\tilde M_{\mathbf{h'}})}{ \sum_{\mathbf{h^1}\in H^1} \det(\tilde M_{\mathbf{h^1}})}.
+\end{equation}
+
+\begin{proof}[Proof of Auxiliary result~1]
+The result follows from Press \& Dyson's formula for the dot product of the invariant distribution $\mathbf{\tilde v}$ with an arbitrary vector $\mathbf{f}$, by taking the vector $\mathbf{f}$ to be the unit vector with only the entry for history $\mathbf{h'}$ being one. 
 \end{proof}
 
 \noindent
-\christian{The details still need to be worked out; in particular, we need to take care of those boundary strategies for which the invariant distribution is not unique.}
+Based on this first auxiliary result, we have an explicit representation of the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ that describes the payoff of a self-reactive player with strategy $\mathbf{\tilde p}$ against a reactive player with strategy $\mathbf{p}$. 
+Specifically, by plugging Eq.~\eqref{Eq:PDFormula} into \eqref{eq:PD_long_term_payoff}, we obtain
+\begin{equation} \small
+\pi^1(\mathbf{\tilde p},\mathbf{p}) \!=\frac{\sum_{\mathbf{h^1}\in H^1}\det(\tilde M_\mathbf{h^1})
+\Big(
+\mathbf{\tilde p}_\mathbf{h^1} \mathbf{p}_\mathbf{h^1}\!\cdot\!R +
+\mathbf{\tilde p}_\mathbf{h^1} (1\!-\!\mathbf{p}_\mathbf{h^1})\!\cdot\!S +  
+(1\!-\!\mathbf{\tilde p}_\mathbf{h^1}) \mathbf{p}_\mathbf{h^1}\!\cdot\!T +
+(1\!-\!\mathbf{\tilde p}_\mathbf{h^1}) (1\!-\!\mathbf{p}_\mathbf{h^1})\!\cdot\!P 
+\Big)}
+{\sum_{\mathbf{h^1}\in H^1} \det(\tilde M_{\mathbf{h^1}})}.
+\end{equation}
+For our purposes, the following properties of this payoff function will be important.\\
+
+\noindent
+{\bf Auxiliary Result 2:}
+On its domain, the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ is a bounded rational function, and both its numerator and denominator are linear in each entry $\tilde p_\mathbf{h^i} $, for all $\mathbf{h^i}\!\in\!H^i$.
+
+\begin{proof}[Proof of Auxiliary Result~2]
+By its definition, each $\det(\tilde M_\mathbf{h^i})$ is a polynomial. Moreover, because for each history $\mathbf{h'}$, the cooperation probability $\tilde p_\mathbf{h'}$ only appears in a single row of $\tilde M_\mathbf{h^i}$ (and there it appears linearly), it also appears linearly in  $\det(\tilde M_\mathbf{h^i})$. Finally, we note that $\det(\tilde M_\mathbf{h^i})$ does not depend on $\tilde p_\mathbf{h^i}$. To see this, we can compute $\det(\tilde M_\mathbf{h^i})$ using Laplace expansion along the last column. As a result, we obtain that this determinant is up to its sign equal to the determinant of the matrix one obtains from $\tilde M_\mathbf{h^i}$ by deleting the last column, and the row $\mathbf{h^i}$ (which is the only row of $\tilde M_\mathbf{h^i}$ that contains $\tilde p_\mathbf{h^i}$). 
+
+Finally, we note that the payoff function is bounded, because as an average payoff per round, payoffs need to be between $T$ and $S$. Taken together, these observations imply the result for $\pi^1(\mathbf{\tilde p},\mathbf{p})$. 
+\end{proof}
+
+\noindent
+The following result describes a useful property of bounded linear rational functions.\\
+
+\noindent
+{\bf Auxiliary Result 3:} Suppose $g,h:[0,1]^{k}\!\rightarrow\! \mathbb{R}$ and suppose both $g(\mathbf{x})$ and $h(\mathbf{x})$ are linear in each component of $\mathbf{x}\!=\!(x_1,\ldots,x_k)$. 
+Moreover, suppose $f\!:=\!g/h$ is bounded on $[0,1]^{k}$. 
+For a given $\mathbf{x}$ and $j\!\in\!\{1,\ldots,k\}$, we define an associated function $f_{\mathbf{x},j}:[-x_j,1\!-\!x_j]\to\mathbb{R}$ by only varying the $j$-th component, $f_{\mathbf{x},j}(t) = f(x_1,\ldots,x_j+t,\ldots,x_k)$. Then for all $\mathbf{x}\!\in\![0,1]^k$ and $j$, the function  $f_{\mathbf{x},j}(t)$ is either monotonically increasing, monotonically decreasing, or constant.
+
+\begin{proof}[Proof of Auxiliary Result 3]
+Let $g(\mathbf{x}):=a_0\!+\!a_1x_1\!+\!\ldots \!+\!a_k x_k$ and $h(\mathbf{x}):=b_0\!+\!b_1x_1\!+\!\ldots \!+\!b_k x_k$, and consider some arbitrary but fixed $\mathbf{x}\!\in\![0,1]^k$ and $j$. We compute
+\begin{equation}
+f'_{\mathbf{x},j}(t) = \frac{\partial}{\partial t}  f(x_1,\ldots,x_j+t,\ldots,x_k) = \frac{a_j\left( \sum_{i\neq j} b_i x_i\right) - b_j \left(\sum_{i\neq j} a_i x_i\right)}{\big(b_0+b_1x_1+\ldots+b_j(x_j+t)+\ldots+b_kx_k\big)^2}.
+\end{equation}
+Because $f$ is bounded on the entire domain, this expression for $f'_{\mathbf{x},j}(t)$ is finite. It hence follows fthat the denominator of $f'_{\mathbf{x},j}(t)$ is always positive, and that the numerator is independent of $t$. Thus, depending on the sign of the numerator, $f'_{\mathbf{x},j}(t)$ is either monotonically increasing, monotonically decreasing, or constant. 
+\end{proof}
+
+\noindent
+After these preparations, we are ready to prove the main result. 
+
+\begin{proof}[Proof of Theorem~\ref{theorem:nash_against_pure_self_reactive}]
+For a given reactive strategy $\mathbf{p}\!\in\!\mathcal{R}_n$, let the self-reactive $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ be a best response. Suppose there is some history $\mathbf{h'}$ such that $0\!<\!\tilde p_\mathbf{h}\!<\!1$. It follows from the Auxiliary Results 2~and~3 that $\pi^1(\mathbf{\tilde p},\mathbf{p})$ is either monotonically increasing, monotonically decreasing, or constant in $\tilde p_\mathbf{h'}$. 
+If it was increasing or decreasing, we end up with a contradiction, because no local improvement should be possible for a best response. 
+Therefore, $\pi^1(\mathbf{\tilde p},\mathbf{p})$  must be independent of $\tilde p_\mathbf{h'}$, and hence we can set 
+$\tilde p_\mathbf{h'}\!=\!0$ or $\tilde p_\mathbf{h'}\!=\!1$ without changing $\pi^1(\mathbf{\tilde p},\mathbf{p})$. By iteratively applying this reasoning to all histories $\mathbf{h}$ for which $0\!<\!\tilde p_\mathbf{h}\!<\!1$, we obtain the desired result. 
+\end{proof}
+
+\newpage
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
