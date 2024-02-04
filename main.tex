@@ -48,7 +48,7 @@
 
 
 
-\title{\bfseries \sffamily \Large Conditional coperation with longer memory}
+\title{\bfseries \sffamily \Large Conditional cooperation with longer memory}
 
 %% Perhaps: Better title (Conditional cooperation with longer memory) %% 
 
@@ -251,7 +251,7 @@ First, suppose player~1 uses some arbitrary strategy $\sigma$ against player~2 w
 Then we prove that instead of $\sigma$, player~1 may switch to a {\it self-reactive}-$n$ strategy $\mathbf{\tilde{p}}$ without changing either player's payoffs. 
 When adopting a self-reactive strategy, player~1 only takes into account her own actions during the last $n$ rounds, 
 $\mathbf{\tilde{p}} \!=\! (\tilde{p}_\mathbf{h})_{\mathbf{h} \in H^1}$.
-In particular, if $\sigma$ is a best response to $\mathbf{p}$, then then there is an associated self-reactive strategy $\mathbf{\tilde p}$ that is also a best response. 
+In particular, if $\sigma$ is a best response to $\mathbf{p}$, then there is an associated self-reactive strategy $\mathbf{\tilde p}$ that is also a best response. 
 This result follows the same intuition as a similar result of Press \& Dyson~\cite{press:PNAS:2012}: 
 if there is a part of the joint history that player~2 does not take into account, player~1 gains nothing by considering that part of the history. 
 In our case, because player~2 only considers the last $n$ actions of player~1, it is sufficient for player~1 to do the same.
@@ -480,10 +480,20 @@ The larger the value of \(\beta\), the more strongly the evolutionary process fa
 payoff.
 Depending on \(\phi_{M}\), the mutant either fixes (becomes the new resident) or goes extinct. 
 Afterwards, another mutant strategy is introduced to the population. 
-We iterate this elementary population updating process for a large number of mutant strategies. 
-At each step, we record the current resident strategy and the resulting average cooperation rate. 
+We iterate this elementary population updating process for a large number of
+mutant strategies. At each step, we record the current resident
+strategy and the resulting average cooperation rate, indicating how often the
+resident strategy cooperates with itself. Additionally, we assess how many
+resident strategies qualify as partner strategies in our simulation. For a
+resident strategy to be classified as a partner, it must satisfy all
+inequalities in the respective definition of partner strategies and cooperate
+with a probability of at least 95\% after full cooperation. 
 
-\christian{Here, could we provide a link to some online repository such that people can access our code? Also, it would be nice to have more information on how we classified strategies as partners in the simulations.} 
+
+
+\section*{Data, Materials, and Software Availability}
+
+All data and code to reproduce the results of this study are available at.
 
 {\setlength{\bibsep}{0\baselineskip}
 \bibliographystyle{naturemag}
@@ -508,7 +518,7 @@ At each step, we record the current resident strategy and the resulting average 
    The entry $p_D$ is the cooperation probability after the co-player defected. 
    \textbf{E,} Now, the top player adopts a self-reactive-1 strategy, $\mathbf{\tilde p}\!=\!(\tilde p_C, \tilde p_D)$. 
    Here, the bottom player's cooperation probabilities depend on their own previous action.
-   \christian{In panel F, I believe the first arrow should come with a $\tilde p_C$ instead of a $\tilde p_D$.}}\label{fig:conceptual_figure_model}
+   }\label{fig:conceptual_figure_model}
 \end{figure}
 
 
@@ -530,7 +540,6 @@ Among the reactive-2 strategies, the counting strategies correspond to the subse
 Counting strategies only depend on how often the co-player cooperated in the past, not on the timing of cooperation.
 \textbf{D,} Similarly, we can also characterize the reactive-2 partner strategies for the general prisoner's dilemma. 
 Here, we use the values of Axelrod~\citep{axelrod:AAAS:1981}.
-\christian{I believe there is an error in the displayed outcome distribution in panels A,B -- the numbers don't add up to 100\%. From what I can tell, the correct numbers are 15,10,43,32. Also, could we show the outcome distribution with a slightly higher accuracy -- 15.3\%, 10.6\%, 42.5\%, 31.7\% -- and also show the respective self-reactive-1 strategy with a higher accuracty?}
 }\label{fig:conceptual_figure_results}
 \end{figure}
 
@@ -550,8 +559,9 @@ Here, we use the values of Axelrod~\citep{axelrod:AAAS:1981}.
 For a given resident strategy to be classified as a partner by our simulation, it needs to satisfy all inequalities in the respective definition of partner strategies. 
 In addition, it needs to cooperate after full cooperation with a probability of at least 95\%.  
 For all considered parameter values, we only observe high cooperation rates when partner strategies evolve. 
-Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), and a selection strength $\beta\!=\!1$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
-  \christian{For the header on the right hand side, could we use `dependence' instead of `dependance'?}}\label{fig:evolutionary_results}
+Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$
+and a population size $N\!=\!100$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
+}\label{fig:evolutionary_results}
 \end{figure}
 
 
