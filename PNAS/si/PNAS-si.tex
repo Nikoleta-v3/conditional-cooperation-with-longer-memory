@@ -536,8 +536,8 @@ of a deviation towards one of the $2^n$ pure self-reactive strategies.\\
    \setstretch{1.35}
       \SetKwInOut{Input}{input}
       \Input{$\mathbf{p}, n$}
-      pure\_self\_reactive\_strategies $\gets \left\{ \mathbf{\tilde{p}} ~\big|~ \mathbf{\tilde{p}} \in \{0, 1\}^{2 ^ n} \right\}$ \\
-      isNash $\gets$ True \\
+      pure\_self\_reactive\_strategies $\gets \left\{ \mathbf{\tilde{p}} ~\big|~ \mathbf{\tilde{p}} \in \{0, 1\}^{2 ^ n} \right\}$ \newline
+      \hspace*{-.8em} isNash $\gets$ True \\
       \For{$\mathbf{\tilde{p}} \in$ pure\_self\_reactive\_strategies}{
       \uIf{$ \pi^1(\mathbf{p}, \mathbf{p}) < \pi^1(\mathbf{\tilde{p}}, \mathbf{p})$}{
         isNash $\gets$ False \;
@@ -946,6 +946,52 @@ That is, out of the $2^{2n}$ individual equations in the linear system $\mathbf{
 \end{proof}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX: Proof of  Self-Reactive Sufficiency %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\subsection{Proof of Lemma~\ref{lemma:self_reactive_sufficiency}: Sufficiency of testing self-reactive strategies}
+
+\begin{proof} 
+The proof uses similar arguments as in a study by Park on alternating games~{\it et al} \citep{park:NComms:2022}. 
+For the given game between player~1 (with arbitrary strategy $\sigma^1$) and player~2 (with reactive-$n$ strategy $\mathbf{p^2}$), let $v_\mathbf{h}(t)$ denote the probability to observe an $n$-history $\mathbf{h}$ at time $t\!\ge\!n$. 
+By assumption, the following time averages are well-defined,
+\begin{equation}\label{Eq:TimeAverageProof}
+v_\mathbf{h}:=\lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} v_\mathbf{h}(t)
+\end{equation}
+Moreover, for any $t\!\ge\!n$ and $\mathbf{h}\!\in\! H$, let $\sigma^1_\mathbf{h}(t)$ denote the conditional probability that player~1 cooperates at time $t\!+\!1$, given the $n$-history after round $t$ is $\mathbf{h}$. Depending on $\big(\sigma^1_\mathbf{h}(t)\big)$ and $\mathbf{v}$, we define an associated self-reactive strategy $\mathbf{\tilde p^1}$ for player~1. For any given history $\mathbf{h^1} \!\in\! H^1$, the corresponding probability $\tilde p^1_\mathbf{h^1}$ is defined as an implicit solution of the equation
+\begin{equation} \label{Eq:EquivalentSelfReactive}
+\left( \sum_{\mathbf{h^2} \in H^2} v_{(\mathbf{h^1}, \mathbf{h^2})} \right) \tilde p^1_{\mathbf{h^1}}
+=
+ \sum_{\mathbf{h^2} \in H^2}
+\left(\lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} v_{(\mathbf{h^1}, \mathbf{h^2})} (t)\cdot \sigma^1_{(\mathbf{h^1}, \mathbf{h^2})}(t)\right).
+\end{equation}
+Note that for each $\mathbf{h}\!\in\! H$, the limit in the bracket on the right hand side exists, for otherwise the limits $v_\mathbf{h}$ according to Eq.~\eqref{Eq:TimeAverageProof} would not exist. Also note that if the bracket on the left hand's side is zero, the right hand side must be zero, and $\tilde p^1_\mathbf{h^1}$ can be chosen arbitrarily. Only if the bracket on the left hand side is positive, $\tilde p^1_\mathbf{h^1}$ is uniquely defined. 
+
+We are going to show: If player~1 uses $\mathbf{\tilde p^1}$ instead of $\sigma^1$, then $\mathbf{v}$ defined by Eq.~\eqref{Eq:TimeAverageProof} is an invariant distribution of the corresponding transition matrix $M$ defined by Eq.~\eqref{Eq:TransitionMatrix} (hence it is also the limiting distribution of the resulting game if the first $n$ moves are chosen accordingly). For simplicity, we show the required relationship $\mathbf{v}\!=\!\mathbf{v}M$ for one of the $2^{2^n}$ equations. For the one equation we show, we consider the history according to which everyone fully cooperates, $\mathbf{h_C}\!=\!(\mathbf{h^1_C},\mathbf{ h^2_C})$. For an arbitrary $n$-history $\mathbf{h}^i=(a^i_{-n},\ldots,a^i_{-i})$, we say the $n$-history $\mathbf{\tilde h^i}=(\tilde a^i_{-n},\ldots, \tilde a^i_{-1})$ {\it is a possible successor of $\mathbf{h}$} if $\tilde a^i_{-t} = a^i_{-t+1}$ for $t\!\in\!\{2,\ldots,n\}$. To indicate successorship, we define a function $e_{\mathbf{h},\mathbf{\tilde h}}$ that is one if $\mathbf{\tilde h}$ is a possible successor of $\mathbf{h}$, and zero otherwise. 
+By definition of $v_\mathbf{h}(t)$, $\sigma_\mathbf{h}^1(t)$, and $p^2_\mathbf{h}(t)$, we obtain for $t\!\ge\!n$
+\begin{equation}
+v_{(\mathbf{h^1_C},\mathbf{h^2_C})} (t\!+\!1)
+= \sum_{\mathbf{h^1}\in H^1}\sum_{\mathbf{h^2}\in H^2} v_{(\mathbf{h^1},\mathbf{h^2})}(t)\cdot  \sigma^1_{(\mathbf{h^1},\mathbf{h^2})}(t) \cdot p^2_\mathbf{h^1} \cdot e_{\mathbf{h^1},\mathbf{h^1_C}} \cdot e_{\mathbf{h^2},\mathbf{h^2_C}}.
+\end{equation}
+If we sum up this equation from time $t\!=\!n$ to $t\!=\!n\!+\!\tau\!-\!1$, divide by $\tau$, and rearrange the terms, we obtain
+\begin{equation}
+\frac{1}{\tau}\sum_{t=n}^{n+\tau-1} v_{(\mathbf{h^1_C},\mathbf{h^2_C})} (t\!+\!1) 
+= \sum_{\mathbf{h^1}\in H^1} \sum_{\mathbf{h^2}\in H^2} \left(\frac{1}{\tau}\sum_{t=n}^{n+\tau-1} v_{(\mathbf{h^1},\mathbf{h^2})}(t)\cdot  \sigma^1_{(\mathbf{h^1},\mathbf{h^2})}(t)\right) \cdot p^2_\mathbf{h^1} \cdot e_{\mathbf{h^1},\mathbf{h^1_C}} \cdot e_{\mathbf{h^2},\mathbf{h^2_C}}.
+\end{equation}
+Taking the limit $\tau\to\infty$, and taking into account the relationships~\eqref{Eq:TimeAverageProof} and \eqref{Eq:EquivalentSelfReactive}, this simplifies to
+\begin{equation} 
+v_{(\mathbf{h^1_C},\mathbf{h^2_C})}
+= \sum_{\mathbf{h^1}\in H^1}\sum_{\mathbf{h^2} \in H^2} v_{(\mathbf{h^1}, \mathbf{h^2})} \cdot \big(\tilde p^1_{\mathbf{h^1}} \, e_{\mathbf{h^1},\mathbf{h^1_C}}\big) \cdot \big(p^2_\mathbf{h^1} \, e_{\mathbf{h^2},\mathbf{h^2_C}}\big).
+\end{equation}
+By using the definition of transition probabilities in~\eqref{Eq:TransitionMatrix}, this expression further simplifies to
+\begin{equation} 
+v_\mathbf{h_C} = \sum_{\mathbf{h}} v_{\mathbf{h}} \cdot M_{\mathbf{h},\mathbf{h_C}}
+\end{equation}
+That is, out of the $2^{2n}$ individual equations in the linear system $\mathbf{v}\!=\!\mathbf{v} M$, we have verified the equation for the probability to observe full cooperation $\mathbf{h_C}$ after one round. All other equations follow analogously.
+\end{proof}
+
+
 
 
 
@@ -960,7 +1006,7 @@ It remains to show that this best response $\mathbf{\tilde p}$ can be chosen to 
 The proof follows from a series of auxiliary results. 
 The first such result uses an insight by Press \& Dyson~\citep{press:PNAS:2012}. 
 They showed that given the transition matrix of a game among two memory-1 players, one can compute the players' payoffs by considering determinants of certain associated matrices. 
-Herein, we apply their method to the transition matrix $\tilde M\!=\!(\tilde M_{\mathbf{h},\mathbf{h'}})$ according to \eqref{Eq:TransitionMatrixSelfReactive} for a given self-reactive strategy $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$. 
+Herein, we apply their method to the transition matrix $\tilde M\!=\!(\tilde M_{\mathbf{h},\mathbf{h'}})$ according to Eq.~\eqref{Eq:TransitionMatrixSelfReactive} for a given self-reactive strategy $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$. 
 For some fixed $n$-history $\mathbf{h'}$, we define an associated matrix $\tilde M_\mathbf{h'}$ that one obtains from  $\tilde M$ with the following two steps:
 \begin{enumerate}
 \item Subtract the $2^n\!\times\!2^n$ identity matrix $I$ from $\tilde M$. 
@@ -970,7 +1016,7 @@ These matrices $\tilde M_\mathbf{h'}$ can be used to compute the invariant distr
 
 \noindent
 {\bf Auxiliary result 1:}
-Let $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ be such that its transition matrix $\tilde M$ according to \eqref{Eq:TransitionMatrixSelfReactive} has a unique invariant distribution $\mathbf{\tilde v} \!=\! (\tilde v_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$. Then for all $\mathbf{h'}\!\in\!H^1$ we have
+Let $\mathbf{\tilde p}\!\in\!\mathcal{S}_n$ be such that its transition matrix $\tilde M$ according to Eq.~\eqref{Eq:TransitionMatrixSelfReactive} has a unique invariant distribution $\mathbf{\tilde v} \!=\! (\tilde v_\mathbf{h^1})_{\mathbf{h^1}\in H^1}$. Then for all $\mathbf{h'}\!\in\!H^1$ we have
 \begin{equation} \label{Eq:PDFormula}
 \tilde v_\mathbf{h'} = \frac{ \det(\tilde M_{\mathbf{h'}})}{ \sum_{\mathbf{h^1}\in H^1} \det(\tilde M_{\mathbf{h^1}})}.
 \end{equation}
@@ -981,7 +1027,7 @@ The result follows from Press \& Dyson's formula for the dot product of the inva
 
 \noindent
 Based on this first auxiliary result, we have an explicit representation of the payoff function $\pi^1(\mathbf{\tilde p},\mathbf{p})$ that describes the payoff of a self-reactive player with strategy $\mathbf{\tilde p}$ against a reactive player with strategy $\mathbf{p}$. 
-Specifically, by plugging \eqref{Eq:PDFormula} into \eqref{eq:PD_long_term_payoff}, we obtain
+Specifically, by plugging Eq.~\eqref{Eq:PDFormula} into \eqref{eq:PD_long_term_payoff}, we obtain
 \begin{equation} \small
 \pi^1(\mathbf{\tilde p},\mathbf{p}) \!=\frac{\sum_{\mathbf{h^1}\in H^1}\det(\tilde M_\mathbf{h^1})
 \Big(
@@ -1017,7 +1063,7 @@ Let $g(\mathbf{x}):=a_0\!+\!a_1x_1\!+\!\ldots \!+\!a_k x_k$ and $h(\mathbf{x}):=
 \begin{equation}
 f'_{\mathbf{x},j}(t) = \frac{\partial}{\partial t}  f(x_1,\ldots,x_j+t,\ldots,x_k) = \frac{a_j\left( \sum_{i\neq j} b_i x_i\right) - b_j \left(\sum_{i\neq j} a_i x_i\right)}{\big(b_0+b_1x_1+\ldots+b_j(x_j+t)+\ldots+b_kx_k\big)^2}.
 \end{equation}
-Because $f$ is bounded on the entire domain, this expression for $f'_{\mathbf{x},j}(t)$ is finite. It hence follows fthat the denominator of $f'_{\mathbf{x},j}(t)$ is always positive, and that the numerator is independent of $t$. Thus, depending on the sign of the numerator, $f'_{\mathbf{x},j}(t)$ is either monotonically increasing, monotonically decreasing, or constant. 
+Because $f$ is bounded on the entire domain, the denominator in this expression for $f'_{\mathbf{x},j}(t)$ is strictly positive. Moreover, we note that the numerator is independent of $t$. Thus, depending on the sign of the numerator, $f'_{\mathbf{x},j}(t)$ is either monotonically increasing, monotonically decreasing, or constant. 
 \end{proof}
 
 \noindent
@@ -1031,7 +1077,6 @@ $\tilde p_\mathbf{h'}\!=\!0$ or $\tilde p_\mathbf{h'}\!=\!1$ without changing $\
 \end{proof}
 
 \newpage
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
