@@ -115,7 +115,7 @@ Second, the number of strategies, and the time it takes to compute their payoffs
 For example, for memory-1, there are $2^4\!=\!16$ deterministic strategies (strategies that do not randomize between different actions). 
 When both players adopt memory-1 strategies, computing their payoffs requires the inversion of a $4\!\times\!4$ matrix~\cite{sigmund2010}. 
 After increasing the memory length to memory-2, there are $2^{16}\!=\!64,536$ deterministic strategies, and payoffs now require the inverse of a $16\!\times\!16$ matrix. 
-Probably for these reasons, previous studies considered simulations for small $n$~\citep{hauert:PRSB:1997,stewart:scientific:2016,Murase:PLoSCompBio:2023a}, or they analyzed the properties of a few selected higher-memory strategies~\citep{hilbe:PNAS:2017,ueda:RSOP:2021,li:NatureCompSci:2022}. 
+Probably for these reasons, previous studies considered simulations for small $n$~\citep{hauert:PRSB:1997,stewart:scientific:2016,Murase:PLoSCompBio:2023a, ueda:ORF:2022}, or they analyzed the properties of a few selected higher-memory strategies~\citep{hilbe:PNAS:2017,ueda:RSOP:2021,li:NatureCompSci:2022}. 
 
 To make progress, we focus on an easy-to-interpret subset of memory-$n$ strategies, the {\it reactive}-$n$ strategies. 
 Capturing the basic premise of conditional cooperation, they only depend on the {\it co-player's} actions during the last $n$ rounds~(\figref{fig:conceptual_figure_model}\textbf{C,E}). 

@@ -86,7 +86,6 @@ Section~\ref{section:results} contains our key results.
 Here, we define partner strategies, we present an algorithm that allows us to verify whether a given reactive-$n$ strategy is a partner, and we apply this algorithm to fully characterize the reactive-$n$ partner strategies for $n\!=\!2$ and $n\!=\!3$.
 All proofs are presented in the Appendix in Section~\ref{section:appendix}.
 
-~\\[-1.2cm]
 \section{Model and basic results}\label{section:model}
 
 \subsection{The repeated prisoner's dilemma}
@@ -369,7 +368,7 @@ In the following, we formally define them.
 {
 \renewcommand\labelenumi{(\roman{enumi})}
 \begin{enumerate}[noitemsep,topsep=0pt]
-\item A strategy $\sigma$ for the repeated prisoner's dilemma is a {\it Nash equilibrium} if it is a best response to itself. 
+\item A strategy $\sigma$ for the repeated prisoner's dilemma is a {\it Nash equilibrium} if it is a best response to itself.
 That is, we require $\pi^1(\sigma,\sigma)$ to exist and
 \begin{equation} \label{Eq:NashCondition}
 \pi^1(\sigma,\sigma) \!\ge\! \pi^1(\sigma',\sigma) ~~\text{for all other strategies}~\sigma'~\text{for which}~ \pi^1(\sigma',\sigma)~\text{exists}. 
@@ -537,8 +536,8 @@ of a deviation towards one of the $2^n$ pure self-reactive strategies.\\
    \setstretch{1.35}
       \SetKwInOut{Input}{input}
       \Input{$\mathbf{p}, n$}
-      pure\_self\_reactive\_strategies $\gets \left\{ \mathbf{\tilde{p}} ~\big|~ \mathbf{\tilde{p}} \in \{0, 1\}^{2 ^ n} \right\}$ \;
-      isNash $\gets$ True \; 
+      pure\_self\_reactive\_strategies $\gets \left\{ \mathbf{\tilde{p}} ~\big|~ \mathbf{\tilde{p}} \in \{0, 1\}^{2 ^ n} \right\}$ \\
+      isNash $\gets$ True \\
       \For{$\mathbf{\tilde{p}} \in$ pure\_self\_reactive\_strategies}{
       \uIf{$ \pi^1(\mathbf{p}, \mathbf{p}) < \pi^1(\mathbf{\tilde{p}}, \mathbf{p})$}{
         isNash $\gets$ False \;
