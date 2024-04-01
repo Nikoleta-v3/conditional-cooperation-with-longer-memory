@@ -5,7 +5,7 @@ sdims = [2; 4];
 
 N = 100;
 b = 1;
-numberIterations = 10 ^ 3;
+numberIterations = 10 ^ 7;
 seed = 1;
 errorprobabilities = [0.0001, 0.001, 0.01, 0.1, 0.2, 0.3, 0.4];
 
@@ -14,7 +14,7 @@ c = 0.3;
 
 filenames = ["ErrorSim/reactive_one_error_"; "ErrorSim/reactive_two_error_"];
 
-for i=1:2
+parfor i=1:2
     for j=1:7 
     sdim = sdims(i);
     errorprobability = errorprobabilities(j);
