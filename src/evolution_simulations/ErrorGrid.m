@@ -21,7 +21,7 @@ starting_resident = zeros(1, sdim);
 
 folder = "ErrorGrid/dimension_";
 
-for i=1:num_cost_values
+parfor i=1:num_cost_values
     seed = i;
     c = cost_values(i);
     filename = append(folder, num2str(sdim), "_error_", num2str(errorprobability), "_cost_", num2str(c));
