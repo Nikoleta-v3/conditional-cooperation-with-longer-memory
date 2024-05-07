@@ -13,7 +13,7 @@ u = repmat([b - c, -c, b, 0], 1, (sdim ^ 2) / 4);
 
 %% Running the evolutionary process
 j = 2;
-for t = progress(1:numberIterations)
+for t = 1:numberIterations
     Mut=rand(1, sdim);
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, sdim, errorprobability);
     if rand(1) < phi
