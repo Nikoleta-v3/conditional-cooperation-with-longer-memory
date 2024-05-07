@@ -25,6 +25,12 @@ data/*
 matlab_data/*
 checks/*
 *csv
+notebooks/DefectingNash/
+src/evolution_simulations/ErrorGrid.zip
+src/evolution_simulations/ErrorGrid/
+src/evolution_simulations/ErrorSim.zip
+src/evolution_simulations/ErrorSim/
+src/evolution_simulations/ErrorSim_2/
 
 # Folder for CH to keep track of the history
 oldfiles/
