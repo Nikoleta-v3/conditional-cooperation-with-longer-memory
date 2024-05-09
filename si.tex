@@ -850,11 +850,92 @@ Given the large number of conditions in Table~\ref{Tab:PartnerReactiveThreePD}, 
  \label{Tab:PartnerReactiveThreePD}
  \end{table}
 
-
-
 \clearpage
 \newpage
 
+%% DEFECTING STRATEGIES: Donation Game %%
+
+\subsection{Reactive defecting Nash strategies in the donation game}\label{section:defecting_donation_game}
+
+In the previous section, we have characterized the reactive partner strategies
+for a special case of the donation game and the general prisoner's dilemma. In
+the following, we apply the same methods based on Section~\ref{Sec:Algorithm} to
+analyze defecting Nash equilibria. For the case of reactive-1 strategies, we
+obtain the following characterization.
+
+%% DEFECTING STRATEGIES: Reactive-1 Donation Game %%
+
+\begin{theorem}[Reactive-1 defecting Nash strategies in the donation game]
+\label{theorem:reactive_one_defecting_strategies}
+A reactive-1 strategy $\mathbf{p}$ is a defecting Nash strategy if and only if
+its entries satisfy the conditions
+
+\begin{equation}
+  \begin{array}{rcl}
+    p_{C} \le  \frac{c}{b} \qquad \text{ and } \qquad  p_{D} \!=\! 0.
+\end{array}
+\end{equation}
+\end{theorem}
+
+
+%% DEFECTING STRATEGIES: Reactive-2 Donation Game %%
+
+\begin{theorem}[Reactive-2 defecting Nash strategies in the donation game]
+\label{theorem:reactive_two_defecting_strategies}
+A reactive-2 strategy $\mathbf{p}$ is a defecting Nash strategy if and only if
+its entries satisfy the conditions
+
+\begin{equation}\label{eq:defecting_conditions_two}
+  p_{CC} \le \frac{c}{b}, \qquad \displaystyle \frac{p_{CD} \!+\! p_{DC}}{2} \le \frac{c}{2b}, \qquad p_{DD} = 0.
+\end{equation}
+\end{theorem}
+
+%% DEFECTING STRATEGIES: Reactive-3 Donation Game %%
+
+\begin{theorem}[Reactive-3 defecting Nash strategies in the donation game]
+\label{theorem:reactive_three_defecting_strategies}
+A reactive-3 strategy $\mathbf{p}$ is a defecting Nash strategy if and only if
+its entries satisfy the conditions
+
+\begin{align}\label{eq:three_bit_conditions_defecting}
+  \begin{split}
+  p_{CCC} & \le \frac{c}{b} \\
+  \frac{p_{CDC} + p_{DCD}}{2} & \leq \frac{1}{2} \cdot \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} & \leq \frac{2}{3} \cdot \frac{c}{b} \\
+  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} & \leq \frac{1}{3} \cdot \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & \leq \frac{1}{2} \cdot \frac{c}{b}  \\
+  p_{DDD} & = 0.
+  \end{split}
+\end{align}
+
+\end{theorem}
+
+%% PARTNER STRATEGIES: Donation Game with Error %%
+
+\subsection{Reactive partner strategies with error}\label{section:partners_error}
+
+In the previous sections, we have characterized several classes of reactive Nash
+strategies. However, in all cases, we did not consider the possibility of errors
+occurring. An error is represented by the probability $\epsilon$ that a player's
+action is flipped. In the following, we apply the same methods outlined in
+Section~\ref{Sec:Algorithm} to analyze defecting Nash equilibria. For the case
+of reactive-1 strategies, we obtain the following characterization.
+
+\begin{theorem}[Reactive-1 partner strategies with error]\label{theorem:reactive_two_partner_strategies_with_error}
+
+A nice reactive-2 strategy $\mathbf{p}$, is a partner strategy in the case that
+errors occur with a probability $\epsilon$ if and only if its entries satisfy
+the conditions
+
+\begin{equation}
+  p_{C} \!=\! 1, \qquad \displaystyle \frac{p_{CD} \!+\! p_{DC}}{2} \!\le\! 1 \!-\! \frac{1}{2} \cdot \frac{c}{b}, \qquad p_{DD} \le 1\!-\! \frac{c}{b}.
+\end{equation}
+
+\end{theorem}
+
+  
+\clearpage
+\newpage
 
 %%%%%%%%%%%%%%%%
 %%  APPENDIX: PROOFS  %%
