@@ -13,7 +13,7 @@ errorprobability = 0;
 
 parfor (i = 1:10)
     seed = seeds(i);
-    filename = append("../data/evolution_over_seeds/bits_", num2str(sdim), "_beta_", num2str(beta), "_seed_", num2str(seed), "_c_", num2str(c), ".csv")
-    [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
-end
+%     filename = append("../data/evolution_over_seeds/bits_", num2str(sdim), "_beta_", num2str(beta), "_seed_", num2str(seed), "_c_", num2str(c), ".csv")
+%     [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
+       [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed, sdim,  errorprobability);
 end
