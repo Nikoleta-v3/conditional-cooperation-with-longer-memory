@@ -910,28 +910,105 @@ its entries satisfy the conditions
 
 \end{theorem}
 
-%% PARTNER STRATEGIES: Donation Game with Error %%
+\noindent
+We can observe that for each value of \(n\), the left-hand side of the
+conditions for cooperative and defective Nash are the same. Moreover, it is
+clear that the right-hand side of the defective Nash conditions is always
+strictly smaller than those of the cooperative Nash conditions. This means that
+within the space of feasible strategies, the volume of partner strategies is
+always larger than the volume of defective Nash strategies. We verified these
+analytical results numerically as well.
 
-\subsection{Reactive partner strategies with error}\label{section:partners_error}
+We selected random strategies from the feasible space of strategies and created
+two copies of each strategy. For one copy, we set the probability of cooperating
+after full cooperation of the co-player to 1 (for example, for reactive-1, \(p_{C} = 1\)). 
+For the second copy, we set the probability of cooperating after
+full defections of the co-player to 0 (for example, for reactive-2, \(p_{DD} =
+0\)). We then checked if either copy is Nash: cooperative for the first and
+defective for the second. We repeated this process for \(10^4\) randomly
+selected strategies and plotted the relative volumes of cooperative and
+defective Nash equilibria (Figure~\ref{fig:reactive_volume}). We also verified
+that this holds true for different values of cost.
 
-In the previous sections, we have characterized several classes of reactive Nash
-strategies. However, in all cases, we did not consider the possibility of errors
-occurring. An error is represented by the probability $\epsilon$ that a player's
-action is flipped. In the following, we apply the same methods outlined in
-Section~\ref{Sec:Algorithm} to analyze defecting Nash equilibria. For the case
-of reactive-1 strategies, we obtain the following characterization.
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/siFig1.pdf}
+  \caption{
+  \textbf{Volume of cooperative and defective Nash.}
+We draw \(10^4\) random
+strategies from the feasible space of strategies and create two copies of each
+strategy. For one copy, we set the probability of cooperating after full
+cooperation of the co-player to 1. For the second copy, we set the probability
+of cooperating after full defections of the co-player to 0. We then checked if
+either copy is Nash: cooperative for the first and defective for the second. We
+set the benefit of cooperation to \(b = 1\). 
+{\bf A} We plot the results for a given value of cost, \(c = 0.5\).
+{\bf B} The number of defective Nash strategies as a function of cost.
+{\bf C} The number of cooperative Nash strategies as a function of cost.
+}\label{fig:reactive_volume}
+\end{figure}
 
-\begin{theorem}[Reactive-1 partner strategies with error]\label{theorem:reactive_two_partner_strategies_with_error}
+\noindent
+Nash strategies are best response to themselves. This makes them robust against
+invasion. In the stochastic evolutionary processes considered in this work, this
+doesn't mean they cannot be invaded, but rather it makes it harder to do so. The
+volumes of cooperative Nash and defective Nash strategies can determine the
+evolutionary dynamics of cooperation. That is, they indicate the likelihood that
+a randomly selected strategy will produce sustained cooperation or defection.
+Therefore, since the volume of cooperative Nash increases with memory, and
+defective Nash decreases, we expect that as memory increases, the cooperation
+rate of the evolved population will also increase. This expectation is verified
+by the results in \textbf{Figure 4} of the paper.
 
-A nice reactive-2 strategy $\mathbf{p}$, is a partner strategy in the case that
-errors occur with a probability $\epsilon$ if and only if its entries satisfy
-the conditions
 
-\begin{equation}
-  p_{C} \!=\! 1, \qquad \displaystyle \frac{p_{CD} \!+\! p_{DC}}{2} \!\le\! 1 \!-\! \frac{1}{2} \cdot \frac{c}{b}, \qquad p_{DD} \le 1\!-\! \frac{c}{b}.
-\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Evolutionary Simulations  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\end{theorem}
+\section{Evolutionary Simulations}
+
+In this section, we will analyze the results of the evolutionary simulations to
+better understand the dynamics of the different strategies. As a reminder, in
+Fig. 3 of the manuscript panel, we simulated the evolutionary process twenty
+times, independent simulations for reactive-n strategies, and for reactive-n
+counting strategies. In panel A, we show for each of the three different memory
+values the strategies that were the most abundant from each simulation.
+
+Now, one question that arises is how many of these strategies are actually
+partner strategies? And for the partner strategies, do we see all of them
+represented?
+
+**Reactive-1 strategies.** In the case of reactive-1, all the most abundant
+strategies are partner strategies. However, from Eq. and for a given value of c,
+the probability of defecting is... However, we observe only a lower value of \(
+p_{dd} \), thus only some partner strategies are residents. This result is not
+explained by the theory. To better understand this result, we need to do an
+invasion analysis. For the invasion analysis, we consider a given resident
+strategy, and we sample \( 10^3 \) random strategies to estimate if this mutant
+will invade the resident. We record the number of mutants that took over. We
+repeat this \( 10^3 \) times. The results are shown in Fig. X, and what we
+observe is that a lower value of \( p_{dd} \) results in a more robust strategy
+to invasion, as only cooperative strategies on the GTFT can take over, in
+comparison with panel B where defective strategies are more likely to invade.
+
+**Reactive-2 strategies.** In the case of reactive-2, we observe that almost all
+strategies are partner strategies. However, what seems to be the case is that \(
+p_{dc} \) is higher on average than \( p_{cd} \). In order to understand this,
+we again run an invasion analysis. This time we also consider two values of \(
+p_{dd} \). The results are shown in Fig. Y.
+
+
+%%%%%%%%%%%%
+%% Errors  %%
+%%%%%%%%%%%%
+
+\section{Errors}
+
+So far, we have considered the case where there cannot be a mistake in the
+actions taken by a player; the actions of the players are realized without
+error. Here, we discuss what happens in the case where such an error is
+possible. More specifically, we consider that \(\epsilon\) is the probability
+that a player makes a mistake in the action taken.
 
   
 \clearpage

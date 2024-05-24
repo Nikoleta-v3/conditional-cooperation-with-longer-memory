@@ -24,6 +24,7 @@ figures/static/*pdf
 data/*
 matlab_data/*
 checks/*
+*txt
 *csv
 notebooks/DefectingNash/
 src/evolution_simulations/ErrorGrid.zip
