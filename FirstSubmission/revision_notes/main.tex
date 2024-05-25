@@ -176,18 +176,6 @@ set the benefit of cooperation to \(b = 1\).
 }\label{fig:reactive_volume}
 \end{figure}
 
-\noindent
-Nash strategies are best response to themselves. This makes them robust against
-invasion. In the stochastic evolutionary processes considered in this work, this
-doesn't mean they cannot be invaded, but rather it makes it harder to do so. The
-volumes of cooperative Nash and defective Nash strategies can determine the
-evolutionary dynamics of cooperation. That is, they indicate the likelihood that
-a randomly selected strategy will produce sustained cooperation or defection.
-Therefore, since the volume of cooperative Nash increases with memory, and
-defective Nash decreases, we expect that as memory increases, the cooperation
-rate of the evolved population will also increase. This expectation is verified
-by the results in \textbf{Figure 4} of the paper.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Evolutionary Simulations  %%
@@ -195,18 +183,32 @@ by the results in \textbf{Figure 4} of the paper.
 
 \section{Evolutionary Simulations}
 
-In this section, we will analyze the results of the evolutionary simulations to
-better understand the dynamics of the different strategies. As a reminder, in
-Fig. 3 of the manuscript panel, we simulated the evolutionary process twenty
-times, independent simulations for reactive-n strategies, and for reactive-n
-counting strategies. In panel A, we show for each of the three different memory
-values the strategies that were the most abundant from each simulation.
+We perform the evolutionary analysis of Figure 3 of the main text. We simulate
+the evolutionary process twenty times this time,
+Figure~\ref{fig:evolutionary_results}. Now, one question that arises is how many
+of these strategies are actually partner strategies? And for the partner
+strategies, do we see all of them represented? \\
 
-Now, one question that arises is how many of these strategies are actually
-partner strategies? And for the partner strategies, do we see all of them
-represented?
+\begin{figure}[tbhp]
+    \centering
+    \includegraphics[width=\textwidth]{../../figures/siFig3AbundantStrategies.pdf}
+    \caption{\textbf{Evolutionary dynamics of reactive-$n$ strategies.}
+    To explore the evolutionary dynamics among reactive-$n$ strategies, we run simulations based on the
+    method of Imhof and Nowak~\cite{imhof:royal:2010}. 
+    This method assumes rare mutations. 
+    Every time a mutant strategy appears, it goes extinct or fixes before the arrival of the next mutant strategy. 
+    We run twenty independent simulations for reactive-$n$ strategies.
+    For each simulation, we record the most abundant strategy (the strategy that resisted most mutants). 
+    The respective average cooperation probabilities are in line with the conditions for partner strategies. 
+    Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$
+    and a population size $N\!=\!100$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
+    }\label{fig:evolutionary_results}
+\end{figure}
 
-**Reactive-1 strategies.** In the case of reactive-1, all the most abundant
+
+
+\noindent
+\textbf{Reactive-1 strategies.} In the case of reactive-1, all the most abundant
 strategies are partner strategies. However, from Eq. and for a given value of c,
 the probability of defecting is... However, we observe only a lower value of \(
 p_{dd} \), thus only some partner strategies are residents. This result is not
@@ -219,11 +221,12 @@ observe is that a lower value of \( p_{dd} \) results in a more robust strategy
 to invasion, as only cooperative strategies on the GTFT can take over, in
 comparison with panel B where defective strategies are more likely to invade.
 
-**Reactive-2 strategies.** In the case of reactive-2, we observe that almost all
+\noindent
+\textbf{Reactive-12strategies.} In the case of reactive-2, we observe that almost all
 strategies are partner strategies. However, what seems to be the case is that \(
 p_{dc} \) is higher on average than \( p_{cd} \). In order to understand this,
 we again run an invasion analysis. This time we also consider two values of \(
-p_{dd} \). The results are shown in Fig. Y.
+p_{dd} \). The results are shown in Fig. Y. \\
 
 
 %%%%%%%%%%%%
@@ -237,5 +240,23 @@ actions taken by a player; the actions of the players are realized without
 error. Here, we discuss what happens in the case where such an error is
 possible. More specifically, we consider that \(\epsilon\) is the probability
 that a player makes a mistake in the action taken.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{../../figures/siFig2Errors.pdf}
+    \caption{
+    \textbf{Cooperating rates with implementation errors.}
+We simulate the evolutionary process, this time allowing for implementation
+errors. Specifically, we consider a probability \(\epsilon\) that a player makes a mistake
+in the action taken. We calculate the average cooperation rate for different
+values of \(\epsilon\) and \(c\).
+{\bf A} We plot the average cooperation rate for the different parameters when
+individuals use reactive-1, reactive-2, and reactive-3 strategies, respectively.
+{\bf B} We plot the differences between the cooperation rates when individuals use
+different memory size strategies. From left to right, we show the differences
+between reactive-1 and reactive-2, reactive-2 and reactive-3, and reactive-1 and
+reactive-3 strategies.
+    }\label{fig:errors}
+\end{figure}
 
 \end{document}
