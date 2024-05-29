@@ -1,10 +1,9 @@
 % Simulation Code for the Evolutionary Dynamics of Reactive Counting Strategies
-function [xDat]=evolSimulationCounting(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability);
+function [xDat]=evolSimulationCounting(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
 rng(seed)
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
 AvCoop=0; AvPay=0; Res=starting_resident;
-filename = "counting/bits_" + sdim + "_beta_" + beta + "_seed_" + seed + "_c_" + c;
 
 %% Initialization
 xDat=zeros(numberIterations/100, sdim + 2);

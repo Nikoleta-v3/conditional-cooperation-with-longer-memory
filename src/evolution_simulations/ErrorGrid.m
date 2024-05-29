@@ -20,12 +20,13 @@ beta = 1;
 sdim = 2;
 starting_resident = zeros(1, sdim);
 
-folder = "ErrorGrid/dimension_";
+folder = "ErrorGridcounting/dimension_";
 
-for i=8:num_cost_values
+for i=1:num_cost_values
     seed = i;
     c = cost_values(i);
     filename = append(folder, num2str(sdim), "_error_", num2str(errorprobability), "_cost_", num2str(c));
-    [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
+%     [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
+    [xDat]=evolSimulationCounting(N, c, b, beta, numberIterations, starting_resident, seed, sdim,  errorprobability, filename);
 end
 end
