@@ -32,6 +32,7 @@ src/evolution_simulations/ErrorGrid/
 src/evolution_simulations/ErrorSim.zip
 src/evolution_simulations/ErrorSim/
 src/evolution_simulations/ErrorSim_2/
+notebooks/DefectingNashCounting/
 
 # Folder for CH to keep track of the history
 oldfiles/

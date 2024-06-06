@@ -125,7 +125,7 @@ its entries satisfy the conditions
 A reactive-3 strategy $\mathbf{p}$ is a defecting Nash strategy if and only if
 its entries satisfy the conditions
 
-\begin{align}\label{eq:three_bit_conditions_defecting}
+\begin{align}\label{eq:defecting_conditions_three}
   \begin{split}
   p_{CCC} & \le \frac{c}{b} \\
   \frac{p_{CDC} + p_{DCD}}{2} & \leq \frac{1}{2} \cdot \frac{c}{b} \\
@@ -137,6 +137,37 @@ its entries satisfy the conditions
 \end{align}
 
 \end{theorem}
+
+We repeat the same analysis for reactive counting strategies. We obtain the
+following results.
+
+%% DEFECTING STRATEGIES: Reactive-2 Counting Donation Game %%
+
+\begin{theorem}[Reactive-2 defecting Nash counting strategies in the donation game]
+\label{theorem:reactive_two_defecting_counting_strategies}
+A reactive-2 counting strategy $\mathbf{r}$ is a defecting Nash strategy if and only if
+its entries satisfy the conditions
+
+\begin{equation}\label{eq:defecting_conditions_two_counting}
+  r_{2} \le \frac{c}{b}, \qquad \displaystyle r_{1} \le \frac{1}{2} \cdot \frac{c}{b}, \qquad r_{0} = 0.
+\end{equation}
+\end{theorem}
+
+%% DEFECTING STRATEGIES: Reactive-3 Counting Donation Game %%
+
+\begin{theorem}[Reactive-3 defecting Nash counting strategies in the donation game]
+\label{theorem:reactive_three_defecting_counting_strategies}
+A reactive-3 counting strategy $\mathbf{r}$ is a defecting Nash strategy if and only if
+its entries satisfy the conditions
+
+\begin{equation}\label{eq:defecting_conditions_three_counting}
+  r_{3} \le \frac{c}{b}, \qquad r_{2} \leq\frac{2}{3} \cdot \frac{c}{b}, \qquad
+  r_{1} \leq\frac{1}{3} \cdot \frac{c}{b}, \qquad
+  r_{0} = 0.
+\end{equation}
+
+\end{theorem}
+
 
 \noindent
 We can observe that for each value of \(n\), the left-hand side of the
@@ -161,6 +192,7 @@ that this holds true for different values of cost.
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFig1.pdf}
+  \includegraphics[width=\textwidth]{../../figures/siFig1Counting.pdf}
   \caption{
   \textbf{Volume of cooperative and defective Nash.}
 We draw \(10^4\) random
@@ -194,7 +226,7 @@ strategies, do we see all of them represented? \\
     \includegraphics[width=\textwidth]{../../figures/siFig3AbundantStrategies.pdf}
     \caption{\textbf{Evolutionary dynamics of reactive-$n$ strategies.}
     To explore the evolutionary dynamics among reactive-$n$ strategies, we run simulations based on the
-    method of Imhof and Nowak~\cite{imhof:royal:2010}. 
+    method of Imhof and Nowak. 
     This method assumes rare mutations. 
     Every time a mutant strategy appears, it goes extinct or fixes before the arrival of the next mutant strategy. 
     We run twenty independent simulations for reactive-$n$ strategies.
@@ -203,6 +235,21 @@ strategies, do we see all of them represented? \\
     Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$
     and a population size $N\!=\!100$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
     }\label{fig:evolutionary_results}
+\end{figure}
+
+
+\begin{figure}[tbhp]
+  \centering
+  \includegraphics[width=\textwidth]{../../figures/siFigInvasionR1.pdf}
+  \caption{\textbf{Invasion analysis for reactive-1.}
+  }
+\end{figure}
+
+\begin{figure}[tbhp]
+  \centering
+  \includegraphics[width=\textwidth]{../../figures/siFigInvasionR2.pdf}
+  \caption{\textbf{Invasion analysis for reactive-1.}
+  }
 \end{figure}
 
 
