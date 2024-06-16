@@ -1,0 +1,66 @@
+% Simulation Code for the Evolutionary Dynamics of Reactive Strategies
+function [xDat]=evolSimulationMemoryN(N, c, b, beta, numberIterations, seed, memory, errorprobability, filename);
+rng(seed)
+
+if memory == 1
+    sdim = 4;
+elseif memory == 2
+    sdim = 16;
+elseif memory == 3
+    sdim = 64;
+end
+
+starting_resident = zeros(1, sdim);
+
+%% Preparations for the output
+Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
+AvCoop=0; AvPay=0; Res=starting_resident;
+
+
+%% Initialization
+xDat=zeros(numberIterations/100, sdim + 2);
+xDat(1,:)=[Res, 0, 0];
+
+u = repmat([b - c, -c, b, 0], 1, sdim / 4);
+
+%% Running the evolutionary process
+j = 2;
+for t = progress(1:numberIterations)
+    Mut=rand(1, sdim);
+    [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, memory, errorprobability);
+    if rand(1) < phi
+        Res=Mut; xDat(j,:)=[Res, t, coopM]; j=j+1;
+    end
+end
+
+dlmwrite(filename + ".csv", xDat, 'precision', 9);
+writematrix(Data, filename + ".txt");
+end
+
+function [phi, coopMM, piMM]=calcPhi(Mut, Res, N, u, beta, memory, errorprobability);
+%% Calculating the fixation probability
+
+vMM=stationaryMemoryN(Mut, Mut, memory, errorprobability);
+vMR=stationaryMemoryN(Mut, Res, memory, errorprobability);
+vRM=stationaryMemoryN(Res, Mut, memory, errorprobability);
+vRR=stationaryMemoryN(Res, Res, memory, errorprobability);
+
+piMM=vMM*u';
+coopMM= sum(vMM(2:4:end)) + sum(vMM(1:4:end));
+
+piMR=vMR*u';
+piRM=vRM*u';
+piRR=vRR*u';
+
+laplus=zeros(1, N-1); laminus=laplus;
+for k=1:N-1
+    piM = (k-1) / (N-1) * piMM + (N-k) / (N-1) * piMR;
+    piR = k / (N-1) * piRM + (N-k-1) / (N-1) * piRR;
+
+    laplus(k) = 1 / (1 + exp(-beta * (piM - piR)));
+    laminus(k) = 1 / (1 + exp(-beta * (piR - piM)));
+end
+
+phi = 1 / (1 + sum(cumprod(laminus./laplus)));
+
+end
