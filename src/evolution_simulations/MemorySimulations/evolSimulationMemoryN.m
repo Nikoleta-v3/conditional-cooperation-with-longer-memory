@@ -1,5 +1,5 @@
 % Simulation Code for the Evolutionary Dynamics of Reactive Strategies
-function [xDat]=evolSimulationMemoryN(N, c, b, beta, numberIterations, seed, memory, errorprobability, filename);
+function [xDat]=evolSimulationMemoryN(N, c, b, beta, numberIterations, seed, memory, errorprobability, filename, counting);
 rng(seed)
 
 if memory == 1
@@ -27,6 +27,12 @@ u = repmat([b - c, -c, b, 0], 1, sdim / 4);
 j = 2;
 for t = progress(1:numberIterations)
     Mut=rand(1, sdim);
+    if counting == 1
+        if memory == 1
+        Mut(3) = Mut(2);
+        end
+    end
+    disp(Mut)
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, memory, errorprobability);
     if rand(1) < phi
         Res=Mut; xDat(j,:)=[Res, t, coopM]; j=j+1;
