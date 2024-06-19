@@ -30,6 +30,23 @@ for t = progress(1:numberIterations)
     if counting == 1
         if memory == 1
         Mut(3) = Mut(2);
+        elseif memory == 2
+            % Mut(1) 4 cooperations
+            % Mut(2) 3 cooperations
+            Mut(3) = Mut(2);
+            % Mut(4) 2 cooperations
+            Mut(5) = Mut(2);
+            Mut(6) = Mut(4);
+            Mut(7) = Mut(4);
+            % Mut(8) 1 cooperation
+            Mut(9) = Mut(2);
+            Mut(10) = Mut(4);
+            Mut(11) = Mut(4);
+            Mut(12) = Mut(8);
+            Mut(13) = Mut(4);
+            Mut(14) = Mut(8);
+            Mut(15) = Mut(8);
+            % Mut(16) 0 cooperations
         end
     end
     disp(Mut)
