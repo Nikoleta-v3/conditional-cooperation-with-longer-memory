@@ -115,7 +115,6 @@ for t = 1:numberIterations
             Mut(64) = probs(7);
         end
     end
-    disp(Mut)
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, memory, errorprobability);
     if rand(1) < phi
         Res=Mut; xDat(j,:)=[Res, t, coopM]; j=j+1;
