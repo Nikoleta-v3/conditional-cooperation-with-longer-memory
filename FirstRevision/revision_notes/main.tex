@@ -85,8 +85,8 @@
 
 In the previous section, we have characterized the reactive partner strategies
 for a special case of the donation game and the general prisoner's dilemma. In
-the following, we apply the same methods based on Section~\ref{Sec:Algorithm} to
-analyze defecting Nash equilibria. For the case of reactive-1 strategies, we
+the following, we apply the same methods to
+characterize defecting Nash equilibria. For the case of reactive-1 strategies, we
 obtain the following characterization.
 
 %% DEFECTING STRATEGIES: Reactive-1 Donation Game %%
@@ -164,28 +164,18 @@ its entries satisfy the conditions
   r_{0} = 0.
 \end{equation}
 
+ToDo: proofs.
 \end{theorem}
 
 
 \noindent
 We can observe that for each value of \(n\), the left-hand side of the
-conditions for cooperative and defective Nash are the same. Moreover, it is
-clear that the right-hand side of the defective Nash conditions is always
+conditions for cooperative and defective Nash are the same. Moreover, we see
+that the right-hand side of the defective Nash conditions is always
 strictly smaller than those of the cooperative Nash conditions. This means that
 within the space of feasible strategies, the volume of partner strategies is
-always larger than the volume of defective Nash strategies. We verified these
-analytical results numerically as well.
-
-We selected random strategies from the feasible space of strategies and created
-two copies of each strategy. For one copy, we set the probability of cooperating
-after full cooperation of the co-player to 1 (for example, for reactive-1, \(p_{C} = 1\)). 
-For the second copy, we set the probability of cooperating after
-full defections of the co-player to 0 (for example, for reactive-2, \(p_{DD} =
-0\)). We then checked if either copy is Nash: cooperative for the first and
-defective for the second. We repeated this process for \(10^4\) randomly
-selected strategies and plotted the relative volumes of cooperative and
-defective Nash equilibria (Figure~\ref{fig:reactive_volume}). We also verified
-that this holds true for different values of cost.
+always larger than the volume of defective Nash strategies. We also verify this
+analytical results numerically, Figure~\ref{fig:reactive_volume}.
 
 \begin{figure}[t]
   \centering
@@ -196,16 +186,28 @@ that this holds true for different values of cost.
 We draw \(10^4\) random
 strategies from the feasible space of strategies and create two copies of each
 strategy. For one copy, we set the probability of cooperating after full
-cooperation of the co-player to 1. For the second copy, we set the probability
+cooperations of the co-player to 1. For the second copy, we set the probability
 of cooperating after full defections of the co-player to 0. We then checked if
-either copy is Nash: cooperative for the first and defective for the second. We
-set the benefit of cooperation to \(b = 1\). 
-{\bf A} We plot the results for a given value of cost, \(c = 0.5\).
-{\bf B} The number of defective Nash strategies as a function of cost.
-{\bf C} The number of cooperative Nash strategies as a function of cost.
+either copy is Nash: cooperative for the first copy and defective for the second.
+We set the benefit of cooperation to \(b = 1\).
+{\bf A, D} We plot the results for a given value of cost, \(c = 0.5\). We do this
+for reactive strategies and reactive counting strategies. For $n=1$, we can see
+the number of defective equilibria is higher than that of the cooperative.
+Howver, as we increase $n$ this is not true anymore. The number of defective
+Nash decreases drastically. The number of partner strategies does as well,
+howber, we can see that it happends less quickly.
+{\bf B} We plot the porpotion of equalibria
+over different values of cost, for reactive (B) and reactive counting strategies.
+As the cost increases so does the porpotion of defective equilibria, and the opposite
+is true for cooperative. As memory increases we obsvere again a significant drop
+in the porpotionf of defective, whereas a small descreses in the cooperative.
+The number of defective Nash strategies as a function of cost.
+{\bf C, F} We plot the relative portoprtion of cooperation nash. 
+For this we consider the number of cooperative and defecting Nash for each 
+memory size, and we plot the fraction of cooperative.  This increases as memory
+increases.
 }\label{fig:reactive_volume}
 \end{figure}
-å
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Evolutionary Simulations  %%
@@ -213,42 +215,95 @@ set the benefit of cooperation to \(b = 1\).
 
 \section{Evolutionary Simulations}
 
-% We perform the evolutionary analysis of Figure 3 of the main text. We simulate
-% the evolutionary process twenty times this time,
-% Figure~\ref{fig:evolutionary_results}. Now, one question that arises is how many
-% of these strategies are actually partner strategies? And for the partner
-% strategies, do we see all of them represented? \\
+We perform the evolutionary analysis of Figure 3 of the main text. We simulate
+the evolutionary process twenty times this time,
+Figure~\ref{fig:evolutionary_results}. We can see that the results remain unchanged.
 
-% \begin{figure}[tbhp]
-%     \centering
-%     \includegraphics[width=\textwidth]{../../figures/siFig3AbundantStrategies.pdf}
-%     \caption{\textbf{Evolutionary dynamics of reactive-$n$ strategies.}
-%     To explore the evolutionary dynamics among reactive-$n$ strategies, we run simulations based on the
-%     method of Imhof and Nowak. 
-%     This method assumes rare mutations. 
-%     Every time a mutant strategy appears, it goes extinct or fixes before the arrival of the next mutant strategy. 
-%     We run twenty independent simulations for reactive-$n$ strategies.
-%     For each simulation, we record the most abundant strategy (the strategy that resisted most mutants). 
-%     The respective average cooperation probabilities are in line with the conditions for partner strategies. 
-%     Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$
-%     and a population size $N\!=\!100$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
-%     }\label{fig:evolutionary_results}
-% \end{figure}
+\begin{figure}[tbhp]
+    \centering
+    \includegraphics[width=\textwidth]{../../figures/siFig3AbundantStrategies.pdf}
+    \caption{\textbf{Evolutionary dynamics of reactive-$n$ strategies.}
+    To explore the evolutionary dynamics among reactive-$n$ strategies, we run simulations based on the
+    method of Imhof and Nowak. 
+    This method assumes rare mutations. 
+    Every time a mutant strategy appears, it goes extinct or fixes before the arrival of the next mutant strategy. 
+    We run twenty independent simulations for reactive-$n$ strategies.
+    For each simulation, we record the most abundant strategy (the strategy that resisted most mutants). 
+    The respective average cooperation probabilities are in line with the conditions for partner strategies. 
+    Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$
+    and a population size $N\!=\!100$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
+    }\label{fig:evolutionary_results}
+\end{figure}
+
+\subsection{Invasion Analysis}
+
+One question that arises is that from these top strategies which are partner
+strategies, and why are some partner strategies selected more than others. For example
+in the case of reactive 1, we take a reactive strategies to be ($p_{C} > 0.95$) and
+($p_{D} < \frac{c}{b}$), hwer we osbset strategies of ($p_{D} = 0.1$) and closer
+to the boundy. The reason for this is exaimpled by Figure~\ref{fig:InvasionAnalysisReactiv1}.
 
 
 \begin{figure}[tbhp]
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFigInvasionR1.pdf}
   \caption{\textbf{Invasion analysis for reactive-1.}
-  }
+  \textbf{A} The twenty most abundant reactive-1 strategies of Figure. We obsvere
+  that all twenty of them are partner strategies, and than all have a very low p > 0.2.
+  \textbf{B} We perform an invision analysis. Namely we select one resident and we
+  introduce mutatns until the mutant takes over and the resident is no more. We count
+  how many time from 10 ** 3 a mutatn succeffully invaded the resident. We repeated this
+  for three different resisndetd, from left to right. We Obseverd that a resident
+  with a very lowp_d is more resistant to invasion, and thus why we observe that
+  the most abundant strategieshave a low pd.
+  \textbf{C} We can exaiple the low pd if we consider the expected payoff of the three
+  resindets when \(k\) ALLD mutatns try to invavde. We can see that for the far left resident
+  the expectedpayoff is almost always strivly higher than that of the ALLD mutatns, only whe
+  99 mutatn the payoff is the same. We repeated this for all three.
+  \text
+  }\label{fig:InvasionAnalysisReactive1}
 \end{figure}
 
 \begin{figure}[tbhp]
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFigInvasionR2.pdf}
-  \caption{\textbf{Invasion analysis for reactive-2.}
+  \caption{\textbf{Invasion analysis for reactive-2.} We repeate the same
+  analysis for the reactive-2 strategies. The twenty top performing strategies
+  are again partner strategies. Howver, what we observe here is that the
+  partner strategies that are selected from the evolutionary process
+  almost laways have a smaller pcd than pdc and a low pdd. We already discussed
+  why a smaller pdd is selected. Howver, to understand the differencesbetween
+  we will consider two examples of such strategies. Namely let $\mathbf{p}=$
+  and $\mathbf{\tilde{p}}$. We run an invasion analysis to see the difference
+  and inddeed p is invaded much faster. The expected payoffs show that the
+  slef payoffs od the strategies are different, and thus an alld recived
+  a higher payoff with less mutants.
   }
 \end{figure}
+
+The self payoffs of the two strategies would have been the same if p was
+equal to 1. However, since the evolutionary process almost never samlples such
+a strategy a stochastic pcc makes the difference. The likelyhood of both strategies
+to make a mistake while at the outome is the same. Howver, the distributions of
+the playing with themselves is different. The numerical evalution of the stateionary
+distribution is shown in Figure A. We also use the open source package Axelrod
+to simulate the play betwwen the strategies. We run each match for $10^6$ steps
+and we repeate the match twenty times. From Figure B we see that the simulation
+estimtes the stattionary distribution with the numerical approach. 
+
+From the simulation we can record how long it takes for each pair to return
+to mutual cooperation after a mistake has occure. This is shown in Figure C.
+We can see that the pair p has a smaller cycle which means it can correct the
+mistake faster.
+
+We can look into some of the cyles. The most common cycles for each are those
+of the nature, cc|cc and then. SHow in Figure 3, A and B. 
+
+Now we ask the question, what if the lower probably of this path was to be a defection
+instead of a cooperation. What we see is that for p rime it takes one extra
+timestep tp correct the mistake. This comes from the effect that to go to mutual
+cooperation a defection in the second to last round will be at the memory of the
+strategy, and a more forgiving strategy achieves mutual cooperation again faster. 
 
 
 
@@ -314,10 +369,18 @@ reactive-3 strategies.
 \end{figure}
 
 
-
 \newpage
 
 \section{Memory-$n$}
+
+So far in the evolutionary simulations we have considered reactive strategies,
+and we have shown that strategies with larger memory allow for more cooperative
+populations. We repeate the evolutionary simulations but this time using memory
+n strategies. We get results for memory-1, memory-2 and for memory counting
+strategies for n equal to 1, 2 and 3. We omit memory-3 strategies because it
+is numerically untractable to run such simulations. The results still hold.
+For more memory more cooperation evovles, howber, not in the case of counting
+strategies.
 
 \begin{figure}[t]
   \centering
@@ -327,5 +390,17 @@ reactive-3 strategies.
 \end{figure}
 
 
+To understand why counting strategies do not allow for more cooperation we focus
+on reactive-2 strategies and reactive-2 counting strategies. We run an invasion
+analysis where we select the most abundant reactive-2 strategy and hte most
+abundant reacto-2 coutning strategy. The strategies and the mean invasion
+time are given by Figure 3. We also ask the question, how many reactive-2
+mutants can a reactive-2 coutnign strategy repel.
+
+\section{Proofs}
+
+The proof for Theorem 1.
+
+The proof for Theorem 2.
 
 \end{document}
