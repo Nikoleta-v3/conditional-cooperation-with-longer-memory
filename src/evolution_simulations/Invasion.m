@@ -1,5 +1,5 @@
 % Simulation Code for the Evolutionary Dynamics of Reactive Strategies
-function [xDat]=Invasion(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
+function [xDat]=Invasion(N, c, b, beta, numberIterations, starting_resident, seed, sdim, counting, errorprobability, filename);
 rng(seed)
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
@@ -18,6 +18,17 @@ for i = progress(1:numberIterations)
     notInvaded = true;
     while notInvaded == true
         Mut=rand(1, sdim);
+        if counting == true
+            if sdim == 4
+                Mut(3) = Mut(2);
+            elseif sdim == 8
+                Mut(3) = Mut(2);
+                Mut(5) = Mut(2);
+                Mut(6) = Mut(4);
+             Mut(7) = Mut(4);
+            end
+        end
+        
         trials = trials + 1;
         [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, sdim, errorprobability);
         if rand(1) < phi

@@ -4,27 +4,22 @@ sdim = 4;
 
 N = 100;
 b = 1;
-numberIterations = 10 ^ 4;
-seed = 1;
+numberIterations = 10 ^ 3;
+seed = 2;
 beta = 1;
-c = 0.5;
+c = 0.3;
 errorprobability = 0;
+% counting = false;
 
-residents = [[0.99, .1, .6, .3]; [0.99, .6, .1, .3]];
+reactive_two_resident = [0.999985	0.160136	0.553336	0.035629];
 
-for i=1:2
-    starting_resident = residents(i, :);
-    p1 = starting_resident(1);
-    p2 = starting_resident(2);
-    p3 = starting_resident(3);
-    p4 = starting_resident(4);
+counting_two_resident = [0.998204	0.466715	0.466715	0.317605];
+counting = false;
 
-%     % filename = append("Invasion/sdim_2_invasions_resident_p_", num2str(p), '_q_', num2str(q));
-    filename = append("Invasion/sdim_4_invasions_resident_p1_", num2str(p1), '_p2_', num2str(p2), '_p3_', num2str(p3), '_p4_', num2str(p4));
-%     disp(filename)
-%     disp(starting_resident)
-% 
-    [xDat]=Invasion(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
+starting_resident = reactive_two_resident;
 
-end
+
+filename = append("../Understanding_counting/reactive_again");
+[xDat]=Invasion(N, c, b, beta, numberIterations, starting_resident, seed, sdim, counting, errorprobability, filename);
+
 end

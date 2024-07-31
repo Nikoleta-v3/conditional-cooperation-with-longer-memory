@@ -83,11 +83,11 @@
 
 \section{Reactive defecting Nash strategies in the donation game}\label{section:defecting_donation_game}
 
-In the previous section, we have characterized the reactive partner strategies
-for a special case of the donation game and the general prisoner's dilemma. In
-the following, we apply the same methods to
-characterize defecting Nash equilibria. For the case of reactive-1 strategies, we
-obtain the following characterization.
+In the previous sections, we characterized reactive partner strategies for the
+special case of the donation game and the general prisoner's dilemma. In the
+following section, we apply the same methods to characterize defecting Nash
+equilibria. For the case of reactive-1 strategies, we obtain the following
+characterization.
 
 %% DEFECTING STRATEGIES: Reactive-1 Donation Game %%
 
@@ -136,6 +136,7 @@ its entries satisfy the conditions
 
 \end{theorem}
 
+\noindent
 We repeat the same analysis for reactive counting strategies. We obtain the
 following results.
 
@@ -163,177 +164,211 @@ its entries satisfy the conditions
   r_{1} \leq\frac{1}{3} \cdot \frac{c}{b}, \qquad
   r_{0} = 0.
 \end{equation}
-
-ToDo: proofs.
 \end{theorem}
-
 
 \noindent
 We can observe that for each value of \(n\), the left-hand side of the
 conditions for cooperative and defective Nash are the same. Moreover, we see
-that the right-hand side of the defective Nash conditions is always
-strictly smaller than those of the cooperative Nash conditions. This means that
-within the space of feasible strategies, the volume of partner strategies is
-always larger than the volume of defective Nash strategies. We also verify this
-analytical results numerically, Figure~\ref{fig:reactive_volume}.
+that, for a low cost-to-benefit ratio, the right-hand side of the defective Nash
+conditions is always strictly smaller than those of the cooperative Nash
+conditions. This means that within the space of feasible strategies, the volume
+of partner strategies is larger than the volume of defective Nash strategies. We
+also verify these analytical results numerically
+(Figure~\ref{fig:siFigDefectiveCooperativeNash}), and we also show that as memory increases,
+the number of cooperative and defective Nash strategies decreases, as the
+strategy spaces are larger. However, the decrease is more prominent in the case
+of defective Nash.
 
-\begin{figure}[t]
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFig1.pdf}
   \includegraphics[width=\textwidth]{../../figures/siFig1Counting.pdf}
   \caption{
-  \textbf{Volume of cooperative and defective Nash.}
-We draw \(10^4\) random
-strategies from the feasible space of strategies and create two copies of each
-strategy. For one copy, we set the probability of cooperating after full
-cooperations of the co-player to 1. For the second copy, we set the probability
-of cooperating after full defections of the co-player to 0. We then checked if
-either copy is Nash: cooperative for the first copy and defective for the second.
-We set the benefit of cooperation to \(b = 1\).
-{\bf A, D} We plot the results for a given value of cost, \(c = 0.5\). We do this
-for reactive strategies and reactive counting strategies. For $n=1$, we can see
-the number of defective equilibria is higher than that of the cooperative.
-Howver, as we increase $n$ this is not true anymore. The number of defective
-Nash decreases drastically. The number of partner strategies does as well,
-howber, we can see that it happends less quickly.
-{\bf B} We plot the porpotion of equalibria
-over different values of cost, for reactive (B) and reactive counting strategies.
-As the cost increases so does the porpotion of defective equilibria, and the opposite
-is true for cooperative. As memory increases we obsvere again a significant drop
-in the porpotionf of defective, whereas a small descreses in the cooperative.
-The number of defective Nash strategies as a function of cost.
-{\bf C, F} We plot the relative portoprtion of cooperation nash. 
-For this we consider the number of cooperative and defecting Nash for each 
-memory size, and we plot the fraction of cooperative.  This increases as memory
-increases.
-}\label{fig:reactive_volume}
+  \textbf{Proportions of cooperative and defective Nash.}
+We draw \(10^4\) random strategies from the feasible space of strategies and
+create two copies of each strategy. For one copy, we set the probability of
+cooperating after full cooperation of the co-player to 1. For the second copy,
+we set the probability of cooperating after full defection of the co-player to
+0. We then check if either copy is Nash: cooperative for the first copy and
+defective for the second. We set the benefit of cooperation to \(b = 1\).
+{\bf A, D} We plot the results for a given value of cost, \(c = 0.5\). We do
+this for reactive strategies and reactive counting strategies. For \(n=1\), we
+can see the number of defective equilibria is higher than that of the
+cooperative. However, as we increase \(n\), this is no longer true. The number
+of defective Nash decreases drastically. The number of partner strategies does
+as well, but to a lesser extent.
+{\bf B, E} We plot the proportion of equilibria over different values of cost, for reactive
+and reactive counting strategies. As the cost increases, so does the
+proportion of defective equilibria, and the opposite is true for cooperative. As
+memory increases, we observe again a significant drop in the proportion of
+defective strategies, whereas there is a small decrease in the cooperative
+strategies. 
+{\bf C, D} We plot the relative proportion of cooperative Nash strategies. For
+this, we consider the sum of cooperative and defecting Nash strategies for each
+memory size and plot the number of cooperative Nash strategies over the total
+sum. This proportion increases as memory size increases.
+}\label{fig:siFigDefectiveCooperativeNash}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Evolutionary Simulations  %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Evolutionary Simulations  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
 \section{Evolutionary Simulations}
 
-We perform the evolutionary analysis of Figure 3 of the main text. We simulate
-the evolutionary process twenty times this time,
-Figure~\ref{fig:evolutionary_results}. We can see that the results remain unchanged.
+We repeated the evolutionary analysis of Figure 4 of the main text. This time,
+for panels \textbf{A} and \textbf{B}, we ran twenty independent simulations. We
+did this to check that the results, specifically the mean most abundant
+strategies, do not change.
 
 \begin{figure}[tbhp]
     \centering
     \includegraphics[width=\textwidth]{../../figures/siFig3AbundantStrategies.pdf}
-    \caption{\textbf{Evolutionary dynamics of reactive-$n$ strategies.}
-    To explore the evolutionary dynamics among reactive-$n$ strategies, we run simulations based on the
-    method of Imhof and Nowak. 
-    This method assumes rare mutations. 
-    Every time a mutant strategy appears, it goes extinct or fixes before the arrival of the next mutant strategy. 
-    We run twenty independent simulations for reactive-$n$ strategies.
-    For each simulation, we record the most abundant strategy (the strategy that resisted most mutants). 
-    The respective average cooperation probabilities are in line with the conditions for partner strategies. 
-    Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$
-    and a population size $N\!=\!100$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
-    }\label{fig:evolutionary_results}
+    \caption{\textbf{Evolutionary dynamics of reactive-$n$ strategies: Most abundant strategies.}
+    The same process as that in the paper for Figure 4 is used, with the same
+    parameters. Simulations are based on a donation game with \(b\!=\!1\),
+    \(c\!=\!0.5\), a selection strength \(\beta\!=\!1\), and a population size
+    \(N\!=\!100\). For \(n\) equal to 1 and 2, simulations
+    are run for \(T\!=\!10^7\) time steps. For \(n\!=\!3\), we use \(T\!=\!2 \cdot
+    10^7\) time steps. This time, we run twenty independent simulations instead of
+    ten.
+    }\label{fig:siFigAbundantStrategies}
 \end{figure}
 
 \subsection{Invasion Analysis}
 
-One question that arises is that from these top strategies which are partner
-strategies, and why are some partner strategies selected more than others. For example
-in the case of reactive 1, we take a reactive strategies to be ($p_{C} > 0.95$) and
-($p_{D} < \frac{c}{b}$), hwer we osbset strategies of ($p_{D} = 0.1$) and closer
-to the boundy. The reason for this is exaimpled by Figure~\ref{fig:InvasionAnalysisReactiv1}.
+One question that arises is which of these top strategies are partner
+strategies, and why some partner strategies are selected more than others. For
+example, in the case of reactive-1 strategies, we consider a reactive strategy
+to be partner if \((p_{C} > 0.95)\) and \((p_{D} < \frac{c}{b})\). Here, we
+observe strategies with \((p_{D} \approx 0.1)\) and not those closer to the
+boundary. The reason for this is explained by
+Figure~\ref{fig:InvasionAnalysisReactive1}. \\
 
 
 \begin{figure}[tbhp]
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFigInvasionR1.pdf}
   \caption{\textbf{Invasion analysis for reactive-1.}
-  \textbf{A} The twenty most abundant reactive-1 strategies of Figure. We obsvere
-  that all twenty of them are partner strategies, and than all have a very low p > 0.2.
-  \textbf{B} We perform an invision analysis. Namely we select one resident and we
-  introduce mutatns until the mutant takes over and the resident is no more. We count
-  how many time from 10 ** 3 a mutatn succeffully invaded the resident. We repeated this
-  for three different resisndetd, from left to right. We Obseverd that a resident
-  with a very lowp_d is more resistant to invasion, and thus why we observe that
-  the most abundant strategieshave a low pd.
-  \textbf{C} We can exaiple the low pd if we consider the expected payoff of the three
-  resindets when \(k\) ALLD mutatns try to invavde. We can see that for the far left resident
-  the expectedpayoff is almost always strivly higher than that of the ALLD mutatns, only whe
-  99 mutatn the payoff is the same. We repeated this for all three.
-  \text
-  }\label{fig:InvasionAnalysisReactive1}
+  {\bf A} The twenty most abundant reactive-1 strategies of
+  Figure~\ref{fig:siFigAbundantStrategies}. We observe that all twenty of them
+  are partner strategies, and that all have a very low \(p_D\), typically less
+  than 0.2.
+  {\bf B} We perform an invasion analysis. Namely, we select one resident and introduce
+  mutants until a mutant becomes the new resident. We record how many mutants
+  were introduced until this happens. We do this \(10^3\) times and report the
+  average number of mutants over all the simulations. We consider three different
+  residents. For each, we report the average number of mutants until invasion and
+  the mutants that invaded as well (scatter points). We observed that a resident with a very low \(p_D\) is more resistant to
+  invasion, which explains why we observe that the most abundant strategies have a
+  low \(p_D\). 
+  {\bf C} To explain why a low \(p_D\) leads to more resistance to invasion, we
+  look at the expected payoffs of each resident when when \(k\) \alld{}
+  mutants try to invade. We can see that for the
+  far-left resident, the expected payoff is almost always strictly higher than
+  that of the \alld{} mutants; only when there are 99 mutants is the payoff the same.}\label{fig:InvasionAnalysisReactive1}
 \end{figure}
+
+\noindent
+A similar question arises for reactive-2 strategies. More specifically, why is
+it that we observe partner strategies where \(p_{CD}\) is almost always strictly
+lower than \(p_{DC}\)? Why are these partners chosen more often by the
+evolutionary process? \\
+
 
 \begin{figure}[tbhp]
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFigInvasionR2.pdf}
-  \caption{\textbf{Invasion analysis for reactive-2.} We repeate the same
-  analysis for the reactive-2 strategies. The twenty top performing strategies
-  are again partner strategies. Howver, what we observe here is that the
-  partner strategies that are selected from the evolutionary process
-  almost laways have a smaller pcd than pdc and a low pdd. We already discussed
-  why a smaller pdd is selected. Howver, to understand the differencesbetween
-  we will consider two examples of such strategies. Namely let $\mathbf{p}=$
-  and $\mathbf{\tilde{p}}$. We run an invasion analysis to see the difference
-  and inddeed p is invaded much faster. The expected payoffs show that the
-  slef payoffs od the strategies are different, and thus an alld recived
-  a higher payoff with less mutants.
-  }
+  \caption{\textbf{Invasion analysis for reactive-2.} 
+  {\bf A} We repeated the same analysis for the reactive-2 strategies. The twenty
+  top-performing strategies are again partner strategies. However, what we observe
+  here is that the partner strategies selected by the evolutionary process almost
+  always have a smaller \(p_{CD}\) than \(p_{DC}\) and a low \(p_{DD}\).
+  {\bf B } We already discussed why a smaller \(p_{DD}\) is selected. However, to
+  understand the differences between the \(p_{CD}\) and \(p_{DC}\) entries, we will consider
+  two strategies: \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\) and
+  \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\). We perform an invasion analysis which
+  we repeat \(10^4\) times. We introduce mutants until a mutant becomes the new
+  resident. We record how many mutants were introduced until this happens. We
+  observe that 
+  \(\mathbf{p'}\) is invaded much faster.
+  {\bf C} The expected payoffs show that the self-payoffs of the strategies are
+  different, which in turn affects how easily \alld{} mutants can invade. We
+  can see that it requires fewer mutants for \(\mathbf{p'}\) than for
+  \(\mathbf{p}\).}\label{fig:InvasionAnalysisReactive2}
 \end{figure}
 
-The self payoffs of the two strategies would have been the same if p was
-equal to 1. However, since the evolutionary process almost never samlples such
-a strategy a stochastic pcc makes the difference. The likelyhood of both strategies
-to make a mistake while at the outome is the same. Howver, the distributions of
-the playing with themselves is different. The numerical evalution of the stateionary
-distribution is shown in Figure A. We also use the open source package Axelrod
-to simulate the play betwwen the strategies. We run each match for $10^6$ steps
-and we repeate the match twenty times. From Figure B we see that the simulation
-estimtes the stattionary distribution with the numerical approach. 
-
-From the simulation we can record how long it takes for each pair to return
-to mutual cooperation after a mistake has occure. This is shown in Figure C.
-We can see that the pair p has a smaller cycle which means it can correct the
-mistake faster.
-
-We can look into some of the cyles. The most common cycles for each are those
-of the nature, cc|cc and then. SHow in Figure 3, A and B. 
-
-Now we ask the question, what if the lower probably of this path was to be a defection
-instead of a cooperation. What we see is that for p rime it takes one extra
-timestep tp correct the mistake. This comes from the effect that to go to mutual
-cooperation a defection in the second to last round will be at the memory of the
-strategy, and a more forgiving strategy achieves mutual cooperation again faster. 
-
-
-
-% \noindent
-% \textbf{Reactive-1 strategies.} In the case of reactive-1, all the most abundant
-% strategies are partner strategies. However, from Eq. and for a given value of c,
-% the probability of defecting is... However, we observe only a lower value of \(
-% p_{dd} \), thus only some partner strategies are residents. This result is not
-% explained by the theory. To better understand this result, we need to do an
-% invasion analysis. For the invasion analysis, we consider a given resident
-% strategy, and we sample \( 10^3 \) random strategies to estimate if this mutant
-% will invade the resident. We record the number of mutants that took over. We
-% repeat this \( 10^3 \) times. The results are shown in Fig. X, and what we
-% observe is that a lower value of \( p_{dd} \) results in a more robust strategy
-% to invasion, as only cooperative strategies on the GTFT can take over, in
-% comparison with panel B where defective strategies are more likely to invade.
-
-% \noindent
-% \textbf{Reactive-12strategies.} In the case of reactive-2, we observe that almost all
-% strategies are partner strategies. However, what seems to be the case is that \(
-% p_{dc} \) is higher on average than \( p_{cd} \). In order to understand this,
-% we again run an invasion analysis. This time we also consider two values of \(
-% p_{dd} \). The results are shown in Fig. Y. \\
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{../../figures/siFigReactiveTwoPayoffs.pdf}
+  \caption{\textbf{The difference between \(\mathbf{p}\) and \(\mathbf{p'}\).}
+  The self-payoffs of the two strategies would have been the same if \(p_{CC}\)
+  and \(p'_{CC}\)
+  were equal to 1. However, since the evolutionary process almost never samples
+  such a strategy, the stochastic \(p_{CC}\) and \(p'_{CC}\) make the difference.
+  {\bf A-B} We
+  calculate the stationary distribution of the self-play of the two strategies. We
+  do this numerically and with simulations. For simulations we use the open-source
+  package Axelrod. We
+  run each match for \(10^6\) steps and repeat the match twenty times. We observe
+  that the numerical and simulation results are in agreement. We see that
+  \(\mathbf{p}\) spends significantly more time in the \(((C, C), (C, C))\) state
+  than \(\mathbf{p'}\). 
+  {\bf C} Both strategies, when interacting with a copy of themselves, cooperate with a very high
+  probability when they are in the mutual cooperation state. However, it can
+  happen with a small probability (0.01) that they defect. When
+  this ``mistake'' occurs, how long does it take for each of the strategies to
+  return to mutual cooperation? We can get this information from the simulations
+  of the interactions. We record the number of steps, so if we are at \(((C, C),
+  (C, C))\) and leave this state, we measure how many steps it takes to return.
+  We can see that the pair \(\mathbf{p}\) need a smaller number of steps,
+  which means it can correct the mistake faster.
+  }\label{fig:ReactiveTwoPayoffs}
+\end{figure}
 
 
-%%%%%%%%%%%%
-%% Errors  %%
-%%%%%%%%%%%%
 
-\newpage
+\begin{figure}
+  \centering
+\includegraphics[width=\textwidth]{../../figures/player_p_cycles.pdf}
+\caption{\textbf{Cycle examples for \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\).}
+We consider a cycle to be a sequence of states that the strategies go through
+until they return to the initial state. Cycle 1 is the most common and shortest
+cycle for both strategies \(\mathbf{p}\) and \(\mathbf{p'}\). In Cycle 1, the
+strategies achieve mutual cooperation for two rounds before one player defects.
+To return to the \(((C, C), (C, C))\) state, both players need to cooperate
+twice to reset the defection from their memory. However, within Cycle 1, the
+less likely cooperation is that of the blue player in the second step, where
+they cooperate with a probability \(p_{CD} = 0.1 < p_{DC}\). If the blue player
+defects, the count of the two sequential cooperations resets. This deviation is
+more likely when the defection is fresh in memory, adding a single step to the
+cycle. Therefore, this new cycle, Cycle 2, requires one extra step to be
+completed. If, after the blue player's defection, the red player also defects,
+the blue player needs two more rounds to forgive. Thus, Cycle 3 extends to a
+length of six steps.}
+\end{figure}
+
+
+
+\begin{figure}[h!]
+  \centering
+\includegraphics[width=\textwidth]{../../figures/player_p_prime_cycles.pdf}
+\caption{\textbf{Cycle examples for \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\).}
+A similar but slightly different story is true for \(\mathbf{p'}\). Now, in the
+first sequence path, the most likely cooperation to occur is when the blue
+player defects with a probability \(p_{DC} = 0.1 < p_{CD}\). Blue has already
+cooperated with red once, but now the red player needs two rounds to forgive the blue
+player before returning to mutual cooperation. This means that sequence 2 will
+take two extra steps to be completed.}
+\end{figure}
+
+% %%%%%%%%%%%%
+% %% Errors  %%
+% %%%%%%%%%%%%
+
+\clearpage
 
 \section{Errors}
 
@@ -343,64 +378,259 @@ error. Here, we discuss what happens in the case where such an error is
 possible. More specifically, we consider that \(\epsilon\) is the probability
 that a player makes a mistake in the action taken.
 
-\begin{figure}[t]
+\begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{../../figures/siFig2Errors.pdf}
+    \includegraphics[width=.65\textwidth]{../../figures/siFig2Errors.pdf} \\[2em]
+    \includegraphics[width=.65\textwidth]{../../figures/siFigErrorsCounting.pdf}
     \caption{
     \textbf{Cooperating rates with implementation errors.}
-We simulate the evolutionary process, this time allowing for implementation
-errors. Specifically, we consider a probability \(\epsilon\) that a player makes a mistake
-in the action taken. We calculate the average cooperation rate for different
-values of \(\epsilon\) and \(c\).
-{\bf A} We plot the average cooperation rate for the different parameters when
-individuals use reactive-1, reactive-2, and reactive-3 strategies, respectively.
-{\bf B} We plot the differences between the cooperation rates when individuals use
-different memory size strategies. From left to right, we show the differences
-between reactive-1 and reactive-2, reactive-2 and reactive-3, and reactive-1 and
-reactive-3 strategies.
+  We simulate the evolutionary process, this time allowing for implementation
+  errors. Specifically, we consider a probability \(\epsilon\) that a player makes
+  a mistake in the action taken. We calculate the average cooperation rate for
+  different values of \(\epsilon\) and \(c\). We do this for reactive strategies
+  {\bf A} and reactive counting strategies {\bf C}. {\bf A, C} We plot the average
+  cooperation rate for the different parameters when individuals use reactive-1,
+  reactive-2, and reactive-3 strategies, respectively. {\bf B, D} We plot the
+  differences between the cooperation rates when individuals use different memory
+  size strategies. From left to right, we show the differences between reactive-1
+  and reactive-2, reactive-2 and reactive-3, and reactive-1 and reactive-3
+  strategies.
     }\label{fig:errors}
 \end{figure}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{../../figures/siFigErrorsCounting.pdf}
-  \caption{
-  \textbf{Cooperating rates with implementation errors.}}
-\end{figure}
+
+% %%%%%%%%%%%%
+% %% Memory-n  %%
+% %%%%%%%%%%%%
 
 
 \newpage
 
 \section{Memory-$n$}
 
-So far in the evolutionary simulations we have considered reactive strategies,
-and we have shown that strategies with larger memory allow for more cooperative
-populations. We repeate the evolutionary simulations but this time using memory
-n strategies. We get results for memory-1, memory-2 and for memory counting
-strategies for n equal to 1, 2 and 3. We omit memory-3 strategies because it
-is numerically untractable to run such simulations. The results still hold.
-For more memory more cooperation evovles, howber, not in the case of counting
+So far in the evolutionary simulations, we have considered reactive strategies
+and shown that strategies with larger memory allow for more cooperative
+populations. We repeat the evolutionary simulations, but this time using
+memory-$n$ strategies. We get results for memory$-1$, memory$-2$, and memory counting
+strategies for $n$ equal to $1, 2,$ and $3$. The main result still holds. For
+more memory, more cooperation evolves, however, not in the case of counting
 strategies.
 
-\begin{figure}[t]
+
+\begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{../../figures/siFigMemorySim.pdf}
+  \includegraphics[width=.75\textwidth]{../../figures/siFigMemorySim.pdf}
   \caption{
-  \textbf{Memory-$n$ simulations.}}
+  \textbf{Memory-$n$ simulations.}
+  We explore the cooperation rates of memory-$n$ strategies and memory-$n$
+  counting strategies over different values of cost and selection strength.
+  Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a
+  selection strength $\beta\!=\!1$ and a population size $N\!=\!100$, unless
+  noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10
+  ^ 7\) time steps.
+  }
 \end{figure}
 
 
-To understand why counting strategies do not allow for more cooperation we focus
-on reactive-2 strategies and reactive-2 counting strategies. We run an invasion
-analysis where we select the most abundant reactive-2 strategy and hte most
-abundant reacto-2 coutning strategy. The strategies and the mean invasion
-time are given by Figure 3. We also ask the question, how many reactive-2
-mutants can a reactive-2 coutnign strategy repel.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.75\textwidth]{../../figures/siFigCountingReactiveInvasionTime.pdf}
+  \caption{To understand why counting strategies do not allow for more cooperation, we
+  focus on reactive-2 strategies and reactive-2 counting strategies. For
+  \(\beta=1\) and \(c=0.3\), what we observe is that the top abundant strategies
+  for both simulations are very cooperative strategies, achieving a cooperation
+  rate of \(\approx 1\). From the top strategies, it is also clear that the
+  average time until they were invaded is higher for reactive strategies. To test
+  this, we perform the following exercise: we pick a top abundant reactive
+  strategy and a reactive counting strategy. These are (0.999985, 0.160136,
+  0.553336, 0.035629) for the reactive strategy and (0.998204, 0.466715, 0.317605)
+  for the reactive counting strategy. We run an invasion analysis when both
+  strategies are residents. For the reactive counting strategy, we run two
+  invasion analyses: one where only counting reactive mutants are introduced and
+  one with reactive mutants. What we observe is that the reactive strategy can
+  repel more mutants. However, we also see that for the counting strategy, when we
+  consider reactive mutants, the average time until invasion increases. We run
+  \(10^3\) simulations and take the average.}
+\end{figure}
 
+
+
+\newpage
 \section{Proofs}
 
-The proof for Theorem 1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  PROOFS:  Reactive-1 defective Nash, donation game  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The proof for Theorem 2.
+\subsection{Proof of Theorem~\ref{theorem:reactive_one_defecting_strategies}:
+Reactive-1 defective Nash strategies in the donation game}
+\begin{proof}
+The proof is similar to one for partner strategies. We again enumerate the four
+pure self-reactive-1 strategies  $\mathbf{\tilde p}$  by interpreting the
+strategy as a binary number, we obtain the following payoffs.
+
+\begin{equation*}\label{Eq:PayoffExpressionsDefectiveReactiveOne}
+  \begin{array}{lcll}
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle 0 & ~~\text{for}~ j\! \in\!  \{0, 2\} \\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{b \cdot p_{C} - c}{p_{C} + 1}  & ~~\text{for}~ j\! \in\!  \{1\} \\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  b \cdot p_{c} - c  & ~~\text{for}~ j\! \in\!  \{3\} \\[0.3cm]
+  \end{array}
+\end{equation*}
+
+Requiring the payoffs in this list to be at most the mutual defection payoff $0$, we get the following unique conditions,
+\begin{equation*}
+ p_{D}  \le \frac{c}{b}.
+\end{equation*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  PROOFS:  Reactive-2 defective Nash, donation game  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Proof of Theorem~\ref{theorem:reactive_two_defecting_strategies}:
+Reactive-2 defective Nash strategies in the donation game}
+\begin{proof}
+The proof is similar to one for partner strategies. We again enumerate the sixteen
+pure self-reactive-2 strategies  $\mathbf{\tilde p}$  by interpreting the
+strategy as a binary number, we obtain the following payoffs.
+
+\begin{equation*}\label{Eq:PayoffExpressionsDefectiveReactiveTwo}
+  \begin{array}{lcll}
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle 0 & ~~\text{for}~ j\! \in\!  \{0, 2, 4, 6, 8, 10, 12, 14\} \\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{p_{CD} + p_{DC}}{3}\,b - \frac{c}{3}  & ~~\text{for}~ j\! \in\!  \{1, 9\} \\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{p_{CC} + p_{CD} + p_{DC}}{4}\,b - \frac{c}{2} & ~~\text{for}~ j\! \in\!  \{3\} \\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{p_{CD} + p_{DC}}{2}\,b - \frac{c}{2}  & ~~\text{for}~ j\! \in\!  \{4, 5, 12, 13\} \\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{p_{CC} + p_{CD} + p_{DC}}{3}\,b - \frac{2 c}{3}  & ~~\text{for}~ j\! \in\!  \{6, 7\}\\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  p_{CC}\,b - c & ~~\text{for}~ j\! \in\!  \{8, 9, 10, 11, 12, 13, 14, 15\}
+  \end{array}
+\end{equation*}
+
+Requiring the payoffs in this list to be at most the mutual defection payoff $0$, we get the following unique conditions,
+\begin{equation*}
+  p_{CC}  \le \frac{c}{b}, \qquad \qquad
+ \frac{p_{CD} + p_{DC}}{2}  \le \frac{1}{2} \cdot  \frac{c}{b}, \qquad \qquad
+  \frac{p_{CD} + p_{DC} + p_{CC}}{3} \le	\frac{2}{3} \cdot \frac{c}{b}.
+ \end{equation*}
+Because the last condition is implied by the first two, we end up with the
+conditions in~\eqref{eq:defecting_conditions_two}. 
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  PROOFS:  Reactive-3 defective Nash, donation game  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Proof of Theorem~\ref{theorem:reactive_three_defecting_strategies}:
+Reactive-3 defective Nash strategies in the donation game}
+
+\begin{proof}
+  The proof is similar to the previous one. 
+  Again, enumerating the 256 pure self-reactive 3 strategies $\mathbf{\tilde p}$ by interpreting the strategy as a binary number, we obtain the following payoffs. 
+  \begin{equation*}\label{Eq:PayoffExpressionsReactiveThree}
+  \footnotesize
+  \setlength{\arraycolsep}{0mm}
+  \begin{array}{lclll}
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &{\, = \,}
+  &\displaystyle 0
+  &~\text{for}~ j\! \in\! 
+  &\{0, 2, 4, 6, \dots, 250, 252, 254\} \\[0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CDD} + p_{DCD} + p_{DDC}}{4} \,b - \frac{1}{4} \,c
+  &~\text{for}~ j\! \in\!  
+  & \{ 1, 9, 33, 41, 65, 73, 97, 105, 129, 137, 161,
+    \\ & & &  &169, 193, 201, 225, 233\} \\[0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{5}\, b - \frac{2}{5} \,c
+  &~\text{for}~ j\! \in\!  
+  & \{ 3, 7, 35, 39, 131, 135, 163, 167\} \\[0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CDC} + p_{DCD}}{2} \, b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\!  
+  & \{ 4 \!- \!7, 12 \!- \!15, 20 \!- \!23, 28 \!- \!31, 68 \!- \!71,
+      \\ & & &  &76 \!- \!79, 84 \!- \!87, 92 \!- \!95, 132 \!- \!135, 
+      \\ & & & &140 \!- \!143, 148- 151, 156 \!- \!159, 
+      \\ & & & &196 \!- \!199, 204 \!- \!207, 212 \!- \!215, 220 \!- \!223\} \\[0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{6} \,b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 11, 15, 43, 47\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} \, b - \frac{1}{3} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{16,17,24,25,48,49,56,57,80,81,88,
+      \\ & & & &89,112, 113,120,121, 144,145,152,153,
+      \\ & & & &176,177,184,185,208,209,216,217,
+      \\ & & & &240, 241,248,249\} \\[0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \, b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 18, 19, 22, 23, 50, 51, 54, 55, 146, 147,
+      \\ & & &  &150, 151, 178, 179, 182, 183\} \\[0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{5} \, b - \frac{3}{5} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 26, 27, 30, 31, 58, 59, 62, 63\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{8} \, b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 37, 67, 165, 195\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{8} \, b - \frac{1}{2} \, c ~~~~~
+  &~\text{for}~ j\! \in\! 
+  & \{ 45, 75\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD}+ p_{CDC}+ p_{CDD}+ p_{DCC}+ p_{DCD}+ p_{DDC}}{6} \, b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 52, 53, 82, 83, 180, 181, 210, 211\} \\  [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{7} \, b - \frac{4}{7} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 60, 61, 90, 91\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} \, b - \frac{2}{3} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 96\!- \!103, 112\!- \!119, 224\!- \!231, 240\!- \!247\} \\ [0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{DCC}}{4} \, b - \frac{3}{4} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 104\!-\!111, 120\!- \!127\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle p_{CCC} \, b - c
+  &~\text{for}~ j\! \in\! 
+  & \{128, 129, 130, \dots, 255\}
+  \end{array}
+  \end{equation*}
+  
+  \noindent
+  Requiring these payoffs to be at most  equal to the mutual defection payoff 0
+  gives several conditions. The necessary conditions for a reactive-3 strategy
+  to be a defective Nash strategy are the following:
+
+  \begin{equation*} \footnotesize
+  \begin{array}{c}
+  \displaystyle  p_{CCC} \leq \frac{c}{b}, 
+    \qquad \qquad \frac{p_{CDC} + p_{DCD}}{2} \leq \frac{1}{2} \cdot \frac{c}{b}, 
+    \qquad \qquad \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} \leq \frac{1}{3} \cdot \frac{c}{b},\\[0.45cm]
+  \displaystyle  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} \leq \frac{2}{3} \cdot \frac{c}{b},
+    \quad \qquad \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \leq \frac{1}{2}  \cdot \frac{c}{b}.
+    \end{array}
+  \end{equation*}
+  \end{proof}
+  
 
 \end{document}
