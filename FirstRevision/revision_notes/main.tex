@@ -281,50 +281,53 @@ evolutionary process? \\
 \begin{figure}[tbhp]
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFigInvasionR2.pdf}
-  \caption{\textbf{Invasion analysis for reactive-2.} 
-  {\bf A} We repeated the same analysis for the reactive-2 strategies. The twenty
-  top-performing strategies are again partner strategies. However, what we observe
-  here is that the partner strategies selected by the evolutionary process almost
-  always have a smaller \(p_{CD}\) than \(p_{DC}\) and a low \(p_{DD}\).
-  {\bf B } We already discussed why a smaller \(p_{DD}\) is selected. However, to
-  understand the differences between the \(p_{CD}\) and \(p_{DC}\) entries, we will consider
-  two strategies: \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\) and
-  \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\). We perform an invasion analysis which
-  we repeat \(10^4\) times. We introduce mutants until a mutant becomes the new
-  resident. We record how many mutants were introduced until this happens. We
-  observe that 
+  \caption{\textbf{Invasion analysis for reactive-2.}
+  {\bf A,}  We repeated the same analysis for the case of reactive-2 strategies. The
+  twenty top-performing strategies are partner strategies. We observe that
+  the partner strategies selected by the evolutionary process almost always have a
+  smaller \(p_{CD}\) than \(p_{DC}\) and a low \(p_{DD}\).
+  {\bf B,} We already know why residents with low \(p_{DD}\) are more abundant. To
+  understand the entries \(p_{CD}\) and \(p_{DC}\), we will consider two example
+  strategies: \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\) and \(\mathbf{p'} = (0.99,
+  0.60, 0.10, 0.30)\). We perform an invasion analysis when either \(\mathbf{p}\)
+  or \(\mathbf{p'}\) are the resident, and we introduce mutants until a mutant
+  becomes the new resident. We repeat this process \(10^4\) times and report the
+  average time until invasion over all the repetitions. We observe that
   \(\mathbf{p'}\) is invaded much faster.
-  {\bf C} The expected payoffs show that the self-payoffs of the strategies are
-  different, which in turn affects how easily \alld{} mutants can invade. We
-  can see that it requires fewer mutants for \(\mathbf{p'}\) than for
-  \(\mathbf{p}\).}\label{fig:InvasionAnalysisReactive2}
+  {\bf C,} We calculate the expected payoffs of \(\mathbf{p}\) and \(\mathbf{p'}\)
+  when \(k\) \alld{} mutants are present. We observe that the self-payoffs
+  of the strategies are different, which in turn means that fewer \alld{}
+  mutants are required for \alld{}  to achieve a higher payoff compared to
+  \(\mathbf{p'}\).
+  }\label{fig:InvasionAnalysisReactive2}
 \end{figure}
+
+
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFigReactiveTwoPayoffs.pdf}
   \caption{\textbf{The difference between \(\mathbf{p}\) and \(\mathbf{p'}\).}
-  The self-payoffs of the two strategies would have been the same if \(p_{CC}\)
-  and \(p'_{CC}\)
-  were equal to 1. However, since the evolutionary process almost never samples
-  such a strategy, the stochastic \(p_{CC}\) and \(p'_{CC}\) make the difference.
-  {\bf A-B} We
-  calculate the stationary distribution of the self-play of the two strategies. We
-  do this numerically and with simulations. For simulations we use the open-source
-  package Axelrod. We
-  run each match for \(10^6\) steps and repeat the match twenty times. We observe
-  that the numerical and simulation results are in agreement. We see that
-  \(\mathbf{p}\) spends significantly more time in the \(((C, C), (C, C))\) state
-  than \(\mathbf{p'}\). 
-  {\bf C} Both strategies, when interacting with a copy of themselves, cooperate with a very high
-  probability when they are in the mutual cooperation state. However, it can
-  happen with a small probability (0.01) that they defect. When
-  this ``mistake'' occurs, how long does it take for each of the strategies to
-  return to mutual cooperation? We can get this information from the simulations
-  of the interactions. We record the number of steps, so if we are at \(((C, C),
-  (C, C))\) and leave this state, we measure how many steps it takes to return.
-  We can see that the pair \(\mathbf{p}\) need a smaller number of steps,
-  which means it can correct the mistake faster.
+  {\bf A-B,} The self-payoffs \(\pi(\mathbf{p}, \mathbf{p})\) and \(\pi(\mathbf{p'},
+  \mathbf{p'})\) would be equal if the strategies were nice. However, such
+  strategies are never sampled by the evolutionary process. To understand the
+  effect of stochastic \(p_{CC}\) and \(p'_{CC}\), we calculate the stationary
+  distribution of the self-play of \(p_{CC}\) and \(p'_{CC}\). We do this in two
+  ways: numerically and with simulations. For simulating the interactions, we use
+  the open-source package Axelrod. Each interaction is run for \(10^6\) steps and
+  repeated 20 times. The numerical results and the results from the simulations
+  are in agreement. The stationary distribution of the self-plays shows that
+  \(p_{CC}\) spends significantly more time in the \(((C, C), (C, C))\) state than
+  \(p'_{CC}\), which explains the difference in the payoffs.
+  {\bf C,} In a self-interaction, the strategies \(\mathbf{p}\) and \(\mathbf{p'}\) spend
+  most of their interactions in the \(((C, C), (C, C))\) state. Once in this
+  state, each player cooperates with a probability of 0.99. However, with a small
+  probability of 0.01, they defect. We can calculate the expected time until the
+  strategies return to the \(((C, C), (C, C))\) state once such a ``mistake'' has
+  occurred. We do this by simulating the interactions and recording the number of
+  steps it takes to return to the \(((C, C), (C, C))\) state. We observe that
+  \(\mathbf{p}\) needs fewer steps to return to the \(((C, C), (C, C))\) state
+  than \(\mathbf{p'}\).
   }\label{fig:ReactiveTwoPayoffs}
 \end{figure}
 
@@ -335,33 +338,48 @@ evolutionary process? \\
 \includegraphics[width=\textwidth]{../../figures/player_p_cycles.pdf}
 \caption{\textbf{Cycle examples for \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\).}
 We consider a cycle to be a sequence of states that the strategies go through
-until they return to the initial state. Cycle 1 is the most common and shortest
-cycle for both strategies \(\mathbf{p}\) and \(\mathbf{p'}\). In Cycle 1, the
-strategies achieve mutual cooperation for two rounds before one player defects.
-To return to the \(((C, C), (C, C))\) state, both players need to cooperate
-twice to reset the defection from their memory. However, within Cycle 1, the
-less likely cooperation is that of the blue player in the second step, where
-they cooperate with a probability \(p_{CD} = 0.1 < p_{DC}\). If the blue player
-defects, the count of the two sequential cooperations resets. This deviation is
-more likely when the defection is fresh in memory, adding a single step to the
-cycle. Therefore, this new cycle, Cycle 2, requires one extra step to be
-completed. If, after the blue player's defection, the red player also defects,
-the blue player needs two more rounds to forgive. Thus, Cycle 3 extends to a
-length of six steps.}
+until they return to the state \(((C, C), (C, C))\). We consider two players
+(blue and red), who are using strategy \(\mathbf{p}\). While in the mutual cooperation
+state, the red player defects.
+{\bf A,} Cycle A is the most common and shortest
+possible cycle for both strategies \(\mathbf{p}\) and \(\mathbf{p'}\). The same
+is true for the cycle where the blue player defects; both cycles occur with the
+same frequency. Following a defection by the red player, the fastest way to
+mutual cooperation is for both players to cooperate twice in a row. Thus, two
+instances of forgiveness must occur from both players.
+{\bf B,} In Cycle A, the less likely forgiveness is that of the blue player following the
+initial defection because \(p_{CD}\) is the lowest of all entries with a
+cooperation probability of 0.1. In Cycle B, we assume that the blue player
+indeed defected. As a result, this means that the counting towards two
+forgiveness rounds, for blue, is still at zero. From here, both players could cooperate
+twice, but an extra step has been added to the cycle, meaning that Cycle B has
+one step more than Cycle A.
+{\bf C,} Similarly, in Cycle B, the less likely forgiveness is that of the red player
+when they cooperate with a probability of \(p_{CD}\). If the red player defects,
+then their forgiveness counter resets to zero, even if the blue player already
+forgave the red player once. The fastest thing that can happen is regaining
+mutual cooperation until \((C, C), (C, C)\), but Cycle C has one extra step
+compared to Cycle B.}
 \end{figure}
-
 
 
 \begin{figure}[h!]
   \centering
 \includegraphics[width=\textwidth]{../../figures/player_p_prime_cycles.pdf}
 \caption{\textbf{Cycle examples for \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\).}
-A similar but slightly different story is true for \(\mathbf{p'}\). Now, in the
-first sequence path, the most likely cooperation to occur is when the blue
-player defects with a probability \(p_{DC} = 0.1 < p_{CD}\). Blue has already
-cooperated with red once, but now the red player needs two rounds to forgive the blue
-player before returning to mutual cooperation. This means that sequence 2 will
-take two extra steps to be completed.}
+A similar but slightly different story is true for when players use
+\(\mathbf{p'}\). In Cycle A, the less likely forgiveness to occur is when the
+blue player has already forgiven the red player once, because now \(p_{DC}\) is
+the lowest cooperation probability of the players. This leads to a new sequence,
+Cycle B, where the counter is reset, even though it was incremented by one,
+meaning that the new cycle has two extra steps. The same is true for Cycle C,
+which has two extra steps compared to Cycle B. In summary, the strategies need
+to cooperate twice to return to mutual cooperation. There are specific states
+they must navigate to reach \((C, C), (C, C)\) again. If they fail to cooperate
+in one of these states, they must try again. However, as these states form a
+path, the less likely cooperation is further down this path, the more time steps
+are required to return and attempt cooperation again. This is why
+\(\mathbf{p'}\) takes longer to reach mutual cooperation once more.}
 \end{figure}
 
 % %%%%%%%%%%%%
@@ -581,7 +599,7 @@ Reactive-3 defective Nash strategies in the donation game}
   & \{ 26, 27, 30, 31, 58, 59, 62, 63\} \\ [0.2cm]
   
   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
-  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{8} \, b - \frac{1}{2} \, c
+  &\displaystyle \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{7}\, b - \frac{3}{7} \, c
   &~\text{for}~ j\! \in\! 
   & \{ 37, 67, 165, 195\} \\ [0.2cm]
   
