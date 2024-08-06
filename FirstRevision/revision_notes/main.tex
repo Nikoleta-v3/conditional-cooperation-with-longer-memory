@@ -191,19 +191,19 @@ cooperating after full cooperation of the co-player to 1. For the second copy,
 we set the probability of cooperating after full defection of the co-player to
 0. We then check if either copy is Nash: cooperative for the first copy and
 defective for the second. We set the benefit of cooperation to \(b = 1\).
-{\bf A, D} We plot the results for a given value of cost, \(c = 0.5\). We do
+{\bf A, D,} We plot the results for a given value of cost, \(c = 0.5\). We do
 this for reactive strategies and reactive counting strategies. For \(n=1\), we
 can see the number of defective equilibria is higher than that of the
 cooperative. However, as we increase \(n\), this is no longer true. The number
 of defective Nash decreases drastically. The number of partner strategies does
 as well, but to a lesser extent.
-{\bf B, E} We plot the proportion of equilibria over different values of cost, for reactive
+{\bf B, E,} We plot the proportion of equilibria over different values of cost, for reactive
 and reactive counting strategies. As the cost increases, so does the
 proportion of defective equilibria, and the opposite is true for cooperative. As
 memory increases, we observe again a significant drop in the proportion of
 defective strategies, whereas there is a small decrease in the cooperative
 strategies. 
-{\bf C, D} We plot the relative proportion of cooperative Nash strategies. For
+{\bf C, D,} We plot the relative proportion of cooperative Nash strategies. For
 this, we consider the sum of cooperative and defecting Nash strategies for each
 memory size and plot the number of cooperative Nash strategies over the total
 sum. This proportion increases as memory size increases.
@@ -252,11 +252,11 @@ Figure~\ref{fig:InvasionAnalysisReactive1}. \\
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFigInvasionR1.pdf}
   \caption{\textbf{Invasion analysis for reactive-1.}
-  {\bf A} The twenty most abundant reactive-1 strategies of
+  {\bf A,} The twenty most abundant reactive-1 strategies of
   Figure~\ref{fig:siFigAbundantStrategies}. We observe that all twenty of them
   are partner strategies, and that all have a very low \(p_D\), typically less
   than 0.2.
-  {\bf B} We perform an invasion analysis. Namely, we select one resident and introduce
+  {\bf B,} We perform an invasion analysis. Namely, we select one resident and introduce
   mutants until a mutant becomes the new resident. We record how many mutants
   were introduced until this happens. We do this \(10^3\) times and report the
   average number of mutants over all the simulations. We consider three different
@@ -264,7 +264,7 @@ Figure~\ref{fig:InvasionAnalysisReactive1}. \\
   the mutants that invaded as well (scatter points). We observed that a resident with a very low \(p_D\) is more resistant to
   invasion, which explains why we observe that the most abundant strategies have a
   low \(p_D\). 
-  {\bf C} To explain why a low \(p_D\) leads to more resistance to invasion, we
+  {\bf C,} To explain why a low \(p_D\) leads to more resistance to invasion, we
   look at the expected payoffs of each resident when when \(k\) \alld{}
   mutants try to invade. We can see that for the
   far-left resident, the expected payoff is almost always strictly higher than
@@ -406,9 +406,9 @@ that a player makes a mistake in the action taken.
   errors. Specifically, we consider a probability \(\epsilon\) that a player makes
   a mistake in the action taken. We calculate the average cooperation rate for
   different values of \(\epsilon\) and \(c\). We do this for reactive strategies
-  {\bf A} and reactive counting strategies {\bf C}. {\bf A, C} We plot the average
+  {\bf A} and reactive counting strategies {\bf C}. {\bf A, C,} We plot the average
   cooperation rate for the different parameters when individuals use reactive-1,
-  reactive-2, and reactive-3 strategies, respectively. {\bf B, D} We plot the
+  reactive-2, and reactive-3 strategies, respectively. {\bf B, D,} We plot the
   differences between the cooperation rates when individuals use different memory
   size strategies. From left to right, we show the differences between reactive-1
   and reactive-2, reactive-2 and reactive-3, and reactive-1 and reactive-3
@@ -637,8 +637,7 @@ Reactive-3 defective Nash strategies in the donation game}
   
   \noindent
   Requiring these payoffs to be at most  equal to the mutual defection payoff 0
-  gives several conditions. The necessary conditions for a reactive-3 strategy
-  to be a defective Nash strategy are the following:
+  gives
 
   \begin{equation*} \footnotesize
   \begin{array}{c}
@@ -646,10 +645,17 @@ Reactive-3 defective Nash strategies in the donation game}
     \qquad \qquad \frac{p_{CDC} + p_{DCD}}{2} \leq \frac{1}{2} \cdot \frac{c}{b}, 
     \qquad \qquad \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} \leq \frac{1}{3} \cdot \frac{c}{b},\\[0.45cm]
   \displaystyle  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} \leq \frac{2}{3} \cdot \frac{c}{b},
-    \quad \qquad \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \leq \frac{1}{2}  \cdot \frac{c}{b}.
+    \quad \qquad \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \leq \frac{1}{2}  \cdot \frac{c}{b}, \\[0.45cm]
+    \displaystyle  \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{DCC}}{4} \leq \frac{3}{4} \cdot \frac{c}{b},
+    \quad \qquad \frac{p_{CCC} + p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{6} \leq \frac{1}{2}  \cdot \frac{c}{b}, \\[0.45cm]
+    \displaystyle  \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{6} \leq \frac{1}{2}  \cdot \frac{c}{b},
+    \quad \qquad \frac{p_{CCC} + p_{CCD} + p_{CDC} +  p_{CDD} + p_{DCC} +  p_{DCD} + p_{DDC}}{8} \leq \frac{1}{2}  \cdot \frac{c}{b}.
     \end{array}
   \end{equation*}
-  \end{proof}
-  
+
+  \noindent
+  The statement follows by noting that the five conditions in the first two rows imply the four other conditions.
+\end{proof}
+ 
 
 \end{document}
