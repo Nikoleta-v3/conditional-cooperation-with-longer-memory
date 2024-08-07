@@ -37,6 +37,7 @@ notebooks/DefectingNashCounting/
 # Folder for CH to keep track of the history
 oldfiles/
 
-# CH's Mathematica calculations
+# CH's Mathematica and Matlab calculations
 mathematica/
+matlab/
 
