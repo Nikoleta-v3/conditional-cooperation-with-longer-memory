@@ -79,6 +79,140 @@
 \date{\empty}
 
 \begin{document}
+
+
+\section{Related Literature}
+
+There is now an extensive body of literature on repeated games and the
+strategies used by players in these games. This literature has introduced
+various strategies that succeed in evolutionary simulations and/or computer
+tournaments. Moreover, it has explored the conditions under which cooperation
+can emerge as an outcome, and the strategies that can facilitate this.
+
+One classification of repeated game strategies is that of finite memory
+strategies. These strategies base decisions on the outcomes of the last \(n\)
+rounds. The most well-studied among these is the set of memory-one strategies,
+where decisions are made solely based on the previous turn. This set has
+been used to introduce concepts such as zero-determinant strategies, as well as
+partner and rival strategies. Zero-determinant strategies are those that can
+enforce a linear relationship between the players' payoffs. Partner strategies
+are Nash strategies that maintain full cooperation when used by both players,
+even in the presence of implementation errors. Rival strategies ensure that the
+co-player never obtains a higher payoff than the rival does, regardless of the
+co-player's strategy.
+
+In the context of our paper, the most relevant literature is the recent work on
+higher memory strategies and the characterization of Nash equilibria in repeated
+games. In this section, we cover a selection of these papers and highlight the
+differences between our work and theirs. \\
+
+\noindent
+{\bf The work of Ueda~\cite{ueda:RSOP:2021, Ueda:ORF:2022}.}
+There has been considerable focus on zero-determinant (ZD) strategies in
+repeated games. ZD strategies were introduced in \cite{press:PNAS:2012} and
+represented a significant breakthrough, as they can enforce a linear
+relationship between players' payoffs.
+
+The work of Ueda \cite{ueda:RSOP:2021} specifically focuses on memory-2
+ZD strategies. Ueda demonstrates that Akin's Lemma \cite{akin:EGADS:2016} can be
+generalized to any memory size and uses this generalization to characterize ZD
+strategies in the memory-two space. He focuses on a subset of these ZD
+strategies, which he calls variants of tit-for-tat. Ueda also shows that all ZD
+strategies in the space of memory-\(n\) can be characterized. In a subsequent
+work \cite{Ueda:ORF:2022}, among other results, Ueda examines these
+tit-for-tat-like ZD strategies and demonstrates that they can be generalized to
+any \(n\).
+
+In our work, we achieve similar results to Ueda regarding the generalization of
+Akin's Lemma (our SI Lemma 1) and the characterization of zero-determinant
+strategies (our SI Equation 22). However, we differentiate from these studies in
+several key ways:
+
+\begin{itemize} 
+\item We characterize additional zero-determinant strategies,
+specifically delayed tit-for-tat and delayed generous tit-for-tat strategies,
+which were not characterized in Ueda's work.
+\end{itemize}
+
+
+\noindent
+{\bf The work of Murase and Baek~\cite{murase:SciRep:2020, Murase:PLoSCompBio:2023a}.}
+The work of \cite{murase:SciRep:2020, Murase:PLoSCompBio:2023a} investigates
+strategies with higher memory using numerical simulations. Specifically, they
+explore the space of pure memory-two and memory-three strategies and classify
+which of these strategies are partners and which are rivals. More importantly,
+the work of \cite{murase:SciRep:2020} introduces a new class of strategies
+called friendly rivals. These strategies have the properties of rivals; however,
+they also provide an incentive to form mutual cooperation. The authors show that
+this class can only be achieved if at least two rounds of memory are considered.
+
+In \cite{Murase:PLoSCompBio:2023a}, the authors examine whether these strategies
+would be learned in an evolutionary setting, similar to our work where we
+investigate the evolutionary dynamics of reactive strategies. They found that
+friendly rivals play a minor role, as partner strategies are sufficient to foster
+cooperation.
+
+\begin{itemize}
+\item In our work, we classify the reactive strategies that are partners for a given
+memory, but we also do this for all strategies, both stochastic and
+deterministic. We demonstrate that this is an analytical result.
+\end{itemize}
+
+\noindent
+{\bf The work of McAvoy and Nowak~\cite{mcavoy:PRSA:2019}.}
+The work of McAvoy and Nowak~\cite{mcavoy:PRSA:2019} investigates the feasible
+payoffs of strategies in repeated games. Building on the concept of ZD
+strategies, where it was shown that one strategy can control the payoff space,
+they explore whether other such classes exist. However, instead of focusing on
+memory-\(n\) strategies, they introduce a new class called reactive learning
+strategies. These strategies have infinite memory because they gradually modify
+their propensity to take certain actions based on the opponent's past actions,
+which is why they are termed reactive. McAvoy and Nowak focus on the feasible
+payoff space and demonstrate that if a player uses a memory-one strategy, they
+could transition to an equivalent reactive learning strategy, which would
+constrain the co-player's payoffs even more.
+
+The authors show that the payoff space is convex in memory-one strategies, which
+means that it is sufficient to check only pure memory-one strategies to
+understand if that a given memory-one strategy is Nash. We demonstrate a similar
+result with pure self-reactive strategies when the player considers reactive
+strategies. However, our result work for any \(n\). Moreover, our work is
+focused on deriving conditions for Nash equilibria, a question that McAvoy and
+Nowak did not investigate. \\
+
+
+\noindent
+{\bf The work of Stewart and Plotkin~\cite{stewart:scientific:2016}.}
+The authors investigate higher memory strategies in public goods games. Their
+results focus on memory-\(n\) strategies, specifically on
+counting strategies. This is because, in public goods games, payoffs
+depend on the number of cooperators in the group. The authors retrieve a series
+of analytical results, characterizing when strategies are ``robust''.
+
+In the following, we explain what it means for a strategy to be ``robust''. In
+an evolutionary process, when considering the low mutation limit, only two types
+can exist in the population. The key question is: what is the probability that a
+single mutant will fix? This depends on the payoff that individuals receive in
+the current state of the population compared to the resident strategy. If the
+mutant's payoff is higher, it will fix. If the resident population consistently
+has a greater payoff than any mutant, then the resident strategy is resistant to
+invasion and is termed "robust," as described by Stewart and Plotkin.
+
+The authors determine the conditions under which nice strategies and strategies
+that defect after mutual defection are robust. They also calculate the relative
+volumes of robust cooperation, the absolute volume of robust cooperative
+strategies divided by the total volume of robust cooperators and defectors, and
+compare this to the relative volume of defectors. They find that the volume of
+robust cooperation increases as memory increases. This is very similar to our
+results regarding the proportion partner and defective Nash strategies.
+
+However, this result does not necessarily explain the course of evolution. Even
+though the volume of these strategies is larger and more of them exist in this
+space, it does not mean that running an evolutionary process will increase the
+average cooperation rate. The authors do not provide conditions in the same form
+as we do regarding when a given strategy is Nash. The considerations they offer
+still depend on the strategies that the players use.
+
 %% DEFECTING STRATEGIES: Donation Game %%
 
 \section{Reactive defecting Nash strategies in the donation game}\label{section:defecting_donation_game}
@@ -657,5 +791,9 @@ Reactive-3 defective Nash strategies in the donation game}
   The statement follows by noting that the five conditions in the first two rows imply the four other conditions.
 \end{proof}
  
+{\setlength{\bibsep}{0\baselineskip}
+\bibliographystyle{naturemag}
+\bibliography{../../bibliography.bib}
+}
 
 \end{document}
