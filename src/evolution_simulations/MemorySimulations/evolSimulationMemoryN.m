@@ -28,11 +28,11 @@ j = 2;
 for t = 1:numberIterations
     Mut=rand(1, sdim);
     if counting == 1
-        if memory == 1
-        Mut(3) = Mut(2);
         elseif memory == 2
-            % Mut(1) 4 cooperations
-            % Mut(2) 3 cooperations
+            % Mut(1) 2, 2 cooperations
+            % Mut(2) 2, 1 cooperations
+            % Mut(3) 1, 2 cooperations
+            % Mut(4) 1, 1 cooperations
             Mut(3) = Mut(2);
             % Mut(4) 2 cooperations
             Mut(5) = Mut(2);
