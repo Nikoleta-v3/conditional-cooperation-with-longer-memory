@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames, table]{xcolor}
 \usepackage{times}
 \usepackage{amsmath,amsthm,amssymb,setspace,enumitem,epsfig,titlesec,verbatim,array,eurosym,multirow}
 \usepackage[sort&compress,numbers]{natbib}
@@ -24,6 +24,7 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{standalone}
+\usepackage{makecell}
 
 \newcommand{\nikoleta}[1]{\textcolor{orange}{\textbf{NG}: #1}}
 \newcommand{\christian}[1]{\textcolor{blue}{\textbf{CH}: #1}}
@@ -436,6 +437,17 @@ evolutionary process? \\
   }\label{fig:InvasionAnalysisReactive2}
 \end{figure}
 
+\begin{figure}[tbhp]
+  \centering
+  \includegraphics[width=.65\textwidth]{../../figures/siFigInvasionR2ForPCCone.pdf}
+  \caption{\textbf{Invasion analysis for reactive-2 with $p_{CC}=1$.}
+  We repeat the analysis as in Figure~\ref{fig:InvasionAnalysisReactive2}, but
+  this time we consider the case where \(p_{CC} = 1\). We observe that in this
+  case, each of the residents \(\mathbf{p}\) and \(\mathbf{p'}\) have the
+  same average number until invasion, and the expected payoffs in the case of \(k\)
+  \alld{} mutants are the same.
+  }\label{fig:InvasionAnalysisReactive2ForPCCone}
+\end{figure}
 
 
 \begin{figure}
@@ -465,56 +477,95 @@ evolutionary process? \\
   }\label{fig:ReactiveTwoPayoffs}
 \end{figure}
 
-
-
-\begin{figure}
+\begin{table}
   \centering
-\includegraphics[width=\textwidth]{../../figures/player_p_cycles.pdf}
-\caption{\textbf{Cycle examples for \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\).}
-We consider a cycle to be a sequence of states that the strategies go through
-until they return to the state \(((C, C), (C, C))\). We consider two players
-(blue and red), who are using strategy \(\mathbf{p}\). While in the mutual cooperation
-state, the red player defects.
-{\bf A,} Cycle A is the most common and shortest
-possible cycle for both strategies \(\mathbf{p}\) and \(\mathbf{p'}\). The same
-is true for the cycle where the blue player defects; both cycles occur with the
-same frequency. Following a defection by the red player, the fastest way to
-mutual cooperation is for both players to cooperate twice in a row. Thus, two
-instances of forgiveness must occur from both players.
-{\bf B,} In Cycle A, the less likely forgiveness is that of the blue player following the
-initial defection because \(p_{CD}\) is the lowest of all entries with a
-cooperation probability of 0.1. In Cycle B, we assume that the blue player
-indeed defected. As a result, this means that the counting towards two
-forgiveness rounds, for blue, is still at zero. From here, both players could cooperate
-twice, but an extra step has been added to the cycle, meaning that Cycle B has
-one step more than Cycle A.
-{\bf C,} Similarly, in Cycle B, the less likely forgiveness is that of the red player
-when they cooperate with a probability of \(p_{CD}\). If the red player defects,
-then their forgiveness counter resets to zero, even if the blue player already
-forgave the red player once. The fastest thing that can happen is regaining
-mutual cooperation until \((C, C), (C, C)\), but Cycle C has one extra step
-compared to Cycle B.}
-\end{figure}
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{c|rlccc|rlccc}
+    \toprule
+    & \multicolumn{5}{c}{$\mathbf{p} = (0.99,0.1, 0.6, 0.3)$} &  \multicolumn{5}{c}{$\mathbf{p'} = (0.99, 0.6, 0.1, 0.3)$} \\
+    \toprule
+    \thead{Most common \\ paths} &   & Path &  \thead{Recovery \\ time} & Path probability & \thead{Relative abundance \\ among $5 \times 10^4$ paths} & & Path &   \thead{Recovery \\ time} & Path probability&  \thead{Relative abundance \\ among $5 \times 10^4$ paths}\\
+    \midrule
+    1  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CC \\       CC} &  2 &  0.0588 & 5.9\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{           CC \\            CC} &   2 &   0.0588 & 5.9\% \\ \hline
+    2  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{    DCC \\      CCC} &  3 &  0.0318 & 3.0\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{         CDCC \\          CCCC} &   4 &   0.0311 & 3.2\% \\ \hline
+    3  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   DCCC \\     CDCC} &  4 &  0.0171 & 1.8\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{       CDCCCC \\        CCCDCC} &   6 &   0.0165 & 1.6\% \\ \hline
+    4  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{  DCDCC \\    CDCCC} &  5 &  0.0093 & 1.0\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CDCCCDCC \\      CCCDCCCC} &   8 &   0.0087 & 0.9\% \\ \hline
+    5  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{  DDDCC \\    CDCCC} &  5 &  0.0093 & 0.9\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{         DDCC \\          CCCC} &   4 &   0.0063 & 0.6\% \\ \hline
+    6  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   DDCC \\     CCCC} &  4 &  0.0063 & 0.6\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   CDCCCDCCCC \\    CCCDCCCDCC} &  10 &   0.0046 & 0.4\% \\ \hline
+    7  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{  DDDCC \\    CDDCC} &  5 &  0.0065 & 0.6\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{       DDCCCC \\        CCCDCC} &   6 &   0.0033 & 0.3\% \\ \hline
+    8  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DCDCCC \\   CDDDCC} &  6 &  0.0050 & 0.5\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{       CDCCCC \\        CCDDCC} &   6 &   0.0033 & 0.3\% \\ \hline
+    9  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DCDCCC \\   CDCDCC} &  6 &  0.0050 & 0.5\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{       DDCCCC \\        CCDDCC} &   6 &   0.0024 & 0.2\% \\ \hline
+    10 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DDDDCC \\   CDDCCC} &  6 &  0.0045 & 0.4\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{          DCC \\           CCC} &   3 &   0.0024 & 0.2\% \\ \hline
+    11 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DDDCCC \\   CDDDCC} &  6 &  0.0045 & 0.4\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ CDCCCDCCCDCC \\  CCCDCCCDCCCC} &  12 &   0.0024 & 0.2\% \\ \hline
+    12 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DCDDCC \\   CDDDCC} &  6 &  0.0035 & 0.4\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CDCCCDCC \\      CCDDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
+    13 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   DDCC \\     CDCC} &  4 &  0.0035 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CDCCDDCC \\      CCCDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
+    14 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DDDDCC \\   CDDDCC} &  6 &  0.0032 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     DDCCCDCC \\      CCCDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
+    15 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{DCDCDCC \\  CDCDCCC} &  7 &  0.0020 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{        DCCCC \\         CCDCC} &   5 &   0.001 & 0.1\% \\ 
+    \bottomrule
+    \end{tabular}}
+    \caption{We use the Axelrod-Python~\cite{AxelrodPython} package to simulate the
+    interactions between two players. First, when both players are using the
+    strategy \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\), and then when they are using
+    the strategy \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\). We assume that the
+    players start with both cooperating, followed by the second player defecting,
+    resulting in the history \( ((C, C), (C, D)) \). We simulate the interaction and
+    record how long it takes for them to return to \( ((C, C), (C, C)) \). We repeat
+    this \(5 \times 10^4\) times and record the average time it takes for the
+    players to return to \( ((C, C), (C, C)) \), along with the path of actions
+    their strategies followed. We call the sequence of actions leading to mutual
+    cooperation for two rounds a path. The length of this path is what we refer to
+    as recovery time. We present the fifteen most common paths for both strategies.}
+\end{table}
 
 
-\begin{figure}[h!]
-  \centering
-\includegraphics[width=\textwidth]{../../figures/player_p_prime_cycles.pdf}
-\caption{\textbf{Cycle examples for \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\).}
-A similar but slightly different story is true for when players use
-\(\mathbf{p'}\). In Cycle A, the less likely forgiveness to occur is when the
-blue player has already forgiven the red player once, because now \(p_{DC}\) is
-the lowest cooperation probability of the players. This leads to a new sequence,
-Cycle B, where the counter is reset, even though it was incremented by one,
-meaning that the new cycle has two extra steps. The same is true for Cycle C,
-which has two extra steps compared to Cycle B. In summary, the strategies need
-to cooperate twice to return to mutual cooperation. There are specific states
-they must navigate to reach \((C, C), (C, C)\) again. If they fail to cooperate
-in one of these states, they must try again. However, as these states form a
-path, the less likely cooperation is further down this path, the more time steps
-are required to return and attempt cooperation again. This is why
-\(\mathbf{p'}\) takes longer to reach mutual cooperation once more.}
-\end{figure}
+% \begin{figure}
+%   \centering
+% \includegraphics[width=\textwidth]{../../figures/player_p_cycles.pdf}
+% \caption{\textbf{Cycle examples for \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\).}
+% We consider a cycle to be a sequence of states that the strategies go through
+% until they return to the state \(((C, C), (C, C))\). We consider two players
+% (blue and red), who are using strategy \(\mathbf{p}\). While in the mutual cooperation
+% state, the red player defects.
+% {\bf A,} Cycle A is the most common and shortest
+% possible cycle for both strategies \(\mathbf{p}\) and \(\mathbf{p'}\). The same
+% is true for the cycle where the blue player defects; both cycles occur with the
+% same frequency. Following a defection by the red player, the fastest way to
+% mutual cooperation is for both players to cooperate twice in a row. Thus, two
+% instances of forgiveness must occur from both players.
+% {\bf B,} In Cycle A, the less likely forgiveness is that of the blue player following the
+% initial defection because \(p_{CD}\) is the lowest of all entries with a
+% cooperation probability of 0.1. In Cycle B, we assume that the blue player
+% indeed defected. As a result, this means that the counting towards two
+% forgiveness rounds, for blue, is still at zero. From here, both players could cooperate
+% twice, but an extra step has been added to the cycle, meaning that Cycle B has
+% one step more than Cycle A.
+% {\bf C,} Similarly, in Cycle B, the less likely forgiveness is that of the red player
+% when they cooperate with a probability of \(p_{CD}\). If the red player defects,
+% then their forgiveness counter resets to zero, even if the blue player already
+% forgave the red player once. The fastest thing that can happen is regaining
+% mutual cooperation until \((C, C), (C, C)\), but Cycle C has one extra step
+% compared to Cycle B.}
+% \end{figure}
+
+
+% \begin{figure}[h!]
+%   \centering
+% \includegraphics[width=\textwidth]{../../figures/player_p_prime_cycles.pdf}
+% \caption{\textbf{Cycle examples for \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\).}
+% A similar but slightly different story is true for when players use
+% \(\mathbf{p'}\). In Cycle A, the less likely forgiveness to occur is when the
+% blue player has already forgiven the red player once, because now \(p_{DC}\) is
+% the lowest cooperation probability of the players. This leads to a new sequence,
+% Cycle B, where the counter is reset, even though it was incremented by one,
+% meaning that the new cycle has two extra steps. The same is true for Cycle C,
+% which has two extra steps compared to Cycle B. In summary, the strategies need
+% to cooperate twice to return to mutual cooperation. There are specific states
+% they must navigate to reach \((C, C), (C, C)\) again. If they fail to cooperate
+% in one of these states, they must try again. However, as these states form a
+% path, the less likely cooperation is further down this path, the more time steps
+% are required to return and attempt cooperation again. This is why
+% \(\mathbf{p'}\) takes longer to reach mutual cooperation once more.}
+% \end{figure}
 
 % %%%%%%%%%%%%
 % %% Errors  %%
