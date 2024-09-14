@@ -29,24 +29,13 @@ for t = 1:numberIterations
     Mut=rand(1, sdim);
     if counting == 1
         if memory == 2
-            % Mut(1) 2, 2 cooperations
-            % Mut(2) 2, 1 cooperations
-            % Mut(3) 1, 2 cooperations
-            % Mut(4) 1, 1 cooperations
-            Mut(3) = Mut(2);
-            % Mut(4) 2 cooperations
-            Mut(5) = Mut(2);
-            Mut(6) = Mut(4);
-            Mut(7) = Mut(4);
-            % Mut(8) 1 cooperation
-            Mut(9) = Mut(2);
-            Mut(10) = Mut(4);
-            Mut(11) = Mut(4);
-            Mut(12) = Mut(8);
-            Mut(13) = Mut(4);
-            Mut(14) = Mut(8);
-            Mut(15) = Mut(8);
-            % Mut(16) 0 cooperations
+            Mut(2) = Mut(5);
+            Mut(3) = Mut(9);
+            Mut(4) = Mut(13);
+            Mut(7) = Mut(13);
+            Mut(10) = Mut(13);
+            Mut(8) = Mut(14);
+            Mut(12) = Mut(15);
         elseif memory == 3
             probs =  Mut(1:7);
             Mut(1) = probs(1);
