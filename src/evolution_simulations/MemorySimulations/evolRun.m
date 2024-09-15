@@ -5,7 +5,7 @@ N = 100;
 b = 1;
 numberIterations = 10 ^ 7;
 seed = 1;
-memory = 3;
+memory = 2;
 counting = true;
 
 costs = [0:0.1:1];

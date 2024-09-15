@@ -25,7 +25,7 @@ u = repmat([b - c, -c, b, 0], 1, sdim / 4);
 
 %% Running the evolutionary process
 j = 2;
-for t = 1:numberIterations
+for t = progress(1:numberIterations)
     Mut=rand(1, sdim);
     if counting == 1
         if memory == 2

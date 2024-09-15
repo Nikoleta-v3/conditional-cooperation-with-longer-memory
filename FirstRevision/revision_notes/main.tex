@@ -441,11 +441,13 @@ evolutionary process? \\
   \centering
   \includegraphics[width=.65\textwidth]{../../figures/siFigInvasionR2ForPCCone.pdf}
   \caption{\textbf{Invasion analysis for reactive-2 with $p_{CC}=1$.}
-  We repeat the analysis as in Figure~\ref{fig:InvasionAnalysisReactive2}, but
-  this time we consider the case where \(p_{CC} = 1\). We observe that in this
-  case, each of the residents \(\mathbf{p}\) and \(\mathbf{p'}\) have the
-  same average number until invasion, and the expected payoffs in the case of \(k\)
-  \alld{} mutants are the same.
+  We repeat the analysis described in Figure~\ref{fig:InvasionAnalysisReactive2}
+  {\bf B} and {\bf C}, but this time we consider the case where \(p_{CC} = p'_{CC}
+  = 1\). In {\bf A}, we plot the average number of mutants until invasion for both
+  strategies, and in {\bf B}, we plot the expected payoffs of the strategies when
+  \(k\) \alld{} mutants are present in the population, while \(N-k\) are the
+  resident strategy. Both strategies now have the same average number of mutants
+  until invasion and the same expected payoffs.
   }\label{fig:InvasionAnalysisReactive2ForPCCone}
 \end{figure}
 
@@ -453,29 +455,35 @@ evolutionary process? \\
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{../../figures/siFigReactiveTwoPayoffs.pdf}
-  \caption{\textbf{The difference between \(\mathbf{p}\) and \(\mathbf{p'}\).}
-  {\bf A-B,} The self-payoffs \(\pi(\mathbf{p}, \mathbf{p})\) and \(\pi(\mathbf{p'},
-  \mathbf{p'})\) would be equal if the strategies were nice. However, such
-  strategies are never sampled by the evolutionary process. To understand the
-  effect of stochastic \(p_{CC}\) and \(p'_{CC}\), we calculate the stationary
-  distribution of the self-play of \(p_{CC}\) and \(p'_{CC}\). We do this in two
-  ways: numerically and with simulations. For simulating the interactions, we use
-  the open-source package Axelrod. Each interaction is run for \(10^6\) steps and
-  repeated 20 times. The numerical results and the results from the simulations
-  are in agreement. The stationary distribution of the self-plays shows that
-  \(p_{CC}\) spends significantly more time in the \(((C, C), (C, C))\) state than
-  \(p'_{CC}\), which explains the difference in the payoffs.
-  {\bf C,} In a self-interaction, the strategies \(\mathbf{p}\) and \(\mathbf{p'}\) spend
-  most of their interactions in the \(((C, C), (C, C))\) state. Once in this
-  state, each player cooperates with a probability of 0.99. However, with a small
-  probability of 0.01, they defect. We can calculate the expected time until the
-  strategies return to the \(((C, C), (C, C))\) state once such a ``mistake'' has
-  occurred. We do this by simulating the interactions and recording the number of
-  steps it takes to return to the \(((C, C), (C, C))\) state. We observe that
-  \(\mathbf{p}\) needs fewer steps to return to the \(((C, C), (C, C))\) state
-  than \(\mathbf{p'}\).
-  }\label{fig:ReactiveTwoPayoffs}
+  \caption{\textbf{The difference between \(\mathbf{p}\) and \(\mathbf{p'}\) when
+  \(p_{CC}, p'_{CC} \neq 1\).}
+  The self-payoffs \(\pi(\mathbf{p}, \mathbf{p})\) and \(\pi(\mathbf{p'},
+  \mathbf{p'})\) would be equal if the strategies were nice, more specifically if
+  \(p_{CC} = p'_{CC} = 1\). However, such strategies are never
+  sampled in the evolutionary process. For each mutant we introduce, we sample
+  each element of the mutant from a uniform distribution. This means that the
+  probability of sampling a strategy with \(p_{CC} = 1\) is zero.
+  To understand the difference between the two strategies, we
+  calculate the stationary distribution of the self-play of \(\mathbf{p}\) and \(\mathbf{p'}\). The
+  stationary distribution shows us that the strategy \(\mathbf{p}\) spends significantly
+  more time in the \(((C, C), (C, C))\) state than \(\mathbf{p'}\), which explains the
+  difference in their payoffs.
+  To explore where this difference arises, we conduct the following analysis: we
+  assume a pair of players, playing either as \(\mathbf{p}\) or
+  \(\mathbf{p'}\), starting in the \(((C, C), (C, D))\) state, which represents
+  mutual cooperation with the second player defecting. We then calculate the
+  expected time it takes for the strategies to return to the \(((C, C), (C, C))\)
+  state. This is done by simulating the interactions using the Axelrod-Python~\cite{AxelrodPython}
+  package and recording the number of actions/turns required to return to the
+  \(((C, C), (C, C))\) state. We refer to this number as the recovery time. We repeat
+  this process \(5 \times 10^4\) times for each pair of strategies. We plot the
+  distribution of recovery times for both strategies in {\bf B} and the average
+  recovery time for each strategy in {\bf C}. We observe that \(\mathbf{p}\)
+  requires significantly fewer steps, on average, to return to the \(((C, C), (C, C))\) state
+  than \(\mathbf{p'}\).}\label{fig:ReactiveTwoPayoffs}
 \end{figure}
+
+
 
 \begin{table}
   \centering
@@ -484,7 +492,7 @@ evolutionary process? \\
     \toprule
     & \multicolumn{5}{c}{$\mathbf{p} = (0.99,0.1, 0.6, 0.3)$} &  \multicolumn{5}{c}{$\mathbf{p'} = (0.99, 0.6, 0.1, 0.3)$} \\
     \toprule
-    \thead{Most common \\ paths} &   & Path &  \thead{Recovery \\ time} & Path probability & \thead{Relative abundance \\ among $5 \times 10^4$ paths} & & Path &   \thead{Recovery \\ time} & Path probability&  \thead{Relative abundance \\ among $5 \times 10^4$ paths}\\
+    \thead{Most common \\ paths} &   & Path &  \thead{Recovery \\ time} & Path probability & \thead{Frequency of occurrence \\ in $5 \times 10^4$ simulations} & & Path &   \thead{Recovery \\ time} & Path probability&  \thead{Frequency of occurrence \\ in $5 \times 10^4$ simulations}\\
     \midrule
     1  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CC \\       CC} &  2 &  0.0588 & 5.9\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{           CC \\            CC} &   2 &   0.0588 & 5.9\% \\ \hline
     2  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{    DCC \\      CCC} &  3 &  0.0318 & 3.0\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{         CDCC \\          CCCC} &   4 &   0.0311 & 3.2\% \\ \hline
@@ -500,72 +508,14 @@ evolutionary process? \\
     12 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DCDDCC \\   CDDDCC} &  6 &  0.0035 & 0.4\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CDCCCDCC \\      CCDDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
     13 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   DDCC \\     CDCC} &  4 &  0.0035 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CDCCDDCC \\      CCCDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
     14 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DDDDCC \\   CDDDCC} &  6 &  0.0032 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     DDCCCDCC \\      CCCDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
-    15 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{DCDCDCC \\  CDCDCCC} &  7 &  0.0020 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{        DCCCC \\         CCDCC} &   5 &   0.001 & 0.1\% \\ 
+    15 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{DCDCDCC \\  CDCDCCC} &  7 &  0.0020 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{        DCCCC \\         CCDCC} &   5 &   0.001 & 0.1\% \\  \hline
+    Sum & & &  &  & 16.9\% & & & &  & 14.5\% \\
     \bottomrule
     \end{tabular}}
-    \caption{We use the Axelrod-Python~\cite{AxelrodPython} package to simulate the
-    interactions between two players. First, when both players are using the
-    strategy \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\), and then when they are using
-    the strategy \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\). We assume that the
-    players start with both cooperating, followed by the second player defecting,
-    resulting in the history \( ((C, C), (C, D)) \). We simulate the interaction and
-    record how long it takes for them to return to \( ((C, C), (C, C)) \). We repeat
-    this \(5 \times 10^4\) times and record the average time it takes for the
-    players to return to \( ((C, C), (C, C)) \), along with the path of actions
-    their strategies followed. We call the sequence of actions leading to mutual
-    cooperation for two rounds a path. The length of this path is what we refer to
-    as recovery time. We present the fifteen most common paths for both strategies.}
+    \caption{We have used the Axelrod-Python~\cite{AxelrodPython} package to simulate interactions between two players. First, both players used the strategy \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\), and then they used the strategy \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\). We assumed that the players start by both cooperating, followed by the second player defecting, resulting in the history \( ((C, C), (C, D)) \). We recorded not only the time it took to return to \( ((C, C), (C, C)) \) but also the sequence of actions taken by the two players. Here, we present the most common paths taken by the players in both cases.
+    The paths are shown in the ``Path'' column, as well as the recovery time, and their frequency of occurrence. We can observe that the most common path is the same for both strategies, where following a defection by player 2, both players cooperate twice in a row to return to the state of mutual cooperation. For the rest of the most common paths, we can quickly observe that the recovery times of those paths are shorter in the case of \(\mathbf{p}\) than in the case of \(\mathbf{p'}\).
+    In the case of \(\mathbf{p'}\), two of the most common paths have a recovery time longer than 10, whereas in the case of \(\mathbf{p}\), the longest recovery time is 7.}
 \end{table}
-
-
-% \begin{figure}
-%   \centering
-% \includegraphics[width=\textwidth]{../../figures/player_p_cycles.pdf}
-% \caption{\textbf{Cycle examples for \(\mathbf{p} = (0.99, 0.10, 0.60, 0.30)\).}
-% We consider a cycle to be a sequence of states that the strategies go through
-% until they return to the state \(((C, C), (C, C))\). We consider two players
-% (blue and red), who are using strategy \(\mathbf{p}\). While in the mutual cooperation
-% state, the red player defects.
-% {\bf A,} Cycle A is the most common and shortest
-% possible cycle for both strategies \(\mathbf{p}\) and \(\mathbf{p'}\). The same
-% is true for the cycle where the blue player defects; both cycles occur with the
-% same frequency. Following a defection by the red player, the fastest way to
-% mutual cooperation is for both players to cooperate twice in a row. Thus, two
-% instances of forgiveness must occur from both players.
-% {\bf B,} In Cycle A, the less likely forgiveness is that of the blue player following the
-% initial defection because \(p_{CD}\) is the lowest of all entries with a
-% cooperation probability of 0.1. In Cycle B, we assume that the blue player
-% indeed defected. As a result, this means that the counting towards two
-% forgiveness rounds, for blue, is still at zero. From here, both players could cooperate
-% twice, but an extra step has been added to the cycle, meaning that Cycle B has
-% one step more than Cycle A.
-% {\bf C,} Similarly, in Cycle B, the less likely forgiveness is that of the red player
-% when they cooperate with a probability of \(p_{CD}\). If the red player defects,
-% then their forgiveness counter resets to zero, even if the blue player already
-% forgave the red player once. The fastest thing that can happen is regaining
-% mutual cooperation until \((C, C), (C, C)\), but Cycle C has one extra step
-% compared to Cycle B.}
-% \end{figure}
-
-
-% \begin{figure}[h!]
-%   \centering
-% \includegraphics[width=\textwidth]{../../figures/player_p_prime_cycles.pdf}
-% \caption{\textbf{Cycle examples for \(\mathbf{p'} = (0.99, 0.60, 0.10, 0.30)\).}
-% A similar but slightly different story is true for when players use
-% \(\mathbf{p'}\). In Cycle A, the less likely forgiveness to occur is when the
-% blue player has already forgiven the red player once, because now \(p_{DC}\) is
-% the lowest cooperation probability of the players. This leads to a new sequence,
-% Cycle B, where the counter is reset, even though it was incremented by one,
-% meaning that the new cycle has two extra steps. The same is true for Cycle C,
-% which has two extra steps compared to Cycle B. In summary, the strategies need
-% to cooperate twice to return to mutual cooperation. There are specific states
-% they must navigate to reach \((C, C), (C, C)\) again. If they fail to cooperate
-% in one of these states, they must try again. However, as these states form a
-% path, the less likely cooperation is further down this path, the more time steps
-% are required to return and attempt cooperation again. This is why
-% \(\mathbf{p'}\) takes longer to reach mutual cooperation once more.}
-% \end{figure}
 
 % %%%%%%%%%%%%
 % %% Errors  %%
@@ -612,12 +562,22 @@ that a player makes a mistake in the action taken.
 \section{Memory-$n$}
 
 So far in the evolutionary simulations, we have considered reactive strategies
-and shown that strategies with larger memory allow for more cooperative
-populations. We repeat the evolutionary simulations, but this time using
-memory-$n$ strategies. We get results for memory$-1$, memory$-2$, and memory counting
-strategies for $n$ equal to $1, 2,$ and $3$. The main result still holds. For
-more memory, more cooperation evolves, however, not in the case of counting
-strategies.
+and demonstrated that strategies with larger memory capacities lead to more
+cooperative populations. We now repeat the evolutionary simulations, but this
+time using memory-$n$ strategies. We obtain results for memory-$1$, memory-$2$,
+and memory-counting strategies, with $n$ equal to $1$, $2$, and $3$. Memory-$n$
+counting strategies are a subset of memory-$n$ strategies, where players only
+respond to the number of past cooperations between the two players, ignoring the
+exact timing of cooperation.
+
+A memory-$n$ strategy can be represented as a vector $\mathbf{m} = (m_{i,j})$,
+with $0 \leq i, j \leq n$. The entries $m_{i,j}$ denote a player's probability
+of cooperating in the next round, given that the focal player has cooperated $i$
+times in the last $n$ rounds, while the co-player has cooperated $j$ times.
+Similarly to reactive strategies for \(n = 1\), the two spaces are the same.
+
+The main result still holds. For more memory, more cooperation evolves, however,
+not in the case of counting strategies.
 
 
 \begin{figure}[h]
