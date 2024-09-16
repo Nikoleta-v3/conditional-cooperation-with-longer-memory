@@ -62,6 +62,11 @@
 \def\gtft{\texttt{GTFT}}
 \def\allc{\texttt{ALLC}}
 \def\alld{\texttt{ALLD}}
+\def\tftatft{\texttt{TFT-ATFT}}
+\def\capri{\texttt{CAPRI}}
+\def\aon{\texttt{AON$_k$}}
+\def\cure{\texttt{CURE}}
+
 \def\alt{\texttt{Alternator}}
 
 
@@ -79,14 +84,121 @@
 %% Adds the main heading for the SI text. Comment out this line if you do not have any supporting information text.
 \SItext
 
-This document provides further details on our methodology and our analytical
-results.
+This document provides further details on the previous literature, our methodology, our analytical
+findings, and our evolutionary simulations.
+Section~\ref{section:literature} gives an overview of the existing literature on direct reciprocity with longer memory. 
+For several important articles, we summarize which key question they explore, and how our article further contributes to this strand of work. 
 Section~\ref{section:model} summarizes the model. 
-In particular, we introduce all relevant strategy spaces, 
-and we show how to compute long-term payoffs for strategies with more than one-round memory. 
-Section~\ref{section:results} contains our key results. 
+Here, we introduce all relevant strategy spaces, and we show how to compute long-term payoffs for strategies with more than one-round memory. 
+Section~\ref{section:results} contains our key analytical results. 
 Here, we define partner strategies, we present an algorithm that allows us to verify whether a given reactive-$n$ strategy is a partner, and we apply this algorithm to fully characterize the reactive-$n$ partner strategies for $n\!=\!2$ and $n\!=\!3$.
-All proofs are presented in the Appendix in Section~\ref{section:appendix}.
+We perform a similar analysis for the stable defecting strategies. 
+Finally, Section~\ref{section:simulations} presents some complementary evolutionary results. 
+Finally, the Appendix in Section~\ref{section:appendix} contains the proofs of the mathematical results introduced in Section~\ref{section:results}. 
+
+
+
+%%%%%%%%%%%%%%%%
+%% LITERATURE REVIEW %%
+%%%%%%%%%%%%%%%%
+
+\section{An overview of the related literature}\label{section:literature}
+
+By now, there is a vast literature on the evolution of reciprocal cooperation in repeated games. 
+This literature has described various strategies that either succeed in evolutionary simulations and computer tournaments, or that exhibit some interesting theoretical properties. 
+This literature also describes how results depend on parameters such as the benefit-to-cost of ratio, or the game's continuation probability. 
+For a general overview on these results, we refer to the reviews and text books in Refs.~\cite{axelrod:book:1984,nowak:book:2006,sigmund2010,hilbe:Nature:2018,Glynatsi:HSSC:2021}. 
+In the following we discuss some key papers that discuss the role of memory on direct reciprocity.
+
+\subsubsection*{Particular higher-memory strategies}
+First, there are several papers that highlight particular strategies with more than one-round memory. 
+For example, Yi {\it et al} \cite{Do:JTB:2017} describes a variant of Tit-for-Tat (\tft), referred to as \tftatft. 
+This strategy depends on the outcome of the last two rounds. 
+It typically repeats the co-player's previous move; but in case the co-player defected because of an error, it chooses to do the opposite of the co-player's previous move.  
+Compared to \tft, \tftatft{} is more robust with respect to implementation errors, and hence it emerges in some evolutionary simulations. 
+
+Following up on this work, Baek and Murase \cite{murase:SciRep:2020} introduce a class of strategies called `friendly rivals'. 
+These strategies establish mutual cooperation against themselves. 
+At the same time, a player with such a strategy always gets at least the payoff of its opponent, irrespective of the opponent's strategy. 
+In particular, such strategies satisfy our notion of being a partner. 
+By explicitly considering all pure strategies with three rounds of memory, they identify one strategy that performs particularly well, referred to as \capri. 
+In \cite{Murase:PLoSCompBio:2023a}, the authors examine whether friendly rivals emerge in an evolutionary setting. 
+They conclude that friendly rivals play a minor role. 
+Instead, partner strategies often seem to be sufficient to promote cooperation.
+
+Hilbe et al~\citep{hilbe:PNAS:2017} use an axiomatic approach to derive stable memory-$n$ strategies of direct reciprocity. 
+They impose three conditions on the strategies they look for: 
+({\it i})~{\it Mutual cooperation:} Such a strategy ought to fully cooperate with itself. 
+({\it ii})~{\it Retaliation:} Once a co-player defects, the strategy ought to defect for at least $k$ rounds. 
+({\it iii})~{\it Error-correction:} When two players with that strategy interact, they return to mutual cooperation after at most $k$ rounds, after any possible previous history. 
+The authors find that there is a class of memory-$n$ strategies that satisfies these properties. 
+They refer to the elements of this class as All-or-None strategies, or~\aon. 
+These \aon{} strategies satisfy the conditions for partner strategies. 
+For $k\!=\!1$ they contain Win-Stay Lose-Shift~\cite{nowak:Nature:1993} as a special case. 
+
+Finally, Li {\it et al} \cite{li:NatureCompSci:2022} describe a strategy of {\it cumulative reciprocity}, or \cure. 
+This strategy counts how often the two players cooperated in all previous rounds. 
+A player with that strategy cooperates if the co-player's cooperation count is above a certain threshold (that depends on the player's own cooperation count). 
+\cure{} satisfies the properties of a partner strategy. 
+Moreover, the authors show that it performs well when competing with memory-1 strategies. 
+
+Compared to these previous articles, we take a more systematic approach. 
+Instead of describing particular partner strategies, we aim to identify {\it all} partner strategies within an important strategy space, the space of (stochastic) reactive-$n$ strategies. 
+For the special case of reactive-$n$ counting strategies, we provide explicit conditions for all memory lengths $n$. 
+For the more general case of reactive-$n$ strategies, we provide explicit conditions for $n\!=\!2$ and $n\!=\!3$. 
+Moreover, we provide a general algorithm to test whether a given reactive-$n$ strategy is a partner. 
+This algorithm is valid for any $n$. 
+
+\subsubsection*{Particular classes of higher-memory strategies.}
+In addition to this work that focuses on particular strategies, there are also several articles that describe some properties of certain strategy classes with more than one-round memory. 
+
+One example is the class of {\it zero-determinant} (ZD) strategies. 
+This strategy class was first described by Press and Dyson \cite{press:PNAS:2012}, showing that there are certain memory-1 strategies that can unilaterally enforce a linear relationship between the players' payoffs. 
+Ueda~\cite{ueda:RSOP:2021, Ueda:ORF:2022} extends this formalism to memory-$n$ strategies. 
+To this end, he derives a version of what we refer to as Akin's lemma (see \ref{section:results}). 
+Based on this result, he describes a particular subset of these ZD strategies, which he calls variants of Tit-for-Tat. 
+
+Another strategy class that has been studied in more detail is the class of {\it reactive learning strategies}, as introduced by McAvoy and Nowak~\cite{mcavoy:PRSA:2019}.
+These strategies gradually modify their cooperation propensity based on the opponent's last action. 
+McAvoy and Nowak focus on the feasible payoff space (i.e., the payoffs that can be achieved against a given player with fixed strategy). 
+They show that for any memory-one strategy, one can find an associated reactive learning strategy. 
+The payoffs feasible against this reactive learning strategy are a strict subset of the feasible payoffs against the original memory-one strategy. 
+McAvoy and Nowak interpret this result as an indication that players with reactive-learning strategies have more control over the resulting payoffs. 
+
+While both the papers by Ueda~\cite{ueda:RSOP:2021, Ueda:ORF:2022} and by McAvoy and Nowak~\cite{mcavoy:PRSA:2019} offer some remarkable mathematical results, their scope is different from ours.
+They aim to derive general properties of the strategy classes they consider, independent of whether the resulting strategies form a Nash equilibrium. 
+In particular, they do not explore which of their strategies can sustain cooperation (i.e., which of their strategies satisfies the notion of being a partner). These partner strategies are the main focus of our work. 
+
+\subsubsection*{Work on evolutionary robust cooperating strategies}
+Perhaps the paper most closely related to our is the work by Stewart and Plotkin~\cite{stewart:scientific:2016}. 
+They consider memory-$n$ strategies for public goods games in groups of size $m\!\ge\!2$. 
+They are particularly interested in those strategies that are `evolutionary robust' -- strategies that can resist selective invasion by any mutant. 
+In the limit of large populations, evolutionary robust strategies are closely related to the Nash equilibria of the repeated game. 
+Using an elegant coordinate transform, Stewart and Plotkin~\cite{stewart:scientific:2016} give a rigorous characterization of those evolutionary robust strategies that sustain mutual cooperation.
+They use this characterization to compute the respective volume of evolutionary robust cooperating strategies.
+Analytically and with simulations, they show that this volume increases in the player's memory-$n$, relative to the volume of evolutionary robust strategies that lead to mutual defection. 
+
+Importantly,  however, even in the case of $m\!=\!2$ players, Stewart and Plotkin's characterization of evolutionary results is implicit.  
+For example, for cooperating strategies, their Eq. (2) contains terms $w^{l_0,l_p}$. 
+These terms in turn depend on the specific mutant strategy considered. 
+Especially for larger values of $n$, these terms become increasingly expensive to compute. 
+Moreover, in principle, one would have to check these conditions for all possible mutants. 
+The authors argue that only four particular cases of  $w^{l_0,l_p}$ need to be studied (as described in detail in their SI Section 5.4).
+However, two of these cases correspond to an entire family of possible mutant strategies. 
+In one case, one needs to check mutants that play in such a way that the two players do not defect for $n$ consecutive rounds.  
+In the other case, one needs to check mutants that make sure the two players do not cooperate for $n$ consecutive rounds. 
+Because there are many such mutants, these two cases can lead to more than two inequalities when characterizing the set of evolutionary robust strategies (in fact, for our example of reactive-$n$ counting strategies, we find that these two cases give rise to $n\!-\!1$ inequalities). 
+
+Instead, we explicitly characterize the partner strategies for reactive-2, reactive-3, and for reactive-$n$ counting strategies. 
+To this end, we also prove an interesting theoretical result: 
+To test whether any given reactive-$n$ strategy is a Nash equilibrium, it suffices to compare it to all pure self-reactive-$n$ strategies. 
+
+
+
+%%%%%%%%%%%%%%
+%% MODEL SECTION %%
+%%%%%%%%%%%%%%
+
 
 \section{Model and basic results}\label{section:model}
 
@@ -1622,7 +1734,7 @@ we obtain the inequalities in Table~\ref{Tab:PartnerReactiveThreePD}.
 \section{Supplementary References}
 \renewcommand\refname{ }
 {\setlength{\bibsep}{0\baselineskip}
-\bibliographystyle{naturemag}
+%\bibliographystyle{naturemag}
 \bibliography{../../bibliography}
 }
 
