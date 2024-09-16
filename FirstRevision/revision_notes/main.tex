@@ -461,7 +461,7 @@ evolutionary process? \\
   \mathbf{p'})\) would be equal if the strategies were nice, more specifically if
   \(p_{CC} = p'_{CC} = 1\). However, such strategies are never
   sampled in the evolutionary process. For each mutant we introduce, we sample
-  each element of the mutant from a uniform distribution. This means that the
+  each element of the mutant from a uniform \([0, 1]\) distribution. This means that the
   probability of sampling a strategy with \(p_{CC} = 1\) is zero.
   To understand the difference between the two strategies, we
   calculate the stationary distribution of the self-play of \(\mathbf{p}\) and \(\mathbf{p'}\). The
@@ -478,11 +478,13 @@ evolutionary process? \\
   \(((C, C), (C, C))\) state. We refer to this number as the recovery time. We repeat
   this process \(5 \times 10^4\) times for each pair of strategies. We plot the
   distribution of recovery times for both strategies in {\bf B} and the average
-  recovery time for each strategy in {\bf C}. We observe that \(\mathbf{p}\)
+  recovery time for each strategy in {\bf C}. In {\bf B},
+  the whiskers represent the minima and maxima, the box extends from the first
+  quartile to the third quartile, and the scatter point in the center shows the
+  mean. We observe that \(\mathbf{p}\)
   requires significantly fewer steps, on average, to return to the \(((C, C), (C, C))\) state
   than \(\mathbf{p'}\).}\label{fig:ReactiveTwoPayoffs}
 \end{figure}
-
 
 
 \begin{table}

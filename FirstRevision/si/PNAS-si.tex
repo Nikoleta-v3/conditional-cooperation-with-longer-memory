@@ -829,7 +829,7 @@ As long as {\it on average}, the respective cooperation probabilities $p_{CD}$ a
 %~
 
 %% PARTNER STRATEGIES: Reactive-3 Donation Game %%
-\subsubsection*{Reactive-3 Partner Strategies}
+\subsubsection*{Reactive-3 partner strategies}
 Next, we focus on the case $n\!=\!3$. Reactive-3 strategies can be represented as a vector 
 $$\mathbf{p}=(p_{CCC}, p_{CCD}, p_{CDC}, p_{CDD}, p_{DCC}, p_{DCD}, p_{DDC}, p_{DDD}).$$
 Again, each entry $p_\mathbf{h^{-i}}$ refers to the player's cooperation probability, depending on the co-player's previous three actions, $\mathbf{h^{-i}}\!=\!(a^{-i}_{-3}, a^{-i}_{-2}, a^{-i}_{-1})$.
@@ -988,6 +988,57 @@ Given the large number of conditions in Table~\ref{Tab:PartnerReactiveThreePD}, 
  
  
  
+ %%%%%%%%%%%%%%%%%%%
+ %% DEFECTING STRATEGIES  %%
+%%%%%%%%%%%%%%%%%%% 
+ 
+ %% DEFECTING STRATEGIES: Donation Game %%
+
+\subsection{Defector strategies in the donation game}\label{section:defecting_donation_game}
+
+In the previous sections, we considered partner strategies -- those strategies that sustain full cooperation in a Nash equilibrium.  
+For comparison, in the following we characterize the equilibria in which players fully defect. 
+In analogy to partner strategies, the corresponding {\it defector strategies} need to satisfy two properties. 
+({\it i})~A player with a defector strategy is never the first to cooperate. 
+({\it ii})~When both players adopt a defector strategy, we obtain a Nash equilibrium. 
+Based on our general framework in Section~\ref{section:results}\ref{Sec:Algorithm}, we can characterize defector strategies as follows. 
+
+
+%% DEFECTING STRATEGIES: Reactive-1 Donation Game %%
+
+\begin{theorem}[Reactive-$n$ defector strategies in the donation game] \label{theorem:reactive_defecting_strategies}
+~\\[-0.8cm]
+\begin{enumerate}
+\item A reactive-1 strategy $\mathbf{p}\!=\!(p_C,p_D)$ is a defector strategy if and only if
+~$p_{C} \!\le\!  \frac{c}{b}$ and $p_{D} \!=\! 0$.
+
+\item A reactive-2 strategy $\mathbf{p}\!=\!(p_{CC},p_{CD},p_{DC},p_{DD})$ is a defector strategy if and only if
+\begin{equation}\label{eq:defecting_conditions_two}
+  p_{CC} \le \frac{c}{b}, \qquad \displaystyle \frac{p_{CD} \!+\! p_{DC}}{2} \le \frac{c}{2b}, \qquad p_{DD} = 0.
+\end{equation}
+\item A reactive-3 strategy $\mathbf{p}$ is a defector strategy if and only if
+\begin{align}\label{eq:defecting_conditions_three}
+  \begin{split}
+  p_{CCC} & \le \frac{c}{b} \\
+  \frac{p_{CDC} + p_{DCD}}{2} & \leq \frac{1}{2} \cdot \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} & \leq \frac{2}{3} \cdot \frac{c}{b} \\
+  \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} & \leq \frac{1}{3} \cdot \frac{c}{b} \\
+  \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4}  & \leq \frac{1}{2} \cdot \frac{c}{b}  \\
+  p_{DDD} & = 0.
+  \end{split}
+\end{align}
+\end{enumerate}
+\end{theorem}
+
+\noindent
+The interpretation of these conditions is similar to before. 
+In each case, a defector strategy's cooperation probability increases in proportion to the co-player's average cooperation rate during the last $n$ rounds. 
+Analogously the case of partner strategies, we can also identify the defector strategies among the reactive-$n$ counting strategies $\mathbf{r}=(r_k)$. 
+We obtain that a reactive-$n$ counting strategy is a defector if and only if 
+\begin{equation} \label{Eq:DefectorCounting}
+r_{k} \le  \frac{k}{n} \cdot \frac{c}{b} ~~~\text{\normalfont for }~ k \in \{0, 1, \dots, n\}.
+\end{equation}
+
  
  
  
@@ -1723,8 +1774,160 @@ Again, we compute payoffs for all 256 self-reactive-3 strategies. The expression
 
 \noindent
 By requiring the above expressions to be smaller than or equal to $R$,
-we obtain the inequalities in Table~\ref{Tab:PartnerReactiveThreePD}.
+we obtain the inequalities in Table~\ref{Tab:PartnerReactiveThreePD}.\\
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  APPENDIX:  Reactive-n defecting strategies %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Proof of Theorem~\ref{theorem:reactive_defecting_strategies}:
+Reactive-$n$ defector strategies in the donation game}
+\begin{proof}
+The proof is analogous to the corresponding proof for partner strategies. Again, we enumerate the respective self-reactive strategies $\mathbf{\tilde p}$ that we need to check, by interpreting the strategy as a binary number. 
+\begin{enumerate}
+\item If the co-player adopts a reactive-1 strategy, the possible payoffs of a pure self-reactive-1 strategy are
+\begin{equation*}\label{Eq:PayoffExpressionsDefectiveReactiveOne}
+\setlength{\arraycolsep}{1mm}
+  \begin{array}{lcll}
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle 0 & ~~\text{for}~ j\! \in\!  \{0, 2\} \\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{b \cdot p_{C} - c}{p_{C} + 1}  & ~~\text{for}~ j\! \in\!  \{1\} \\[0.3cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  b \cdot p_{C} - c  & ~~\text{for}~ j\! \in\!  \{3\} \\[0.3cm]
+  \end{array}
+\end{equation*}
+In particular, by requiring that each of these payoffs is at most the mutual defection payoff of zero, we get $p_C\!\le\! c/b$. The requirement $p_D\!=\!0$ follows from the requirement that a defector is never the first to cooperate.\\
+
+\item For $n\!=\!2$, the possible payoffs of a pure self-reactive strategy are
+\begin{equation*}\label{Eq:PayoffExpressionsDefectiveReactiveTwo}
+\setlength{\arraycolsep}{1mm}
+  \begin{array}{lcll}
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle 0 & ~~\text{for}~ j\! \in\!  \{0, 2, 4, 6, 8, 10, 12, 14\} \\[0.2cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{p_{CD} + p_{DC}}{3}\,b - \frac{c}{3}  & ~~\text{for}~ j\! \in\!  \{1, 9\} \\[0.2cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{p_{CC} + p_{CD} + p_{DC}}{4}\,b - \frac{c}{2} & ~~\text{for}~ j\! \in\!  \{3\} \\[0.2cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{p_{CD} + p_{DC}}{2}\,b - \frac{c}{2}  & ~~\text{for}~ j\! \in\!  \{4, 5, 12, 13\} \\[0.2cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  \frac{p_{CC} + p_{CD} + p_{DC}}{3}\,b - \frac{2 c}{3}  & ~~\text{for}~ j\! \in\!  \{6, 7\}\\[0.2cm]
+   \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= &\displaystyle  p_{CC}\,b - c & ~~\text{for}~ j\! \in\!  \{8, 9, 10, 11, 12, 13, 14, 15\}
+  \end{array}
+\end{equation*}
+By imposing the requirement that each of these payoffs is at most zero, we get the following unique conditions,
+\begin{equation*}
+  p_{CC}  \le \frac{c}{b}, \qquad \qquad
+ \frac{p_{CD} + p_{DC}}{2}  \le \frac{1}{2} \cdot  \frac{c}{b}, \qquad \qquad
+  \frac{p_{CD} + p_{DC} + p_{CC}}{3} \le	\frac{2}{3} \cdot \frac{c}{b}.
+ \end{equation*}
+Because the last condition is implied by the first two, we end up with the
+inequalities in~\eqref{eq:defecting_conditions_two}.\\
+
+\item For $n\!=\!3$, the possible payoffs of a pure self-reactive strategy are
+  \begin{equation*}\label{Eq:PayoffExpressionsReactiveThree}
+  \footnotesize
+  \setlength{\arraycolsep}{0mm}
+  \begin{array}{lclll}
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &{\, = \,}
+  &\displaystyle 0
+  &~\text{for}~ j\! \in\! 
+  &\{0, 2, 4, 6, \dots, 250, 252, 254\} \\[0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CDD} + p_{DCD} + p_{DDC}}{4} \,b - \frac{1}{4} \,c
+  &~\text{for}~ j\! \in\!  
+  & \{ 1, 9, 33, 41, 65, 73, 97, 105, 129, 137, 161,
+    \\ & & &  &169, 193, 201, 225, 233\} \\[0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{5}\, b - \frac{2}{5} \,c
+  &~\text{for}~ j\! \in\!  
+  & \{ 3, 7, 35, 39, 131, 135, 163, 167\} \\[0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CDC} + p_{DCD}}{2} \, b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\!  
+  & \{ 4 \!- \!7, 12 \!- \!15, 20 \!- \!23, 28 \!- \!31, 68 \!- \!71,
+      \\ & & &  &76 \!- \!79, 84 \!- \!87, 92 \!- \!95, 132 \!- \!135, 
+      \\ & & & &140 \!- \!143, 148- 151, 156 \!- \!159, 
+      \\ & & & &196 \!- \!199, 204 \!- \!207, 212 \!- \!215, 220 \!- \!223\} \\[0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{6} \,b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 11, 15, 43, 47\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} \, b - \frac{1}{3} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{16,17,24,25,48,49,56,57,80,81,88,
+      \\ & & & &89,112, 113,120,121, 144,145,152,153,
+      \\ & & & &176,177,184,185,208,209,216,217,
+      \\ & & & &240, 241,248,249\} \\[0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \, b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 18, 19, 22, 23, 50, 51, 54, 55, 146, 147,
+      \\ & & &  &150, 151, 178, 179, 182, 183\} \\[0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{5} \, b - \frac{3}{5} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 26, 27, 30, 31, 58, 59, 62, 63\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{7}\, b - \frac{3}{7} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 37, 67, 165, 195\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{8} \, b - \frac{1}{2} \, c ~~~~~
+  &~\text{for}~ j\! \in\! 
+  & \{ 45, 75\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD}+ p_{CDC}+ p_{CDD}+ p_{DCC}+ p_{DCD}+ p_{DDC}}{6} \, b - \frac{1}{2} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 52, 53, 82, 83, 180, 181, 210, 211\} \\  [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{7} \, b - \frac{4}{7} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 60, 61, 90, 91\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} \, b - \frac{2}{3} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 96\!- \!103, 112\!- \!119, 224\!- \!231, 240\!- \!247\} \\ [0.2cm]
+      
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{DCC}}{4} \, b - \frac{3}{4} \, c
+  &~\text{for}~ j\! \in\! 
+  & \{ 104\!-\!111, 120\!- \!127\} \\ [0.2cm]
+  
+  \pi^1(\mathbf{\tilde p_j},\mathbf{p}) &= 
+  &\displaystyle p_{CCC} \, b - c
+  &~\text{for}~ j\! \in\! 
+  & \{128, 129, 130, \dots, 255\}
+  \end{array}
+  \end{equation*}
+  
+  \noindent
+  Requiring these payoffs to be at most equal to zero gives
+  \begin{equation*} \footnotesize
+  \begin{array}{c}
+  \displaystyle  p_{CCC} \leq \frac{c}{b}, 
+    \qquad \qquad \frac{p_{CDC} + p_{DCD}}{2} \leq \frac{1}{2} \cdot \frac{c}{b}, 
+    \qquad \qquad \frac{p_{CDD} + p_{DCD} + p_{DDC}}{3} \leq \frac{1}{3} \cdot \frac{c}{b},\\[0.45cm]
+  \displaystyle  \frac{p_{CCD} + p_{CDC} + p_{DCC}}{3} \leq \frac{2}{3} \cdot \frac{c}{b},
+    \quad \qquad \frac{p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{4} \leq \frac{1}{2}  \cdot \frac{c}{b}, \\[0.45cm]
+    \displaystyle  \frac{p_{CCC} + p_{CCD} + p_{CDC} + p_{DCC}}{4} \leq \frac{3}{4} \cdot \frac{c}{b},
+    \quad \qquad \frac{p_{CCC} + p_{CCD} + p_{CDD} + p_{DCC} + p_{DDC}}{6} \leq \frac{1}{2}  \cdot \frac{c}{b}, \\[0.45cm]
+    \displaystyle  \frac{p_{CCD} + p_{CDC} + p_{CDD} + p_{DCC} + p_{DCD} + p_{DDC}}{6} \leq \frac{1}{2}  \cdot \frac{c}{b},
+    \quad \qquad \frac{p_{CCC} + p_{CCD} + p_{CDC} +  p_{CDD} + p_{DCC} +  p_{DCD} + p_{DDC}}{8} \leq \frac{1}{2}  \cdot \frac{c}{b}.
+    \end{array}
+  \end{equation*}
+  \noindent
+  The statement follows by noting that the five conditions in the first two rows imply the four other conditions.
+  \end{enumerate}
+\end{proof}
 
 \clearpage
 \newpage
