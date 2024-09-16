@@ -25,94 +25,35 @@ u = repmat([b - c, -c, b, 0], 1, sdim / 4);
 
 %% Running the evolutionary process
 j = 2;
-for t = 1:numberIterations
+for t = progress(1:numberIterations)
     Mut=rand(1, sdim);
     if counting == 1
-        if memory == 1
-        Mut(3) = Mut(2);
-        elseif memory == 2
-            % Mut(1) 4 cooperations
-            % Mut(2) 3 cooperations
-            Mut(3) = Mut(2);
-            % Mut(4) 2 cooperations
-            Mut(5) = Mut(2);
-            Mut(6) = Mut(4);
-            Mut(7) = Mut(4);
-            % Mut(8) 1 cooperation
-            Mut(9) = Mut(2);
-            Mut(10) = Mut(4);
-            Mut(11) = Mut(4);
-            Mut(12) = Mut(8);
-            Mut(13) = Mut(4);
-            Mut(14) = Mut(8);
-            Mut(15) = Mut(8);
-            % Mut(16) 0 cooperations
+        if memory == 2
+            Mut(2) = Mut(5);
+            Mut(3) = Mut(9);
+            Mut(4) = Mut(13);
+            Mut(7) = Mut(13);
+            Mut(10) = Mut(13);
+            Mut(8) = Mut(14);
+            Mut(12) = Mut(15);
         elseif memory == 3
-            probs =  Mut(1:7);
+            probs =  Mut(1:16);
             Mut(1) = probs(1);
-            Mut(2) = probs(2);
-            Mut(3) = probs(2);
-            Mut(4) = probs(3);
-            Mut(5) = probs(2);
-            Mut(6) = probs(3);
-            Mut(7) = probs(3);
-            Mut(8) = probs(4);
-            Mut(9) = probs(2);
-            Mut(10) = probs(3);
-            Mut(11) = probs(3);
-            Mut(12) = probs(4);
-            Mut(13) = probs(3);
-            Mut(14) = probs(4);
-            Mut(15) = probs(4);
-            Mut(16) = probs(5);
-            Mut(17) = probs(2);
-            Mut(18) = probs(3);
-            Mut(19) = probs(3);
-            Mut(20) = probs(4);
-            Mut(21) = probs(3);
-            Mut(22) = probs(4);
-            Mut(23) = probs(4);
-            Mut(24) = probs(5);
-            Mut(25) = probs(3);
-            Mut(26) = probs(4);
-            Mut(27) = probs(4);
-            Mut(28) = probs(5);
-            Mut(29) = probs(4);
-            Mut(30) = probs(5);
-            Mut(31) = probs(5);
-            Mut(32) = probs(6);
-            Mut(33) = probs(2);
-            Mut(34) = probs(3);
-            Mut(35) = probs(3);
-            Mut(36) = probs(4);
-            Mut(37) = probs(3);
-            Mut(38) = probs(4);
-            Mut(39) = probs(4);
-            Mut(40) = probs(5);
-            Mut(41) = probs(3);
-            Mut(42) = probs(4);
-            Mut(43) = probs(4);
-            Mut(44) = probs(5);
-            Mut(45) = probs(4);
-            Mut(46) = probs(5);
-            Mut(47) = probs(5);
-            Mut(48) = probs(6);
-            Mut(49) = probs(3);
-            Mut(50) = probs(4);
-            Mut(51) = probs(4);
-            Mut(52) = probs(5);
-            Mut(53) = probs(4);
-            Mut(54) = probs(5);
-            Mut(55) = probs(5);
-            Mut(56) = probs(6);
-            Mut(57) = probs(4);
-            Mut(58) = probs(5);
-            Mut(59) = probs(5);
-            Mut(60) = probs(6);
-            Mut(61) = probs(5);
-            Mut(62) = probs(6);
-            Mut(63) = probs(6);
-            Mut(64) = probs(7);
+            Mut(2) = probs(2); Mut(5) = probs(2); Mut(17) = probs(2);
+            Mut(3) = probs(3); Mut(9) = probs(3); Mut(33) = probs(3);
+            Mut(4) = probs(4); Mut(10) = probs(4); Mut(13) = probs(4); Mut(19) = probs(4); Mut(25) = probs(4); Mut(34) = probs(4); Mut(37) = probs(4); Mut(49) = probs(4);
+            Mut(6) = probs(5); Mut(18) = probs(5); Mut(21) = probs(5);
+            Mut(8) = probs(6); Mut(14) = probs(6); Mut(20) = probs(6); Mut(23) = probs(6); Mut(26) = probs(6); Mut(29) = probs(6); Mut(38) = probs(6); Mut(50) = probs(6); Mut(53) = probs(6);
+            Mut(11) = probs(7); Mut(35) = probs(7); Mut(41) = probs(7);
+            Mut(12) = probs(8); Mut(15) = probs(8); Mut(27) = probs(8); Mut(36) = probs(8); Mut(39) = probs(8); Mut(42) = probs(8); Mut(45) = probs(8); Mut(51) = probs(8); Mut(57) = probs(8);
+            Mut(16) = probs(9); Mut(28) = probs(9); Mut(31) = probs(9); Mut(40) = probs(9); Mut(46) = probs(9); Mut(52) = probs(9); Mut(55) = probs(9); Mut(58) = probs(9); Mut(61) = probs(9);
+            Mut(22) = probs(10);
+            Mut(24) =  probs(11); Mut(30) = probs(11); Mut(54) = probs(11);
+            Mut(32) = probs(12); Mut(56) = probs(12); Mut(62) = probs(12);
+            Mut(43) = probs(13);
+            Mut(44) = probs(14); Mut(47) = probs(14); Mut(59) = probs(14);
+            Mut(48) = probs(15); Mut(60) = probs(15); Mut(63) = probs(15);
+            Mut(64) = probs(16);
         end
     end
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, memory, errorprobability);
