@@ -61,6 +61,7 @@
 \def\wsls{\texttt{WSLS}}
 \def\tft{\texttt{TFT}}
 \def\gtft{\texttt{GTFT}}
+\def\dgtft{\texttt{DGTFT}}
 \def\allc{\texttt{ALLC}}
 \def\alld{\texttt{ALLD}}
 \def\tftatft{\texttt{TFT-ATFT}}
@@ -94,7 +95,7 @@ Here, we introduce all relevant strategy spaces, and we show how to compute long
 Section~\ref{section:results} contains our key analytical results. 
 Here, we define partner strategies, we present an algorithm that allows us to verify whether a given reactive-$n$ strategy is a partner, and we apply this algorithm to fully characterize the reactive-$n$ partner strategies for $n\!=\!2$ and $n\!=\!3$.
 We perform a similar analysis for the stable defecting strategies. 
-Finally, Section~\ref{section:simulations} presents some complementary evolutionary results. 
+Section~\ref{section:simulations} presents some complementary evolutionary results. 
 Finally, the Appendix in Section~\ref{section:appendix} contains the proofs of our mathematical results. 
 
 
@@ -142,7 +143,7 @@ Finally, Li {\it et al} \cite{li:NatureCompSci:2022} describe a strategy of {\it
 This strategy counts how often the two players cooperated in all previous rounds. 
 A player with that strategy cooperates if the co-player's cooperation count is above a certain threshold (that depends on the player's own cooperation count). 
 \cure{} satisfies the properties of a partner strategy. 
-Moreover, the authors show that it performs well when competing with memory-1 strategies. 
+Moreover, the authors show that the strategy performs well when competing with memory-1 strategies. 
 
 Compared to these previous articles, we take a more systematic approach. 
 Instead of describing particular partner strategies, we aim to identify {\it all} partner strategies within an important strategy space, the space of (stochastic) reactive-$n$ strategies. 
@@ -157,44 +158,49 @@ This strategy class was first described by Press and Dyson \cite{press:PNAS:2012
 They showed that there are certain memory-1 strategies that can unilaterally enforce a linear relationship between the players' payoffs. 
 Ueda~\cite{ueda:RSOP:2021, Ueda:ORF:2022} extends this formalism to memory-$n$ strategies. 
 To this end, he derives a version of what we refer to as Akin's lemma (see Section~\ref{section:results}). 
-Based on this result, he describes a particular subset of these ZD strategies, which he calls variants of Tit-for-Tat. 
+Based on this result, he describes different variants of Tit-for-Tat. 
 
 Another strategy class that has been studied in more detail is the class of {\it reactive learning strategies}, as introduced by McAvoy and Nowak~\cite{mcavoy:PRSA:2019}.
 These strategies gradually modify their cooperation propensity each round, based on the opponent's last action. 
-McAvoy and Nowak focus on the feasible payoff space (i.e., the payoffs that can be achieved against a given player with fixed strategy). 
+As a result, one player's action can have a lasting effect on the co-player's behavior. 
+McAvoy and Nowak focus on the space of feasible payoffs (i.e., the payoffs that can be achieved when one player's strategy is fixed). 
 They define a map that assigns to any memory-one strategy an associated reactive learning strategy. 
-The payoffs feasible against this reactive learning strategy are a strict subset of the feasible payoffs against the original memory-one strategy. 
+The feasible payoffs against this reactive learning strategy are a strict subset of the feasible payoffs against the original memory-one strategy. 
 McAvoy and Nowak interpret this result as an indication that players with reactive-learning strategies have more control over the resulting payoffs. 
 
 While both the papers by Ueda~\cite{ueda:RSOP:2021, Ueda:ORF:2022} and by McAvoy and Nowak~\cite{mcavoy:PRSA:2019} offer some remarkable mathematical results, their scope is different from ours.
-They aim to derive general properties of the strategy classes they consider, independent of whether the resulting strategies form a Nash equilibrium. 
-In particular, they do not explore which of their strategies can sustain cooperation (i.e., which of their strategies satisfies the notion of being a partner). These partner strategies are the main focus of our work. 
+They aim to derive general properties of certain strategy classes, independent of whether the resulting strategies form a Nash equilibrium. 
+In particular, they do not explore which of their strategies can sustain cooperation (i.e., which of their strategies satisfies the notion of being a partner). Partner strategies are the main focus of our work. 
 
 \subsubsection*{Work on evolutionary robust cooperating strategies}
-Perhaps the paper most closely related to our is the work by Stewart and Plotkin~\cite{stewart:scientific:2016}. 
+Perhaps the paper most closely related to ours is the work by Stewart and Plotkin~\cite{stewart:scientific:2016}. 
 They consider memory-$n$ strategies for public goods games in groups of size $m\!\ge\!2$. 
-They are particularly interested in those strategies that are `evolutionary robust' -- strategies that can resist selective invasion by any mutant. 
-In the limit of large populations, evolutionary robust strategies are closely related to the Nash equilibria of the repeated game. 
-Using an elegant coordinate transform, Stewart and Plotkin~\cite{stewart:scientific:2016} give a rigorous characterization of those evolutionary robust strategies that sustain mutual cooperation.
+They  particularly focus on those strategies that are `evolutionary robust' -- strategies that resist selective invasion by any mutant. 
+In the limit of large populations, evolutionary robust strategies are closely related to the Nash equilibria of the repeated game~\cite{stewart:pnas:2014}. 
+Using an elegant coordinate transform, Stewart and Plotkin~\cite{stewart:scientific:2016} give a rigorous characterization of those evolutionary robust strategies that sustain cooperation.
 They use this characterization to compute the respective volume of evolutionary robust cooperating strategies.
 Analytically and with simulations, they show that this volume increases in the player's memory, relative to the respective volume of evolutionary robust strategies that lead to mutual defection. 
+Finally, using simulations, they show that when the players' strategies co-evolve with their memory capacity, then evolution favors larger memory capacities. 
 
-Importantly,  however, even in the case of $m\!=\!2$ players, Stewart and Plotkin's characterization of evolutionary robust strategies is implicit.  
+Stewart and Plotkin's robustness results are related to ours. 
+Importantly,  however, even in the case of $m\!=\!2$ players, their characterization of evolutionary robust strategies is implicit.  
 For example, for cooperating strategies, their Eq. (2) contains terms $w^{l_0,l_p}$. 
 These terms in turn depend on the specific mutant strategy considered. 
 Especially for larger values of $n$, these terms become increasingly expensive to compute. 
 Moreover, in principle, one would have to check these conditions for all possible mutants. 
-The authors argue that only four particular cases of  $w^{l_0,l_p}$ need to be studied (as described in detail in their SI Section 5.4).
+The authors argue that only four particular cases of  $w^{l_0,l_p}$ need to be studied (as described in their SI Section~5.4).
 However, two of these cases correspond to an entire family of possible mutant strategies. 
-In one case, one needs to check mutants that play in such a way that the two players do not defect for $n$ consecutive rounds.  
+In one case, one needs to check mutants that play such that the two players do not defect for $n$ consecutive rounds.  
 In the other case, one needs to check mutants that make sure the two players do not cooperate for $n$ consecutive rounds. 
 Because there are many such mutants, these two cases can lead to more than two inequalities when characterizing the set of evolutionary robust strategies. 
 In fact, for our example of finding the partners among the reactive-$n$ counting strategies, we find that these two cases give rise to $n\!-\!1$ inequalities. 
 Together with the condition that the strategy ought to be robust against \alld, we obtain $n$ conditions overall. 
 
-In contrast to Stewart and Plotkin's work, we explicitly characterize the partner strategies for reactive-2, reactive-3, and for reactive-$n$ counting strategies. 
-To this end, we also prove an interesting theoretical result: 
-To test whether any given reactive-$n$ strategy is a Nash equilibrium, it suffices to compare it to all pure self-reactive-$n$ strategies. 
+In contrast to Stewart and Plotkin's work, we give fully explicit conditions for the partner strategies among the reactive-2, reactive-3, and for reactive-$n$ counting strategies. 
+To this end, we make important conceptual progress. 
+We show that to test whether any given reactive-$n$ strategy is a Nash equilibrium, it suffices to compare it to all pure self-reactive-$n$ strategies. 
+Similar results could in future help to prove further results on the stability of other classes of memory-$n$ strategies.  
+Finally, we perform extensive simulations to study the evolution of reactive-$n$ and reactive-$n$ counting strategies, for $n\!\in\!\{1,2,3\}$. 
 
 
 
@@ -246,7 +252,7 @@ For the repeated game, we define the players' payoffs as the expected payoff per
 For general strategies $\sigma^1$ and $\sigma^2$, the above limit may not always exist. 
 Problems may arise, for example, if one of the players cooperates in the first round, defects in the two subsequent rounds, cooperates in the four rounds thereafter, etc., which prevents the time averages from converging. 
 However, in the following, we focus on strategies with finite memory. 
-When both players adopt such a strategy, the existence of the limit~\eqref{Eq:RGpayoff} is guaranteed, as we discuss further below.
+When both players adopt such a strategy, the existence of the limit in \eqref{Eq:RGpayoff} is guaranteed, as we discuss further below.
 
 
 \subsection{Finite-memory strategies} 
@@ -260,18 +266,18 @@ We interpret the string's entry \(a^i_{-k}\) as player \(i\)'s action \(k\) roun
 We denote the space of all \(n\)-histories for player \(i\) as \(H^i\). 
 This space contains \(|H^i| \!=\! 2^n\) elements. 
 A pair \(\mathbf{h} \!=\! (\mathbf{h^1}, \mathbf{h^2})\) is called an {\it \(n\)-history of the game}. 
-We use \(H \!=\! H^1 \!\times\! H^2\) to denote the space of all such histories, which contains \(|H| \!=\! 2^{2n}\) elements.\\ 
+We use \(H \!=\! H^1 \!\times\! H^2\) to denote the space of all such histories, which contains \(|H| \!=\! 2^{2n}\) elements.
 
 %% MODEL: Defining Memory-n strategies %% 
 \noindent
-{\bfseries Memory-$n$ strategies.} Based on this notation, a {\it memory-$n$ strategy}  for player $i$ as a tuple \(\mathbf{m} \!=\! (m_\mathbf{h})_{\mathbf{h}\in H}\). 
+\subsubsection*{Memory-$n$ strategies} Based on this notation, a {\it memory-$n$ strategy}  for player $i$ as a tuple \(\mathbf{m} \!=\! (m_\mathbf{h})_{\mathbf{h}\in H}\). 
 Each input $\mathbf{h}\!=\!(h^i,h^{-i})$ refers to a possible $n$-history, where now $\mathbf{h^i}$ and $\mathbf{h^{-i}}$ refer to the $n$-histories of the focal player and the co-player, respectively. 
 The corresponding output $m_\mathbf{h}\!\in\![0,1]$ is the focal player's cooperation probability in the next round, contingent on  the outcome of the previous \(n\) rounds. We refer to the set of all memory-$n$ strategies as 
 \begin{equation}
 \mathcal{M}_n:=\Big\{ \mathbf{m}\!=\!(m_\mathbf{h})_{\mathbf{h}\in H} ~\Big|~0\!\le\!m_\mathbf{h}\!\le\!1~\text{for all}~ \mathbf{h}\!\in\! H\Big\} = [0,1]^{2^{2n}} .
 \end{equation}
 This definition leaves the strategy's actions during the first $n$ rounds unspecified, for which no complete $n$-history is yet available. 
-However, because we consider infinitely repeated games without discounting, these first $n$ rounds are usually irrelevant for the long-run dynamics, as we show further below. 
+However, because we consider infinitely repeated games without discounting, these first $n$ rounds are usually irrelevant, as we show further below. 
 In the following, we therefore only specify a strategy's move during the first $n$ rounds when necessary. 
 
 %% MODEL: Memory-1 strategies %% 
@@ -279,17 +285,17 @@ In the following, we therefore only specify a strategy's move during the first $
 Among all memory-$n$ spaces $\mathcal{M}_1$, the one with $n\!=\!1$ is the most frequently studied. 
 Memory-1 strategies take the form $\mathbf{m}\!=\!(m_{CC}, m_{CD}, m_{DC}, m_{DD})$. 
 The first index refers to the focal player's last action (1-history) and the second index refers to the co-player's last action. 
-One well-known memory-1 strategy is Win-Stay Lose-Shift~\citep{nowak:Nature:1993}, $\mathbf{m}\!=\!(1,0,0,1)$. However, there are many others~\citep{hilbe:Nature:2018}.\\
+One well-known example is Win-Stay Lose-Shift~\citep{nowak:Nature:1993}, $\mathbf{m}\!=\!(1,0,0,1)$, but there are many others~\citep{hilbe:Nature:2018}.
 
 %% MODEL: Reactive strategies %%
 
 \noindent
-{\bfseries Reactive-$n$ strategies.} For our following analysis, two particular subsets of memory-$n$ strategies will play an important role. 
+\subsubsection*{Reactive-$n$ strategies} For our following analysis, two particular subsets of memory-$n$ strategies will play an important role. 
 The first subset is the set of {\it reactive-$n$ strategies}, 
 \begin{equation}
 \mathcal{R}_n:=\Big\{ \mathbf{m}\!\in\!\mathcal{M}_n ~\Big|~ m_{(\mathbf{h^i},\mathbf{h^{-i}})}\!=\!m_{(\mathbf{\tilde{h}^i},\mathbf{h^{-i}})}~~\text{for all}~\mathbf{h^i}, \mathbf{\tilde{h}^i}\!\in\!H^i~\text{and}~\mathbf{h^{-i}}\!\in\!H^{-i}\Big\}.
 \end{equation}
-That is, reactive-$n$ strategies are independent of the focal player's own $n$-history. 
+Reactive-$n$ strategies are independent of the focal player's own $n$-history. 
 The space of \mbox{reactive-$n$} strategies can be naturally identified with the space of all $2^n$-dimensional vectors 
 \begin{equation}\label{Eq:ReactiveSimple}
 \mathbf{p}\!=\!(p_\mathbf{h^{-i}})_{\mathbf{h^{-i}}\in H^{-i}} ~~\text{with}~~ 0\!\le\!p_\mathbf{h^{-i}}\!\le\!1 ~~\text{for all}~~ \mathbf{h^{-i}}\!\in\! H^{-i}.
@@ -308,11 +314,11 @@ For that strategy, the memory-1 representation is $\mathbf{m}\!=\!(1,p^*_D,1,p^*
 \begin{equation} \label{Eq:ConditionGTFT}
 p^*_D\!:=\!\min\big\{1\!-\!(T\!-\!R)/(R\!-\!S),~(R\!-\!P)/(T\!-\!P)\big\}.
 \end{equation} 
-In the special case that payoffs are given by the donation game, this condition simplifies to $p^*_D\!=\!1-c/b$.\\
+In the special case that payoffs are given by the donation game, this condition simplifies to $p^*_D\!=\!1-c/b$.
 
 %% MODEL: Self-reactive strategies %%
 \noindent
-{\bfseries Self-reactive-$n$ strategies.}
+\subsubsection*{Self-reactive-$n$ strategies.}
 The other important subspace of memory-$n$ strategies is the set of self-reactive-$n$ strategies, 
 \begin{equation}
 \mathcal{S}_n:=\Big\{ \mathbf{m}\!\in\!\mathcal{M}_n ~\Big|~ m_{(\mathbf{h^i},\mathbf{h^{-i}})}\!=\!m_{(\mathbf{h^i},\mathbf{\tilde h^{-i}})}~~\text{for all}~\mathbf{h^i}\!\in\!H^i~\text{and}~\mathbf{h^{-i}},\mathbf{\tilde h^{-i}}\!\in\!H^{-i}\Big\}.
@@ -350,10 +356,10 @@ When it is convenient to represent the self-reactive repeat strategies as elemen
 
 %% MODEL: Markov chain approach %% 
 
-%{\bf A Markov chain representation.}
+\subsubsection*{A Markov chain representation}
 A repeated game between two players with memory-\(n\) strategies \(\mathbf{m^{1}}\) and \(\mathbf{m^{2}}\) can be represented as a Markov chain. 
 The states of the Markov chain are the possible $n$-histories~$\mathbf{h}\!\in\!H$. 
-To compute the transition probabilities from one state to another within a single round, suppose  players currently have the $n$-history \(\mathbf{h}\!=\!(\mathbf{h^1}, \mathbf{h^2})\) in memory.
+To compute the transition probabilities from one state to another within one round, suppose  players currently have the $n$-history \(\mathbf{h}\!=\!(\mathbf{h^1}, \mathbf{h^2})\) in memory.
 Then the transition probability that the state after one round is $\mathbf{\tilde h}\!=\!(\mathbf{\tilde h^1},\mathbf{\tilde h^2})$ is a product of two factors,
 \begin{equation}\label{Eq:TransitionMatrix}
 M_{\mathbf{h}, \mathbf{\tilde h}} = x^1 \cdot x^2,
@@ -381,12 +387,11 @@ This limiting distribution~$\mathbf{v}$ can be computed as the unique solution o
 
 But even when $M$ is not ergodic, $\mathbf{v}(t)$ still converges to an invariant distribution $\mathbf{v}$ that satisfies $\mathbf{v} \!=\! \mathbf{v}M$.
 However, in that case, the system  $\mathbf{v} \!=\! \mathbf{v}M$ no longer has a unique solution. 
-Instead, the limiting distribution $\mathbf{v}$ depends on the very first $n$-history after the first $n$ rounds, $\mathbf{v}(n)$, which in turn depends on the players' moves during the first $n$ rounds.\\ 
+Instead, the limiting distribution $\mathbf{v}$ depends on the very first $n$-history after the first $n$ rounds, $\mathbf{v}(n)$, which in turn depends on the players' moves during the first $n$ rounds.
 
 %% MODEL: Payoffs among memory-n players %%
 
-\noindent
-{\bf A formula for the payoffs among memory-$n$ players.} Based on the above considerations, we can derive an explicit formula for the payoffs according to~\eqref{Eq:RGpayoff} when players use memory-$n$ strategies $\mathbf{m^1}$ and $\mathbf{m^2}$. 
+\subsubsection*{A formula for the payoffs among memory-$n$ players} Based on the above considerations, we can derive an explicit formula for the payoffs according to~\eqref{Eq:RGpayoff} when players use memory-$n$ strategies $\mathbf{m^1}$ and $\mathbf{m^2}$. 
 To this end, we introduce a $2^{2n}$-dimensional vector $\mathbf{g^i}(k)\!=\!\big(\,g^i_\mathbf{h}(k)\,\big)_{\mathbf{h}\in H}$, that takes an $n$-history $\mathbf{h}$ as an input and returns player $i$'s payoff $k$ rounds ago, for $k\!\le\!n$. 
 That is, 
 \begin{equation}\label{Eq:g(k)}
@@ -410,11 +415,11 @@ As a result, we obtain for the player's average payoff across all rounds
 &\stackrel{\mbox{\small \eqref{Eq:RGpayoff}}}{=}  
 &\displaystyle \lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=1}^{\tau} \pi^i_{\mathbf{m^1},\mathbf{m^2}}(t)
 ~=~
-\lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=n}^{\tau} \pi^i_{\mathbf{m^1},\mathbf{m^2}}(t)\\[0.5cm]
+\lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \pi^i_{\mathbf{m^1},\mathbf{m^2}}(t)\\[0.5cm]
 &\stackrel{\mbox{\small \eqref{Eq:ExpPayRound}}}{=}  
-&\displaystyle \lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=n}^{\tau}\big\langle \,\mathbf{v}(t),\, \mathbf{g^i}(1)\,\big\rangle
+&\displaystyle \lim_{\tau \to \infty}~ \frac{1}{\tau} \sum_{t=n}^{n+\tau-1}\big\langle \,\mathbf{v}(t),\, \mathbf{g^i}(1)\,\big\rangle
 ~=~
-\Big\langle \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{\tau} \mathbf{v}(t)\, , \, \mathbf{g^i}(1)\,\Big\rangle\\[0.5cm]
+\Big\langle \lim_{\tau \to \infty} \frac{1}{\tau} \sum_{t=n}^{n+\tau-1} \mathbf{v}(t)\, , \, \mathbf{g^i}(1)\,\Big\rangle\\[0.5cm]
 &\stackrel{\mbox{\small \eqref{Eq:TimeAverage}}}{=}  
 &\big\langle\, \mathbf{v}, \mathbf{g^i}(1)\,\big\rangle .
 \end{array}
@@ -448,8 +453,8 @@ Here, we provide the version that will be most relevant for us.
 %% MODEL:  Akin's Lemma %%
 
 \begin{lemma}[A generalized version of Akin's Lemma]\label{lemma:AkinGeneralised}
-Let player $1$ use a memory-$n$ strategy, and let player~$2$ use an arbitrary
-strategy. For the resulting game and all $t\!\ge\!n$, let $\mathbf{v}(t)\!=\!\big( v_\mathbf{h}(t) \big)_{\mathbf{h}\in H}$ denote the probability distribution of observing each possible $n$-history $\mathbf{h}\!\in\! H$ after players made their decisions for round~$t$. Moreover, suppose the respective time average $\mathbf{v}$ according to \eqref{Eq:TimeAverage} exists. Then for each $k$ with $1\!\le\!k\!\le\!n$, we obtain
+Suppose player $1$ uses a memory-$n$ strategy and player~$2$ uses an arbitrary strategy. 
+For the resulting game and $t\!\ge\!n$, let $\mathbf{v}(t)\!=\!\big( v_\mathbf{h}(t) \big)_{\mathbf{h}\in H}$ denote the probability distribution of observing each possible $n$-history $\mathbf{h}\!\in\! H$ after players made their decisions for round~$t$. Moreover, suppose the respective time average $\mathbf{v}$ according to \eqref{Eq:TimeAverage} exists. Then for each $k$ with $1\!\le\!k\!\le\!n$, we obtain
 \begin{equation} \label{Eq:Akin}
 \big\langle\, \mathbf{v}\, , \mathbf{m}-\mathbf{m}^{k-\text{Rep}}\,\big\rangle = 0. 
 \end{equation}
@@ -483,7 +488,7 @@ Strategies with these properties have been termed as being of {\it Nash type} by
 In the following, we formally define them. 
 
 \begin{definition}[Partner strategies]
-{~
+{~\\[-0.7cm]
 \renewcommand\labelenumi{(\roman{enumi})}
 \begin{enumerate}[noitemsep,topsep=0pt]
 \item A strategy $\sigma$ for the repeated prisoner's dilemma is a {\it Nash equilibrium} if it is a best response to itself.
@@ -539,11 +544,11 @@ In this expression, $\mathbf{g}^i(k)$ is the vector that returns player $i$'s pa
 \end{array}
 \end{equation}
 That is, a player with a zero-determinant strategy enforces a linear relationship between the players' payoffs, irrespective of the co-player's strategy. 
-Remarkably, the parameters $\hat \alpha$, $\hat \beta$, and $\gamma$ of that linear relationship are entirely under player $i$'s control.\\
+Importantly, the parameters $\hat \alpha$, $\hat \beta$, and $\gamma$ of that linear relationship are entirely under player $i$'s control.
 
 \noindent
-{\bf Generalized versions of Tit-for-tat.} 
-Suppose for $\boldsymbol \alpha, \boldsymbol \beta, \boldsymbol \delta$ there is a $k$ such that $\alpha_k\!=\!-\beta_k\!=\!1/(T\!-\!S)$, $\delta_k\!=\!1$ and $\alpha_j\!=\!\beta_j\!=\!\delta_j\!=\!0$ for $j\!\neq\!k$. Moreover, set $\gamma\!=\!0$. In that case, formula
+\subsubsection*{Generalized versions of Tit-for-tat} 
+Suppose we choose $\boldsymbol \alpha, \boldsymbol \beta, \boldsymbol \delta$ such that $\alpha_k\!=\!-\beta_k\!=\!1/(T\!-\!S)$, $\delta_k\!=\!1$ for some $k$, and $\alpha_j\!=\!\beta_j\!=\!\delta_j\!=\!0$ for $j\!\neq\!k$. Moreover, set $\gamma\!=\!0$. In that case, formula
 \eqref{Eq:DefZD} yields the strategy with entries
 \begin{equation*}
 m_\mathbf{h} = \left\{
@@ -561,10 +566,10 @@ By \eqref{Eq:PayoffZD}, the strategy enforces equal payoffs against any co-playe
 \end{equation} 
 Moreover, this strategy is nice if we additionally require it to unconditionally cooperate during the first $k$ rounds. 
 Given this additional requirement, the payoff of $\mathbf{m^i}$ against itself is $R$. 
-Moreover, the strategy is a Nash equilibrium. To see why, suppose to the contrary that there is a strategy $\sigma^{-i}$ with $\pi^{-i}(\mathbf{m}^i,\sigma^{-i}) \!>\! R$. Then it follows from \eqref{Eq:Fairness} that $\pi^i(\mathbf{m^i},\sigma^{-i}) \!+\! \pi^{-i}(\mathbf{m^i},\sigma^{-i})\!>\!2R$. That is, the total  payoff per round exceeds $2R$, which is incompatible with the basic assumptions on a prisoner's dilemma, \eqref{Eq:ConditionsPD}. We conclude that all these versions of \tft{} are nice and they are Nash equilibria. Hence, they are partner strategies.\\
+Moreover, the strategy is a Nash equilibrium. To see why, suppose to the contrary that there is a strategy $\sigma^{-i}$ with $\pi^{-i}(\mathbf{m}^i,\sigma^{-i}) \!>\! R$. Then it follows from \eqref{Eq:Fairness} that $\pi^i(\mathbf{m^i},\sigma^{-i}) \!+\! \pi^{-i}(\mathbf{m^i},\sigma^{-i})\!>\!2R$. That is, the total  payoff per round exceeds $2R$, which is incompatible with the basic assumptions on a prisoner's dilemma, \eqref{Eq:ConditionsPD}. We conclude that all these versions of \tft{} are nice and they are Nash equilibria. Hence, they are partner strategies.
 
 \noindent
-{\bf Generalized versions of Generous Tit-for-Tat.}
+\subsubsection*{Generalized versions of Generous Tit-for-Tat}
 Another interesting special case arises in the donation game if $\boldsymbol{\alpha}\!=\! \boldsymbol{0}$, $\gamma\!=\!1\!-\!c/b$, and there is a $k$ such that $\beta_k\!=\!-1/b$, $\delta_k\!=\!1$ and $\beta_j\!=\!\delta_j\!=\!0$ for $j\!\neq\!k$. 
  In that case \eqref{Eq:DefZD} yields the strategy
 \begin{equation*}
@@ -575,7 +580,7 @@ m_\mathbf{h} = \left\{
 \end{array}
 \right.
 \end{equation*}
-That is, the generated strategy is \gtft{} (if $k\!=\!1$), or a delayed version
+The generated strategy is \gtft{} (if $k\!=\!1$), or a delayed version
 thereof (for $k\!>\!1$). By \eqref{Eq:PayoffZD}, the enforced payoff
 relationship is $\pi^{-i}(\mathbf{m^{i}}, \sigma^{-i})\!=\!b\!-\!c$. 
 That is, the co-player always obtains the mutual cooperation payoff, irrespective of the co-player's strategy. 
@@ -584,7 +589,7 @@ If we additionally require them to cooperate during the first $n$ rounds, they a
 Hence, they are partner strategies.\\
 
 \noindent
-{\bf Equalizers.} We can further generalize the previous insight that a strategy like Generous Tit-for-Tat (and delayed versions thereof) can unilaterally determine the co-player's payoff. To this end, consider the donation game and let $\boldsymbol \delta$ be a non-negative distribution such that $\delta_k\!\ge\!0$ for all $k$, and $\sum_{k=1}^n \delta_i\!=\!1$. Moreover, let $\kappa\!\in\![0,1]$ be a parameter, and define
+\subsubsection*{Equalizers} We can further generalize the previous insight that a strategy like Generous Tit-for-Tat (and delayed versions thereof) can unilaterally determine the co-player's payoff. To this end, consider the donation game and let $\boldsymbol \delta$ be a non-negative distribution such that $\delta_k\!\ge\!0$ for all $k$, and $\sum_{k=1}^n \delta_i\!=\!1$. Moreover, let $\kappa\!\in\![0,1]$ be a parameter, and define
 \begin{equation} \label{Eq:Equalizers}
 \boldsymbol \alpha \!=\!0,~~~~
 \boldsymbol \beta \!=\! -\frac{1}{b} \boldsymbol \delta,~~~~
@@ -595,7 +600,7 @@ That is, a player with a zero-determinant strategy that satisfies \eqref{Eq:Equa
 In line with the previous literature, we refer to such a strategy as an {\it equalizer} \citep{boerlijst:AMM:1997,press:PNAS:2012}. 
 The generalized versions of Generous Tit-for-Tat are a special case with $\kappa\!=\!1$ and $\boldsymbol{\delta}$ being a distribution that puts full weight on a single round $k$. 
 By keeping $\kappa\!=\!1$ but varying the distribution $\boldsymbol \delta$, we obtain other equalizer strategies that fix the co-player's payoff to be $b\!-\!c$. 
-They all represent linear combinations of the various delayed versions of $\gtft$; and they all are partner strategies. 
+Assuming these strategies prescribe to cooperate during the first $n$ rounds, they all represent linear combinations of the various delayed versions of $\gtft$. All these linear combinationsl are partner strategies. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RESULTS: SELF-REACTIVE  %%
@@ -606,14 +611,14 @@ They all represent linear combinations of the various delayed versions of $\gtft
 
 %% SELF-REACTIVE: Self-reactive strategies sufficiency %%
 \subsubsection*{Sufficiency of checking pure self-reactive strategies}
-After discussing these particular cases, we would like to derive a general algorithm that allows us to verify whether a given reactive-$n$ strategy is a Nash equilibrium. 
+After discussing these particular cases, we aim to derive a general algorithm that allows us to verify whether a given reactive-$n$ strategy is a Nash equilibrium. 
 In principle, this requires us to check the payoff of any other strategy (including strategies that have a much longer memory length than $n$). Fortunately, however, some simplifications are possible when we use an insight by Press and Dyson \cite{press:PNAS:2012}.
 They discussed the case where one player uses a memory-1
 strategy and the other player employs a longer memory strategy. They
 demonstrated that the payoff of the player with the longer memory is exactly the
 same as if the player had employed a specific shorter-memory strategy,
 disregarding any history beyond what is shared with the short-memory player.
-Here we show a result that follows a similar intuition. 
+Here we show a similar result. 
 If there is a part of the game's history that one player does not take into account, then the co-player gains nothing by
 considering that part of the history. 
 
@@ -659,7 +664,7 @@ Corollary \ref{Cor:NashCondition} gives us a straightforward procedure to check
 whether a given reactive strategy $\mathbf{p}$ is a Nash equilibrium (for a
 depiction, see Algorithm~\ref{Alg:Nash}). To verify that $\mathbf{p}$ is a Nash
 equilibrium, we merely need to compare its payoff against itself to the payoff
-of a deviation towards one of the $2^n$ pure self-reactive strategies.\\
+of a deviation towards one of the $2^{2^n}$ pure self-reactive strategies.\\
 
 \begin{algorithm}[t!]
    \setstretch{1.35}
@@ -850,13 +855,14 @@ A nice reactive-3 strategy $\mathbf{p}$ is a partner strategy if and only if its
 \end{theorem}
 
 \noindent
-Compared to the case $n\!=\!2$, the respective conditions are now somewhat more difficult to interpret. 
-However, the general pattern reflected in each inequality remains the same. 
+Compared to the case $n\!=\!2$, the respective conditions are now somewhat less intuitive. 
+However, there is still a general pattern that is preserved. 
 On average, a player's cooperation probability needs to be diminished in proportion to the number of defections in memory. 
 More specifically, in a given inequality, let $x$ be the proportion of $D$'s in the histories on the left-hand's side. 
 Then the threshold on the right-hand side is given by $1-x\cdot c/b$. 
 For example, in case of the second inequality in \eqref{eq:three_bit_conditions}, the left-hand side features the histories $CCD$, $CDC$, $DCC$. 
-Because the proportion of $D$'s across all three histories is $1/3$, the threshold on the right-hand side is $1-1/3\!\cdot\!c/b$. 
+The proportion of $D$'s across all three histories is $1/3$. 
+Therefore, the threshold on the right-hand side is $1-1/3\!\cdot\!c/b$. 
 
  
 %However, compared to the case $n\!=\!2$, the respective conditions are now somewhat more difficult to interpret. 
@@ -899,25 +905,26 @@ is a partner strategy if and only if
 \end{theorem}
 
 \noindent
-Here, the interpretation is again straightforward.
-For every defection in memory, the player's cooperation probability needs to be diminished by $1/n\cdot c/b$. 
+Here, the interpretation is straightforward.
+For each defection, the player's cooperation probability decreases by~$c/(nb)$. 
 
 Note that for $n\!\ge\!2$, the space of reactive-$n$ counting strategies is strictly smaller than the space of reactive-$n$ strategies. 
 For example, the space of reactive-2 strategies is 4-dimensional, whereas the respective space of counting strategies is 3-dimensional. 
 However, in terms of memory required to implement the respective strategies, the two strategy spaces are equivalent. 
 In each case, the player needs to memorize the exact sequence $\mathbf{h^{-i}}\!=\!(a^{-i}_{-n},\ldots, a^{-i}_{-1})$ of the co-player's last $n$ actions. 
-In the case of reactive-$n$ strategies this kind of memory is already required to choose the appropriate cooperation probability $p_{\mathbf{h^{-i}}}$ in the next round. 
-However, also for reactive-$n$ counting strategies merely memorizing the number $k:=|\mathbf{h}^{-i}| \in \{0,\ldots,n\}$ is not sufficient. 
+In the case of reactive-$n$ strategies this memory requirement is obvious. 
+After all, players need to know the exact sequence $\mathbf{h^{-i}}$ to select the appropriate cooperation probability $p_{\mathbf{h^{-i}}}$. 
+But even for reactive-$n$ counting strategies merely memorizing the co-player's cooperation count $k:=|\mathbf{h}^{-i}| \in \{0,\ldots,n\}$  is not sufficient. 
 This number would suffice to choose the correct cooperation probability $r_k$ in the respective round. 
 However, to correctly update the co-player's cooperation count $|\mathbf{h}^{-i}|$, the player still needs to remember which action the co-player chose $n$ rounds ago (because that is the part of the $n$-history that will be dropped after the current round). 
-The memory requirements in the next round will be similar; a player will then need to remember exactly what happened (what is currently) $n\!-\!1$ rounds ago. 
+A similar observation then applies to the next round, too: at that point, a player will need to remember exactly what happened (what is currently) $n\!-\!1$ rounds ago. 
 By this logic, it follows that even a memory-$n$ counting strategy requires a memory of the exact sequence of the co-player's last $n$ actions, not a mere memory of how often the co-player cooperated during the past $n$ rounds. 
 
 %% PARTNER STRATEGIES: Prisoner's Dilemma %%
 
 \subsection{Reactive partner strategies in the general prisoner's dilemma}\label{section:general_prisoners_dilemma}
 
-In the previous section, we have characterized the reactive partner strategies for a special case of the prisoner's dilemma, the donation game. 
+In the previous section, we have characterized the reactive partner strategies for the donation game. 
 In the following, we apply the same methods based on Section~\ref{section:results}\ref{Sec:Algorithm} to analyze the general prisoner's dilemma. 
 For  the case of reactive-2 strategies, we obtain the following characterization. 
 
@@ -997,10 +1004,10 @@ Given the large number of conditions in Table~\ref{Tab:PartnerReactiveThreePD}, 
 \subsection{Defector strategies in the donation game}\label{section:defecting_donation_game}
 
 In the previous sections, we considered partner strategies -- those strategies that sustain full cooperation in a Nash equilibrium.  
-For comparison, in the following we characterize the equilibria in which players fully defect. 
+For comparison, in the following we characterize equilibria in which players fully defect. 
 In analogy to partner strategies, the corresponding {\it defector strategies} need to satisfy two properties. 
 ({\it i})~A player with a defector strategy is never the first to cooperate. 
-({\it ii})~When both players adopt a defector strategy, we obtain a Nash equilibrium. 
+({\it ii})~When both players adopt a defector strategy, the strategies form a Nash equilibrium. 
 Based on our general framework in Section~\ref{section:results}\ref{Sec:Algorithm}, we can characterize defector strategies as follows. 
 
 
@@ -1033,7 +1040,7 @@ Based on our general framework in Section~\ref{section:results}\ref{Sec:Algorith
 \noindent
 The interpretation of these conditions is similar to before. 
 In each case, a defector strategy's cooperation probability increases in proportion to the co-player's average cooperation rate during the last $n$ rounds. 
-Analogously the case of partner strategies, we can also identify the defector strategies among the reactive-$n$ counting strategies $\mathbf{r}=(r_k)$. 
+Similar to the case of partner strategies, we can also identify the defector strategies among the reactive-$n$ counting strategies $\mathbf{r}=(r_k)$. 
 We obtain that a reactive-$n$ counting strategy is a defector if and only if 
 \begin{equation} \label{Eq:DefectorCounting}
 r_{k} \le  \frac{k}{n} \cdot \frac{c}{b} ~~~\text{\normalfont for }~ k \in \{0, 1, \dots, n\}.
@@ -1050,7 +1057,7 @@ r_{k} \le  \frac{k}{n} \cdot \frac{c}{b} ~~~\text{\normalfont for }~ k \in \{0, 
 \subsection{Games with errors}
 \label{section:errors}
 
-In the previous section, we have studied equilibrium behavior when actions are executed perfectly. 
+So far, we have studied equilibrium behavior when actions are executed perfectly. 
 Individuals who wished to cooperate always had the means to do so; individuals who wished to defect always did.
 In the following, we allow decisions to be subject to errors.
 There are three motivations to do so. 
@@ -1063,41 +1070,40 @@ These reasons make an extension of our results to games with errors desirable.
 
 At first, such an extension may appear straightforward. 
 Indeed, many of our key results naturally carry over. 
-For example, in order to explore whether a reactive-$n$ strategy is a Nash equilibrium, it still suffices to compare it to all self-reactive-$n$ strategies.
+For example, in order to explore whether a reactive-$n$ strategy is a Nash equilibrium, it still suffices to compare it to all pure self-reactive-$n$ strategies.
 Nevertheless, errors give rise to additional complications. 
 In particular, they make it more difficult to obtain closed-form expressions for the payoff of a partner strategy against itself. 
 Without errors, this payoff is simply $b\!-\!c$ (in the donation game), or $R$ (in the general prisoner's dilemma). 
 In games with errors, the expressions quickly become more complex. 
-Already for relatively simple strategy spaces, like reactive-2 or memory-1 strategies, these additional complications render an analytical treatment difficult. 
+Already for relatively simple strategy spaces, like reactive-2 or memory-1 strategies, these complications render an analytical treatment difficult. 
 For example, as of now the set of all Nash equilibria among the memory-1 strategies is only known for games without errors~\citep{akin:EGADS:2016,stewart:pnas:2014}. 
 More recently, some progress has been possible in games with an alternating move structure~\citep{park:NComms:2022}. 
 But for games in which players decide simultaneously (as considered herein), an analytical treatment remains challenging.
 
 In the following, we extend our results into two directions. 
 First, we characterize equilibrium strategies when error rates are positive, but vanishingly small. 
-In a second step, we then characterize a subset of reactive-$n$ strategies, the so-called equalizers~\citep{boerlijst:AMM:1997,press:PNAS:2012}. 
-These strategies form a Nash equilibrium for any error rate. 
+In a second step, we then characterize a subset of reactive-$n$ equalizer strategies that form a Nash equilibrium for any error rate. 
 
 \subsubsection*{Implementation errors}
-Herein, we consider implementation errors. 
-An individual who intends to cooperate instead defects with some probability $\varepsilon$ (conversely, an individual who intends to defect instead cooperates with the same probability). 
-It is straightforward to include such errors into our model \citep[see also][]{park:NComms:2022}. 
+In line with the existing literature~\cite{axelrod:book:1984,nowak:book:2006,sigmund2010,hilbe:Nature:2018}, we focus on the effect of implementation errors. 
+An individual who intends to cooperate instead defects with some probability $\varepsilon$. Conversely, an individual who intends to defect instead cooperates with the same probability. 
+It is straightforward to include such errors into our model \citep[see also Ref.][]{park:NComms:2022}. 
 Once a player $i$ with some memory-$n$ strategy \(\mathbf{m^i} \!=\! (m^i_\mathbf{h})_{\mathbf{h}\in H}\) is subject to errors, the player acts as if it used a strategy
 \begin{equation}
 \mathbf{m^{i,\varepsilon}} = \varphi^\varepsilon(\mathbf{m^i}) := (1\!-\!\varepsilon)\mathbf{m^i} + \varepsilon (\mathbf{1}-\mathbf{m^i}). 
 \end{equation}
 The transformation $\varphi^\varepsilon$ is a bijection that maps any {\it nominal strategy} $\mathbf{m} \in [0,1]^{2^{2n}}$ to an effective strategy $\mathbf{m}^\varepsilon \in [\varepsilon,1\!-\!\varepsilon]^{2^{2n}}$. The inverse mapping is given by
-\begin{equation}
+\begin{equation} \label{Eq:Phi_inverse}
 \big(\varphi^\varepsilon\big)^{-1}(\mathbf{m}^\varepsilon) = \frac{\mathbf{m}^\varepsilon - \varepsilon\cdot \mathbf{1}}{1\!-\!2\varepsilon}. 
 \end{equation}
 In addition to $\mathbf{m}^\varepsilon$, we use an analogous notation $\mathbf{p}^\varepsilon$ and $\mathbf{\tilde p}^\varepsilon$ for reactive and self-reactive strategies, respectively. 
 For example, in games with errors, the strategy \alld{} is mapped to $\alld^\varepsilon = (\varepsilon,\ldots,\varepsilon)$. Similarly, \allc{} is mapped onto $\allc^\varepsilon = (1\!-\!\varepsilon,\ldots,1\!-\!\varepsilon)$. Finally, a strategy like Tit-for-two-Tat is mapped from $\mathbf{p}=(1,1,1,0)$ to $\mathbf{p}^\varepsilon = (1\!-\!\varepsilon,1\!-\!\varepsilon,1\!-\!\varepsilon,\varepsilon)$. 
 
-Games with errors can be analyzed the same way games without errors.
+Games with errors can be analyzed the same way as games without errors.
 We only need to replace the players' nominal strategies with their effective strategies. 
 For example, suppose we wish to compute payoffs when a player with nominal strategy $\mathbf{m^1}$ interacts with a co-player with strategy $\mathbf{m^2}$, in a game with error rate $\varepsilon$. Then we can use \eqref{Eq:RGpayoff} to obtain
 \begin{equation}
-\pi^{i,\varepsilon}(\mathbf{m^1},\mathbf{m^2}) = \pi^i(\mathbf{m^{1,\varepsilon}},\mathbf{m^{2,\varepsilon}}). 
+\pi^{i,\varepsilon}(\mathbf{m^1},\mathbf{m^2}) := \pi^i(\mathbf{m^{1,\varepsilon}},\mathbf{m^{2,\varepsilon}}). 
 \end{equation}
 A few remarks are in order. 
 
@@ -1105,7 +1111,7 @@ A few remarks are in order.
 \begin{remark} \label{Rem:Errors}
 \begin{enumerate}[label=({\it \roman*})]
 
-\item {\it On payoffs being well-defined.} Because all entries of $m^{1,\varepsilon}$ and $m^{2,\varepsilon}$ are strictly between 0 and 1 for $\varepsilon\!>\!0$, the payoffs $\pi^{i,\varepsilon}(\mathbf{m^1},\mathbf{m^2})$ are independent of the players' actions during the first $n$ rounds. They only depend on $m^{1}$ and $m^{2}$, and on the error rate $\varepsilon$. 
+\item {\it On payoffs being well-defined.} Because all entries of $m^{1,\varepsilon}$ and $m^{2,\varepsilon}$ are strictly between 0 and 1 for $\varepsilon\!>\!0$, the payoffs $\pi^{i,\varepsilon}(\mathbf{m^1},\mathbf{m^2})$ are independent of the players' actions during the first $n$ rounds. They only depend on $m^{1}$, $m^{2}$, and on the error rate $\varepsilon$. 
 
 \item {\it On the definition of partners.} For the case with errors, we define a memory-$n$ strategy $\mathbf{m}$ to be self-cooperative if it yields the mutual cooperation payoff against itself as $\varepsilon\rightarrow 0$, i.e., when errors are rare. 
 We say the strategy is a Nash equilibrium for the error rate $\varepsilon$ if $\pi^{1,\varepsilon}(\mathbf{m},\mathbf{m}) \ge \pi^{1,\varepsilon}(\mathbf{m'},\mathbf{m})$ for all other memory-$n$ strategies $\mathbf{m'}$. We note that because of the results of Press and Dyson~\citep{press:PNAS:2012} and Levinsky et al~\citep{Levinsky:IJGT:2020} the restriction that $\mathbf{m'}$ has the same memory length $n$ imposes no restriction on the generality of this definition. We say a self-cooperative strategy is a partner for the error rate $\varepsilon$ if it is a Nash equilibrium for that error rate. 
@@ -1113,12 +1119,12 @@ We say the strategy is a Nash equilibrium for the error rate $\varepsilon$ if $\
 \item {\it On the continuity of payoffs with respect to the error rate.} 
 We note that in general, the payoffs $\pi^{i,\varepsilon}(\mathbf{m^1},\mathbf{m^2})$ may be discontinuous as a function of $\varepsilon$ at $\varepsilon\!=\!0$. 
 Such discontinuities can arise when the transition matrix $M$ according to \eqref{Eq:TransitionMatrix} has multiple absorbing states in the game without errors. 
-In that case, the players' payoffs depends on their actions during the initial $n$ rounds. 
+In that case, the players' payoffs depend on their actions during the initial $n$ rounds. 
 The most prominent example of such a case occurs when two \tft{} players interact. 
 Under the assumption that these players cooperate in the first round, we obtain for the donation game $\pi^{1}(\tft,\tft{})\!=\!b\!-\!c$.
 That is, players achieve the mutual cooperation payoff. 
 Once we allow for errors, however, we obtain $\pi^{1,\varepsilon}(\tft,\tft)\!=\!(b\!-\!c)/2$ even when error rates are vanishingly small, $\varepsilon\!\rightarrow\!0$. 
-Importantly, however, these discontinuities are rare. 
+Importantly, however, across all memory-$n$ strategies these discontinuities in $\varepsilon$ are rare. 
 If the players' nominal strategies are such that the resulting transition matrix $M$ has a unique absorbing state, the resulting payoff function $\pi^{i,\varepsilon}(\mathbf{m^1},\mathbf{m^2})$ is continuous in $\varepsilon$ at $\varepsilon\!=\!0$. 
 
 \item {\it On the complexity of computing payoffs.} 
@@ -1132,10 +1138,14 @@ Unfortunately, this bypass is no longer available in games with errors.
 In that case, all of the 16 possible 2-histories $\mathbf{h}$ will be played with positive probability (in fact, that probability is bounded from below by $\varepsilon^4$, the probability that both players experience that history by a sequence of consecutive errors). 
 It follows that for games with errors, we can no longer hope for a simple characterization of all Nash equilibria.  
 To still make progress, in the following we use two distinct approaches. 
-According to the first approach, we weaken the equilibrium notion we use, by considering approximate Nash equilibria.  
-According to the second approach we consider a subset of Nash equilibria for which rigorous results are feasible. 
+For the first approach, we weaken the equilibrium notion we use, by considering approximate Nash equilibria.  
+For the second approach, we consider a subset of Nash equilibria for which rigorous results are feasible. 
 \end{enumerate} 
 \end{remark}
+
+
+
+%% APPROXIMATE NASH EQUILIBRIA IN GAMES WITH ERRORS %% 
 
 \subsubsection*{Approximate Nash equilibria in games with implementation errors}
 
@@ -1144,8 +1154,8 @@ Specifically, we say a memory-$n$ strategy $\mathbf{m}$ is an approximate Nash e
 \begin{equation} \label{Eq:ApproximateNash}
 \pi^{1,\varepsilon}(\mathbf{m'},\mathbf{m}) - \pi^{1,\varepsilon}(\mathbf{m},\mathbf{m}) \le \Delta~~~~\text{for all}~m'\in\mathcal{M}_n.
 \end{equation}
-According to this definition, any payoff advantage that any alternative strategy $\mathbf{m}'$ might yield is bounded from above by $\Delta$. 
-For $\Delta\!=\!0$, this notion recovers the definition of a Nash equilibrium. 
+According to this definition, any payoff advantage that an alternative strategy $\mathbf{m}'$ might yield is bounded from above by~$\Delta$. 
+For $\Delta\!\to\!0$, this notion recovers the definition of a Nash equilibrium. 
 For positive $\Delta$, the set of approximate equilibria is a proper superset of the set of Nash equilibria. 
 If $\mathbf{m}$ is self-cooperative and a proximate Nash equilibrium, we call it an {\it approximate partner strategy}. 
 
@@ -1158,24 +1168,13 @@ For approximate Nash equilibria, the situation is similar.
 Even if an advantageous mutant strategy $\mathbf{m'}$ appears, the initial dynamics will be well-approximated by neutral drift -- provided the threshold $\Delta$ and the selection strength $\beta$ are sufficiently small. 
 In this sense, we may still expect approximate Nash equilibria to be played for a substantial amount of time during the evolutionary process. 
 
-For analytical purposes, the notion of approximate Nash equilibria is useful because they allow us to exploit the properties of continuous functions. 
+For analytical purposes, the notion of approximate Nash equilibria is useful because it allows us to exploit the properties of continuous functions. 
 If a strategy $\mathbf{m}$ is a Nash equilibrium of the game without errors, and payoffs are continuous in $\varepsilon$, then $\mathbf{m}$ remains an approximate Nash equilibrium for sufficiently small error rates. By this argument, and by Remark~\ref{Rem:Errors}({\it iii}), we immediately obtain the following result. 
 
 \begin{theorem}[Approximate partners for games with errors] \label{Thm:ApproxPartners}
 Suppose $\mathbf{m}$ is a partner strategy and suppose all entries of $\mathbf{m}$ are strictly positive. 
 Then for any threshold $\Delta$ one can find a threshold $\bar{\varepsilon}$ such that $\mathbf{m}$ is an approximate partner for sufficiently small error rates, $\varepsilon\!\le\!\bar{\varepsilon}$. 
 \end{theorem}
-
-For sufficiently small error rates, this theorem guarantees that almost all partner strategies identified in the previous section remain approximate partners once we allow for errors. 
-In particular, the theorem captures all of the reactive-2 strategies in the interior of the polyhedron displayed in Figure 2C,D.
-Only some boundary strategies such as \tft{} are excluded. 
-At the same time, Theorem~\ref{Thm:ApproxPartners} does not quantify how small error rates need to be for a strategy $\mathbf{m}$ to be an approximate partner. 
-To explore this issue in more detail, Figure~\ref{fig:ApproximateNash} illustrates the set of approximate partners among the reactive-2 strategies for the donation game. 
-As expected, the respective set approaches the polyhedron displayed in Figure 2C as errors become increasingly rare (Fig.~\ref{fig:ApproximateNash}A). 
-However, as errors become more abundant, the set shrinks considerably. 
-It approaches a line once $\varepsilon\!=\!0$. 
-As we describe in the next section, this line corresponds to the line of so-called `equalizer strategies'. 
-In particular, we show that all strategies on that line are not merely approximate Nash equilibria; they are conventional Nash equilibria. 
 
 \begin{figure}[t!]
     \centering
@@ -1184,7 +1183,93 @@ In particular, we show that all strategies on that line are not merely approxima
     \label{fig:ApproximateNash}
 \end{figure}
 
+\noindent
+For sufficiently small error rates, this result guarantees that almost all partner strategies identified in the previous section remain approximate partners once we allow for rare errors. 
+In particular, the theorem captures all of the reactive-2 strategies in the interior of the polyhedron displayed in the main text Figure~2C,D.
+Only some boundary strategies such as \tft{} are excluded. 
+At the same time, however, Theorem~\ref{Thm:ApproxPartners} does not quantify how small error rates need to be for a strategy $\mathbf{m}$ to be an approximate partner. 
+To explore this issue in more detail, Figure~\ref{fig:ApproximateNash} illustrates the set of approximate partners among the reactive-2 strategies for the donation game. 
+As expected, the respective set approaches the polyhedron displayed in Figure 2C as errors become increasingly rare (Fig.~\ref{fig:ApproximateNash}A). 
+However, as errors become more abundant, the set shrinks considerably. 
+It approaches a line once $\varepsilon\!=\!0.1$. 
+As we describe in the next section, this line corresponds to a line of equalizer strategies. 
+In particular, we show that all these strategies are not merely approximate Nash equilibria; they are conventional Nash equilibria.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%
+
+
 \subsubsection*{Equalizers for games with implementation errors}
+
+In Section~\ref{section:results}\ref{section:tft_and_gtft}, we have introduced equalizers for the donation game without errors.
+Using Eqs.~(\ref{Eq:DefZD}) and (\ref{Eq:Equalizers}), we can write these equalizers as those memory-$n$ strategies that can be written as 
+\begin{equation}
+\mathbf{m^{i}} = \sum_{k=1}^n \delta_k \left(-\frac{1}{b}\mathbf{g}^{-i}(k) +\mathbf{m}^{k-\text{Rep}}\right) + \kappa(1\!-\!c/b)\, \mathbf{1}. 
+\end{equation}
+Again, $\mathbf{g}^i(k)$ is the vector that returns player $i$'s payoff $k$ rounds ago, as defined by~\eqref{Eq:g(k)}, $\mathbf{m}^{k-\text{Rep}}$ is the memory-$n$ strategy that repeats player $i$'s own move $k$ rounds ago, as defined by~\eqref{Eq:Repeat}. Finally, $\boldsymbol \delta \!=\! (\delta_1,\ldots,\delta_n)$ satisfies $\sum_{k=1}^n \delta_k \!=\! 1$. 
+As shown in Section~\ref{section:results}\ref{section:tft_and_gtft}, such strategies unilaterally impose a fixed payoff on the opponent, independent of the opponent's strategy $\sigma^{-i}$, 
+\begin{equation}
+\pi^{-i}(\mathbf{m^i},\sigma^{-i}) = \kappa(b\!-\!c).
+\end{equation}
+In particular, we concluded that any such strategy is a Nash equilibrium (there is no incentive to deviate because all deviations yield the same payoff). 
+
+In order to construct such equalizers for donation games with errors, we need to ensure that the player's {\it nominal} strategy is such that it gets mapped onto an {\it effective} equalizer strategy. 
+By using the inverse mapping defined by \eqref{Eq:Phi_inverse}, we conclude that any strategy of the following form is a Nash equilibrium in a donation game with error rate $\varepsilon$, 
+\begin{equation} \label{Eq:Equalizer_error}
+\mathbf{m^{i}} =\frac{1}{1-2\varepsilon}\left( \sum_{k=1}^n \delta_k \left(-\frac{1}{b}\mathbf{g}^{-i}(k) +\mathbf{m}^{k-\text{Rep}}\right) + \big(\kappa(1\!-\!c/b)-\varepsilon\big)\, \mathbf{1}\right).
+\end{equation}
+If we additionally require the strategy to be a partner, we need to ensure that it is nice as the error rate $\varepsilon\to 0$. 
+This means that given a fully cooperative history $\mathbf{h_\mathbf{C}}$, the strategy needs to ensure that the player would certainly cooperate in the absence of errors, $m^i_\mathbf{h_C}\!=\!1$. When we plug this condition into \eqref{Eq:Equalizer_error}, we obtain
+\begin{equation}
+1 = m^{i}_{\mathbf{h_C}} =\frac{1}{1-2\varepsilon}\left( \sum_{k=1}^n \delta_k \left(-\frac{1}{b}(b\!-\!c) +1\right) + \big(\kappa(1\!-\!c/b)-\varepsilon\big)\right).
+\end{equation}
+By noting that $\sum_{k=1}^n \delta_k\!=\!1$, we can solve this equation for $\kappa$, which yields $\kappa\!=\!(1\!-\!c/b\!-\!\varepsilon)/(1\!-\!c/b)$. 
+By plugging this value of $\kappa$ into \eqref{Eq:Equalizer_error}, we conclude that for games with errors, all strategies of the following form are partner strategies,
+\begin{equation} \label{Eq:Partner_error}
+\mathbf{m^{i}} =\frac{1}{1-2\varepsilon}\left( \sum_{k=1}^n \delta_k \left(-\frac{1}{b}\mathbf{g}^{-i}(k) +\mathbf{m}^{k-\text{Rep}}\right) + (1\!-\!c/b\!-\!2\varepsilon)\, \mathbf{1}\right).
+\end{equation}
+
+~
+\subsubsection*{Partners among the reactive-2 strategies}
+To illustrate this result, let us use \eqref{Eq:Partner_error} to identify the partners among the reactive-2 strategies, by setting $n\!=\!2$. 
+First, it is straightforward to check that the memory-2 strategy defined by  \eqref{Eq:Partner_error} is in fact a reactive-2 strategy. 
+That is, the cooperation probabilities  $m^i_{(\mathbf{h^i},\mathbf{h^{-i}})}$ do not depend on the focal player's own history $\mathbf{h^i}$. 
+Next, let us consider a special case with $\delta_1\!=\!1$ and $\delta_2\!=\!0$. In that case, \eqref{Eq:Partner_error} implies 
+\begin{equation}
+m^i_{(\mathbf{h^i},CC)} = m^i_{(\mathbf{h^i},DC)} =1~~~~~\text{and}~~~~~
+m^i_{(\mathbf{h^i},CD)} = m^i_{(\mathbf{h^i},DD)} =1-\frac{c}{(1\!-\!2\varepsilon)b}~~~~~\text{for all}~\mathbf{h^i}\in H^i.
+\end{equation}
+Similarly, when we consider  $\delta_1\!=\!0$ and $\delta_2\!=\!1$, we obtain 
+\begin{equation}
+m^i_{(\mathbf{h^i},CC)} = m^i_{(\mathbf{h^i},CD)} =1
+~~~~~\text{and}~~~~~
+m^i_{(\mathbf{h^i},DC)} = m^i_{(\mathbf{h^i},DD)} =1-\frac{c}{(1\!-\!2\varepsilon)b}~~~~~\text{for all}~\mathbf{h^i}\in H^i.
+\end{equation}
+That is, when we write these conditions as reactive-2 strategies $\mathbf{p}\!=\!(p_{CC},p_{CD},p_{DC},p_{DD})$, we recover a generalized version of Generous Tit-for-Tat, and another version with one round delay,
+\begin{equation}
+\gtft=\left( 1, 1\!-\!\frac{c}{(1\!-\!2\varepsilon)b}, 1, 1\!-\!\frac{c}{(1\!-\!2\varepsilon)b} \right), 
+~~~~~~
+\dgtft= \left( 1, 1, 1\!-\!\frac{c}{(1\!-\!2\varepsilon)b}, 1\!-\!\frac{c}{(1\!-\!2\varepsilon)b} \right).
+\end{equation}
+For general $\boldsymbol\delta \!=\! (\delta_1,\delta_2)$, we obtain linear combinations of these two strategies. 
+For the numerical values $\varepsilon\!=\!0.1$, $b\!=\!2$, $c\!=\!1$, the two corner strategies become
+\begin{equation}
+\gtft=\big( 1.000, 0.375, 1.000, 0.375 \big), 
+~~~~~~
+\dgtft= \big( 1.000, 1.000, 0.375, 0.375 \big).
+\end{equation}
+These are exactly the end points of the green line depicted in panel~D of Fig.~\ref{fig:ApproximateNash}. 
+In particular, this figure panel suggests that except for the equalizers defined above, there are no other partner strategies within the set of reactive-2 strategies for games with errors. 
+Whether the same is true for all reactive-$n$ strategies, for general $n$, is an open question.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% FURTHER NUMERICAL RESULTS %%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Further numerical results}\label{section:simulations}
+
+
 
 
 
