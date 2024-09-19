@@ -1,7 +1,7 @@
 \documentclass[9pt,twoside,lineno]{pnas-new}
 % \usepackage[dvipsnames]{xcolor}
 % \usepackage{times}
-\usepackage{amsmath,amsthm,amssymb,setspace,enumitem,epsfig,titlesec,verbatim,array,eurosym,multirow,enumitem,bm}
+\usepackage{amsmath,amsthm,amssymb,setspace,enumitem,epsfig,titlesec,verbatim,array,eurosym,multirow,enumitem,bm,booktabs,makecell}
 % \usepackage[sort&compress,numbers]{natbib}
 \usepackage{caption}
 % \usepackage[margin=2.5cm, includefoot, footskip=30pt]{geometry}
@@ -23,6 +23,9 @@
 % \usepackage{multirow}
 % \usepackage{multicol}
 % \usepackage{standalone}
+
+
+\newcommand{\christian}[1]{\textcolor{blue}{\textbf{CH}: #1}}
 
 
 \newtheoremstyle{plainCl1}% name
@@ -273,7 +276,7 @@ We use \(H \!=\! H^1 \!\times\! H^2\) to denote the space of all such histories,
 \subsubsection*{Memory-$n$ strategies} Based on this notation, a {\it memory-$n$ strategy}  for player $i$ as a tuple \(\mathbf{m} \!=\! (m_\mathbf{h})_{\mathbf{h}\in H}\). 
 Each input $\mathbf{h}\!=\!(h^i,h^{-i})$ refers to a possible $n$-history, where now $\mathbf{h^i}$ and $\mathbf{h^{-i}}$ refer to the $n$-histories of the focal player and the co-player, respectively. 
 The corresponding output $m_\mathbf{h}\!\in\![0,1]$ is the focal player's cooperation probability in the next round, contingent on  the outcome of the previous \(n\) rounds. We refer to the set of all memory-$n$ strategies as 
-\begin{equation}
+\begin{equation} \label{Eq:MemoryN}
 \mathcal{M}_n:=\Big\{ \mathbf{m}\!=\!(m_\mathbf{h})_{\mathbf{h}\in H} ~\Big|~0\!\le\!m_\mathbf{h}\!\le\!1~\text{for all}~ \mathbf{h}\!\in\! H\Big\} = [0,1]^{2^{2n}} .
 \end{equation}
 This definition leaves the strategy's actions during the first $n$ rounds unspecified, for which no complete $n$-history is yet available. 
@@ -763,7 +766,7 @@ These are \allc{} $=\! (1,1)$, \alld{} $=\!(0,0)$, and \alt{} $=\!(0,1)$; we can
 \end{array}
 \end{equation}
 We conclude that player 2's reactive strategy $\mathbf{p^2}$ is a Nash equilibrium (and hence a partner) if none of these three payoffs exceeds the mutual cooperation payoff $R$. This requirement yields the condition
-\begin{equation}
+\begin{equation} \label{Eq:ConditionPartner_n1}
 p^2_D \le \min\big\{1\!-\!(T\!-\!R)/(R\!-\!S),~(R\!-\!P)/(T\!-\!P)\big\}.
 \end{equation}
 As one may expect, $\mathbf{p^2}$ is a partner if and only if its generosity $p^2_D$ does not exceed the generosity of \gtft, as defined by \eqref{Eq:ConditionGTFT}. 
@@ -1196,8 +1199,9 @@ As we describe in the next section, this line corresponds to a line of equalizer
 In particular, we show that all these strategies are not merely approximate Nash equilibria; they are conventional Nash equilibria.\\
 
 
-%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EQUALIZERS FOR GAMES WITH ERRORS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection*{Equalizers for games with implementation errors}
 
@@ -1263,18 +1267,280 @@ In particular, this figure panel suggests that except for the equalizers defined
 Whether the same is true for all reactive-$n$ strategies, for general $n$, is an open question.\\
 
 
+
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%
 %% FURTHER NUMERICAL RESULTS %%
 %%%%%%%%%%%%%%%%%%%%%%
 
+
 \section{Further numerical results}\label{section:simulations}
 
+In the following, we present some additional numerical results. 
+In particular, we compute the volume of partner and defector strategies, we discuss an interesting asymmetry in our evolutionary simulations, and we present simulation results for memory-$n$ strategies. 
+
+%% SIMULATIONS: VOLUMES OF PARTNERS AND DEFECTORS %% 
+
+\subsubsection*{Volume of partner and defector strategies}
+
+In the previous section, we have mathematically characterized the set of partner and defector strategies. 
+We can use the respective sizes of these two sets as a proxy for how likely cooperation is to evolve. 
+To this end, following the work of Stewart and Plotkin~\cite{stewart:scientific:2016}, we compute the volume of the respective strategy sets. 
+Specifically, to estimate the respective proportion of partners, we do the following: 
+We ask: among all nice strategies, what is the proportion of strategies that additionally satisfy the conditions of being a Nash equilibrium? 
+For $n\!\in\!\{1,2,3\}$, this condition can easily be calculated, given the respective characterizations in Eqs.~(\ref{Eq:ConditionPartner_n1}), (\ref{eq:two_bit_conditions}), (\ref{eq:three_bit_conditions}) for reactive-$n$ strategies, and \eqref{Eq:PartnerCounting} for reactive-$n$ counting strategies. 
+Analogously, we can derive the volume of defector strategies. 
+To this end, we consider all strategies that defect with certainty after the co-player defected for $n$ consecutive rounds (i.e., those strategies with $p_\mathbf{h_D}\!=\!0$, where $\mathbf{h_D}$ is the $n$-history that only contains $D$). 
+We ask which proportion of those strategies satisfy the respective conditions in Theorem~\ref{theorem:reactive_defecting_strategies}. 
+We compute these volumes with Monte Carlo simulations, by generating $10^4$ random strategies with either $p_\mathbf{h_C}\!=\!1$ or $p_\mathbf{h_D}\!=\!0$, respectively, see Fig.~\ref{fig:siFigDefectiveCooperativeNash}. 
+In this way, we get a quantitative measure for how abundant partners and defectors are for different memory lengths (we consider $n\!\in\!\{1,2,3\}$).
+
+To get a first impression, we consider a donation game with a fixed cost-to-benefit ratio of $c/b\!=\!0.7$ (Fig.~\ref{fig:siFigDefectiveCooperativeNash}A,D). 
+Here, for one-round memory, defectors are more than twice as abundant as partners.
+As we increase the memory length to $n\!=\!2$ and $n\!=\!3$, the volume of both strategy sets shrinks, but the volume of defectors shrinks at a much higher rate. 
+To understand why, it is intuitive to consider the conditions for reactive-$n$ counting strategies, see Tab.~\ref{Tab:Volumes}. 
+As this table shows, the two volumes become smaller because with every increase in $n$, there is an additional condition that needs to be satisfied. 
+Importantly, however, for defectors, the conditions become more stringent with $n$. 
+In contrast, for partners, all further conditions are increasingly easy to satisfy (all additional thresholds are above the first threshold of $r_0\!\le\!0.3$).  
+
+As one may expect, these qualitative results are independent of the precise cost-to-benefit ratio.
+Of course, larger cost values increase the volume of defectors and reduce the volume of partners (Fig.~\ref{fig:siFigDefectiveCooperativeNash}B,E). 
+However, for any given $c/b$ value, we find that the volume of defectors shrinks more rapidly in $n$ than the volume of partners. 
+As introduced by Stewart and Plotkin~\cite{stewart:scientific:2016}, we can derive an important measure for the overall prospects of cooperation by computing the ratio of these two volumes. 
+As shown in Fig.~\ref{fig:siFigDefectiveCooperativeNash}C,F, this relative proportion of partners increases in the players' memory capacity $n$. 
+In particular, even for generally unfavorable conditions (such as $c/b\!>\!0.5$), the relative proportion of partners can exceed one half if only $n$ is sufficiently large. 
+These results give some indication that with increasing memory, cooperation should evolve more easily. 
+
+\begin{figure}[tbph]
+  \centering
+  \includegraphics[width=0.9\textwidth]{../../figures/siFig1.pdf}
+  \includegraphics[width=0.9\textwidth]{../../figures/siFig1Counting.pdf}
+  \caption{
+  \textbf{Proportions of cooperative and defective Nash.}
+For each strategy space, we draw \(10^4\) random strategies and create two copies of each one. 
+For one copy, we set the cooperation probability after full cooperation of the co-player to one. 
+For the second copy, we set the cooperation probability after full defection of the co-player to zero. 
+We check whether the copies satisfy the properties of a partner or a defector, respectively.  
+We consider reactive-$n$ strategies (top) and reactive-$n$ counting strategies (bottom), for $n\!\in\!\{1,2,3\}$. 
+\textbf{A, D,} We plot the results for a fixed cost-to-benefit ratio \(c/b \!=\!0.5\). 
+For $n\!=\!1$, defector strategies make up a larger proportion of the respective strategy space, compared to partners. 
+This relationship is reversed for larger memory lengths. 
+\textbf{B, E,} This qualitative result also holds for other cost-to-benefit ratios. In each case, the volume of defectors shrinks more rapidly in $n$ than the volume of partners. 
+\textbf{C, D,} As a simple measure for the likelihood of the evolution of cooperation, we plot the ratio of the two volumes \citep[see also Ref.][]{stewart:scientific:2016}.
+We refer to this ratio as the relative proportion of partners. 
+As we increase $n$, the relative proportion of partners increases, for all cost-to-benefit ratios. \newline
+\christian{(-) Can we change the wording -- instead of `cooperative Nash equilibria' can we speak of `partners' and instead of `defecting Nash equilibria', can we use `defectors'? In Panel A,D, instead of `Proportion of Nash equilibria', we could then say `Proportion of strategies'. (-) In panels E-F, can we remove the grey box around the color legend? (-) In panels B-F, can we use `Cost-to-benefit ratio $c/b$' instead of `cost ($c$)'?}
+}\label{fig:siFigDefectiveCooperativeNash}
+
+\label{Tab:Volumes}
+$$
+\begin{array}{|c|ccc|}
+\hline &&&\\[-0.2cm]
+\parbox{1.5cm}{\textbf{\centering \noindent Memory capacity}}	&n\!=\!1	&n\!=\!2 &n\!=\!3\\[0.25cm]
+\hline &&&\\[-0.1cm]
+
+\textbf{Defectors}	
+&\parbox[t]{3cm}{\centering\small \setlength{\arraycolsep}{0.2mm} $\begin{array}{ccccc} r_1&\le& \frac{c}{b}&=&0.70 \end{array}$}
+&\parbox[t]{3cm}{\centering\small \setlength{\arraycolsep}{0.2mm} $\begin{array}{ccccc} r_2&\le& \frac{c}{b}&=&0.70\\[0.1cm] r_1 &\le &\frac{1}{2}\frac{c}{b} &= &0.35 \end{array}$}	
+&\parbox[t]{3cm}{\centering\small \setlength{\arraycolsep}{0.2mm} $\begin{array}{ccccc} r_3&\le& \frac{c}{b}&=&0.70\\[0.1cm] r_2 &\le &\frac{2}{3}\frac{c}{b} &= &0.47\\[0.1cm]	r_1 &\le &\frac{1}{3}\frac{c}{b} &= &0.23 \end{array}$}\\[0.6cm]
+&\textit{Volume: 70.0\%}	&\textit{Volume: 24.5\%}	&\textit{Volume: 7.6\%}\\[0.8cm]
+
+\textbf{Partners}	
+&\parbox{3cm}{\centering\small \setlength{\arraycolsep}{0.2mm} $\begin{array}{ccccc} r_0&\le& 1\!-\!\frac{c}{b}&=&0.30 \end{array}$}
+&\parbox{3cm}{\centering\small \setlength{\arraycolsep}{0.2mm} $\begin{array}{ccccc} r_0&\le& 1\!-\!\frac{c}{b}&=&0.30\\[0.1cm] r_1&\le&1\!-\!\frac{1}{2}\frac{c}{b}&=&0.65 \end{array}$}
+&\parbox{3cm}{\centering\small \setlength{\arraycolsep}{0.2mm} $\begin{array}{ccccc} r_0&\le& 1\!-\!\frac{c}{b}&=&0.30\\[0.1cm] r_1&\le&1\!-\!\frac{2}{3}\frac{c}{b}&=&0.53\\[0.1cm] r_2&\le&1\!-\!\frac{1}{3}\frac{c}{b}&=&0.77 \end{array}$}\\[0.6cm]
+&\textit{Volume: 30.0\%}	&\textit{Volume: 19.5\%}	&\textit{Volume: 12.3\%}\\[0.2cm]
+\hline
+\end{array}
+$$
+\captionof{table}{Volume of defectors and partners among the reactive-$\boldsymbol n$ counting strategies in a donation game with $\boldsymbol b/\boldsymbol c$\,=\,0.7. {\normalfont The volume corresponds to the proportion of reactive-$n$ counting strategies that satisfy all inequalities, among those strategies with $r_0\!=\!0$ (for defectors) and $r_n\!=\!1$ (for partners).}}
+\end{figure}
 
 
+
+%% SIMULATIONS: ASYMMETRY IN EMERGING STRATEGIES %% 
+
+\subsubsection*{Exploring an emerging asymmetry in the evolving strategies}
+
+In the main text, we report our evolutionary results in Fig.~4. 
+There, we also observe an interesting asymmetry in the emerging strategies. 
+For example, for reactive-$2$ strategies, we observe that the most abundant strategies tend to have $p_{CD}\!<\!p_{DC}$. 
+These strategies are more likely to defect if a co-player defected in the previous round, rather than in the second-to-last round. 
+One may interpret this as an indication that players are incentivized to punish a co-player's defection immediately, rather than with some delay. 
+From a static perspective, this asymmetry is remarkable. 
+After all, our conditions for reactive-2 partner strategies in \eqref{eq:two_bit_conditions} suggest that with respect to being a Nash equilibrium, the two entries $p_{CD}$ and $p_{DC}$ are interchangeable. 
+
+In order to explore this emerging asymmetry, it is again instructive to study a specific example. 
+To this end, we consider the two reactive-2 strategies $\mathbf{p}\!=\!(1,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(1,0.6,0.1,0.3)$. 
+The two strategies are identical, except that the values of $p_{CD}$ and $p_{DC}$ are flipped. 
+With respect to our conditions for partners, this difference is inconsequential: $\mathbf{p}$ is a partner for a given donation game if and only $\mathbf{p'}$ is a partner. 
+To investigate whether the two strategies differ in their evolutionary properties, we explore whether they are equally robust with respect to invasions. 
+To this end, we consider a homogeneous resident population that either adopts $\mathbf{p}$ or $\mathbf{p'}$. 
+Then we simulate our evolutionary process by repeatedly introducing random mutant strategies. 
+We record how many mutants need to be introduced on average until one of them replaces the resident. 
+The simulations suggest that the two strategies $\mathbf{p}$ and $\mathbf{p'}$ are equivalent with respect to this metric, see Fig.~\ref{fig:InvasionAnalysisReactive2}A. 
+In particular, the two strategies are equivalent when it comes to resist invasion by \alld{} mutants (Fig.~\ref{fig:InvasionAnalysisReactive2}B). 
+
+\begin{figure}[tbhp]
+  \centering
+  \includegraphics[width=.45\textwidth]{../../figures/siFigInvasionR2ForPCCone.pdf}
+  \includegraphics[width=.397\textwidth]{../../figures/siFigInvasionR2_v2.pdf}
+  \caption{\textbf{An invasion analysis for reactive-2 strategies when $\mathbf{p_{CD}}$ and $\mathbf{p_{DC}}$ are reversed.}
+  \textbf{A,} We study the evolutionary dynamics for two different resident populations, $\mathbf{p}\!=\!(1,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(1,0.6,0.1,0.3)$. 
+  In each case, we record how many mutant strategies it takes until a mutant successfully invades the resident. 
+  We report averages over $10^3$ iterations. We find that for these two strategies, invasion times are similar. 
+  \textbf{B,} As a special case, we consider the mutant strategy \alld{}, and we plot the players' payoffs as a function of the number of mutants in the population. Also here, $\mathbf{p}$ and $\mathbf{p'}$ are equivalent. 
+  \textbf{C,D,} We repeat the previous analysis for slightly perturbed strategies, $\mathbf{p}\!=\!(0.99,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(0.99,0.6,0.1,0.3)$. Now the strategies are no longer equivalent. Parameters are the same as in Fig.~4 of the main text.\newline
+  \christian{(-) I created this figure from individual pieces of some of your existing figures. However, now the panels on the left hand side and the panels on the right hand side are not the same size. Also, the letters are not correct, it should be `A' and `B' on the left hand side (correct) and `C' and `D' on the right hand side. Could you fix this? (-) Is it correct that we show averages over $10^3$ iterations and that we use the same parameters as in Fig.~4 of the main text? (-) Also, I might be a bit pedantic, but I like being consistent in our use of capital letters. For example, we say `Average' (with capital A) but `expected' (with small e). Could we always start an axis label or a header with a capital letter? (The same is true for other figures)}}\label{fig:InvasionAnalysisReactive2}
+  ~\\
+  \includegraphics[width=0.9\textwidth]{../../figures/siFigReactiveTwoPayoffs.pdf}
+  \caption{\textbf{Game dynamics of reactive-2 strategies when $\mathbf{p_{CD}}$ and $\mathbf{p_{DC}}$ are reversed.}
+  As in Fig.~\ref{fig:InvasionAnalysisReactive2}C,D, we consider the two strategies $\mathbf{p}\!=\!(0.99,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(0.99,0.6,0.1,0.3)$. We study games in which a $\mathbf{p}$ player meets another $\mathbf{p}$ player, or in which a $\mathbf{p'}$ player meets another $\mathbf{p'}$ player. 
+  \textbf{A,} We illustrate the invariant distribution $\mathbf{v}$ of the resulting games. 
+  For both strategies, the most abundant state (the most abundant 2-history) is the one in which both players cooperate in both rounds. 
+  However, for $\mathbf{p'}$ this state is visited less often. 
+  \textbf{B,C} To understand the difference, we explore how quickly the two players return to full cooperation, after one of the players defected in the previous round. 
+  To this end, we take the state ($CC,CD$) as the starting history. 
+  We use the Axelrod-Python~\cite{AxelrodPython}
+  package to simulate the subsequent game dynamics. 
+  In each case, we record how many rounds it takes to reach the state ($CC,CC$). 
+  We refer to this number of rounds as the recovery time. 
+  Here, we plot the distribution of recovery times and the mean, obtained from $5\!\cdot\!10^4$ independent realizations. 
+  We observe that $\mathbf{p}$ has the shorter recovery time.
+  In panel B, the whiskers represent the minima and maxima, the box extends from the first quartile to the third quartile, and the scatter point in the center shows the mean. }\label{fig:ReactiveTwoPayoffs}
+\end{figure}
+
+The situation changes, however, once we take into account that in our simulations, resident populations do not implement perfect partner strategies. 
+After all, according to our evolutionary process, mutant strategies are generated by randomly drawing cooperation probabilities in the interval [0,1]. 
+As a result, we might occasionally see strategies with $p_{CC}\!>\!0.99$, or even $p_{CC}\!>\!0.999$, but we do not observe strategies with $p_{CC}\!=\!1$ exactly. 
+To take this kind of noise into account, we repeat our previous analysis, but now with resident strategies $\mathbf{p}\!=\!(0.99,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(0.99,0.6,0.1,0.3)$, respectively. 
+Those two strategies differ substantially with respect to their robustness against invasions, see Fig.~\ref{fig:InvasionAnalysisReactive2}C.
+Now, strategy $\mathbf{p}$  is considerably more robust ($\mathbf{p}$ is the strategy that tends to punish defection immediately). 
+In particular, \alld{} mutants are less likely to reach fixation in a homogeneous $\mathbf{p}$ population, compared to a homogeneous $\mathbf{p'}$ population, Fig.~\ref{fig:InvasionAnalysisReactive2}D.
+
+The same panel, Fig.~\ref{fig:InvasionAnalysisReactive2}D, suggests the following key difference:
+When two $\mathbf{p}$-players interact in a repeated game, they get slightly higher payoffs than when two $\mathbf{p'}$-players interact. 
+To analyze this difference in more detail, we consider the invariant distribution $\mathbf{v}$ in a game among two $\mathbf{p}$-players and among two $\mathbf{p'}$-players, respectively, see~Fig.~\ref{fig:ReactiveTwoPayoffs}A. 
+This invariant distribution indicates which states (2-histories) the two players typically visit over the course of the game. 
+As one may expect, for both strategies the most visited state is the full cooperation history, ($CC,CC$). 
+Interestingly, however, two $\mathbf{p}$-players tend to visit this state more often. 
+For two $\mathbf{p'}$-players, the weights according to the invariant distribution are more spread out across all possible 16 states. 
+
+We further explore this difference by exploring how easily players recover from a state in which a single player defected in the last round. 
+That is, we simulate typical game trajectories that start in a state $(CC,CD)$. 
+Then we record how many rounds it takes players to recover a mutual cooperation history $(CC,CC)$. 
+Results are shown in Fig.~\ref{fig:ReactiveTwoPayoffs}B,C. 
+Again, we find that two $\mathbf{p}$ players recover more quickly from a single defection. 
+On average, it takes them a bit more than 20 rounds, compared to more than 70 rounds for two $\mathbf{p'}$ players. 
+To get a better sense of these recovery results, Table~\ref{Tab:Recovery} displays the 15 paths that players are most likely to take from state $(CC,CD)$ to state state $(CC,CC)$. 
+According to this table, the top 15 paths among $\mathbf{p}$ players are comparably short (recovery in at most 7 rounds). 
+These 15 paths make up roughly 16.9\% of all recoveries. 
+Among $\mathbf{p'}$ players, the respective list features longer paths (up to 12 rounds until recovery), and these 15 paths explain fewer of the total recoveries (only 14.5\%). 
+
+Overall, we obtain the following interpretation for the emerging asymmetry in the evolving reactive-2 strategies. 
+When executed perfectly, partner strategies  $\mathbf{p}\!=\!(1,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(1,0.6,0.1,0.3)$ are indeed equivalent with respect to their evolutionary properties. 
+Noisy variants of these strategies, however, are not equivalent. 
+Once we study variants $\mathbf{p}\!=\!(0.99,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(0.99,0.6,0.1,0.3)$, the strategy $\mathbf{p}$ is more robust. 
+This strategy tends to punish a co-player's defection immediately, rather than with one round delay. 
+Our analysis suggests that such strategies are more effective in quickly recovering mutual cooperation if one of the players defected due to stochastic effects.  
+
+
+\begin{table}[t]
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{c|rlccc|rlccc}
+    \toprule
+    & \multicolumn{5}{c}{$\mathbf{p} = (0.99,0.1, 0.6, 0.3)$} &  \multicolumn{5}{c}{$\mathbf{p'} = (0.99, 0.6, 0.1, 0.3)$} \\
+    \toprule
+    \thead{Most common \\ paths} &   & Path &  \thead{Recovery \\ time} & Path probability & \thead{Frequency of occurrence \\ in $5 \times 10^4$ simulations} & & Path &   \thead{Recovery \\ time} & Path probability&  \thead{Frequency of occurrence \\ in $5 \times 10^4$ simulations}\\
+    \midrule
+    1  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CC \\       CC} &  2 &  0.0588 & 5.9\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{           CC \\            CC} &   2 &   0.0588 & 5.9\% \\ \hline
+    2  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{    DCC \\      CCC} &  3 &  0.0318 & 3.0\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{         CDCC \\          CCCC} &   4 &   0.0311 & 3.2\% \\ \hline
+    3  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   DCCC \\     CDCC} &  4 &  0.0171 & 1.8\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{       CDCCCC \\        CCCDCC} &   6 &   0.0165 & 1.6\% \\ \hline
+    4  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{  DCDCC \\    CDCCC} &  5 &  0.0093 & 1.0\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CDCCCDCC \\      CCCDCCCC} &   8 &   0.0087 & 0.9\% \\ \hline
+    5  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{  DDDCC \\    CDCCC} &  5 &  0.0093 & 0.9\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{         DDCC \\          CCCC} &   4 &   0.0063 & 0.6\% \\ \hline
+    6  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   DDCC \\     CCCC} &  4 &  0.0063 & 0.6\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   CDCCCDCCCC \\    CCCDCCCDCC} &  10 &   0.0046 & 0.4\% \\ \hline
+    7  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{  DDDCC \\    CDDCC} &  5 &  0.0065 & 0.6\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{       DDCCCC \\        CCCDCC} &   6 &   0.0033 & 0.3\% \\ \hline
+    8  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DCDCCC \\   CDDDCC} &  6 &  0.0050 & 0.5\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{       CDCCCC \\        CCDDCC} &   6 &   0.0033 & 0.3\% \\ \hline
+    9  &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DCDCCC \\   CDCDCC} &  6 &  0.0050 & 0.5\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{       DDCCCC \\        CCDDCC} &   6 &   0.0024 & 0.2\% \\ \hline
+    10 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DDDDCC \\   CDDCCC} &  6 &  0.0045 & 0.4\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{          DCC \\           CCC} &   3 &   0.0024 & 0.2\% \\ \hline
+    11 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DDDCCC \\   CDDDCC} &  6 &  0.0045 & 0.4\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ CDCCCDCCCDCC \\  CCCDCCCDCCCC} &  12 &   0.0024 & 0.2\% \\ \hline
+    12 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DCDDCC \\   CDDDCC} &  6 &  0.0035 & 0.4\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CDCCCDCC \\      CCDDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
+    13 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{   DDCC \\     CDCC} &  4 &  0.0035 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     CDCCDDCC \\      CCCDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
+    14 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{ DDDDCC \\   CDDDCC} &  6 &  0.0032 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{     DDCCCDCC \\      CCCDCCCC} &   8 &   0.0018 & 0.2\% \\ \hline
+    15 &  \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{DCDCDCC \\  CDCDCCC} &  7 &  0.0020 & 0.3\%  &   \cellcolor{gray!25} \makecell[r]{CC \\ CD} & \makecell[l]{        DCCCC \\         CCDCC} &   5 &   0.001 & 0.1\% \\  \hline
+    Sum & & &  &  & 16.9\% & & & &  & 14.5\% \\
+    \bottomrule
+    \end{tabular}}
+    \caption{Most likely recovery paths when either two $\mathbf{p}$ players or two $\mathbf{p'}$ players experience a single defection.
+    {\normalfont Based on the simulations in Fig.~\ref{fig:ReactiveTwoPayoffs}B,C, this table describes typical recovery paths. 
+    To obtain this data, we use the Axelrod-Python~\cite{AxelrodPython} package to simulate $5\!\cdot\!10^4$ instances with a starting history ($CC,CD$). 
+    We record the players' subsequent decisions until they reach the state ($CC,CC$). 
+    We refer to such a sequence of decisions from state ($CC,CD$) to ($CC,CC$) as a `path'. 
+    Here, we display the 15 paths that were taken most often, separately for each of the two strategies $\mathbf{p}$ and $\mathbf{p'}$. 
+    `Path probability' refers to how likely the respective path is to occur, given an initial state ($CC,CD$) and the players' conditional cooperation probabilities. 
+    `Frequency' refers to how often we observed the path across all independent realizations. 
+    We observe that the most common path is the same for both strategies (here, both players return to full cooperation immediately). 
+    However, for the other paths, the recovery times tend to be shorter in the case of \(\mathbf{p}\), compared to the case of \(\mathbf{p'}\).
+    For \(\mathbf{p'}\), two of the most common paths have a recovery time longer than 10. 
+    For \(\mathbf{p}\), the longest recovery time in this list is 7.}}
+    \label{Tab:Recovery}
+\end{table}
+
+
+
+%% SIMULATIONS: MEMORY-N STRATEGIES  %% 
+
+\subsubsection*{Evolutionary dynamics among memory-$n$ strategies}
+
+Given our analytical work, our evolutionary simulations focus on the dynamics among reactive-$n$ strategies. 
+There, we observe that higher memory capacities can favor the evolution of cooperation. 
+At the same time, however, the positive effects of memory length seem to be stronger for reactive-$n$ strategies (when players take into account the entire sequence of moves), compared to reactive-$n$ counting strategies (when players only take into account how often a co-player cooperated).
+In the following, we ask whether this qualitative result continues to hold in the more general space of memory-$n$ strategies. 
+
+To this end, we repeat the evolutionary simulations shown in our main text Fig.~4. 
+However, instead of reactive-$n$ strategies, mutant strategies are now taken from the set of all memory-$n$ strategies, as defined by~\eqref{Eq:MemoryN}. 
+Similarly, instead of reactive-$n$ counting strategies, we consider memory-$n$ counting strategies. 
+A memory-$n$ counting strategy can be represented as a vector $\mathbf{m} = (m_{i,j})$, with $0 \leq i, j \leq n$. 
+The entries $m_{i,j}$ denote a player's cooperation probability in the next round, given the focal player cooperated $i$ times and the co-player cooperated $j$ times during the last $n$ rounds.
+Memory-1 strategies and memory-1 counting strategies are the same; for $n\!\ge\!2$, memory-$n$ counting strategies are a strict subset of memory-$n$ strategies (similar to the case of reactive strategies). 
+
+For memory-$n$ counting strategies, we simulate evolution for $n\!\in\!\{1,2,3\}$.
+For memory-$n$ strategies, we simulate $n\!\in\!\{1,2\}$. 
+The space of memory-3 strategies is vast (it corresponds to all 64-dimensional vectors with entries in~[0,1]). 
+This space is difficult to sample comprehensively, using simulations with a typical number of mutants (most simulations in the literature consider $10^7-10^9$ mutant strategies; the number of pure memory-3 strategies is $2^{64}\approx 2\!\cdot\! 10^{19}$). 
+
+Results are shown in~Fig.~\ref{Fig:MemoryN}, for three different selection strengths, $\beta\!\in\!\{0.1,1,2\}$. 
+Similar to the case of reactive-$n$ strategies, there is a positive effect of memory on cooperation among the memory-$n$ strategies. 
+However, this time, we also find a notably positive effect of memory among the memory-$n$ counting strategies (even though the effect still seems to be weaker than with memory-$n$ strategies). 
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=.9\textwidth]{../../figures/siFigMemorySim.pdf}
+  \caption{
+  \textbf{Dynamics among memory-$n$ strategies.}
+  We explore the cooperation rates of memory-$n$ strategies and memory-$n$ counting strategies for different costs and selection strengths.
+  We use the same parameters as in Fig.~4 of the main text: We consider a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$ and a population size $N\!=\!100$, unless noted otherwise. 
+  For $n$ equal to 1 and 2, simulations are run for \(10
+  ^ 7\) time steps.\newline
+  \christian{How long are simulations run for $n\!=\!3$?}
+  }
+  \label{Fig:MemoryN}
+\end{figure}
 
 
 \clearpage
 \newpage
+
+
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%
