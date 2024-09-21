@@ -86,9 +86,16 @@
 
 \maketitle
 
+
+\tableofcontents
+~\\[1cm]
+
 %% Adds the main heading for the SI text. Comment out this line if you do not have any supporting information text.
 \SItext
 
+
+
+\noindent
 This document provides further details on the previous literature, our methodology, our analytical
 findings, and our evolutionary simulations.
 Section~\ref{section:literature} describes previous work on direct reciprocity with longer memory. 
@@ -101,6 +108,9 @@ We perform a similar analysis for the stable defecting strategies.
 Section~\ref{section:simulations} presents some complementary evolutionary results. 
 Finally, the Appendix in Section~\ref{section:appendix} contains the proofs of our mathematical results. 
 
+
+\clearpage
+\newpage
 
 
 %%%%%%%%%%%%%%%%
@@ -205,6 +215,11 @@ We show that to test whether any given reactive-$n$ strategy is a Nash equilibri
 Similar results could in future help to prove further results on the stability of other classes of memory-$n$ strategies.  
 Finally, we perform extensive simulations to study the evolution of reactive-$n$ and reactive-$n$ counting strategies, for $n\!\in\!\{1,2,3\}$. 
 
+
+
+
+\clearpage
+\newpage
 
 
 %%%%%%%%%%%%%%
@@ -474,6 +489,9 @@ That second interpretation leads to the expression $\langle \mathbf{v}, \mathbf{
 According to \eqref{Eq:Akin}, both interpretations are equivalent.\\
 
 
+
+\clearpage
+\newpage
 
 
 
@@ -858,7 +876,7 @@ A nice reactive-3 strategy $\mathbf{p}$ is a partner strategy if and only if its
 \end{theorem}
 
 \noindent
-Compared to the case $n\!=\!2$, the respective conditions are now somewhat less intuitive. 
+Compared to the case of reactive-2 strategies, the respective conditions are now somewhat less intuitive. 
 However, there is still a general pattern that is preserved. 
 On average, a player's cooperation probability needs to be diminished in proportion to the number of defections in memory. 
 More specifically, in a given inequality, let $x$ be the proportion of $D$'s in the histories on the left-hand's side. 
@@ -866,6 +884,15 @@ Then the threshold on the right-hand side is given by $1-x\cdot c/b$.
 For example, in case of the second inequality in \eqref{eq:three_bit_conditions}, the left-hand side features the histories $CCD$, $CDC$, $DCC$. 
 The proportion of $D$'s across all three histories is $1/3$. 
 Therefore, the threshold on the right-hand side is $1-1/3\!\cdot\!c/b$. 
+
+Because reactive-2 strategies are a subset of reactive-3 strategies, we can use the conditions in~\eqref{eq:three_bit_conditions} to recover the conditions in~\eqref{eq:two_bit_conditions}. 
+For example, because reactive-2 strategies ignore what happened more than two rounds ago, they satisfy $p_{CDC}\!=\!p_{DDC}$. 
+When we plug this equation into the first inequality in~\eqref{eq:three_bit_conditions}, we obtain
+\begin{equation}
+\frac{ p_{CCD}+p_{CDC} }{2}  \leq 1 - \frac{1}{2} \cdot \frac{c}{b} \qquad \text{and} \qquad \frac{ p_{DCD}+p_{DDC}}{2}  \leq 1 - \frac{1}{2} \cdot \frac{c}{b} 
+\end{equation}
+That is, irrespective of what happened three rounds ago, the partners among the reactive-3 strategies satisfy the first inequality in~\eqref{eq:two_bit_conditions}. 
+Similarly, the second inequality in~\eqref{eq:two_bit_conditions} follows from the last inequality~\eqref{eq:three_bit_conditions}. 
 
  
 %However, compared to the case $n\!=\!2$, the respective conditions are now somewhat more difficult to interpret. 
@@ -1203,7 +1230,7 @@ In particular, we show that all these strategies are not merely approximate Nash
 %% EQUALIZERS FOR GAMES WITH ERRORS %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection*{Equalizers for games with implementation errors}
+\subsubsection*{Equalizers for games with implementation errors} \label{Results:Errors}
 
 In Section~\ref{section:results}\ref{section:tft_and_gtft}, we have introduced equalizers for the donation game without errors.
 Using Eqs.~(\ref{Eq:DefZD}) and (\ref{Eq:Equalizers}), we can write these equalizers as those memory-$n$ strategies that can be written as 
@@ -1270,7 +1297,8 @@ Whether the same is true for all reactive-$n$ strategies, for general $n$, is an
 
 
 
-
+\clearpage
+\newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1281,11 +1309,11 @@ Whether the same is true for all reactive-$n$ strategies, for general $n$, is an
 \section{Further numerical results}\label{section:simulations}
 
 In the following, we present some additional numerical results. 
-In particular, we compute the volume of partner and defector strategies, we discuss an interesting asymmetry in our evolutionary simulations, and we present simulation results for memory-$n$ strategies. 
+In particular, we compute the volume of partner and defector strategies, we discuss an interesting asymmetry in our evolutionary simulations, we present simulation results for memory-$n$ strategies, and we explore the role of implementation errors. 
 
 %% SIMULATIONS: VOLUMES OF PARTNERS AND DEFECTORS %% 
 
-\subsubsection*{Volume of partner and defector strategies}
+\subsection{Volume of partner and defector strategies}
 
 In the previous section, we have mathematically characterized the set of partner and defector strategies. 
 We can use the respective sizes of these two sets as a proxy for how likely cooperation is to evolve. 
@@ -1364,7 +1392,7 @@ $$
 
 %% SIMULATIONS: ASYMMETRY IN EMERGING STRATEGIES %% 
 
-\subsubsection*{Exploring an emerging asymmetry in the evolving strategies}
+\subsection{Exploring an emerging asymmetry in the evolving strategies}
 
 In the main text, we report our evolutionary results in Fig.~4. 
 There, we also observe an interesting asymmetry in the emerging strategies. 
@@ -1495,7 +1523,7 @@ Our analysis suggests that such strategies are more effective in quickly recover
 
 %% SIMULATIONS: MEMORY-N STRATEGIES  %% 
 
-\subsubsection*{Evolutionary dynamics among memory-$n$ strategies}
+\subsection{Evolutionary dynamics among memory-$n$ strategies}
 
 Given our analytical work, our evolutionary simulations focus on the dynamics among reactive-$n$ strategies. 
 There, we observe that higher memory capacities can favor the evolution of cooperation. 
@@ -1533,14 +1561,42 @@ However, this time, we also find a notably positive effect of memory among the m
 \end{figure}
 
 
+%% SIMULATIONS: Errors  %% 
+
+\subsection{Evolution of cooperation in games with errors}
+
+All simulations so far assume that players execute their actions perfectly. 
+In~Fig.~\ref{fig:errors}, we explore the evolution of cooperation when individuals occasionally commit implementation errors, as introduced in Section~\ref{section:results}\ref{Results:Errors}. 
+The simulations follow the same setup as before; but this time, the players' nominal strategies are subject to an error rate $\varepsilon$. 
+Overall, results are as one may expect: 
+Cooperation is most likely to evolve when the cost of cooperation is sufficiently small, and when errors are comparably rare~(Fig.~\ref{fig:errors}A,C). 
+As before, we also observe that individuals are more likely to cooperate when they have longer memory.
+Again, this effect is particularly pronounced for reactive-$n$ strategies (Fig.~\ref{fig:errors}B,D). 
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.65\textwidth]{../../figures/siFig2Errors.pdf} \\[2em]
+    \includegraphics[width=.65\textwidth]{../../figures/siFigErrorsCounting.pdf}
+    \caption{
+    \textbf{Evolving cooperation rates in games with implementation errors.}
+  We simulate the evolutionary process, this time allowing for implementation
+  errors. Each time a player decides to take an action, with probability \(\epsilon\) that player implements the opposite action. 
+  We calculate the average cooperation rate for
+  different error rates \(\epsilon\), different costs \(c\), and for different memory lengths, $n\!\in\!\{1,2,3\}$.
+  We do this for reactive strategies ({\bf A,B}) and for reactive counting strategies ({\bf C,D}). 
+  In each case, the upper row depicts the evolving average cooperation rate. 
+  In the lower row, we compare these results across different memory lengths.  
+  From left to right, we show the differences in cooperation rates between reactive-2
+  and reactive-1, reactive-3 and reactive-2, and reactive-3 and reactive-1 strategies.
+  Unless noted otherwise, parameters are the same as in Fig. 4 of the main text. 
+  \christian{Is it true that baseline parameters are the same as in main text Fig. 4?}
+    }\label{fig:errors}
+\end{figure}
+
+
 \clearpage
 \newpage
-
-
-
-
-
-
 
 
 %%%%%%%%%%%%%%%%
