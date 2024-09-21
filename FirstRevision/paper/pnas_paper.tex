@@ -17,7 +17,7 @@
 \def\allc{\texttt{ALLC}}
 \def\alld{\texttt{ALLD}}
 \def\alt{\texttt{Alternator}}
-\def\SI{\textbf{Supporting Information}}
+\def\SI{\textbf{SI}}
 \def\methods{\textbf{Material and Methods}}
 
 \title{Conditional cooperation with longer memory}
@@ -37,16 +37,17 @@
 
 % Please add a significance statement to explain the relevance of your work
 \significancestatement{
-In repeated interactions, people tend to cooperate conditionally. They are
-influenced by whether others cooperate with them, and react accordingly. Direct
-reciprocity is based on repeated interactions between two players. Nice
-strategies are those that are never the first to defect. Consequently, they
-never seek to exploit the other. Partner strategies are nice strategies which
-can sustain full cooperation as a Nash equilibrium. If you interact with such a
-partner then you maximize your own payoff by full cooperation. Therefore,
-partners resolve social dilemmas. Here we characterize all partner
-strategies among longer memory reactive strategies. Our results show that
-natural selection chooses partners. It pays to be nice.}
+In repeated interactions, people tend to cooperate conditionally. 
+They are influenced by whether others cooperate, and react accordingly. 
+Direct reciprocity is based on repeated interactions between two players. 
+Nice strategies are those that are never the first to defect. 
+Consequently, they never seek to exploit the other. 
+Partner strategies are nice strategies which can sustain full cooperation as a Nash equilibrium. 
+If you interact with such a partner then you maximize your own payoff by full cooperation. 
+Therefore, partners resolve social dilemmas. 
+Here we characterize partners among those strategies that react to an opponent's behavior during the last $n$ interactions. 
+Such players can sustain cooperation in an equilibrium, even if their opponent takes into account more than the last $n$ rounds. 
+}
 
 % Please include corresponding author, author contribution and author declaration information
 \authorcontributions{N.G., E.A, M.N., and C.H. designed research; N.G. and C.H. performed research;
@@ -58,20 +59,19 @@ N.G., analyzed data; and N.G., E.A., M.A. and C.H. wrote the paper.}
 \keywords{evolutionary game theory $|$ direct reciprocity $|$ evolution of cooperation $|$ prisoner's dilemma}
 
 \begin{abstract}
-Direct reciprocity is a wide-spread mechanism for evolution of cooperation. In
-repeated interactions, players can condition their behavior on previous
-outcomes. A well known approach is given by reactive strategies, which respond
-to the co-player's previous move. Here we extend reactive strategies to longer
-memories. A reactive-$n$ strategy takes into account the sequence of the last $n$
-moves of the co-player. A reactive-$n$ counting strategy records how often the
-co-player has cooperated during the last $n$ rounds. We derive an algorithm to
-identify all partner strategies among reactive-$n$ strategies. We give explicit
-conditions for all partner strategies among reactive-2, reactive-3 strategies,
-and reactive-$n$ counting strategies. Partner strategies are those that ensure
-mutual cooperation without exploitation. We perform evolutionary simulations and
-find that longer memory increases the average cooperation rate for reactive-$n$
-strategies but not for reactive counting strategies. Paying attention to the
-sequence of moves is necessary for reaping the advantages of longer memory.
+Direct reciprocity is a wide-spread mechanism for the evolution of cooperation. 
+In repeated interactions, players can condition their behavior on previous outcomes. 
+A well known approach is given by reactive strategies, which respond to the co-player's previous move. 
+Here we extend reactive strategies to longer memories. 
+A reactive-$\boldsymbol n$ strategy takes into account the sequence of the last $\boldsymbol n$ moves of the co-player. 
+A reactive-$\boldsymbol n$ counting strategy responds to how often the co-player cooperated during the last $\boldsymbol n$ rounds. 
+We derive an algorithm to identify the partner strategies within these strategy sets. 
+Partner strategies are those that ensure mutual cooperation without exploitation. 
+We give explicit conditions for all partner strategies among reactive-2, reactive-3 strategies, and reactive-$\boldsymbol n$ counting strategies. 
+To further explore the role of memory, we perform evolutionary simulations. 
+We vary several key parameters, such as the cost-to-benefit ratio of cooperation, the error rate, and the strength of selection. 
+Within the strategy sets we consider, we find that longer memory tends to promote cooperation. 
+This positive effect of memory is particularly pronounced when individuals take into account the precise sequence of moves. 
 \end{abstract}
 
 \dates{This manuscript was compiled on \today}
@@ -83,7 +83,7 @@ sequence of moves is necessary for reaping the advantages of longer memory.
 \thispagestyle{firststyle}
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
-\firstpage[14]{3}
+\firstpage[13]{3}
 % Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".
 
 \dropcap{T}o a considerable extent, human cooperative behavior is governed by direct reciprocity~\cite{melis:ptrs:2010,rand:TCS:2013}. 
@@ -101,28 +101,35 @@ Others describe the effect of different learning dynamics~\citep{stewart:games:2
 
 Strategies of the repeated prisoner's dilemma can vary in their complexity.
 While some are straightforward to implement, like always defect, many others are more sophisticated~\cite{harper:PLOSONE:2017, knight:PLOSONE:2018}.
-To quantify a strategy's complexity, it is common to resort to the number of past rounds that the player needs to remember. 
+One way to quantify a strategy's complexity is to resort to the number of past rounds that the player needs to remember. 
 Unconditional strategies like `always defect' or `always cooperate' are said to be \mbox{memory-0}. 
 Strategies that only depend on the previous round, such as `Tit-for-Tat'~~\cite{axelrod:AAAS:1981,Duersch:IJGT:2013} or `Win-Stay Lose-Shift'~\cite{Kraines:TaD:1989,nowak:Nature:1993}, are \mbox{memory-1}~~(\figref{fig:conceptual_figure_model}\textbf{B}). 
 Similarly, one can distinguish strategies that require more than one round of memory, or strategies that cannot be implemented with finite memory~\cite{Garcia:FRAI:2018}. 
 
-Traditionally, most theoretical research on the evolution of reciprocity focuses on memory-1 strategies~\citep{nowak:Nature:1993,imhof:PNAS:2005,grujic:jtb:2012,van-segbroeck:prl:2012,press:PNAS:2012,stewart:pnas:2013,Toupo:IJBC:2014,stewart:pnas:2014, akin:EGADS:2016,glynatsi:scientific:2020,chen:PNASnexus:2023, ueda:JPSJ:2022}.
+Traditionally, most theoretical research on the evolution of reciprocity focuses on memory-1 strategies~\citep{nowak:Nature:1993,imhof:PNAS:2005,grujic:jtb:2012,van-segbroeck:prl:2012,press:PNAS:2012,stewart:pnas:2013,Toupo:IJBC:2014,stewart:pnas:2014, akin:EGADS:2016,glynatsi:scientific:2020,chen:PNASnexus:2023}.
 Although one-round memory can explain some of the empirical regularities in human behavior~\cite{engle:ET:2006, dal:AER:2011, camera:GEB:2012, bruttel:TD:2012,Montero-Porras:SciRep:2022}, people often take into account more than the last round~\cite{romero:EER:2018, kleiman:TEJ:2018}.
-Longer memory seems particularly relevant for noisy games, where people occasionally defect because of unintended errors~\cite{fudenberg:AER:2012}.
-However, a formal analysis of strategies with more than one-round memory has been difficult for two reasons. 
+In experiments, longer memory seems particularly relevant for noisy games, where people occasionally defect because of unintended errors~\cite{fudenberg:AER:2012}.
+However, a formal analysis of strategies with more than one-round memory is non-trivial, for two reasons. 
 First, as the memory length $n$ increases, strategies become harder to interpret. 
-For example, because two consecutive rounds of the prisoner's dilemma allow for 16 possible outcomes, memory-2 strategies need to specify 16 conditional cooperation probabilities~\citep{hauert:PRSB:1997}. 
+For example, because two consecutive rounds of the prisoner's dilemma allow for 16 possible outcomes, memory-2 strategies need to specify 16 conditional cooperation probabilities~\citep{hauert:PRSB:1997,Murase:PLoSCompBio:2023a}. 
 Although some of the resulting strategies have an intuitive interpretation, such as `Tit-for-Two-Tat'~\citep{axelrod:AAAS:1981}, many others are difficult to make sense of. 
 Second, the number of strategies, and the time it takes to compute their payoffs, increases dramatically in $n$. 
 For example, for memory-1, there are $2^4\!=\!16$ deterministic strategies (strategies that do not randomize between different actions). 
 When both players adopt memory-1 strategies, computing their payoffs requires the inversion of a $4\!\times\!4$ matrix~\cite{sigmund2010}. 
 After increasing the memory length to memory-2, there are $2^{16}\!=\!64,536$ deterministic strategies, and payoffs now require the inverse of a $16\!\times\!16$ matrix. 
-Probably for these reasons, previous studies considered simulations for small $n$~\citep{hauert:PRSB:1997,stewart:scientific:2016,Murase:PLoSCompBio:2023a, ueda:ORF:2022}, or they analyzed the properties of a few selected higher-memory strategies~\citep{hilbe:PNAS:2017,ueda:RSOP:2021,li:NatureCompSci:2022}. 
 
-To make progress, we focus on an easy-to-interpret subset of memory-$n$ strategies, the {\it reactive}-$n$ strategies. 
-Capturing the basic premise of conditional cooperation, they only depend on the {\it co-player's} actions during the last $n$ rounds~(\figref{fig:conceptual_figure_model}\textbf{C,E}). 
-While it has been difficult to explicitly characterize all Nash equilibria among the memory-$n$ strategies, we show that such a characterization is possible for reactive-$n$ strategies. 
-Our results rely on a central insight, motivated by previous work by Press~\&~Dyson~\citep{press:PNAS:2012}: 
+There have been various approaches to tackle this problem. 
+Some studies describe the strengths of particular strategies with more than one-round memory~\citep{Do:JTB:2017,hilbe:PNAS:2017,murase:SciRep:2020,li:NatureCompSci:2022}. 
+Others explore the properties of entire strategy classes, such as `zero-determinant strategies'~\cite{ueda:RSOP:2021, Ueda:ORF:2022} or `reactive learning strategies'~\cite{mcavoy:PRSA:2019}. 
+Stewart and Plotkin~\cite{stewart:scientific:2016} characterize a set of memory-$n$ strategies that is evolutionary robust. 
+They show that for larger $n$, the volume of robust cooperative strategies exceeds the volume of strategies that lead to mutual defection. 
+However, they do not provide an explicit description of the memory-$n$ Nash equilibria. 
+We give a more detailed account of these approaches in our \SI. 
+
+To make further progress, we focus on an easy-to-interpret subset of memory-$n$ strategies, the {\it reactive}-$n$ strategies. 
+Capturing the basic premise of conditional cooperation, they only depend on the co-player's actions during the last $n$ rounds~(\figref{fig:conceptual_figure_model}\textbf{C,E}). 
+We show that within the reactive-$n$ strategies, an explicit characterization of all Nash equilibria becomes feasible. 
+Our results rely on a central insight, motivated by previous work of Press and Dyson~\citep{press:PNAS:2012}: 
 if one player adopts a reactive-$n$ strategy, the other player can always find a best response among the deterministic {\it self-reactive}-$n$ strategies. 
 Self-reactive-$n$ strategies are remarkably simple. 
 They only depend on the player's own previous $n$ moves (\figref{fig:conceptual_figure_model}\textbf{D,F}).
@@ -138,11 +145,14 @@ Our findings indicate that the evolutionary process strongly favors partner stra
 
 Overall, our results provide important insights into the logic of conditional cooperation when players have more than one-round memory. 
 We show that partner strategies exist for all repeated prisoner's dilemmas and for all memory lengths. 
-To be stable, however, these strategies need to be sufficiently responsive to the co-player's previous actions.
+%To be stable, however, these strategies need to be sufficiently responsive to the co-player's previous actions.
+These findings also allow us to reinterpret existing results on strategies with shorter memory. 
+For example, we find that the well-known strategy Generous Tit-for-Tat \citep[\gtft, see Ref.][]{nowak:Nature:1992,molander:jcr:1985} is just one instance of a more general strategy class. 
+The same principles that make \gtft{} sustain cooperation within the reactive-1 strategies, allow us to construct partners within the reactive-$n$ strategies. 
 
 \begin{figure*}[h]
        \centering
-       \includegraphics[width=.8\textwidth]{../../figures/conceptual_figure.pdf}
+       \includegraphics[width=.95\textwidth]{../../figures/conceptual_figure.pdf}
        \caption{\textbf{The repeated prisoner's dilemma among players with finite memory.}
        \textbf{A,} In the repeated prisoner's dilemma, in each round two players independently decide whether to cooperate~($C$) or to defect~($D$). 
        \textbf{B,} When players adopt memory-1 strategies, their decisions depend on the entire outcome of the previous round. That is, they consider both their own and the co-player's previous action. 
@@ -153,7 +163,7 @@ To be stable, however, these strategies need to be sufficiently responsive to th
        The entry $p_C$ is the probability of cooperating given the co-player cooperated in the previous round.
        The entry $p_D$ is the cooperation probability after the co-player defected. 
        \textbf{E,} Now, the top player adopts a self-reactive-1 strategy, $\mathbf{\tilde p}\!=\!(\tilde p_C, \tilde p_D)$. 
-       Here, the bottom player's cooperation probabilities depend on their own previous action.
+       Here, the player's cooperation probability depends on its own previous action.
        }\label{fig:conceptual_figure_model}
 \end{figure*}
 
@@ -168,11 +178,11 @@ To be stable, however, these strategies need to be sufficiently responsive to th
 % Model %
 %%%%%%
 
-\textbf{Model and notation.}
+\subsection*{Model and notation}
 We consider a repeated game between two players, player~1 and player~2.
 Each round, players can choose to cooperate ($C$) or to defect ($D$). 
 If both players cooperate, they receive the reward~$R$, which exceeds the (punishment) payoff~$P$ for mutual defection. 
-If only one player defects, the defector receives the temptation payoff~$T$, whereas the cooperator ends up with the sucker's payoff~$S$. 
+If only one player defects, the defecting player receives the temptation~$T$, whereas the cooperator ends up with the sucker's payoff~$S$. 
 We assume payoffs satisfy the typical relationships of a prisoner's dilemma, $T \!>\! R \!>\! P \!>\! S$ and $2 R \!>\! T \!+\! S$. 
 Therefore, in each round, mutual cooperation is the best outcome for the pair, but players have some incentive to defect. 
 The players' aim is to maximize their average payoff per round, across infinitely many rounds.
@@ -180,7 +190,7 @@ To make results easier to interpret, it is sometimes instructive to look at a pa
 Here, cooperation means to pay a cost $c\!>\!0$ for the co-player to get a benefit $b\!>\!c$.
 The resulting payoffs are \(R \!\!=\! b\! -\! c, S \!=\! -c, T \!=\! b, P\!
 =\! 0\). 
-To illustrate our results, we focus on the donation game in the following. 
+For simplicity, we focus on the donation game in the following. 
 However, most of our findings are straightforward to extend to the general prisoner's dilemma (or to other repeated $2\!\times\!2$ games, see \SI). 
 
 We consider players who use strategies with finite memory. 
@@ -188,7 +198,7 @@ To describe such strategies formally, we introduce some notation.
 The last $n$ actions of each player  $i\! \in\! \{1, 2\}$ are referred to as the player's {\it $n$-history}. 
 We write this $n$-history as a tuple $\mathbf{h}^i\!=\!(a^i_{-n},\ldots,a^i_{-1})\!\in\!\{C,D\}^n$. 
 Each entry $a^i_{-k}$ corresponds to player $i$'s action $k$ rounds ago. 
-We use $H^i$ for the set of all such $n$-histories. 
+We use $H^i$ for the set of all $n$-histories. 
 This set contains $|H^i|\!=\!2^{n}$ elements. 
 Based on this notation, we can define a {\it reactive}-$n$ {\it strategy} for player 1 as a vector $\mathbf{p}\!=\!(p_\mathbf{h})_{\mathbf{h}\in H^2} \!\in\! [0, 1]^{2^n}$. 
 The entries $p_\mathbf{h}$ correspond to player 1's cooperation probability in any given round, contingent on player 2's actions during the last $n$ rounds. 
@@ -197,7 +207,7 @@ We note that the above definition leaves player 1's moves during the first $n$ r
 However, in infinitely repeated games without discounting, these initial moves tend to be inconsequential. 
 Hence, we neglect them in the following.
 
-For \(n\!=\!1\), the above definition recovers the classical format of reactive-1 strategies~\cite{sigmund2010}, \(\mathbf{p}\!=\!(p_C, p_D)\). 
+For \(n\!=\!1\), we recover the classical format of reactive-1 strategies~\cite{sigmund2010}, \(\mathbf{p}\!=\!(p_C, p_D)\). 
 Here, $p_C$ and $p_D$ are the player's cooperation probability given that the co-player cooperated or defected in the previous round, respectively. 
 This set contains, for example, the strategies of unconditional defection, \alld~$=\!(0,0)$, and Tit-for-Tat, \tft~$=\!(1,0)$. 
 The next complexity class is the set of reactive-2 strategies, $\mathbf{p}\!=\!(p_{CC},p_{CD},p_{DC},p_{DD})$.
@@ -217,13 +227,15 @@ The partners among the reactive-1 strategies are well known.
 For the donation game, partners are those strategies with $p_C\!=\!1$ and $p_D\!\le\!1\!-\!c/b$~\citep{akin:EGADS:2016}. 
 However, a general theory of partners for $n\!\ge\!2$ is lacking. 
 This is what we aim to derive in the following. 
-In the main text, we provide the main intuition for our results; all proofs are in the \SI.\\
+In the main text, we provide the main intuition for our results; all proofs are in the \SI.
+
+
 %%%%%%%%
 %  Algorithm  %
 %%%%%%%%
 
 \noindent
-\textbf{An algorithm to identify partners among the reactive-$n$ strategies.} 
+\subsection*{An algorithm to identify partners among reactive-$\boldsymbol n$ strategies} 
 It is comparably easy to verify whether a reactive-$n$ strategy $\mathbf{p}$ is nice. 
 Demonstrating that the strategy is also a Nash equilibrium, however, is far less trivial. 
 In principle, this requires uncountably many payoff comparisons. 
@@ -248,7 +260,7 @@ Hence, it results in identical payoffs.
 
 The above result guarantees that for any reactive-$n$ strategy, there is always a best response among the self-reactive-$n$ strategies. 
 In a second step, we prove that such a best response can always be found among the {\it deterministic} self-reactive-$n$ strategies. 
-This reduces the search space for potential best responses further, from an uncountable set to a finite set of size $2^{2^n}$. 
+This further reduces the search space for best responses, from an uncountable set to a finite set of size $2^{2^n}$. 
 For $n\!=\!2$, this leaves us with 16 self-reactive strategies to test. 
 For $n\!=\!3$, we end up with (at most) 256 strategies. 
 While this may still appear to be a large number, many of the different strategies impose redundant constraints on partner strategies.
@@ -256,22 +268,23 @@ This redundancy further reduces the number of conditions a partner needs to sati
 
 \begin{figure*}[t]
        \centering
-       \includegraphics[width=.8\textwidth]{../../figures/conceptual_figure_results.pdf}
+       \includegraphics[width=.95\textwidth]{../../figures/conceptual_figure_results.pdf}
        \caption{
-       \textbf{Characterizing the partners among the reactive-$n$ strategies.} 
+       \textbf{Characterizing partners among the reactive-$\boldsymbol n$ strategies.} 
        {\bf A,B,} To characterize the reactive-$n$ partner strategies, we prove the following result. 
        Suppose the focal player adopts a reactive-$n$ strategy. 
        Then, for any strategy of the opponent (with arbitrary memory), one can find an associated self-reactive-$n$ strategy that yields the same payoffs. 
-       Here, we show an example where player~1 uses a reactive-1 strategy against player~2 with a memory-1 strategy. 
-       Our result implies that can switch to a well-defined self-reactive-1 strategy. 
+       Here, we show an example. 
+       Player~1 uses a reactive-1 strategy against player~2 with a memory-1 strategy. 
+       Our result implies that player~2 can switch to a well-defined self-reactive-1 strategy. 
        This switch leaves the outcome distribution unchanged.
        In both cases, players are equally likely to experience mutual cooperation, unilateral cooperation, or mutual defection in the long run. 
        \textbf{C,} Based on this insight, we can explicitly characterize the reactive-2 partner strategies (with $p_{CC}\!=\!1$). 
-       Here, we represent the corresponding conditions~\eqref{eq:two_bit_conditions} for a donation game with $b/c\!=\!2$. 
+       Here, we represent the corresponding conditions in~\eqref{eq:two_bit_conditions} for a donation game with $b/c\!=\!2$. 
        Among the reactive-2 strategies, the counting strategies correspond to the subset with $p_{CD}\!=\!p_{DC}$. 
        Counting strategies only depend on how often the co-player cooperated in the past, not on the timing of cooperation.
        \textbf{D,} Similarly, we can also characterize the reactive-2 partner strategies for the general prisoner's dilemma. 
-       Here, we use the values of Axelrod~\citep{axelrod:AAAS:1981}.
+       Here, we use the payoff matrix of Axelrod~\citep{axelrod:AAAS:1981}.
        }\label{fig:conceptual_figure_results}
 \end{figure*}
 
@@ -280,9 +293,9 @@ This redundancy further reduces the number of conditions a partner needs to sati
 %%%%%%%%%%%%
 
 \noindent
-\textbf{Partners among the reactive-2 and the reactive-3 strategies.}
+\subsection*{Partners among the reactive-2 and the reactive-3 strategies}
 To illustrate the above algorithm, we first characterize the partners among the reactive-$2$ strategies. 
-To this end, we note that it is straightforward to compute the payoff of a specific self-reactive-2 strategy against a general reactive-2 strategy $\mathbf{p}$ (see \SI{} for details). 
+To this end, we note that it is straightforward to compute the payoff of a specific self-reactive-2 strategy against a general reactive-2 strategy $\mathbf{p}$ (see \SI{}). 
 By computing the payoffs of all 16 pure self-deterministic strategies $\mathbf{\tilde p}$, and by requiring $\pi^1(\mathbf{\tilde p},\mathbf{p}) \!\le\! \pi^1(\mathbf{p},\mathbf{p})$ for all of them, we end up with only three conditions. Specifically, we prove that $\mathbf{p}$ is a partner if and only if
 \begin{equation}\label{eq:two_bit_conditions}
 p_{CC} = 1, \qquad  \frac{p_{CD} + p_{DC}}{2} \le 1 - \frac{1}{2} \!\cdot\! \frac{c}{b}, \qquad  p_{DD} \leq 1\!-\! \frac{c}{b}.
@@ -291,7 +304,7 @@ The above conditions define a three-dimensional polyhedron within the space of a
 %These conditions are straightforward to interpret. 
 The condition $p_{CC}\!=\!1$ follows from the requirement that the strategy ought to be nice. 
 As long as the co-player cooperates, the reactive-$n$ player goes along. 
-The other two conditions imply that for each defection in memory, the player's cooperation rate decreases by $c/(2b)$.
+The other two conditions imply that for each defection in memory, the player's cooperation rate decreases proportionally.
 Interestingly, in cases with a mixed $2$-history (one cooperation, one defection), the above conditions suggest that the exact timing of cooperation does not matter. 
 It is only required that the two cooperation probabilities $p_{CD}$ and $p_{DC}$ are sufficiently small {\it on average}. 
 Notably, the above conditions also imply that to check whether a given reactive-2 strategy is a partner, it suffices to check two deviations. 
@@ -300,7 +313,7 @@ We note that this last implication is specific to the donation game.
 For the general prisoner's dilemma (depicted in \figref{fig:conceptual_figure_results}\textbf{D}), there are more than two inequalities that need to be satisfied (see~\SI{}).
 
 Analogously, we can also characterize the partners among the reactive-3 strategies. 
-A reactive-3 strategy is defined by the vector 
+A reactive-3 strategy can be represented by a vector 
 $
 \mathbf{p} = (p_{CCC},\, p_{CCD},\, p_{CDC},\, p_{CDD},\, p_{DCC},\, p_{DCD},\, p_{DDC},\, p_{DDD}).
 $
@@ -315,82 +328,140 @@ p_{CCC} & = 1 \\[0.2cm]
 p_{DDD} & \leq 1\!-\! \frac{c}{b}
 \end{split}
 \end{align}
-These conditions follow a similar logic as in the previous case with $n\!=\!2$:
-for every co-player's defection in memory, the respective cooperation
-probability needs to be diminished proportionally. These conditions
-conditions also imply that to check whether a given reactive-3 strategy is a
+These conditions follow a similar logic as in the previous case with $n\!=\!2$.
+For every co-player's defection in memory, the respective cooperation probability needs to be diminished proportionally. 
+As an example, the second inequality in \eqref{eq:three_bit_conditions} considers three sequences $CCD$, $CDC$, $DCC$. 
+The proportion of $D$'s across these three sequences is $1/3$. 
+Hence, the threshold on the right hand side is $1\!-\!1/3\!\cdot\!c/b$. 
+Because reactive-2 strategies are a subset of reactive-3 strategies, we can also derive the conditions in \eqref{eq:two_bit_conditions} as a special case of \eqref{eq:three_bit_conditions} (see \SI). 
+
+Moreover, the above conditions imply that to check whether a given reactive-3 strategy is a
 partner, it suffices to check five deviations. Similarly to the previous case,
 two of these deviations include the strategy that strictly alternates between
-cooperation and defection, and \alld. The rest of the conditions arise from
-deviations towards sequence-playing self-reactive strategies, where the
-sequences are \((CCD)\), \((DCC)\), and \((DDCC)\) (\figref{fig:conceptual_figure_conditions}).
+cooperation and defection, and \alld. The remaining conditions arise from
+deviations towards self-reactive strategies that repeat certain sequences, where the
+sequences are \(CCD\), \(CDD\), and \(CCDD\) (\figref{fig:conceptual_figure_conditions}).
+
 For $n\!=\!3$, there are now more conditions to consider than in the previous
-case, and these conditions become even more complex for the general prisoner's
+case. 
+These conditions become even more complex for the general prisoner's
 dilemma. Given these complexities, we do not present conditions for reactive-$n$
 partner strategies beyond $n\!=\!3$, even though the algorithm presented in the
-previous section still applies.\\
+previous section still applies.
 
-%%%%%%%%%%%%%
-%  Counting strategies  %
-%%%%%%%%%%%%%
-
-\noindent
-\textbf{Partners among the reactive-$n$ counting strategies.}
-We can more easily generalize these formulas to the case of arbitrary $n$ if we further restrict the strategy space. 
-In the following, we consider reactive-$n$ {\it counting strategies}. 
-These strategies take into account how often the co-player cooperated during the past $n$ rounds. 
-However, they do not consider in which of the past $n$ rounds the co-player cooperated. 
-In the following, we represent such strategies as a vector $\mathbf{r}\!=\!(r_i)_{i \in \{n, n -1, \dots, 0\}}$. 
-Each entry \(r_i\) indicates the player's cooperation probability if the co-player cooperated \(i\) times during the last \(n\) rounds. 
-Note that any reactive-1 strategy $\mathbf{p}\!=\!(p_{C}, p_{D})$ is a counting strategy by definition. 
-However, for larger $n$, the set of counting strategies is a strict subset of the reactive-$n$ strategies.
-For example, for $n\!=\!2$, counting strategies are those strategies that satisfy $p_{CD}\!=\!p_{DC}\!=:\!r_1$. 
-As a result, the partners among the counting strategies form a 2-dimensional plane within the 3-dimensional polyhedron of reactive-2 partner strategies (\figref{fig:conceptual_figure_results}\textbf{C,D}).
-
-For the donation game among players with counting strategies, it is possible to characterize the set of partner strategies for arbitrary $n$. We find that a counting strategy $\mathbf{r}$ is a partner if and only if
-\begin{equation} \label{eq:counting}
-r_n = 1 \qquad \text{and} \qquad r_{n - k} \le 1\! -\! \frac{k}{n} \!\cdot\! \frac{c}{b}~~ \text{ for }~k \!\in\! \{1, 2, \dots, n\}.
-\end{equation}
-That is, for every defection of the opponent in memory, the maximum cooperation probability needs to be reduced by $c/(nb)$.
-It is worth to highlight that this result is general. 
-These strategies are Nash equilibria even if players are allowed to deviate towards strategies that do not merely count the co-player's cooperative acts, or towards strategies that take into account more than the last $n$ rounds.\\ 
-
-\begin{figure*}[tbhp]
+\begin{figure*}[t]
        \centering
        \includegraphics[width=\textwidth]{../../figures/conceptual_figure_conditions.pdf}
        \caption{
        \textbf{Conditions for partners among reactive-$2$ and reactive-$3$ strategies.}
        {\bf A, } Pure self-reactive strategies generate simple repetitive sequences of actions that are independent of the co-player. 
-       For example, in the case of \(n\!=\!2\), the pure self-reactive strategy \(\mathbf{\tilde{p}}=(0, 1)\) generates the indefinitely repeated alternating sequence \((D, C)\).
-       {\bf B,} For a nice reactive strategy \(p\) to be a partner, it must hold that none of these
-  self-reactive strategies can achieve a higher payoff against
-       \(p\) than the mutual cooperation payoff. 
-       This leads to necessary conditions for $\mathbf{p}$ to be a partner, which we show here for \(n\!=\!2\), and \(n\!=\!3\).       Interestingly, we can prove that these necessary conditions are also sufficient, see~\SI.
-       {\bf C,} To derive the conditions, we need to consider the average payoff of each repetitive sequence. 
+       For example, in the case of \(n\!=\!2\), the pure self-reactive strategy \(\mathbf{\tilde{p}}\!=\!(0, 1)\) generates the indefinitely repeated alternating sequence \(DC\).
+       {\bf B,}~For a nice reactive strategy \(\mathbf{p}\) to be a partner, all of these
+  self-reactive strategies need to achieve at most the mutual cooperation payoff against $\mathbf{p}$. 
+         This leads to necessary conditions for $\mathbf{p}$ to be a partner, which we show here for \(n\!=\!2\), and \(n\!=\!3\).       
+         Interestingly, we prove that these necessary conditions are also sufficient, see~\SI.
+       {\bf C,} To derive the conditions, we consider the average payoff of each repetitive sequence. 
        In the top panel, we illustrate an example for \(n\!=\!2\). 
-       Here, the repetitive sequence  \((D, C)\) plays against the reactive strategy \(\mathbf{p} = (1, p_{CD}, p_{DC},
+       Here, the repetitive sequence  \(DC\) plays against the reactive strategy \(\mathbf{p} = (1, p_{CD}, p_{DC},
        p_{DD})\). 
        In odd rounds, the sequence player receives a benefit \(b\) with probability \(p_{DC}\), without paying any cost. 
        In even rounds, the player receives the benefit \(b\) with probability $p_{CD}$, while paying a cost $c$. 
        Over the course of two consecutive rounds, the player thus receives $(p_{DC}\!+\!p_{CD})b\!-\!c$. 
        This payoff needs to be smaller or equal than what a partner strategy achieves against itself, which is \(2(b\!-\!c)\).
        This leads to condition~($\ast$). 
-       In the bottom panel, we illustrate a similar example for $n\!=\!3$, explaining the condition ($\dagger$). 
+       In the bottom panel, we illustrate a similar example for $n\!=\!3$, explaining condition ($\dagger$). 
        }\label{fig:conceptual_figure_conditions}
 \end{figure*}
 
+
+
+%%%%%%%%%%%%%
+%  Counting strategies  %
+%%%%%%%%%%%%%
+
+\noindent
+\subsection*{Partners among the reactive-$\boldsymbol n$ counting strategies}
+We can more easily generalize these formulas to arbitrary $n$ if we further restrict the strategy space. 
+In the following, we consider reactive-$n$ {\it counting strategies}. 
+These strategies only depend on how often the co-player cooperated during the past $n$ rounds; 
+they do not take into account  in which of the past $n$ rounds the co-player cooperated. 
+We represent such strategies as a vector $\mathbf{r}\!=\!(r_i)_{i \in \{n, n -1, \dots, 0\}}$. 
+Each entry \(r_i\) indicates the player's cooperation probability if the co-player cooperated \(i\) times during the last \(n\) rounds. 
+We note that although reactive-$n$ counting strategies have fewer entries (bits) than reactive-$n$ strategies, they are equally complex  in terms of their memory requirements. 
+Even a player with a reactive-$n$ counting strategy needs to keep a record of the exact sequence of the opponent's last $n$ actions. 
+Only by doing so, the player can update its opponent's cooperation count each round, by discarding the opponent's oldest action in memory (see also \SI). 
+%Thus, reactive-$n$ counting strategies differ from reactive-$n$ strategies by what players take into account when making a decision; they do not differ by what players are required to remember. 
+Any reactive-1 strategy $\mathbf{p}\!=\!(p_{C}, p_{D})$ is a counting strategy by definition. 
+However, for larger $n$, the set of counting strategies is a strict subset of the reactive-$n$ strategies.
+For example, for $n\!=\!2$, counting strategies are those strategies that satisfy $p_{CD}\!=\!p_{DC}\!=:\!r_1$. 
+As a result, the partners among the counting strategies form a 2-dimensional plane within the 3-dimensional polyhedron of reactive-2 partner strategies (\figref{fig:conceptual_figure_results}\textbf{C,D}).
+
+For the donation game, it is possible to characterize the set of partner strategies for arbitrary $n$. We find that a counting strategy $\mathbf{r}$ is a partner if and only if
+\begin{equation} \label{eq:counting}
+r_n = 1 \quad \text{and} \quad r_{n - k} \le 1\! -\! \frac{k}{n} \!\cdot\! \frac{c}{b}~~ \text{ for }~k \!\in\! \{1, 2, \dots, n\}.
+\end{equation}
+That is, for every defection of the opponent in memory, the maximum cooperation probability needs to be reduced by $c/(nb)$.
+It is worth to highlight that this result is general. 
+These strategies are Nash equilibria even if players are allowed to deviate towards strategies that do not merely count the co-player's cooperative acts, or towards strategies that take into account more than the last $n$ rounds.
+
+
+%%%%%%%%%%%%%%%%
+%% Other analytical results %%
+%%%%%%%%%%%%%%%%
+
+\subsection*{Further analytical results}
+In the \SI{}, we use our framework to derive a number of additional results. Here we provide a brief summary. 
+First, instead of partners we can equally use our formalism to characterize `defector strategies' -- reactive-$n$ strategies that lead to stable mutual defection. 
+Following Stewart and Plotkin~\citep{stewart:scientific:2016}, we can use this characterization to compare the relative volume of partners and defectors. 
+We find that for sufficiently small cost-to-benefit ratios, the set of partners has the larger volume. 
+Moreover, the relative volume of partners increases in $n$, both for reactive-$n$ and for reactive-$n$ counting strategies (\textbf{Fig.~S3}, \textbf{Tab.~S2}). 
+This finding has interesting implications for the evolution of cooperation~\citep{stewart:pnas:2014,stewart:scientific:2016}. 
+If evolutionary processes generate mutant strategies at random, larger memory lengths make it increasingly likely that mutants adopt strategies in the vicinity of partner strategies, compared to defectors.  
+
+Second, we use our formalism to explore the effects of implementation errors~\citep{boyd:JTB:1989}. 
+When such an error occurs (with some exogenous probability $\varepsilon$), players implement the opposite action of what they intend to do. 
+For this scenario, we derive two sets of results. 
+First, we assume errors to be vanishingly rare. 
+In that case, we find that almost all our previously-described partner strategies remain approximate Nash equilibria. 
+That is, even if there are profitable deviations, the respective payoff advantage is guaranteed to be arbitrarily small, see \textbf{Fig.~S2}. 
+Second, we derive a result for donation games when the error rate is strictly positive. 
+In that case, we describe a subset of so-called `equalizer' strategies~\cite{boerlijst:AMM:1997}, which can sustain cooperation in equilibrium. 
+Among the reactive-1 strategies, this set includes a single strategy, Generous Tit-for-Tat (\gtft). 
+For $n\!\ge\!2$, we derive additional variants of \gtft{}, which punish defection with some delay. 
+While we characterize the set of reactive-$n$ equalizers explicitly, it remains an open question whether they are the only partner strategies for positive error rates. 
 
 %%%%%%%%%%%%%%%
 % Evolutionary simulations  %
 %%%%%%%%%%%%%%%
 
 \noindent
-\textbf{Evolutionary Dynamics.}
+\subsection*{Evolutionary Dynamics}
+
+\begin{figure*}[tbhp]
+       \centering
+       \includegraphics[width=\textwidth]{../../figures/abundant_strategies.pdf}
+       \caption{\textbf{Evolutionary dynamics of reactive-$\boldsymbol n$ strategies.}
+       To explore the evolutionary dynamics among reactive-$n$ strategies, we run simulations based on the
+       method of Imhof and Nowak~\cite{imhof:royal:2010}. 
+       This method assumes rare mutations. 
+       Every time a mutant strategy appears, it goes extinct or fixes before the arrival of the next mutant strategy. 
+       {\bf A,B,} We run twenty independent simulations for reactive-$n$ strategies and for reactive-$n$ counting strategies. 
+       For each simulation, we record the most abundant strategy (the strategy that resisted most mutants). 
+       The respective average cooperation probabilities are in line with the conditions for partner strategies. 
+       {\bf C,D,} With additional simulations, we explore the average abundance of partner strategies and the population's average cooperation rate. 
+       For a given resident strategy to be classified as a partner by our simulation, it needs to satisfy all inequalities in the respective characterization. 
+       In addition, it needs to cooperate after full cooperation with a probability of at least 95\%.  
+       For all considered parameter values, we only observe high cooperation rates when partner strategies evolve. 
+       Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$
+       and a population size $N\!=\!100$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(10 ^ 7\) time steps. For $n\!=\!3$ we use \(2 \!\cdot\!10 ^ 7\) time steps.
+       }\label{fig:evolutionary_results}
+\end{figure*}
+
 With our previous equilibrium analysis we have identified the strategies that can sustain cooperation in principle. 
-In a next step, we determine whether these strategies can evolve in the first place. 
+In a next step, we determine whether these strategies evolve in the first place. 
 Here, we no longer presume that individuals would play equilibrium strategies. 
 Rather they initially implement some random behavior. 
-Over time, however, they adapt their strategies based on social learning.
+Over time, they adapt their strategies based on social learning.
 To model this learning process, we consider a population of individuals who update their strategies based on pairwise comparisons. 
 The efficacy of the resulting learning process is determined by a strength of selection parameter~$\beta$. 
 The larger $\beta$, the more likely individuals imitate strategies with a higher payoff. 
@@ -403,44 +474,40 @@ Evolutionary processes with rare mutations can be simulated more efficiently bec
 
 The results of these simulations are shown in \figref{fig:evolutionary_results}. 
 First, we explore which reactive-$n$ strategies evolve for a fixed set of game parameters. 
-Here, we only vary the strategies' memory length $n$, and whether mutations can introduce all reactive-$n$ strategies, or counting strategies only. 
-For ten independent simulations, \figref{fig:evolutionary_results}\textbf{A,B} displays the most abundant strategy for each simulation run (those are the strategies that prevent the largest number of mutants from taking over). 
+Here, we vary the strategies' memory length $n$, and whether mutations introduce all reactive-$n$ strategies, or counting strategies only. 
+For twenty independent simulations, \figref{fig:evolutionary_results}\textbf{A,B} displays the most abundant strategy for each simulation run (those are the strategies that prevent the largest number of mutants from taking over). 
 We note that all the shown strategies show behavior consistent with our characterization of partners: 
 If a co-player fully cooperated in the previous $n$ rounds, these strategies prescribe to continue with cooperation. 
 If the co-player defected, however, they cooperate with a markedly reduced cooperation probability that satisfies the constraints in Eqs.~(\ref{eq:two_bit_conditions}) -- (\ref{eq:counting}).
 
-In a next step, we systematically explore the impact of three key parameters: the cost-to-benefit ratio~$c/b$, the selection strength $\beta$, and the memory length~$n$. 
+Interestingly, however, the evolving strategies exhibit an interesting asymmetry. 
+For example, for reactive-2 strategies, we observe that players' strategies tend to satisfy $p_{CD}\!<\!p_{DC}$. 
+That is, they are more likely to defect if their opponent defected last round, rather than two rounds ago. 
+In light of our equilibrium analysis, this result is surprising. 
+After all, according to our partner condition~\eqref{eq:two_bit_conditions}, the two cooperation probabilities are completely interchangeable. 
+This asymmetry arises because our evolutionary process with uniform mutations does not introduce perfect partner strategies (with $p_{CC}\!=\!1$). 
+Rather, it introduces strategies in the respective neighborhood (with, say, $p_{CC}\!=\!0.99$).
+Among these noisy partner strategies, we show that strategies are more resilient when they punish defection without delay (for more details, see \SI{} and \textbf{Figs.~S4}, \textbf{S5}, \textbf{Tab.~S3}). 
+ 
+
+In a next step, we systematically explore the impact of several key parameters: the cost-to-benefit ratio~$c/b$, the selection strength $\beta$, and the memory length~$n$~(\figref{fig:evolutionary_results}\textbf{C,D}). 
+In addition, we vary the error rate~$\varepsilon$ in \textbf{Fig. S7}. 
 In each case, we record how these parameters affect the abundance of partner strategies and the population's average cooperation rate. 
-Overall, the effect of each parameter is largely as expected~(\figref{fig:evolutionary_results}\textbf{C,D}).  
-In particular, interactions are most cooperative when the cost-to-benefit ratio is small, such that cooperation is cheap. 
+Overall, the effect of each parameter is as expected.  
+In particular, interactions are most cooperative when cooperation is comparably cheap. 
 This effect is magnified for stronger selection strengths. 
 Two results, however, are particularly noteworthy. 
 First, the curves representing evolving cooperation rates align with the prevalence of partner strategies. 
 This observation suggests that partner strategies are indeed crucial for the evolution of cooperation. 
-Second, higher memory only has a notably positive effect on cooperation for reactive-$n$ strategies. 
-In contrast, for counting strategies the effect of increasing $n$ is negligible. 
-This observation highlights that the timing of cooperation is important, even in additive games such as the donation game. 
+Second, the positive effects of larger memory are most pronounced for reactive-$n$ strategies. 
+In contrast, for counting strategies any positive effect of increasing $n$ is considerably dampened. 
+
+We repeat these simulations for the more general sets of memory-$n$ strategies and memory-$n$ counting strategies (see~\SI). 
+Again, among memory-$n$ strategies, larger values of $n$ lead to more cooperation. 
+But even among counting strategies, longer memory has a positive, albeit smaller, effect (\textbf{Fig.~S6}). 
+We conclude for the considered strategy spaces that the timing of cooperation can be important, even in additive games such as the donation game. 
 
 
-\begin{figure*}[tbhp]
-       \centering
-       \includegraphics[width=\textwidth]{../../figures/abundant_strategies.pdf}
-       \caption{\textbf{Evolutionary dynamics of reactive-$n$ strategies.}
-       To explore the evolutionary dynamics among reactive-$n$ strategies, we run simulations based on the
-       method of Imhof and Nowak~\cite{imhof:royal:2010}. 
-       This method assumes rare mutations. 
-       Every time a mutant strategy appears, it goes extinct or fixes before the arrival of the next mutant strategy. 
-       {\bf A,B,} We run ten independent simulations for reactive-$n$ strategies and for reactive-$n$ counting strategies. 
-       For each simulation, we record the most abundant strategy (the strategy that resisted most mutants). 
-       The respective average cooperation probabilities are in line with the conditions for partner strategies. 
-       {\bf C,D,} With additional simulations, we explore the average abundance of partner strategies and the population's average cooperation rate. 
-       For a given resident strategy to be classified as a partner by our simulation, it needs to satisfy all inequalities in the respective definition of partner strategies. 
-       In addition, it needs to cooperate after full cooperation with a probability of at least 95\%.  
-       For all considered parameter values, we only observe high cooperation rates when partner strategies evolve. 
-       Simulations are based on a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$
-       and a population size $N\!=\!100$, unless noted otherwise. For $n$ equal to 1 and 2, simulations are run for \(T\!=\! 10 ^ 7\) time steps. For $n\!=\!3$ we use \(T\!=\! 2 \!\cdot\!10 ^ 7\) time steps.
-       }\label{fig:evolutionary_results}
-\end{figure*}
        
 
 %%%%%%%%%%%%
@@ -468,10 +535,9 @@ It suffices to only check deviations towards (deterministic) self-reactive-$n$ s
 Self-reactive players are particularly simple to describe. 
 They only take into account their own previous moves. 
 In particular, the future behavior of a self-reactive player is independent of the co-player. 
-We use this insight to characterize the reactive-$n$ partner strategies in the repeated prisoner's diemma.
-But the same insight can be applied to other contexts. 
-For example, it can be equally used to characterize other Nash equilibria (not only the cooperative ones). 
-Similarly, it can be used to characterize the Nash equilibria of other repeated games, such as the snowdrift game~\citep{doebeli:EL:2005} or the volunteer's dilemma~\citep{diekmann:jcr:1985}.  
+We use this insight to characterize the reactive-$n$ partner strategies (and the defector strategies) in the repeated prisoner's dilemma.
+But the same insights should be applicable to other contexts. 
+For example, we expect that similar techniques can be used to characterize the equilibria of other repeated games, such as the snowdrift game~\citep{doebeli:EL:2005} or the volunteer's dilemma~\citep{diekmann:jcr:1985}.  
 In this way, some of our technical results represent useful tools to make further progress on the theory of repeated games, similar to Press and Dyson's insight that any memory-1 strategy has a memory-1 best response~\citep{press:PNAS:2012}. 
 
 Especially for small memory lengths, the conditions for partner strategies are intuitive. 
@@ -480,18 +546,13 @@ For example, for the donation game with $n\!=\!2$ rounds of memory, we end up wi
 ({\it ii}) If the co-player cooperated once, cooperate with a slightly reduced probability of $1\!-\!c/(2b)$ on average. 
 ({\it iii}) If the co-player did not cooperate at all, reduce the cooperation probability even further, to $1\!-\!c/b$. 
 As we increase the memory length to $n\!\ge\!3$, or as we consider more general games, there are more conditions to satisfy, and the conditions become harder to interpret. 
-However, the three simple conditions above do generalize to larger $n$ if we focus on the subset of counting strategies. 
-These are the reactive-$n$ strategies that merely count how often the co-player cooperated during the last $n$ rounds. 
+However, the three simple conditions do generalize to larger $n$ if we focus on the set of counting strategies. 
+These are the reactive-$n$ strategies that react to how often the co-player cooperated during the last $n$ rounds. 
 For counting strategies, we show that for each defection of the co-player in memory, a partner reduces its cooperation probability by $c/(nb)$. 
 A partner's generosity decreases in proportion to their opponent's selfishness. 
 
-With respect to {\it sustaining} cooperation, counting strategies thus seem to be just as effective as the more complex reactive-$n$ strategies.
-With respect to the {\it evolution} of cooperation, however, they seem seem far less effective. 
-In simulations, memory size only has a positive impact on evolving cooperation rates for reactive-$n$ strategies, but not for counting strategies~(\figref{fig:evolutionary_results}). 
-These results suggest that memory is not only important to record {\it how often} a co-player cooperated, but also {\it when}. 
-Overall, these results shed an important light on the logic of reciprocity for individuals with plausible cognitive abilities. 
 While in practice, people's cooperative decisions often depend on the outcome of their last encounter, they rarely depend on that last encounter {\it only}. 
-Our results suggest a way how individuals can integrate information from previous interactions to cooperate most effectively.  
+Overall, our results suggest a way how individuals can integrate information from previous interactions to cooperate most effectively.  
 
 %%%%%%%%%%
 %% METHODS %%
@@ -499,10 +560,10 @@ Our results suggest a way how individuals can integrate information from previou
 
 \section*{Materials and Methods}\label{section:materials_and_methods}
 
-Our study combines two independent approaches, an equilibrium analysis and evolutionary simulations.\\
+Our study combines two independent approaches, an equilibrium analysis and evolutionary simulations.
 
-\noindent
-{\bf Equilibrium analysis.} Here we only summarize our equilibrium analysis; all details are in the \SI. 
+\subsection*{Equilibrium analysis} 
+Here we only summarize our approach; all details are in the \SI. 
 There, we formally introduce the three relevant strategy spaces, memory-$n$ strategies, reactive-$n$ strategies, and self-reactive-$n$ strategies. 
 Then we provide an explicit algorithm for computing these strategies' payoffs. 
 This algorithm uses a Markov chain approach. 
@@ -513,14 +574,14 @@ In a second step, we explore the partner strategies among the reactive-$n$ strat
 To this end, we first generalize some well-known reactive-1 partner strategies: Tit-for-Tat~\citep{axelrod:AAAS:1981} and Generous Tit-for-Tat~\citep{nowak:Nature:1992,molander:jcr:1985}. 
 In a next step, we derive a general algorithm to check whether a given reactive-$n$ strategy is a partner. 
 We use this algorithm to characterize all reactive-$n$ partners for $n\!\in\!\{1,2,3\}$, for both the donation game and the prisoner's dilemma. 
-For counting strategies, we characterize the partners for all $n$.\\
+For counting strategies in the donation game, we characterize partners for all $n$.\\
 
 \noindent
-{\bf Evolutionary analysis.} For our simulations, we consider a population of size \(N\) where initially all
-members are of the same strategy. 
-In our case the initial population consists of unconditional defectors. 
+{\bf Evolutionary analysis.} 
+For our simulations, we consider a population of size \(N\). 
+Initially all members are of the same strategy (in our case, they are unconditional defectors). 
 In each elementary time step, one individual switches to a new mutant strategy. 
-The mutant strategy is generated by randomly drawing cooperation probabilities from the unit interval \([0,1]^{2^n}\). 
+The mutant strategy is generated by independently drawing each individual cooperation probability from the unit interval \([0,1]\) uniformly at random. 
 If the mutant strategy yields a payoff of \(\pi_{M, k}\), where \(k\) is the number of
 mutants in the population, and if residents get a payoff of \(\pi_{R,
 k}\), then the fixation probability \(\phi_{M}\) of the mutant strategy can be
@@ -535,15 +596,16 @@ When \(\beta\) is small, \(\beta \approx 0\), payoffs become irrelevant, and a s
 The larger the value of \(\beta\), the more strongly the evolutionary process favors the fixation of strategies with a high
 payoff.
 Depending on \(\phi_{M}\), the mutant either fixes (becomes the new resident) or goes extinct. 
-Afterwards, another mutant strategy is introduced to the population. 
+Afterwards, the process repeats, and another mutant strategy is introduced to the population. 
+
 We iterate this elementary population updating process for a large number of
 mutant strategies. At each step, we record the current resident
 strategy and the resulting average cooperation rate, indicating how often the
 resident strategy cooperates with itself. Additionally, we assess how many
 resident strategies qualify as partner strategies in our simulation. For a
 resident strategy to be classified as a partner, it must satisfy all
-inequalities in the respective definition of partner strategies and cooperate
-with a probability of at least 95\% after full cooperation.\\
+inequalities in the respective definition of partner strategies. 
+In addition, it must cooperate with a probability of at least 95\% after full cooperation.\\
 
 \noindent
 {\bf Data, Materials, and Software Availability.} The source code used to
@@ -560,8 +622,8 @@ Starting Grant 850529: E-DIRECT, and by the Max Planck Society.
 
 
 {\setlength{\bibsep}{0\baselineskip}
-\bibliographystyle{naturemag}
-\bibliography{../bibliography.bib}
+%\bibliographystyle{naturemag}
+\bibliography{../../bibliography.bib}
 }
 
 
