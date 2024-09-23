@@ -1360,9 +1360,7 @@ This relationship is reversed for larger memory lengths.
 \textbf{B, E,} This qualitative result also holds for other cost-to-benefit ratios. In each case, the volume of defectors shrinks more rapidly in $n$ than the volume of partners. 
 \textbf{C, D,} As a simple measure for the likelihood of the evolution of cooperation, we plot the ratio of the two volumes \citep[see also Ref.][]{stewart:scientific:2016}.
 We refer to this ratio as the relative proportion of partners. 
-As we increase $n$, the relative proportion of partners increases, for all cost-to-benefit ratios. \newline
-\christian{(-) Can we change the wording -- instead of `cooperative Nash equilibria' can we speak of `partners' and instead of `defecting Nash equilibria', can we use `defectors'? In Panel A,D, instead of `Proportion of Nash equilibria', we could then say `Proportion of strategies'. (-) In panels E-F, can we remove the grey box around the color legend? (-) In panels B-F, can we use `Cost-to-benefit ratio $c/b$' instead of `cost ($c$)'?}
-}\label{fig:siFigDefectiveCooperativeNash}
+As we increase $n$, the relative proportion of partners increases, for all cost-to-benefit ratios.}\label{fig:siFigDefectiveCooperativeNash}
 
 \label{Tab:Volumes}
 $$
@@ -1415,15 +1413,14 @@ In particular, the two strategies are equivalent when it comes to resist invasio
 
 \begin{figure}[tbhp]
   \centering
-  \includegraphics[width=.45\textwidth]{../../figures/siFigInvasionR2ForPCCone.pdf}
-  \includegraphics[width=.397\textwidth]{../../figures/siFigInvasionR2_v2.pdf}
+  \includegraphics[width=.85\textwidth]{../../figures/siFigInvasionR2.pdf}
   \caption{\textbf{An invasion analysis for reactive-2 strategies when $\mathbf{p_{CD}}$ and $\mathbf{p_{DC}}$ are reversed.}
   \textbf{A,} We study the evolutionary dynamics for two different resident populations, $\mathbf{p}\!=\!(1,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(1,0.6,0.1,0.3)$. 
   In each case, we record how many mutant strategies it takes until a mutant successfully invades the resident. 
-  We report averages over $10^3$ iterations. We find that for these two strategies, invasion times are similar. 
+  We report averages over $10^4$ iterations. We find that for these two strategies, invasion times are similar. 
   \textbf{B,} As a special case, we consider the mutant strategy \alld{}, and we plot the players' payoffs as a function of the number of mutants in the population. Also here, $\mathbf{p}$ and $\mathbf{p'}$ are equivalent. 
-  \textbf{C,D,} We repeat the previous analysis for slightly perturbed strategies, $\mathbf{p}\!=\!(0.99,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(0.99,0.6,0.1,0.3)$. Now the strategies are no longer equivalent. Parameters are the same as in Fig.~4 of the main text.\newline
-  \christian{(-) I created this figure from individual pieces of some of your existing figures. However, now the panels on the left hand side and the panels on the right hand side are not the same size. Also, the letters are not correct, it should be `A' and `B' on the left hand side (correct) and `C' and `D' on the right hand side. Could you fix this? (-) Is it correct that we show averages over $10^3$ iterations and that we use the same parameters as in Fig.~4 of the main text? (-) Also, I might be a bit pedantic, but I like being consistent in our use of capital letters. For example, we say `Average' (with capital A) but `expected' (with small e). Could we always start an axis label or a header with a capital letter? (The same is true for other figures)}}\label{fig:InvasionAnalysisReactive2}
+  \textbf{C,D,} We repeat the previous analysis for slightly perturbed strategies, $\mathbf{p}\!=\!(0.99,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(0.99,0.6,0.1,0.3)$. Now the strategies are no longer equivalent. Parameters are the same as in Fig.~4 of the main text.
+  }\label{fig:InvasionAnalysisReactive2}
   ~\\
   \includegraphics[width=0.9\textwidth]{../../figures/siFigReactiveTwoPayoffs.pdf}
   \caption{\textbf{Game dynamics of reactive-2 strategies when $\mathbf{p_{CD}}$ and $\mathbf{p_{DC}}$ are reversed.}
@@ -1553,10 +1550,7 @@ However, this time, we also find a notably positive effect of memory among the m
   \textbf{Dynamics among memory-$n$ strategies.}
   We explore the cooperation rates of memory-$n$ strategies and memory-$n$ counting strategies for different costs and selection strengths.
   We use the same parameters as in Fig.~4 of the main text: We consider a donation game with \(b\!=\!1\),  \(c\!=\!0.5\), a selection strength $\beta\!=\!1$ and a population size $N\!=\!100$, unless noted otherwise. 
-  For $n$ equal to 1 and 2, simulations are run for \(10
-  ^ 7\) time steps.\newline
-  \christian{How long are simulations run for $n\!=\!3$?}
-  }
+  Simulations are run for \(10 ^ 7\) time steps.}
   \label{Fig:MemoryN}
 \end{figure}
 
@@ -1589,8 +1583,7 @@ Again, this effect is particularly pronounced for reactive-$n$ strategies (Fig.~
   In the lower row, we compare these results across different memory lengths.  
   From left to right, we show the differences in cooperation rates between reactive-2
   and reactive-1, reactive-3 and reactive-2, and reactive-3 and reactive-1 strategies.
-  Unless noted otherwise, parameters are the same as in Fig. 4 of the main text. 
-  \christian{Is it true that baseline parameters are the same as in main text Fig. 4?}
+  Unless noted otherwise, parameters are the same as in Fig. 4 of the main text.
     }\label{fig:errors}
 \end{figure}
 
