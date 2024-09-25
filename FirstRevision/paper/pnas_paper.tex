@@ -425,11 +425,15 @@ For this scenario, we derive two sets of results.
 First, we assume errors to be vanishingly rare. 
 In that case, we find that almost all our previously-described partner strategies remain approximate Nash equilibria. 
 That is, even if there are profitable deviations, the respective payoff advantage is guaranteed to be arbitrarily small, see \textbf{Fig.~S2}. 
-Second, we derive a result for donation games when the error rate is strictly positive. 
-In that case, we describe a subset of so-called `equalizer' strategies~\cite{boerlijst:AMM:1997}, which can sustain cooperation in equilibrium. 
-Among the reactive-1 strategies, this set includes a single strategy, Generous Tit-for-Tat (\gtft). 
-For $n\!\ge\!2$, we derive additional variants of \gtft{}, which punish defection with some delay. 
-While we characterize the set of reactive-$n$ equalizers explicitly, it remains an open question whether they are the only partner strategies for positive error rates. 
+Second, we derive a result for donation games when the error rate is strictly positive.
+In this case, we focus on the so-called `equalizer'
+strategies~\cite{boerlijst:AMM:1997}. More specifically, we describe a subset of
+equalizer strategies that can sustain cooperation in equilibrium. Among the
+reactive-1 strategies, this subset includes a single strategy, Generous
+Tit-for-Tat (\gtft). For $n\!\ge\!2$, we derive additional variants of \gtft{}
+that punish defection with a delay. We show that these strategies are partners
+in the presence of a positive error rate. However, it remains an open question
+whether they are the only such strategies.
 
 %%%%%%%%%%%%%%%
 % Evolutionary simulations  %
@@ -523,9 +527,6 @@ This set is comparably easy to work with:
 the number of deterministic memory-1 strategies is manageable; most strategies are easy to interpret; and payoffs can be computed efficiently~\citep{sigmund2010}. 
 At the same time, however, this strategy space leaves out many interesting reciprocal behaviors that are of theoretical or empirical relevance.
 For example, already simple behaviors such as Tit-for-Two-Tat~\citep{axelrod:AAAS:1981} are not representable with one-round memory.
-This shortcoming is particularly consequential for noisy games, where higher-memory strategies are important~\cite{fudenberg:AER:2012}. 
-In such games, individuals often take into account information from previous rounds to make sense of a co-player's defection in the last round. 
-That is, the earlier history of play provides an important context to interpret the co-player's last-round behavior. 
 
 To make progress, we consider an easily interpretable set of strategies with higher memory. 
 These reactive-$n$ strategies take into account a co-player's moves during the past $n$ rounds. 

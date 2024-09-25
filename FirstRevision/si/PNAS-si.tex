@@ -105,7 +105,7 @@ Here, we introduce all relevant strategy spaces, and we show how to compute long
 Section~\ref{section:results} contains our key analytical results. 
 Here, we define partner strategies, we present an algorithm that allows us to verify whether a given reactive-$n$ strategy is a partner, and we apply this algorithm to fully characterize the reactive-$n$ partner strategies for $n\!=\!2$ and $n\!=\!3$.
 We perform a similar analysis for the stable defecting strategies. 
-Section~\ref{section:simulations} presents some complementary evolutionary results. 
+Section~\ref{section:simulations} presents some complementary numerical results. 
 Finally, the Appendix in Section~\ref{section:appendix} contains the proofs of our mathematical results. 
 
 
@@ -336,7 +336,7 @@ In the special case that payoffs are given by the donation game, this condition 
 
 %% MODEL: Self-reactive strategies %%
 \noindent
-\subsubsection*{Self-reactive-$n$ strategies.}
+\subsubsection*{Self-reactive-$n$ strategies}
 The other important subspace of memory-$n$ strategies is the set of self-reactive-$n$ strategies, 
 \begin{equation}
 \mathcal{S}_n:=\Big\{ \mathbf{m}\!\in\!\mathcal{M}_n ~\Big|~ m_{(\mathbf{h^i},\mathbf{h^{-i}})}\!=\!m_{(\mathbf{h^i},\mathbf{\tilde h^{-i}})}~~\text{for all}~\mathbf{h^i}\!\in\!H^i~\text{and}~\mathbf{h^{-i}},\mathbf{\tilde h^{-i}}\!\in\!H^{-i}\Big\}.
@@ -910,7 +910,7 @@ Similarly, the second inequality in~\eqref{eq:two_bit_conditions} follows from t
 %As in the case of $n\!=\!2$ we observe here that with each additional defection of the opponent in memory, the focal player reduces its conditional cooperation probability by a constant, in this case $c/(3b)$.\\
 
 \noindent
-\subsubsection*{Partners among the reactive-$n$ counting strategies.}
+\subsubsection*{Partners among the reactive-$n$ counting strategies}
 Using the same methods as before, one can in principle also characterize the partners among the reactive-4 and the reactive-5 strategies. However, the  respective conditions quickly become unwieldy. 
 However, in the special case of  {\it reactive-$n$ counting strategies}, we can provide a simple condition for any memory length.
 To formally define these strategies, let $|\mathbf{h^{-i}}|$ denote the number of $C$'s in a given $n$-history of the co-player. 
@@ -1254,7 +1254,7 @@ This means that given a fully cooperative history $\mathbf{h_\mathbf{C}}$, the s
 \begin{equation}
 1 = m^{i}_{\mathbf{h_C}} =\frac{1}{1-2\varepsilon}\left( \sum_{k=1}^n \delta_k \left(-\frac{1}{b}(b\!-\!c) +1\right) + \big(\kappa(1\!-\!c/b)-\varepsilon\big)\right).
 \end{equation}
-By noting that $\sum_{k=1}^n \delta_k\!=\!1$, we can solve this equation for $\kappa$, which yields $\kappa\!=\!(1\!-\!c/b\!-\!\varepsilon)/(1\!-\!c/b)$. 
+By noting that $\sum_{k=1}^n \delta_k\!=\!1$, we can solve this equation for $\kappa$, which yields $\kappa\!=\!((1\!-\!c)/b\!-\!\varepsilon)/(1\!-\!c/b)$. 
 By plugging this value of $\kappa$ into \eqref{Eq:Equalizer_error}, we conclude that for games with errors, all strategies of the following form are partner strategies,
 \begin{equation} \label{Eq:Partner_error}
 \mathbf{m^{i}} =\frac{1}{1-2\varepsilon}\left( \sum_{k=1}^n \delta_k \left(-\frac{1}{b}\mathbf{g}^{-i}(k) +\mathbf{m}^{k-\text{Rep}}\right) + (1\!-\!c/b\!-\!2\varepsilon)\, \mathbf{1}\right).
@@ -1335,7 +1335,7 @@ As this table shows, the two volumes become smaller because with every increase 
 Importantly, however, for defectors, the conditions become more stringent with $n$. 
 In contrast, for partners, all further conditions are increasingly easy to satisfy (all additional thresholds are above the first threshold of $r_0\!\le\!0.3$).  
 
-As one may expect, these qualitative results are independent of the precise cost-to-benefit ratio.
+As one may expect, these qualitative results are dependent of the precise cost-to-benefit ratio.
 Of course, larger cost values increase the volume of defectors and reduce the volume of partners (Fig.~\ref{fig:siFigDefectiveCooperativeNash}B,E). 
 However, for any given $c/b$ value, we find that the volume of defectors shrinks more rapidly in $n$ than the volume of partners. 
 As introduced by Stewart and Plotkin~\cite{stewart:scientific:2016}, we can derive an important measure for the overall prospects of cooperation by computing the ratio of these two volumes. 
@@ -1354,7 +1354,7 @@ For one copy, we set the cooperation probability after full cooperation of the c
 For the second copy, we set the cooperation probability after full defection of the co-player to zero. 
 We check whether the copies satisfy the properties of a partner or a defector, respectively.  
 We consider reactive-$n$ strategies (top) and reactive-$n$ counting strategies (bottom), for $n\!\in\!\{1,2,3\}$. 
-\textbf{A, D,} We plot the results for a fixed cost-to-benefit ratio \(c/b \!=\!0.5\). 
+\textbf{A, D,} We plot the results for a fixed cost-to-benefit ratio \(c/b \!=\!0.7\).
 For $n\!=\!1$, defector strategies make up a larger proportion of the respective strategy space, compared to partners. 
 This relationship is reversed for larger memory lengths. 
 \textbf{B, E,} This qualitative result also holds for other cost-to-benefit ratios. In each case, the volume of defectors shrinks more rapidly in $n$ than the volume of partners. 
@@ -1393,7 +1393,7 @@ $$
 \subsection{Exploring an emerging asymmetry in the evolving strategies}
 
 In the main text, we report our evolutionary results in Fig.~4. 
-There, we also observe an interesting asymmetry in the emerging strategies. 
+There, we observe an interesting asymmetry in the emerging strategies. 
 For example, for reactive-$2$ strategies, we observe that the most abundant strategies tend to have $p_{CD}\!<\!p_{DC}$. 
 These strategies are more likely to defect if a co-player defected in the previous round, rather than in the second-to-last round. 
 One may interpret this as an indication that players are incentivized to punish a co-player's defection immediately, rather than with some delay. 
@@ -1401,7 +1401,7 @@ From a static perspective, this asymmetry is remarkable.
 After all, our conditions for reactive-2 partner strategies in \eqref{eq:two_bit_conditions} suggest that with respect to being a Nash equilibrium, the two entries $p_{CD}$ and $p_{DC}$ are interchangeable. 
 
 In order to explore this emerging asymmetry, it is again instructive to study a specific example. 
-To this end, we consider the two reactive-2 strategies $\mathbf{p}\!=\!(1,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(1,0.6,0.1,0.3)$. 
+We consider the two reactive-2 strategies $\mathbf{p}\!=\!(1,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(1,0.6,0.1,0.3)$. 
 The two strategies are identical, except that the values of $p_{CD}$ and $p_{DC}$ are flipped. 
 With respect to our conditions for partners, this difference is inconsequential: $\mathbf{p}$ is a partner for a given donation game if and only $\mathbf{p'}$ is a partner. 
 To investigate whether the two strategies differ in their evolutionary properties, we explore whether they are equally robust with respect to invasions. 
@@ -1414,7 +1414,7 @@ In particular, the two strategies are equivalent when it comes to resist invasio
 \begin{figure}[tbhp]
   \centering
   \includegraphics[width=.85\textwidth]{../../figures/siFigInvasionR2.pdf}
-  \caption{\textbf{An invasion analysis for reactive-2 strategies when $\mathbf{p_{CD}}$ and $\mathbf{p_{DC}}$ are reversed.}
+  \caption{\textbf{An invasion analysis for reactive-2 strategies when $p_{CD}$ and $p_{DC}$ are reversed.}
   \textbf{A,} We study the evolutionary dynamics for two different resident populations, $\mathbf{p}\!=\!(1,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(1,0.6,0.1,0.3)$. 
   In each case, we record how many mutant strategies it takes until a mutant successfully invades the resident. 
   We report averages over $10^4$ iterations. We find that for these two strategies, invasion times are similar. 
@@ -1423,7 +1423,7 @@ In particular, the two strategies are equivalent when it comes to resist invasio
   }\label{fig:InvasionAnalysisReactive2}
   ~\\
   \includegraphics[width=0.9\textwidth]{../../figures/siFigReactiveTwoPayoffs.pdf}
-  \caption{\textbf{Game dynamics of reactive-2 strategies when $\mathbf{p_{CD}}$ and $\mathbf{p_{DC}}$ are reversed.}
+  \caption{\textbf{Game dynamics of reactive-2 strategies when $p_{CD}$ and $p_{DC}$ are reversed.}
   As in Fig.~\ref{fig:InvasionAnalysisReactive2}C,D, we consider the two strategies $\mathbf{p}\!=\!(0.99,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(0.99,0.6,0.1,0.3)$. We study games in which a $\mathbf{p}$ player meets another $\mathbf{p}$ player, or in which a $\mathbf{p'}$ player meets another $\mathbf{p'}$ player. 
   \textbf{A,} We illustrate the invariant distribution $\mathbf{v}$ of the resulting games. 
   For both strategies, the most abundant state (the most abundant 2-history) is the one in which both players cooperate in both rounds. 
