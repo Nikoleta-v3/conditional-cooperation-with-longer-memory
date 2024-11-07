@@ -1,11 +1,11 @@
 % Script to run the evolutionary process for a range of seeds
 function evolRunSeeds(seed);
 
+sdim = 4;
 starting_resident = zeros(1, sdim);
 N = 100;
-b=1;
+b = 1;
 numberIterations = 10 ^ 5;
-sdim = 4;
 
 beta = 1;
 c = .5;
