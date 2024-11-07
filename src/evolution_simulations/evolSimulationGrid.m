@@ -38,6 +38,12 @@ vMR=stationary(Mut, Res, sdim, errorprobability);
 vRM=stationary(Res, Mut, sdim, errorprobability);
 vRR=stationary(Res, Res, sdim, errorprobability);
 
+disp(vMM)
+disp(vMR)
+disp(vRM)
+disp(vRR)
+disp("=====")
+
 piMM=vMM*u';
 coopMM= sum(vMM(2:4:end)) + sum(vMM(1:4:end));
 
@@ -45,13 +51,11 @@ piMR=vMR*u';
 piRM=vRM*u';
 piRR=vRR*u';
 
+
 laplus=zeros(1, N-1); laminus=laplus;
 for k=1:N-1
     piM = (k-1) / (N-1) * piMM + (N-k) / (N-1) * piMR;
     piR = k / (N-1) * piRM + (N-k-1) / (N-1) * piRR;
-    disp(piM)
-    disp(piR)
-    disp("=====")
 
     laplus(k) = 1 / (1 + exp(-beta * (piM - piR)));
     laminus(k) = 1 / (1 + exp(-beta * (piR - piM)));
