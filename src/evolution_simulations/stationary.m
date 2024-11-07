@@ -18,7 +18,7 @@ v = ssp0./sum(ssp0);
 
 v = v';
 
-if size(v, 1) == 2
+if size(v, 1) > 1
     v = v(1, :);
 end
 end
