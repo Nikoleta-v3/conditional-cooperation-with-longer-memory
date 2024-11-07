@@ -5,7 +5,7 @@ sdim = 4;
 starting_resident = zeros(1, sdim);
 N = 100;
 b = 1;
-numberIterations = 10 ^ 5;
+numberIterations = 10 ^ 7;
 
 beta = 1;
 c = .5;

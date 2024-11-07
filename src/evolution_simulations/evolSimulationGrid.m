@@ -38,10 +38,10 @@ vMR=stationary(Mut, Res, sdim, errorprobability);
 vRM=stationary(Res, Mut, sdim, errorprobability);
 vRR=stationary(Res, Res, sdim, errorprobability);
 
-disp(vMM)
-disp(vMR)
-disp(vRM)
-disp(vRR)
+disp(size(vMM))
+disp(size(vMR))
+disp(size(vRM))
+disp(size(vRR))
 disp("=====")
 
 piMM=vMM*u';
