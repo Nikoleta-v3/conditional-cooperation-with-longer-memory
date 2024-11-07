@@ -12,7 +12,7 @@ c = .5;
 % seeds = linspace(1, 10, 10);
 errorprobability = 0;
 
-filename = append("test_with_mutants_take_one", num2str(seed), ".csv");
+filename = append("test_with_mutants_take_one_", num2str(seed), ".csv");
 [xDat]=evolSimulationGrid(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
 
 % for (i = 1:2)
