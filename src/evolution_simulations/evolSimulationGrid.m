@@ -17,8 +17,8 @@ grid = (0:0.001:1);
 j = 2;
 for t = 1:numberIterations
     Mut = zeros(1, sdim);
-    for i = 1:sdim
-        Mut(i) = grid(randi([1 1001]));
+    for l = 1:sdim
+        Mut(l) = grid(randi([1 1001]));
     end
     [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, sdim, errorprobability);
     if rand(1) < phi
