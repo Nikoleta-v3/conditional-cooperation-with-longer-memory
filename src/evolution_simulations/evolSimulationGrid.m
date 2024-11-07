@@ -11,7 +11,7 @@ xDat(1,:)=[Res, 0, 0];
 
 u = repmat([b - c, -c, b, 0], 1, (sdim ^ 2) / 4);
 
-grid = (0:0.001:1);
+grid = (0:0.01:1);
 
 %% Running the evolutionary process
 j = 2;
