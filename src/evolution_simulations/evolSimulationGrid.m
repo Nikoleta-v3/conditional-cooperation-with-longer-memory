@@ -38,11 +38,11 @@ vMR=stationary(Mut, Res, sdim, errorprobability);
 vRM=stationary(Res, Mut, sdim, errorprobability);
 vRR=stationary(Res, Res, sdim, errorprobability);
 
-disp(size(vMM))
-disp(size(vMR))
-disp(size(vRM))
-disp(size(vRR))
-disp("=====")
+% disp(size(vMM))
+% disp(size(vMR))
+% disp(size(vRM))
+% disp(size(vRR))
+% disp("=====")
 
 piMM=vMM*u';
 coopMM= sum(vMM(2:4:end)) + sum(vMM(1:4:end));

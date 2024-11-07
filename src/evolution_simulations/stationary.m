@@ -17,4 +17,8 @@ ssp0 = null(eye(size(M))- M.');
 v = ssp0./sum(ssp0);
 
 v = v';
+
+if size(v, 1) == 2
+    v = v(1);
+end
 end
