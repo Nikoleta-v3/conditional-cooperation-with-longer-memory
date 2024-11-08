@@ -18,7 +18,19 @@ v = ssp0./sum(ssp0);
 
 v = v';
 
-if size(v, 1) > 1
-    v = v(1, :);
+dim = size(v, 1);
+
+if dim > 1
+    for j=1:dim
+       if v(j, 1) == 1
+           full_coop = true;
+           index = j;
+       end
+    end
+    if full_coop == true
+        v = v(index, :);
+    else
+        v = v(1, :);
+    end
 end
 end
