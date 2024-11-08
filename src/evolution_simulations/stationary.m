@@ -20,7 +20,7 @@ v = v';
 dim = size(v, 1);
 
 if dim > 1
-    index = randi(1:dim);
+    index = randi([1 dim]);
     for j=1:dim
        if v(j, 1) == 1
            index = j;
