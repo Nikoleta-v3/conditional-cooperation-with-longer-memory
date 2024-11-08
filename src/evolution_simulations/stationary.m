@@ -19,7 +19,7 @@ v = ssp0./sum(ssp0);
 v = v';
 
 dim = size(v, 1);
-index = randin(1:dim);
+index = randi(1:dim);
 
 if dim > 1
     for j=1:dim
