@@ -17,11 +17,10 @@ ssp0 = null(eye(size(M))- M.');
 v = ssp0./sum(ssp0);
 
 v = v';
-
 dim = size(v, 1);
-index = randi(1:dim);
 
 if dim > 1
+    index = randi(1:dim);
     for j=1:dim
        if v(j, 1) == 1
            index = j;
