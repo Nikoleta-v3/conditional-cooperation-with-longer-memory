@@ -19,6 +19,7 @@ v = ssp0./sum(ssp0);
 v = v';
 
 dim = size(v, 1);
+full_coop = false;
 
 if dim > 1
     for j=1:dim
