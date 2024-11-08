@@ -19,19 +19,14 @@ v = ssp0./sum(ssp0);
 v = v';
 
 dim = size(v, 1);
-full_coop = false;
+index = randin(1:dim);
 
 if dim > 1
     for j=1:dim
        if v(j, 1) == 1
-           full_coop = true;
            index = j;
        end
     end
-    if full_coop == true
-        v = v(index, :);
-    else
-        v = v(1, :);
-    end
+    v = v(index, :);
 end
 end
