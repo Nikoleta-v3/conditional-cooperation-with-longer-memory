@@ -1466,6 +1466,35 @@ According to this table, the top 15 paths among $\mathbf{p}$ players are compara
 These 15 paths make up roughly 16.9\% of all recoveries. 
 Among $\mathbf{p'}$ players, the respective list features longer paths (up to 12 rounds until recovery), and these 15 paths explain fewer of the total recoveries (only 14.5\%). 
 
+
+
+Lastly, to clearly demonstrate that this asymmetry arises solely because
+individuals in our simulations cannot implement perfect partner strategies, we
+ran an evolutionary analysis where mutants are now drawn from a discretized unit
+interval (e.g., \(0.00, 0.01, 0.02, \dots, 0.99, 1.00\)). We ran the analysis as
+in \textbf{Fig. 4} of the main text, specifically for reactive-2 strategies. Namely,
+we conducted 30 independent simulations. For each simulation, we recorded the
+most abundant strategy with \(p_{CC} = 1\) (the strategy that resisted the most
+mutants). The results are presented in Fig.~\ref{fig:EvolutionR2Grid}. As shown,
+the asymmetry between \(p_{CD}\) and \(p_{DC}\) is no longer present.
+
+\begin{figure}[tbhp]
+  \centering
+  \includegraphics[width=.65\textwidth]{../../figures/abundant_strategies_grib_sample.pdf}
+  \caption{\textbf{Most abundant strategies when mutants are sampled from a discretized unit interval.}
+  We conducted 30 independent simulations where individuals could adopt
+  strategies from the reactive-2 space. In \textbf{Fig. 4} of the main text,
+  mutant strategies were sampled from a uniform distribution over \([0, 1]\),
+  whereas here, they are drawn from a discretized unit interval (e.g., \(0.00,
+  0.01, 0.02, \dots, 0.99, 1.00\)). This change allows probabilities such as 0
+  and 1, which were previously impossible to sample, to be implemented. We
+  report the strategies of the most abundant residents that were ``nice'' (i.e.,
+  \(p_{CC} = 1\)). As shown, the asymmetry between \(p_{cd}\) and \(p_{dc}\)
+  observed when perfect \(p_{cc} = 1\) values were unavailable now disappears.
+  Parameters are the same as in Fig.~4 of the main text.
+  }\label{fig:EvolutionR2Grid}
+\end{figure}
+
 Overall, we obtain the following interpretation for the emerging asymmetry in the evolving reactive-2 strategies. 
 When executed perfectly, partner strategies  $\mathbf{p}\!=\!(1,0.1,0.6,0.3)$ and $\mathbf{p'}\!=\!(1,0.6,0.1,0.3)$ are indeed equivalent with respect to their evolutionary properties. 
 Noisy variants of these strategies, however, are not equivalent. 
