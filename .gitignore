@@ -24,11 +24,20 @@ figures/static/*pdf
 data/*
 matlab_data/*
 checks/*
+*txt
 *csv
+notebooks/DefectingNash/
+src/evolution_simulations/ErrorGrid.zip
+src/evolution_simulations/ErrorGrid/
+src/evolution_simulations/ErrorSim.zip
+src/evolution_simulations/ErrorSim/
+src/evolution_simulations/ErrorSim_2/
+notebooks/DefectingNashCounting/
 
 # Folder for CH to keep track of the history
 oldfiles/
 
-# CH's Mathematica calculations
+# CH's Mathematica and Matlab calculations
 mathematica/
+matlab/
 

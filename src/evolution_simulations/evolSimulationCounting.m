@@ -1,10 +1,9 @@
 % Simulation Code for the Evolutionary Dynamics of Reactive Counting Strategies
-function [xDat]=evolSimulation(N, c, b, beta, numberIterations, starting_resident, seed, sdim);
+function [xDat]=evolSimulationCounting(N, c, b, beta, numberIterations, starting_resident, seed, sdim, errorprobability, filename);
 rng(seed)
 %% Preparations for the output
 Data=['c=',num2str(c),'; b=',num2str(b),'; N=',num2str(N), '; beta=',num2str(beta), '; nIt=',num2str(numberIterations)];
 AvCoop=0; AvPay=0; Res=starting_resident;
-filename = "counting/bits_" + sdim + "_beta_" + beta + "_seed_" + seed + "_c_" + c;
 
 %% Initialization
 xDat=zeros(numberIterations/100, sdim + 2);
@@ -24,7 +23,7 @@ for t = progress(1:numberIterations)
         Mut(6) = Mut(4);
         Mut(7) = Mut(4);
     end
-    [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, sdim);
+    [phi, coopM, piM]=calcPhi(Mut, Res, N, u, beta, sdim, errorprobability);
     if rand(1) < phi
         Res=Mut; xDat(j,:)=[Res, t, coopM]; j=j+1;
     end
@@ -34,13 +33,13 @@ dlmwrite(filename + ".csv", xDat, 'precision', 9);
 writematrix(Data, filename + ".txt");
 end
 
-function [phi, coopMM, piMM]=calcPhi(Mut, Res, N, u, beta, sdim);
+function [phi, coopMM, piMM]=calcPhi(Mut, Res, N, u, beta, sdim,  errorprobability);
 %% Calculating the fixation probability
 
-vMM=stationary(Mut, Mut, sdim);
-vMR=stationary(Mut, Res, sdim);
-vRM=stationary(Res, Mut, sdim);
-vRR=stationary(Res, Res, sdim);
+vMM=stationary(Mut, Mut, sdim, errorprobability);
+vMR=stationary(Mut, Res, sdim, errorprobability);
+vRM=stationary(Res, Mut, sdim, errorprobability);
+vRR=stationary(Res, Res, sdim, errorprobability);
 
 piMM=vMM*u';
 coopMM= sum(vMM(2:4:end)) + sum(vMM(1:4:end));
