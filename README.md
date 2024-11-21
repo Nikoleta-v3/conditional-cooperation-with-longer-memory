@@ -1,8 +1,10 @@
 # Conditional Cooperation with Longer Memory
 
 This repository contains files for the project `Conditional Cooperation with
-Longer Memory`. More specifically, it includes all the files necessary to
-compile the written notes and for our analysis.
+Longer Memory`.
+
+More specifically, it includes all the files necessary to compile the written
+notes and for our analysis.
 
 ### Manuscript
 
@@ -18,7 +20,7 @@ found in `src/evolution_simulations`.
 
 Python was used to numerically explore Nash equilibria. The source code can be
 found in `src/numerical_nash`. For exploring Nash strategies numerically, we
-used another Python package that we implemented named `repeated_play`.
+used another Python package that we implemented named [repeated_play](https://github.com/Nikoleta-v3/repeated_play).
 
 The analysis was done in Jupyter Notebooks. These can be found in the folder
 `notebooks`. One can run these notebooks as normal. No special packages were used.
